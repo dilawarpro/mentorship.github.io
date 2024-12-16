@@ -71,51 +71,51 @@ setInterval(() => {
 }, 20000); 
 
 // JS to secure code
-(function() {
-// Self-Destructing Logic
-function executeSecureFunction() {
-    console.log("Executing secure function...");
-    // Important code here
+// (function() {
+// // Self-Destructing Logic
+// function executeSecureFunction() {
+//     console.log("Executing secure function...");
+//     // Important code here
 
-    // Remove the function after execution
-    executeSecureFunction = function() {
-        console.error("This function has been removed!");
-    };
-}
+//     // Remove the function after execution
+//     executeSecureFunction = function() {
+//         console.error("This function has been removed!");
+//     };
+// }
 
-// Environment Detection
-function isDebugger() {
-    return typeof window !== "undefined" && window.console && console.debugger;
-}
+// // Environment Detection
+// function isDebugger() {
+//     return typeof window !== "undefined" && window.console && console.debugger;
+// }
 
-if (isDebugger()) {
-    console.error("Debugger detected! Exiting...");
-    return; // Exit if debugger is detected
-}
+// if (isDebugger()) {
+//     console.error("Debugger detected! Exiting...");
+//     return; // Exit if debugger is detected
+// }
 
-// Disable right-click context menu
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
+// // Disable right-click context menu
+// document.addEventListener('contextmenu', function(e) {
+//     e.preventDefault();
+// });
 
-// Disable specific keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Detect Ctrl + U, Ctrl + I
-    if (e.ctrlKey && (e.key === 'u' || e.key === 'i')) {
-        e.preventDefault();
-    }
+// // Disable specific keyboard shortcuts
+// document.addEventListener('keydown', function(e) {
+//     // Detect Ctrl + U, Ctrl + I
+//     if (e.ctrlKey && (e.key === 'u' || e.key === 'i')) {
+//         e.preventDefault();
+//     }
 
-    // Detect Option + Command + U, Option + Command + I
-    if (e.metaKey && (e.key === 'u' || e.key === 'i')) {
-        e.preventDefault();
-    }
+//     // Detect Option + Command + U, Option + Command + I
+//     if (e.metaKey && (e.key === 'u' || e.key === 'i')) {
+//         e.preventDefault();
+//     }
 
-    // Detect Windows specific shortcuts
-    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-        e.preventDefault(); // Prevent opening Developer Tools
-    }
-});
+//     // Detect Windows specific shortcuts
+//     if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+//         e.preventDefault(); // Prevent opening Developer Tools
+//     }
+// });
 
-// Execute the secure function
-executeSecureFunction();
-})();
+// // Execute the secure function
+// executeSecureFunction();
+// })();
