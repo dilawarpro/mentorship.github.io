@@ -227,7 +227,7 @@ td {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
-    document.getElementById("progress-bar").style.width = scrollProgress + "%";
+    document.getElementById("progress-bar").style.height = scrollProgress + "%";
   });
 </script>
 <!--   Ended Preloader -->
