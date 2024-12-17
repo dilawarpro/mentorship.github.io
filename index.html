@@ -136,20 +136,20 @@ td {
   padding: 5px;
   border-radius: 10px;
 }
-   #progress-bar {
-      width: 0;
-      height: 5px;
-      background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      transition: width 0.3s ease;
-    }
+#progress-bar {
+  width: 5px; /* Narrow width for vertical bar */
+  height: 0;  /* Start with height of 0 */
+  background: linear-gradient(to bottom, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+  position: fixed;
+  top: 0;
+  right: 0; /* Position on the right side */
+  z-index: 1000;
+  transition: height 0.3s ease; /* Animate height */
+}
    .whatsapp-container {
             display: none; /* Initially hide the button */
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             right: 10px;
             animation: float 3s infinite ease-in-out;
             z-index: 9999;
@@ -227,7 +227,8 @@ td {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
-    document.getElementById("progress-bar").style.width = scrollProgress + "%";
+    // Update height for vertical progress bar
+    document.getElementById("progress-bar").style.height = scrollProgress + "%";
   });
 </script>
 <!--   Ended Preloader -->
