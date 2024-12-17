@@ -228,7 +228,7 @@ audio{
 #progress-bar {
   width: 5px; /* width of the progress bar */
   height: 0;  /* initial height set to 0 */
-  background: linear-gradient(to top, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); /* gradient for the progress bar */
+  background: linear-gradient(to top, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
   position: fixed;
   top: 0;
   left: 0;

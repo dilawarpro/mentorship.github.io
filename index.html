@@ -227,9 +227,12 @@ td {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
+
+    // Update the height of the progress bar based on the scroll percentage
     document.getElementById("progress-bar").style.height = scrollProgress + "%";
   });
 </script>
+
 <!--   Ended Preloader -->
       <div class="container mt-5">
         <div class="row justify-content-center">
