@@ -12,7 +12,7 @@
   <!-- Bootstrap CSS Link -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome CSS Link -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -168,7 +168,89 @@ td {
                 transform: translateY(-20px);
             }
         }
+        .container {
+            width: 100%; /* Ensure it occupies available width */
+            max-width: 600px; /* Set a maximum width to make it more contained */
+            margin: 0 auto; /* Center the container */
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
+        /* Style the unordered list container */
+        ul {
+            list-style-type: none;  /* Remove default bullets */
+            padding-left: 0;
+            margin: 0;
+            background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Subtle gradient background */
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Style each list item */
+        ul li {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Remove border for the last item */
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Use Font Awesome icon for custom bullets */
+        ul li::before {
+            content: "\f00c";  /* Font Awesome check icon */
+            font-family: "Font Awesome 5 Free"; /* Font Awesome font */
+            font-weight: 900;  /* Solid version of the icon */
+            margin-right: 18px;  /* Space between icon and text */
+            font-size: 24px;  /* Icon size */
+            color: #6c757d;  /* Muted gray color for icon */
+            transition: all 0.3s ease;
+        }
+
+        /* Style the list text */
+        ul li span {
+            font-size: 16px;  /* Text size */
+            color: #333;      /* Dark gray text */
+            font-weight: 500; /* Medium font weight for readability */
+            letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
+        }
+
+        /* Hover effect on list items */
+        ul li:hover {
+            background-color: #fffcf0;  /* Warm light background on hover */
+            transform: scale(1.05);  /* Slight scale effect for emphasis */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+        }
+
+        /* Change icon color and size on hover */
+        ul li:hover::before {
+            color: #ff7043;  /* Change icon color to warm coral */
+            font-size: 28px;  /* Slightly larger icon size */
+            transform: scale(1.2);  /* Icon grows slightly when hovered */
+        }
+
+        /* Ensure responsiveness for smaller devices */
+        @media (max-width: 480px) {
+            ul {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+
+            ul li {
+                font-size: 14px; /* Slightly smaller font size on small devices */
+            }
+
+            ul li::before {
+                font-size: 20px; /* Smaller icon size on smaller screens */
+            }
+        }
   </style>
 </head>
 <body>
