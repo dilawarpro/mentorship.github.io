@@ -224,62 +224,70 @@ audio{
 .featutes-icons{
   width: 120px;
 } */
+
+
 /* Added customizes bullet ponints for UL */
-ul {
-  list-style-type: none;  /* Remove default bullets */
-  padding-left: 0;
-  margin: 0;
-  width: 350px;
-  background: #ffffff; /* Clean white background */
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Subtle, soft shadow */
-  padding: 25px;
-}
+      /* Style the unordered list container */
+      ul {
+        list-style-type: none;  /* Remove default bullets */
+        padding-left: 0;
+        margin: 0;
+        width: 360px;
+        background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Subtle gradient background */
+        border-radius: 15px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        padding: 30px;
+        text-align: left;
+    }
 
-/* Style each list item */
-ul li {
-  display: flex;
-  align-items: center;
-  padding: 15px 0;
-  margin-bottom: 12px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  border-bottom: 1px solid #eee; /* Light border between items */
-}
+    /* Style each list item */
+    ul li {
+        display: flex;
+        /* align-items: center; */
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 10px;
+        position: relative;
+        border: 1px solid #e0e0e0;
+    }
 
-/* Remove border for the last item */
-ul li:last-child {
-  border-bottom: none;
-}
+    /* Remove border for the last item */
+    ul li:last-child {
+        border-bottom: none;
+    }
 
-/* Use Font Awesome icon for custom bullets */
-ul li::before {
-  content: "\f058";  /* Font Awesome check icon */
-  font-family: "Font Awesome 5 Free"; /* Font Awesome font */
-  font-weight: 900;  /* Solid version of the icon */
-  margin-right: 18px;  /* Space between icon and text */
-  font-size: 28px;  /* Slightly larger icon */
-  color: #00bfae;  /* Soft teal color for icon */
-  transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation on hover */
-}
+    /* Use Font Awesome icon for custom bullets */
+    ul li::before {
+        content: "\f00c";  /* Font Awesome check icon */
+        font-family: "Font Awesome 5 Free"; /* Font Awesome font */
+        font-weight: 900;  /* Solid version of the icon */
+        margin-right: 18px;  /* Space between icon and text */
+        font-size: 24px;  /* Icon size */
+        color: #6c757d;  /* Muted gray color for icon */
+        transition: all 0.3s ease;
+    }
 
-/* Style the list text */
-ul li span {
-  font-size: 16px;  /* Text size */
-  color: #333;      /* Dark gray text */
-  font-weight: 500; /* Medium font weight for readability */
-  letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
-}
+    /* Style the list text */
+    ul li span {
+        font-size: 16px;  /* Text size */
+        color: #333;      /* Dark gray text */
+        font-weight: 500; /* Medium font weight for readability */
+        letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
+    }
 
-/* Hover effect on list items */
-ul li:hover {
-  background-color: #f1f1f1;  /* Light background on hover */
-  transform: translateX(10px);  /* Slight slide effect */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Darker shadow for hover effect */
-}
+    /* Hover effect on list items */
+    ul li:hover {
+        background-color: #fffcf0;  /* Warm light background on hover */
+        transform: scale(1.05);  /* Slight scale effect for emphasis */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    }
 
-ul li:hover::before {
-  color: #ff5e57;  /* Change icon color to a warm coral */
-  transform: scale(1.2);  /* Slightly increase the icon size */
-}
+    /* Change icon color and size on hover */
+    ul li:hover::before {
+        color: #ff7043;  /* Change icon color to warm coral */
+        font-size: 28px;  /* Slightly larger icon size */
+        transform: scale(1.2);  /* Icon grows slightly when hovered */
+    }
 
 /* Ended customizes bullet ponints for UL */
