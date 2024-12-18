@@ -168,16 +168,9 @@ td {
                 transform: translateY(-20px);
             }
         }
-        .container {
-            width: 100%; /* Ensure it occupies available width */
-            max-width: 600px; /* Set a maximum width to make it more contained */
-            margin: 0 auto; /* Center the container */
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Style the unordered list container */
-        ul {
+        /* ADEDD Custom UL ICONS */
+                /* Styles applied only to ul with class "custom-icons" */
+                .custom-icons {
             list-style-type: none;  /* Remove default bullets */
             padding-left: 0;
             margin: 0;
@@ -188,8 +181,8 @@ td {
             overflow: hidden;
         }
 
-        /* Style each list item */
-        ul li {
+        /* Style each list item inside .custom-icons */
+        .custom-icons li {
             display: flex;
             align-items: center;
             padding: 15px;
@@ -200,12 +193,12 @@ td {
         }
 
         /* Remove border for the last item */
-        ul li:last-child {
+        .custom-icons li:last-child {
             border-bottom: none;
         }
 
-        /* Use Font Awesome icon for custom bullets */
-        ul li::before {
+        /* Use Font Awesome icon for custom bullets in .custom-icons */
+        .custom-icons li::before {
             content: "\f00c";  /* Font Awesome check icon */
             font-family: "Font Awesome 5 Free"; /* Font Awesome font */
             font-weight: 900;  /* Solid version of the icon */
@@ -215,23 +208,23 @@ td {
             transition: all 0.3s ease;
         }
 
-        /* Style the list text */
-        ul li span {
+        /* Style the list text inside .custom-icons */
+        .custom-icons li span {
             font-size: 16px;  /* Text size */
             color: #333;      /* Dark gray text */
             font-weight: 500; /* Medium font weight for readability */
             letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
         }
 
-        /* Hover effect on list items */
-        ul li:hover {
+        /* Hover effect on list items in .custom-icons */
+        .custom-icons li:hover {
             background-color: #fffcf0;  /* Warm light background on hover */
             transform: scale(1.05);  /* Slight scale effect for emphasis */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
         }
 
-        /* Change icon color and size on hover */
-        ul li:hover::before {
+        /* Change icon color and size on hover in .custom-icons */
+        .custom-icons li:hover::before {
             color: #ff7043;  /* Change icon color to warm coral */
             font-size: 28px;  /* Slightly larger icon size */
             transform: scale(1.2);  /* Icon grows slightly when hovered */
@@ -239,18 +232,19 @@ td {
 
         /* Ensure responsiveness for smaller devices */
         @media (max-width: 480px) {
-            ul {
+            .custom-icons {
                 padding: 15px; /* Reduce padding on smaller screens */
             }
 
-            ul li {
+            .custom-icons li {
                 font-size: 14px; /* Slightly smaller font size on small devices */
             }
 
-            ul li::before {
+            .custom-icons li::before {
                 font-size: 20px; /* Smaller icon size on smaller screens */
             }
         }
+        /* Ended Custom UL Icons */
   </style>
 </head>
 <body>
@@ -589,7 +583,7 @@ Why Choose Mentorship By Dilawar?</h1>
                 <div class="course">
                   <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
                  <b class="modules">1. Advanced Web Programming</b><br>
-                 <ul>
+                 <ul class="custom-icons">
                   <li>Getting started by creating a dedicated student folder so that it can be shared with students after completing the mentorship program.</li>
                   <li>What is web programming?</li>
                   <li>How to create professional 3D websites and high-end web applications that are compatible with all web browsers and devices (Android, iOS, and desktop) using advanced web technologies and libraries.</li>
