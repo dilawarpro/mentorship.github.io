@@ -218,9 +218,68 @@ audio{
  }
 }
 
-.testimonials{
+/* .testimonials{
   text-align: justify;
 }
 .featutes-icons{
   width: 120px;
+} */
+/* Added customizes bullet ponints for UL */
+ul {
+  list-style-type: none;  /* Remove default bullets */
+  padding-left: 0;
+  margin: 0;
+  width: 350px;
+  background: #ffffff; /* Clean white background */
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Subtle, soft shadow */
+  padding: 25px;
 }
+
+/* Style each list item */
+ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border-bottom: 1px solid #eee; /* Light border between items */
+}
+
+/* Remove border for the last item */
+ul li:last-child {
+  border-bottom: none;
+}
+
+/* Use Font Awesome icon for custom bullets */
+ul li::before {
+  content: "\f058";  /* Font Awesome check icon */
+  font-family: "Font Awesome 5 Free"; /* Font Awesome font */
+  font-weight: 900;  /* Solid version of the icon */
+  margin-right: 18px;  /* Space between icon and text */
+  font-size: 28px;  /* Slightly larger icon */
+  color: #00bfae;  /* Soft teal color for icon */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Style the list text */
+ul li span {
+  font-size: 16px;  /* Text size */
+  color: #333;      /* Dark gray text */
+  font-weight: 500; /* Medium font weight for readability */
+  letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
+}
+
+/* Hover effect on list items */
+ul li:hover {
+  background-color: #f1f1f1;  /* Light background on hover */
+  transform: translateX(10px);  /* Slight slide effect */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Darker shadow for hover effect */
+}
+
+ul li:hover::before {
+  color: #ff5e57;  /* Change icon color to a warm coral */
+  transform: scale(1.2);  /* Slightly increase the icon size */
+}
+
+/* Ended customizes bullet ponints for UL */
