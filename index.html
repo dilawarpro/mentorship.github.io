@@ -183,7 +183,7 @@ td {
         /* Style each list item inside .custom-icons */
         .custom-icons li {
             display: flex;
-            align-items: center;
+            /* align-items: center; */
             padding: 15px;
             margin-bottom: 12px;
             transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
@@ -213,35 +213,6 @@ td {
             color: #333;      /* Dark gray text */
             font-weight: 500; /* Medium font weight for readability */
             letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
-        }
-
-        /* Hover effect on list items in .custom-icons */
-        .custom-icons li:hover {
-            background-color: #fffcf0;  /* Warm light background on hover */
-            transform: scale(1.05);  /* Slight scale effect for emphasis */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-        }
-
-        /* Change icon color and size on hover in .custom-icons */
-        .custom-icons li:hover::before {
-            color: #ff7043;  /* Change icon color to warm coral */
-            font-size: 28px;  /* Slightly larger icon size */
-            transform: scale(1.2);  /* Icon grows slightly when hovered */
-        }
-
-        /* Ensure responsiveness for smaller devices */
-        @media (max-width: 480px) {
-            .custom-icons {
-                padding: 15px; /* Reduce padding on smaller screens */
-            }
-
-            .custom-icons li {
-                font-size: 14px; /* Slightly smaller font size on small devices */
-            }
-
-            .custom-icons li::before {
-                font-size: 20px; /* Smaller icon size on smaller screens */
-            }
         }
   </style>
 </head>
