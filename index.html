@@ -169,17 +169,6 @@ td {
             }
         }
         /* ADEDD Custom UL ICONS */
-                /* Styles applied only to ul with class "custom-icons" */
-                .custom-icons {
-            list-style-type: none;  /* Remove default bullets */
-            padding-left: 0;
-            margin: 0;
-            background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Subtle gradient background */
-            border-radius: 15px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-            padding: 20px;
-            overflow: hidden;
-        }
 
         /* Style each list item inside .custom-icons */
         .custom-icons li {
@@ -190,59 +179,6 @@ td {
             transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
             border-radius: 10px;
             border: 1px solid #e0e0e0;
-        }
-
-        /* Remove border for the last item */
-        .custom-icons li:last-child {
-            border-bottom: none;
-        }
-
-        /* Use Font Awesome icon for custom bullets in .custom-icons */
-        .custom-icons li::before {
-            content: "\f00c";  /* Font Awesome check icon */
-            font-family: "Font Awesome 5 Free"; /* Font Awesome font */
-            font-weight: 900;  /* Solid version of the icon */
-            margin-right: 18px;  /* Space between icon and text */
-            font-size: 24px;  /* Icon size */
-            color: #6c757d;  /* Muted gray color for icon */
-            transition: all 0.3s ease;
-        }
-
-        /* Style the list text inside .custom-icons */
-        .custom-icons li span {
-            font-size: 16px;  /* Text size */
-            color: #333;      /* Dark gray text */
-            font-weight: 500; /* Medium font weight for readability */
-            letter-spacing: 0.5px;  /* Slight letter spacing for a modern feel */
-        }
-
-        /* Hover effect on list items in .custom-icons */
-        .custom-icons li:hover {
-            background-color: #fffcf0;  /* Warm light background on hover */
-            transform: scale(1.05);  /* Slight scale effect for emphasis */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-        }
-
-        /* Change icon color and size on hover in .custom-icons */
-        .custom-icons li:hover::before {
-            color: #ff7043;  /* Change icon color to warm coral */
-            font-size: 28px;  /* Slightly larger icon size */
-            transform: scale(1.2);  /* Icon grows slightly when hovered */
-        }
-
-        /* Ensure responsiveness for smaller devices */
-        @media (max-width: 480px) {
-            .custom-icons {
-                padding: 15px; /* Reduce padding on smaller screens */
-            }
-
-            .custom-icons li {
-                font-size: 14px; /* Slightly smaller font size on small devices */
-            }
-
-            .custom-icons li::before {
-                font-size: 20px; /* Smaller icon size on smaller screens */
-            }
         }
         /* Ended Custom UL Icons */
   </style>
