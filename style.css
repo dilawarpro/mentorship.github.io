@@ -33,6 +33,10 @@
 /* .course{
     text-align: justify;
 } */
+
+ol, ul {
+  padding-left: 1rem;
+}
   .course a {
     color: #007bff !important;
     text-decoration: none;
