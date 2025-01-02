@@ -136,16 +136,16 @@ td {
   padding: 5px;
   border-radius: 10px;
 }
-   #progress-bar {
-      width: 0;
-      height: 5px;
-      background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      transition: width 0.3s ease;
-    }
+#progress-bar {
+    width: 5px;  /* Set the width of the progress bar */
+    height: 0;   /* Start the height at 0 */
+    background: linear-gradient(to bottom, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+    position: fixed;
+    top: 0;
+    right: 0;     /* Align the progress bar to the right side */
+    z-index: 1000;
+    transition: height 0.3s ease;
+  }
    .whatsapp-container {
             display: none; /* Initially hide the button */
             position: fixed;
@@ -229,7 +229,7 @@ td {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = (scrollTop / scrollHeight) * 100;
-    document.getElementById("progress-bar").style.width = scrollProgress + "%";
+    document.getElementById("progress-bar").style.height = scrollProgress + "%";
   });
 </script>
 <!--   Ended Preloader -->
@@ -1439,7 +1439,7 @@ Why Choose Mentorship By Dilawar?</h1>
             // Use setTimeout to delay the execution of Toastify
             setTimeout(function() {
               Toastify({
-                text: "Thank you for choosing Mentorship By Dilawar as your premier and trusted learning partner 🤗",
+                text: "Thank you for choosing Mentorship By Dilawar as your trusted and premier learning partner :)",
                 duration: 8000,
                 gravity: "bottom", // Display at the bottom
                 position: "center", // Display on the right side
