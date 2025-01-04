@@ -246,7 +246,6 @@ audio{
   transform: translateY(0);
   visibility: hidden;
   opacity: 0; 
-  z-index: 999999999;
 }
 .whatsapp-btn.visible {
   visibility: visible;
