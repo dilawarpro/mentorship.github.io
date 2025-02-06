@@ -228,7 +228,7 @@ audio{
 .featutes-icons{
   width: 120px;
 }
-/* .whatsapp-btn {
+.whatsapp-btn {
   position: fixed;
   bottom: 40px;
   right: 5px;
@@ -291,6 +291,7 @@ audio{
     opacity: 0.3;
   }
 }
+
 .table-custom {
   border-collapse: separate;
   border-spacing: 0 15px;
