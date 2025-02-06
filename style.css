@@ -14,10 +14,10 @@
   .modules{
     background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
     color: white;
-    padding: 5px;
+    padding: 3px;
     border-radius: 0px 8px 0px 8px;
     box-shadow: rgb(71 9 245 / 35%) 0px 4px 16px;
-    font-size: 14px;
+    font-size: 12px;
     /* box-shadow: rgb(71 9 245 / 33%) 0px -6px 16px; */
   }
   .choice{
