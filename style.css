@@ -34,9 +34,9 @@
     text-align: justify;
 } */
 
-ol, ul {
+/* ol, ul {
   padding-left: 1rem;
-}
+} */
   .course a {
     color: #007bff !important;
     text-decoration: none;
@@ -49,7 +49,7 @@ ol, ul {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     animation: fadeIn 0.5s;
