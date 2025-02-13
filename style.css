@@ -48,7 +48,7 @@
     z-index: 1;
     left: 0;
     top: 0;
-    width: fit-content;
+    width: 50%;
     height: fit-content;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
