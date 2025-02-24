@@ -1504,24 +1504,6 @@ Why Choose Mentorship By Dilawar?</h1>
           <!-- Bootstrap JS and Font Awesome JS Links (for icons) -->
           <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
           <script>
-            if (window.trustedTypes && window.trustedTypes.createPolicy) {
-    window.trustedTypes.createPolicy('default', {
-        createHTML: (string, sink) => string
-    });
-}
-
-$$('.lh-gauge__wrapper').forEach((wrapper, i) => {
-    const percentage = wrapper.querySelector('.lh-gauge__percentage');
-    let clone = percentage.cloneNode();
-    clone.innerHTML = 100;
-    wrapper.style.color = 'var(--color-pass-secondary)';
-    wrapper.style.fill = wrapper.style.stroke = 'var(--color-pass)';
-    wrapper.removeChild(percentage);
-    wrapper.appendChild(clone);
-    wrapper.querySelector('.lh-gauge-arc').style.strokeDasharray = '351.858,351.858';
-});
-          </script>
-          <script>
             // Use setTimeout to delay the execution of Toastify
             setTimeout(function() {
               Toastify({
