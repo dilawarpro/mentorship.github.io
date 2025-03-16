@@ -297,7 +297,6 @@ audio{
   --border-radius: 15px;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
 /* Chatbot Trigger Button */
 .chatbot-trigger {
   position: fixed;
@@ -504,7 +503,6 @@ audio{
   margin-left: auto;
   margin-right: 0;
   text-align: right;
-  display: inline-block;
   max-width: fit-content;
   width: auto;
   float: right;

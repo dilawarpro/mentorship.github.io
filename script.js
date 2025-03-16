@@ -120,7 +120,7 @@ setInterval(() => {
 // executeSecureFunction();
 // })();
 
-// Chatbot for Mentorship By Dilawar
+// Chatbot started for Mentorship By Dilawar
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const chatbotTrigger = document.getElementById('chatbotTrigger');
@@ -1234,3 +1234,5 @@ You've multiple options to choose but hamara sab sy best package champions mento
         }, 2000);
     }
 }); 
+
+// Chatbot Ended for Mentorship By Dilawar
