@@ -95,7 +95,7 @@
 }
 .close-btn {
     color: white;
-    float: right;
+    /* float: right; */
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -485,7 +485,7 @@ body {
   display: inline-block;
   max-width: fit-content;
   width: auto;
-  float: right;
+  display: inline-block;
   clear: both;
 }
 
