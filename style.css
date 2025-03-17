@@ -781,68 +781,118 @@ body {
   }
 }
 .appointment-trigger {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.appointment-trigger i {
+  font-size: 32px;
+  color: white;
 }
 
 .appointment-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff3366;
-    color: white;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    animation: bounce 1s infinite;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff3366;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .appointment-tooltip {
-    position: absolute;
-    left: 75px;
-    background: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.3s ease;
+  position: absolute;
+  left: 75px;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
 }
 
 .appointment-trigger:hover .appointment-tooltip {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .appointment-chat-container {
-    position: fixed;
-    bottom: 100px;
-    left: 30px;
-    width: 350px;
-    height: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
+  position: fixed;
+  bottom: 100px;
+  left: 30px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.appointment-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  gap: 8px;
+}
+
+.appointment-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+.appointment-input button {
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .appointment-chat-container {
+      width: calc(100% - 20px);
+      left: 10px;
+      height: calc(100% - 120px);
+  }
+  
+  .appointment-input {
+      padding: 8px;
+  }
+  
+  .appointment-input input {
+      font-size: 14px;
+  }
 }
