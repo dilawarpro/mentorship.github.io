@@ -1,4 +1,3 @@
-
 *{ 
   font-family: 'Poppins', sans-serif;
 }
@@ -533,49 +532,59 @@ body {
 /* Chatbot Input Area */
 .chatbot-input {
   display: flex;
-  padding: 12px 15px;
-  background-color: white;
-  border-top: 1px solid #eee;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+  gap: 8px; /* Adds space between input and button */
 }
 
 .chatbot-input input {
   flex: 1;
-  padding: 12px 15px;
+  padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 20px;
   outline: none;
-  transition: all 0.2s ease;
   font-size: 14px;
-}
-
-.chatbot-input input:focus {
-  border-color: var(--primary-color-light);
-  box-shadow: 0 0 0 3px rgba(0, 221, 255, 0.2);
+  width: calc(100% - 50px); /* Ensures space for button */
 }
 
 .chatbot-input button {
-  background: var(--primary-gradient);
+  background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
   color: white;
   border: none;
-  width: 45px;
-  height: 45px;
   border-radius: 50%;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.chatbot-input button:hover {
-  transform: scale(1.1) rotate(10deg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents button from shrinking */
+  padding: 0;
+  margin-left: 4px;
 }
 
 .chatbot-input button i {
-  font-size: 18px;
+  font-size: 16px;
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width: 480px) {
+  .chatbot-input {
+    padding: 8px;
+  }
+  
+  .chatbot-input input {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .chatbot-input button {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* Appointment Summary - Enhanced */
@@ -770,4 +779,4 @@ body {
       right: 20px;
       left: auto;
   }
-} 
+}
