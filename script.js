@@ -1218,3 +1218,186 @@ const appointmentChat = {
 document.addEventListener('DOMContentLoaded', () => {
     appointmentChat.init();
 });
+// Appointment Chat Implementation
+const appointmentChat = {
+    init() {
+        this.trigger = document.getElementById('appointmentTrigger');
+        this.container = document.getElementById('appointmentContainer');
+        this.messages = document.getElementById('appointmentMessages');
+        this.input = document.getElementById('appointmentUserInput');
+        this.sendBtn = document.getElementById('appointmentSendBtn');
+        this.minimizeBtn = document.getElementById('appointmentMinimizeBtn');
+        this.closeBtn = document.getElementById('appointmentCloseBtn');
+        
+        this.chatState = {
+            isOpen: false,
+            currentStep: 'initial',
+            userData: {
+                name: '',
+                email: '',
+                city: '',
+                whatsapp: '',
+                readDetails: false
+            }
+        };
+        
+        this.setupEventListeners();
+        this.startConversation();
+    },
+
+    setupEventListeners() {
+        // Trigger button
+        this.trigger.addEventListener('click', () => this.toggleChat());
+        
+        // Control buttons
+        this.minimizeBtn.addEventListener('click', () => this.minimizeChat());
+        this.closeBtn.addEventListener('click', () => this.closeChat());
+        
+        // Input handling
+        this.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.handleUserInput();
+            }
+        });
+        
+        // Send button
+        if (this.sendBtn) {
+            this.sendBtn.addEventListener('click', () => this.handleUserInput());
+        }
+    },
+
+    toggleChat() {
+        if (this.chatState.isOpen) {
+            this.closeChat();
+        } else {
+            this.openChat();
+        }
+    },
+
+    openChat() {
+        this.container.style.display = 'flex';
+        this.trigger.style.display = 'none';
+        this.chatState.isOpen = true;
+        document.querySelector('.appointment-badge').style.display = 'none';
+    },
+
+    minimizeChat() {
+        this.container.style.display = 'none';
+        this.trigger.style.display = 'flex';
+        this.chatState.isOpen = false;
+    },
+
+    closeChat() {
+        this.container.style.display = 'none';
+        this.trigger.style.display = 'flex';
+        this.chatState.isOpen = false;
+    },
+
+    async startConversation() {
+        await this.addBotMessage("Hello! 👋 Have you read all the details about our mentorship program at mentorship.dilawarpro.com?");
+        this.showOptions(["Yes, I have", "No, not yet"]);
+    },
+
+    handleUserInput() {
+        const message = this.input.value.trim();
+        if (!message) return;
+
+        this.addUserMessage(message);
+        this.input.value = '';
+        this.processUserInput(message);
+    },
+
+    addUserMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message user-message';
+        messageDiv.textContent = message;
+        this.messages.appendChild(messageDiv);
+        this.scrollToBottom();
+    },
+
+    async addBotMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.innerHTML = message;
+        this.messages.appendChild(messageDiv);
+        this.scrollToBottom();
+    },
+
+    scrollToBottom() {
+        this.messages.scrollTop = this.messages.scrollHeight;
+    },
+
+    showOptions(options) {
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'chat-options';
+        
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.className = 'option-button';
+            button.textContent = option;
+            button.addEventListener('click', () => {
+                this.handleUserInput(option);
+            });
+            optionsDiv.appendChild(button);
+        });
+        
+        this.messages.appendChild(optionsDiv);
+        this.scrollToBottom();
+    },
+
+    async processUserInput(message) {
+        // Add typing indicator
+        this.showTypingIndicator();
+
+        // Process after a short delay to simulate typing
+        setTimeout(() => {
+            this.removeTypingIndicator();
+            
+            switch (this.chatState.currentStep) {
+                case 'initial':
+                    this.handleInitialResponse(message);
+                    break;
+                // Add more cases for other steps
+                default:
+                    this.handleDefaultResponse();
+            }
+        }, 1000);
+    },
+
+    showTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.className = 'typing-indicator';
+        indicator.innerHTML = '<span></span><span></span><span></span>';
+        indicator.id = 'typingIndicator';
+        this.messages.appendChild(indicator);
+        this.scrollToBottom();
+    },
+
+    removeTypingIndicator() {
+        const indicator = document.getElementById('typingIndicator');
+        if (indicator) {
+            indicator.remove();
+        }
+    },
+
+    handleInitialResponse(message) {
+        if (message.toLowerCase().includes('yes')) {
+            this.chatState.userData.readDetails = true;
+            this.chatState.currentStep = 'getName';
+            this.addBotMessage("Great! Let's schedule your appointment. First, could you please tell me your name?");
+        } else {
+            this.addBotMessage("I recommend reading all the details first at mentorship.dilawarpro.com. Once you're done, come back here and we'll schedule your appointment!");
+            this.showOptions(["I've read it now", "I'll read it later"]);
+        }
+    },
+
+    handleDefaultResponse() {
+        this.addBotMessage("I'm here to help you schedule an appointment. Would you like to start over?");
+        this.showOptions(["Yes, start over", "No, thanks"]);
+    }
+};
+
+// Initialize the chat when the document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    appointmentChat.init();
+});

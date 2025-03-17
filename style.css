@@ -896,3 +896,58 @@ body {
       font-size: 14px;
   }
 }
+.appointment-summary {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.appointment-summary h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.summary-content {
+  margin-bottom: 15px;
+}
+
+.summary-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.share-instruction {
+  color: #6c757d;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+.whatsapp-btn i {
+  font-size: 18px;
+}
