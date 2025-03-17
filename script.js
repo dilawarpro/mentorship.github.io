@@ -1167,6 +1167,54 @@ You've multiple options to choose but hamara sab sy best package champions mento
     }
 }); 
 
-
-
 // ChatBot Ended
+
+const appointmentChat = {
+    init() {
+        this.trigger = document.getElementById('appointmentTrigger');
+        this.container = document.getElementById('appointmentContainer');
+        this.messages = document.getElementById('appointmentMessages');
+        this.input = document.getElementById('appointmentUserInput');
+        this.sendBtn = document.getElementById('appointmentSendBtn');
+        
+        this.userData = {
+            name: '',
+            email: '',
+            city: '',
+            whatsapp: '',
+            readWebsite: false
+        };
+        
+        this.setupEventListeners();
+        this.startConversation();
+    },
+
+    setupEventListeners() {
+        this.trigger.addEventListener('click', () => this.toggleChat());
+        this.sendBtn.addEventListener('click', () => this.handleUserInput());
+        this.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.handleUserInput();
+        });
+        
+        document.getElementById('appointmentCloseBtn').addEventListener('click', () => {
+            this.container.style.display = 'none';
+        });
+    },
+
+    toggleChat() {
+        this.container.style.display = this.container.style.display === 'none' ? 'flex' : 'none';
+        if (this.container.style.display === 'flex') {
+            this.input.focus();
+        }
+    },
+
+    async startConversation() {
+        await this.sendBotMessage("Hello! 👋 Before we schedule your appointment, have you read all the details on https://mentorship.dilawarpro.com?");
+    },
+
+    // Add more methods for handling conversation flow, appointment scheduling, etc.
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    appointmentChat.init();
+});
