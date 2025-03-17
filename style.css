@@ -275,6 +275,26 @@ body {
   background-color: #f9f9f9;
 }
 
+/* Main Styles */
+:root {
+  --primary-gradient: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+  --primary-color-light: rgb(0, 221, 255);
+  --primary-color-dark: rgb(255, 0, 212);
+  --text-color: #333;
+  --light-text: #fff;
+  --chat-bg: #f5f5f5;
+  --user-msg-bg: #e1f5fe;
+  --bot-msg-bg: #f0f0f0;
+  --border-radius: 15px;
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: #f9f9f9;
+}
+
 /* Chatbot Trigger Button */
 .chatbot-trigger {
   position: fixed;
@@ -481,10 +501,9 @@ body {
   margin-left: auto;
   margin-right: 0;
   text-align: right;
-  display: inline-block;
   max-width: fit-content;
   width: auto;
-  display: inline-block;
+  float: right;
   clear: both;
 }
 
@@ -532,59 +551,49 @@ body {
 /* Chatbot Input Area */
 .chatbot-input {
   display: flex;
-  align-items: center;
-  padding: 10px;
-  background: #fff;
-  border-top: 1px solid #e0e0e0;
-  position: relative;
-  gap: 8px; /* Adds space between input and button */
+  padding: 12px 15px;
+  background-color: white;
+  border-top: 1px solid #eee;
 }
 
 .chatbot-input input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 20px;
   outline: none;
+  transition: all 0.2s ease;
   font-size: 14px;
-  width: calc(100% - 50px); /* Ensures space for button */
+}
+
+.chatbot-input input:focus {
+  border-color: var(--primary-color-light);
+  box-shadow: 0 0 0 3px rgba(0, 221, 255, 0.2);
 }
 
 .chatbot-input button {
-  background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+  background: var(--primary-gradient);
   color: white;
   border: none;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 10px;
   cursor: pointer;
-  flex-shrink: 0; /* Prevents button from shrinking */
-  padding: 0;
-  margin-left: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatbot-input button:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .chatbot-input button i {
-  font-size: 16px;
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width: 480px) {
-  .chatbot-input {
-    padding: 8px;
-  }
-  
-  .chatbot-input input {
-    font-size: 13px;
-    padding: 6px 10px;
-  }
-  
-  .chatbot-input button {
-    width: 32px;
-    height: 32px;
-  }
+  font-size: 18px;
 }
 
 /* Appointment Summary - Enhanced */
@@ -707,28 +716,56 @@ body {
   margin-bottom: 15px;
   animation: fadeIn 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  max-width: 80%;
 }
 
-.typing-indicator span {
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.typing-dot {
   height: 8px;
   width: 8px;
-  background-color: #888;
+  background: linear-gradient(to right, var(--primary-color-light), var(--primary-color-dark));
   border-radius: 50%;
-  display: inline-block;
   margin: 0 2px;
-  opacity: 0.4;
+  animation: typingBounce 1.3s infinite ease;
+  opacity: 0.7;
 }
 
-.typing-indicator span:nth-child(1) {
-  animation: blink 1s infinite 0.2s;
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
 }
 
-.typing-indicator span:nth-child(2) {
-  animation: blink 1s infinite 0.4s;
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
-.typing-indicator span:nth-child(3) {
-  animation: blink 1s infinite 0.6s;
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.typing-text {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+}
+
+.typing-ellipsis {
+  display: inline-block;
+  min-width: 16px;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+      transform: translateY(0);
+  }
+  30% {
+      transform: translateY(-4px);
+  }
 }
 
 /* Animations */
@@ -779,4 +816,4 @@ body {
       right: 20px;
       left: auto;
   }
-}
+} 
