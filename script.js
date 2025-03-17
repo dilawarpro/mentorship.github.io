@@ -995,7 +995,7 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`Ap is mentorship ko befikr ho ky join kar sakty hain. This mentorship will not disappoint you at any cost because I truly understand k ap kitni mushkil sy fee pay kariengy.`);
+        addBotMessage(`Ap is mentorship ko befikr ho k join kar lien. This mentorship will not disappoint you at any cost because I truly understand k ap kitni mushkil sy fee pay kariengy.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
@@ -1014,23 +1014,23 @@ First, I'll need your email address to send you confirmation details.`);
                         addBotMessage(`Hamari puri koshish hogi ky first module complete hoty he apki income start ho jayegi Insha'Allah.`);
                         
                         // Fifth delay - 5 seconds
-                        // setTimeout(() => {
-                        //     addBotMessage(`Don't worry just trust me and start taking your classes as soon as possible. I will take you to the next level.`);
+                        setTimeout(() => {
+                            addBotMessage(`Don't worry just trust me and start taking your classes as soon as possible. I will take you to the next level.`);
                             
                             // Sixth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny k baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
+                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
                                 
                                 // Ask if user has read website details instead of showing menu options
                                 setTimeout(() => {
                                     askAboutWebsiteReading();
                                 }, 2000);
-                            }, 8000); // 5 seconds delay
-                        }, 8000); // 5 seconds delay
-                    }, 8000); // 6 seconds delay
-                }, 8000); // 5 seconds delay
-            // }, 8000); // 4 seconds delay
-        }, 6000); // 5 seconds delay
+                            }, 5000); // 5 seconds delay
+                        }, 5000); // 5 seconds delay
+                    }, 6000); // 6 seconds delay
+                }, 5000); // 5 seconds delay
+            }, 4000); // 4 seconds delay
+        }, 5000); // 5 seconds delay
     }
 
     // Function to ask if user has read website details
@@ -1167,6 +1167,443 @@ You've multiple options to choose but hamara sab sy best package champions mento
     }
 }); 
 
-
+ // WhatsApp Appointment Booking Script
+ document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements for WhatsApp Appointment
+    const appointmentWhatsappTrigger = document.getElementById('appointmentWhatsappTrigger');
+    const whatsappAppointmentContainer = document.getElementById('whatsappAppointmentContainer');
+    const minimizeWhatsappBtn = document.getElementById('minimizeWhatsappBtn');
+    const closeWhatsappBtn = document.getElementById('closeWhatsappBtn');
+    const whatsappAppointmentMessages = document.getElementById('whatsappAppointmentMessages');
+    const whatsappUserInput = document.getElementById('whatsappUserInput');
+    const whatsappSendBtn = document.getElementById('whatsappSendBtn');
+    const whatsappSuggestedButtons = document.getElementById('whatsappSuggestedButtons');
+    const whatsappNotification = document.querySelector('.whatsapp-notification');
+    
+    // WhatsApp Appointment State
+    let whatsappState = {
+        fullName: '',
+        email: '',
+        city: '',
+        whatsappNumber: '',
+        appointmentDate: '',
+        appointmentTime: '',
+        currentStep: 'greeting',
+        conversationHistory: [],
+        appointmentId: generateAppointmentId(),
+        hasReadWebsite: false
+    };
+    
+    // Event Listeners for WhatsApp Appointment
+    appointmentWhatsappTrigger.addEventListener('click', toggleWhatsappAppointment);
+    minimizeWhatsappBtn.addEventListener('click', minimizeWhatsappAppointment);
+    closeWhatsappBtn.addEventListener('click', closeWhatsappAppointment);
+    whatsappSendBtn.addEventListener('click', handleWhatsappUserInput);
+    whatsappUserInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            handleWhatsappUserInput();
+        }
+    });
+    
+    // WhatsApp Appointment Functions
+    function toggleWhatsappAppointment() {
+        if (whatsappAppointmentContainer.classList.contains('active')) {
+            closeWhatsappAppointment();
+        } else {
+            openWhatsappAppointment();
+        }
+    }
+    
+    function openWhatsappAppointment() {
+        whatsappAppointmentContainer.classList.add('active');
+        appointmentWhatsappTrigger.style.display = 'none';
+        
+        // Hide notification when chat is opened
+        if (whatsappNotification) {
+            whatsappNotification.style.display = 'none';
+        }
+        
+        // If this is the first time opening, show greeting and website question
+        if (whatsappState.conversationHistory.length === 0) {
+            setTimeout(() => {
+                addWhatsappBotMessage("👋 Hello! I'm your appointment booking assistant for Mentorship By Dilawar.");
+                setTimeout(() => {
+                    askAboutWebsiteReading();
+                }, 1000);
+            }, 500);
+        }
+    }
+    
+    function minimizeWhatsappAppointment() {
+        whatsappAppointmentContainer.classList.remove('active');
+        appointmentWhatsappTrigger.style.display = 'block';
+    }
+    
+    function closeWhatsappAppointment() {
+        whatsappAppointmentContainer.classList.remove('active');
+        appointmentWhatsappTrigger.style.display = 'block';
+    }
+    
+    function handleWhatsappUserInput() {
+        const message = whatsappUserInput.value.trim();
+        if (message === '') return;
+        
+        // Add user message to chat
+        addWhatsappUserMessage(message);
+        whatsappUserInput.value = '';
+        
+        // Process user input based on current step
+        processWhatsappUserInput(message);
+    }
+    
+    function processWhatsappUserInput(message) {
+        // Save message to conversation history
+        whatsappState.conversationHistory.push({
+            sender: 'user',
+            message: message
+        });
+        
+        // Show typing indicator
+        showWhatsappTypingIndicator();
+        
+        // Process based on current step
+        setTimeout(() => {
+            removeWhatsappTypingIndicator();
+            
+            switch(whatsappState.currentStep) {
+                case 'greeting':
+                    askAboutWebsiteReading();
+                    break;
+                case 'website_reading':
+                    handleWebsiteReadingResponse(message);
+                    break;
+                case 'full_name':
+                    handleFullNameInput(message);
+                    break;
+                case 'email':
+                    handleEmailInput(message);
+                    break;
+                case 'city':
+                    handleCityInput(message);
+                    break;
+                case 'whatsapp_number':
+                    handleWhatsappNumberInput(message);
+                    break;
+                case 'appointment_date':
+                    handleAppointmentDateInput(message);
+                    break;
+                case 'appointment_time':
+                    handleAppointmentTimeInput(message);
+                    break;
+                case 'confirmation':
+                    handleAppointmentConfirmation(message);
+                    break;
+                default:
+                    generalWhatsappResponse(message);
+            }
+        }, 1000);
+    }
+    
+    function askAboutWebsiteReading() {
+        whatsappState.currentStep = 'website_reading';
+        addWhatsappBotMessage("Have you read all the details from the website at <a href='https://mentorship.dilawarpro.com' target='_blank'>mentorship.dilawarpro.com</a>?");
+        
+        // Show suggested buttons
+        showWhatsappSuggestedButtons([
+            "Yes, I've read everything",
+            "No, not yet"
+        ]);
+    }
+    
+    function handleWebsiteReadingResponse(response) {
+        clearWhatsappSuggestedButtons();
+        
+        if (response.toLowerCase().includes("yes") || response.toLowerCase().includes("read everything")) {
+            whatsappState.hasReadWebsite = true;
+            addWhatsappBotMessage("Great! Let's schedule your appointment. I'll need a few details from you.");
+            setTimeout(() => {
+                askForFullName();
+            }, 1000);
+        } else {
+            whatsappState.hasReadWebsite = false;
+            addWhatsappBotMessage("I recommend reading all the details on the website first to better understand the mentorship program. Please visit <a href='https://mentorship.dilawarpro.com' target='_blank'>mentorship.dilawarpro.com</a> and come back when you're ready.");
+            
+            setTimeout(() => {
+                addWhatsappBotMessage("Would you like me to wait while you read the website details?");
+                showWhatsappSuggestedButtons([
+                    "I've read it now",
+                    "I'll come back later"
+                ]);
+            }, 2000);
+        }
+    }
+    
+    function askForFullName() {
+        whatsappState.currentStep = 'full_name';
+        addWhatsappBotMessage("What is your full name?");
+    }
+    
+    function handleFullNameInput(name) {
+        whatsappState.fullName = name;
+        addWhatsappBotMessage(`Thank you, ${name}! Now, I need your email address.`);
+        whatsappState.currentStep = 'email';
+    }
+    
+    function handleEmailInput(email) {
+        if (isValidEmail(email)) {
+            whatsappState.email = email;
+            addWhatsappBotMessage("Great! Which city are you from?");
+            whatsappState.currentStep = 'city';
+        } else {
+            addWhatsappBotMessage("That doesn't look like a valid email address. Please provide a valid email.");
+        }
+    }
+    
+    function handleCityInput(city) {
+        whatsappState.city = city;
+        addWhatsappBotMessage("Thank you! Now, please provide your WhatsApp number for communication.");
+        whatsappState.currentStep = 'whatsapp_number';
+    }
+    
+    function handleWhatsappNumberInput(number) {
+        // Simple validation for phone number
+        if (isValidPhone(number)) {
+            whatsappState.whatsappNumber = number;
+            addWhatsappBotMessage("Perfect! Now let's choose a date for your appointment.");
+            
+            // Generate date options based on current date
+            const dateOptions = generateAppointmentDateOptions(7); // Next 7 days
+            addWhatsappBotMessage("Here are some available dates:");
+            showWhatsappSuggestedButtons(dateOptions);
+            
+            whatsappState.currentStep = 'appointment_date';
+        } else {
+            addWhatsappBotMessage("That doesn't look like a valid phone number. Please provide a valid WhatsApp number.");
+        }
+    }
+    
+    function handleAppointmentDateInput(date) {
+        whatsappState.appointmentDate = date;
+        clearWhatsappSuggestedButtons();
+        
+        addWhatsappBotMessage(`Great! You selected ${date}. Now, please choose a preferred time.`);
+        
+        // Generate time slots
+        const timeSlots = [
+            "10:00 AM", "11:00 AM", "12:00 PM", 
+            "1:00 PM", "2:00 PM", "3:00 PM", 
+            "4:00 PM", "5:00 PM", "6:00 PM"
+        ];
+        
+        showWhatsappSuggestedButtons(timeSlots);
+        whatsappState.currentStep = 'appointment_time';
+    }
+    
+    function handleAppointmentTimeInput(time) {
+        whatsappState.appointmentTime = time;
+        clearWhatsappSuggestedButtons();
+        
+        addWhatsappBotMessage(`Perfect! You've selected ${whatsappState.appointmentDate} at ${time}.`);
+        
+        setTimeout(() => {
+            showAppointmentSummary();
+        }, 1000);
+    }
+    
+    function showAppointmentSummary() {
+        const summaryHTML = `
+        <div class="appointment-summary">
+            <h4>📅 Appointment Summary</h4>
+            <p><strong>Appointment ID:</strong> ${whatsappState.appointmentId}</p>
+            <p><strong>Name:</strong> ${whatsappState.fullName}</p>
+            <p><strong>Email:</strong> ${whatsappState.email}</p>
+            <p><strong>City:</strong> ${whatsappState.city}</p>
+            <p><strong>WhatsApp:</strong> ${whatsappState.whatsappNumber}</p>
+            <p><strong>Date:</strong> ${whatsappState.appointmentDate}</p>
+            <p><strong>Time:</strong> ${whatsappState.appointmentTime}</p>
+        </div>`;
+        
+        addWhatsappBotMessage(summaryHTML);
+        
+        setTimeout(() => {
+            addWhatsappBotMessage("Please confirm this appointment by sending it to us on WhatsApp:");
+            
+            setTimeout(() => {
+                const whatsappLink = `https://wa.me/923314041010?text=${encodeURIComponent(
+                    `*Appointment Booking Request*\n\n` +
+                    `*Appointment ID:* ${whatsappState.appointmentId}\n` +
+                    `*Name:* ${whatsappState.fullName}\n` +
+                    `*Email:* ${whatsappState.email}\n` +
+                    `*City:* ${whatsappState.city}\n` +
+                    `*WhatsApp:* ${whatsappState.whatsappNumber}\n` +
+                    `*Date:* ${whatsappState.appointmentDate}\n` +
+                    `*Time:* ${whatsappState.appointmentTime}\n\n` +
+                    `I would like to confirm this appointment for mentorship.`
+                )}`;
+                
+                addWhatsappBotMessage(`<a href="${whatsappLink}" target="_blank" class="animated-whatsapp-btn"><i class="fab fa-whatsapp"></i> Confirm on WhatsApp</a>`);
+                
+                whatsappState.currentStep = 'confirmation';
+                
+                setTimeout(() => {
+                    addWhatsappBotMessage("Thank you for choosing Mentorship By Dilawar as your premier and Trusted learning partner.");
+                    
+                    setTimeout(() => {
+                        addWhatsappBotMessage("Wishing you a very best of luck for your future and have wonderful days ahead :)");
+                        
+                        setTimeout(() => {
+                            addWhatsappBotMessage("Have a great learning experience together!");
+                        }, 3000);
+                    }, 5000);
+                }, 2000);
+            }, 1500);
+        }, 1500);
+    }
+    
+    function handleAppointmentConfirmation(response) {
+        addWhatsappBotMessage("Your appointment has been scheduled! We look forward to connecting with you on WhatsApp.");
+        
+        // Reset the state for future bookings
+        whatsappState = {
+            fullName: '',
+            email: '',
+            city: '',
+            whatsappNumber: '',
+            appointmentDate: '',
+            appointmentTime: '',
+            currentStep: 'greeting',
+            conversationHistory: [],
+            appointmentId: generateAppointmentId(),
+            hasReadWebsite: false
+        };
+    }
+    
+    function generalWhatsappResponse(message) {
+        addWhatsappBotMessage("I'm here to help you book an appointment. If you have any questions about the mentorship program, please visit the website or contact us directly.");
+    }
+    
+    // Helper Functions for WhatsApp Appointment
+    function addWhatsappUserMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message-container user-container';
+        messageElement.innerHTML = `
+            <div class="message user-message">
+                ${message}
+            </div>
+            <div class="message-time">${getCurrentTime()}</div>
+        `;
+        whatsappAppointmentMessages.appendChild(messageElement);
+        whatsappAppointmentMessages.scrollTop = whatsappAppointmentMessages.scrollHeight;
+    }
+    
+    function addWhatsappBotMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message-container bot-container';
+        messageElement.innerHTML = `
+            <div class="message-content">
+                <div class="message bot-message">
+                    ${message}
+                </div>
+                <div class="message-time">${getCurrentTime()}</div>
+            </div>
+        `;
+        whatsappAppointmentMessages.appendChild(messageElement);
+        whatsappAppointmentMessages.scrollTop = whatsappAppointmentMessages.scrollHeight;
+        
+        // Save bot message to conversation history
+        whatsappState.conversationHistory.push({
+            sender: 'bot',
+            message: message
+        });
+    }
+    
+    function showWhatsappTypingIndicator() {
+        const typingElement = document.createElement('div');
+        typingElement.className = 'message-container bot-container typing-container';
+        typingElement.id = 'whatsappTypingIndicator';
+        typingElement.innerHTML = `
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `;
+        whatsappAppointmentMessages.appendChild(typingElement);
+        whatsappAppointmentMessages.scrollTop = whatsappAppointmentMessages.scrollHeight;
+    }
+    
+    function removeWhatsappTypingIndicator() {
+        const typingIndicator = document.getElementById('whatsappTypingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+    
+    function showWhatsappSuggestedButtons(options) {
+        clearWhatsappSuggestedButtons();
+        
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.className = 'suggested-btn whatsapp-suggested-btn';
+            button.textContent = option;
+            button.addEventListener('click', function() {
+                whatsappUserInput.value = option;
+                handleWhatsappUserInput();
+            });
+            whatsappSuggestedButtons.appendChild(button);
+        });
+        
+        whatsappSuggestedButtons.style.display = 'flex';
+    }
+    
+    function clearWhatsappSuggestedButtons() {
+        whatsappSuggestedButtons.innerHTML = '';
+        whatsappSuggestedButtons.style.display = 'none';
+    }
+    
+    function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    function isValidEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+    
+    function isValidPhone(phone) {
+        // Simple validation - can be enhanced based on specific requirements
+        return phone.length >= 10 && /^\d+$/.test(phone.replace(/[\s\-\+]/g, ''));
+    }
+    
+    function generateAppointmentDateOptions(days) {
+        const options = [];
+        const today = new Date();
+        
+        for (let i = 1; i <= days; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            
+            // Skip weekends if needed
+            // if (date.getDay() === 0 || date.getDay() === 6) continue;
+            
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            options.push(formattedDate);
+        }
+        
+        return options;
+    }
+    
+    function generateAppointmentId() {
+        return 'APT-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    }
+});
 
 // ChatBot Ended
