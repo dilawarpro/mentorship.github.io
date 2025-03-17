@@ -1469,75 +1469,35 @@ Why Choose Mentorship By Dilawar?</h1>
 </div>
 </div> -->
 <!-- Added ChatBot -->
-    <!-- Demo Website Content -->
-    <div class="container mt-5">
-      <div class="row">
-          <div class="col-md-12 text-center">
-              <h1>Welcome to Mentorship By Dilawar</h1>
-              <p class="lead">Transform your skills with our professional mentorship program</p>
-          </div>
-      </div>
-  </div>
+<!-- Chatbot Trigger Button -->
+<div class="chatbot-trigger animate__animated animate__pulse animate__infinite" id="chatbotTrigger">
+  <i class="fa-brands fa-rocketchat fa-lg" style="color: #ffffff;"></i>
+  <span class="chat-notification">1</span>
+</div>
 
-  <!-- WhatsApp Appointment Button -->
-  <div class="appointment-whatsapp-trigger animate__animated animate__pulse animate__infinite" id="appointmentWhatsappTrigger">
-      <i class="fab fa-whatsapp"></i>
-      <!-- <span class="whatsapp-notification">1</span> -->
-      <div class="appointment-tooltip">Book a FREE Appointment</div>
-  </div>
-
-  <!-- WhatsApp Appointment Container -->
-  <div class="whatsapp-appointment-container" id="whatsappAppointmentContainer">
-      <div class="whatsapp-appointment-header">
-          <div class="whatsapp-appointment-title">
-              <span>Book Appointment via WhatsApp</span>
-          </div>
-          <div class="chatbot-controls">
-              <button class="minimize-btn" id="minimizeWhatsappBtn"><i class="fas fa-minus"></i></button>
-              <button class="close-btn" id="closeWhatsappBtn"><i class="fas fa-times"></i></button>
-          </div>
+<!-- Chatbot Container -->
+<div class="chatbot-container" id="chatbotContainer">
+  <div class="chatbot-header">
+      <div class="chatbot-title">
+          <img src="https://dilawarpro.com/skills-profile-picture.png" alt="Mentor Logo" class="chatbot-logo">
+          <span>Mentorship By Dilawar</span>
       </div>
-      <div class="chatbot-messages" id="whatsappAppointmentMessages">
-          <!-- Messages will be added here dynamically -->
-      </div>
-      <div class="chatbot-suggested-btns" id="whatsappSuggestedButtons">
-          <!-- Suggested buttons will be added here dynamically -->
-      </div>
-      <div class="chatbot-input">
-          <input type="text" id="whatsappUserInput" placeholder="Type your message...">
-          <button id="whatsappSendBtn"><i class="fas fa-paper-plane"></i></button>
+      <div class="chatbot-controls">
+          <button class="minimize-btn" id="minimizeBtn"><i class="fas fa-minus"></i></button>
+          <button class="close-btn" id="closeBtn"><i class="fas fa-times"></i></button>
       </div>
   </div>
-
-  <!-- Chatbot Trigger Button -->
-  <div class="chatbot-trigger animate__animated animate__pulse animate__infinite" id="chatbotTrigger">
-      <i class="fas fa-comment-dots"></i>
-      <span class="chat-notification">1</span>
+  <div class="chatbot-messages" id="chatbotMessages">
+      <!-- Messages will be added here dynamically -->
   </div>
-
-  <!-- Chatbot Container -->
-  <div class="chatbot-container" id="chatbotContainer">
-      <div class="chatbot-header">
-          <div class="chatbot-title">
-              <img src="https://dilawarpro.com/skills-profile-picture.png" alt="Mentor Logo" class="chatbot-logo">
-              <span>Mentorship By Dilawar</span>
-          </div>
-          <div class="chatbot-controls">
-              <button class="minimize-btn" id="minimizeBtn"><i class="fas fa-minus"></i></button>
-              <button class="close-btn" id="closeBtn"><i class="fas fa-times"></i></button>
-          </div>
-      </div>
-      <div class="chatbot-messages" id="chatbotMessages">
-          <!-- Messages will be added here dynamically -->
-      </div>
-      <div class="chatbot-suggested-btns" id="suggestedButtons">
-          <!-- Suggested buttons will be added here dynamically -->
-      </div>
-      <div class="chatbot-input">
-          <input type="text" id="userInput" placeholder="Type your message...">
-          <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
-      </div>
+  <div class="chatbot-suggested-btns" id="suggestedButtons">
+      <!-- Suggested buttons will be added here dynamically -->
   </div>
+  <div class="chatbot-input">
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
 
 <!-- Ended ChatBot -->
  

@@ -269,11 +269,11 @@ audio{
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* body {
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color);
   background-color: #f9f9f9;
-} */
+}
 
 /* Chatbot Trigger Button */
 .chatbot-trigger {
@@ -484,7 +484,7 @@ audio{
   display: inline-block;
   max-width: fit-content;
   width: auto;
-  float: right;
+  display: inline-block;
   clear: both;
 }
 
@@ -532,49 +532,59 @@ audio{
 /* Chatbot Input Area */
 .chatbot-input {
   display: flex;
-  padding: 12px 15px;
-  background-color: white;
-  border-top: 1px solid #eee;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+  gap: 8px; /* Adds space between input and button */
 }
 
 .chatbot-input input {
   flex: 1;
-  padding: 12px 15px;
+  padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 20px;
   outline: none;
-  transition: all 0.2s ease;
   font-size: 14px;
-}
-
-.chatbot-input input:focus {
-  border-color: var(--primary-color-light);
-  box-shadow: 0 0 0 3px rgba(0, 221, 255, 0.2);
+  width: calc(100% - 50px); /* Ensures space for button */
 }
 
 .chatbot-input button {
-  background: var(--primary-gradient);
+  background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
   color: white;
   border: none;
-  width: 45px;
-  height: 45px;
   border-radius: 50%;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.chatbot-input button:hover {
-  transform: scale(1.1) rotate(10deg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents button from shrinking */
+  padding: 0;
+  margin-left: 4px;
 }
 
 .chatbot-input button i {
-  font-size: 18px;
+  font-size: 16px;
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width: 480px) {
+  .chatbot-input {
+    padding: 8px;
+  }
+  
+  .chatbot-input input {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .chatbot-input button {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* Appointment Summary - Enhanced */
@@ -769,500 +779,4 @@ audio{
       right: 20px;
       left: auto;
   }
-} 
-      /* WhatsApp Appointment Button Styles */
-      .appointment-whatsapp-trigger {
-          position: fixed;
-          bottom: 30px;
-          left: 30px;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #25D366, #128C7E);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-          z-index: 999;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          overflow: hidden;
-      }
-
-      .appointment-whatsapp-trigger::before {
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-      }
-
-      .appointment-whatsapp-trigger:hover::before {
-          opacity: 1;
-      }
-
-      .appointment-whatsapp-trigger i {
-          color: #ffffff;
-          font-size: 28px;
-          filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
-          transition: transform 0.3s ease;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 28px;
-          height: 28px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .appointment-whatsapp-trigger:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 10px 20px rgba(37, 211, 102, 0.5);
-      }
-      
-      .appointment-whatsapp-trigger:hover i {
-          transform: translate(-50%, -50%) scale(1.1);
-      }
-
-      /* WhatsApp Notification Badge */
-      /* .whatsapp-notification {
-          position: absolute;
-          top: 0;
-          right: 0;
-          background: linear-gradient(135deg, #FF5252, #FF1744);
-          color: white;
-          border-radius: 50%;
-          width: 20px;
-          height: 20px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 11px;
-          font-weight: bold;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          z-index: 1000;
-          border: 2px solid white;
-          animation: pulse-notification 2s infinite;
-          transform: translate(50%, -50%);
-      } */
-
-      @keyframes pulse-notification {
-          0% {
-              transform: scale(1);
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          }
-          50% {
-              transform: scale(1.2);
-              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-          }
-          100% {
-              transform: scale(1);
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          }
-      }
-
-      /* WhatsApp Tooltip */
-      .appointment-tooltip {
-          position: absolute;
-          left: 70px;
-          top: 50%;
-          transform: translateY(-50%);
-          background: #ffffff;
-          color: #333333;
-          padding: 10px 15px;
-          border-radius: 20px;
-          font-size: 14px;
-          font-weight: 600;
-          white-space: nowrap;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-          opacity: 0;
-          pointer-events: none;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          border-left: 4px solid #25D366;
-      }
-
-      .appointment-tooltip::before {
-          content: '';
-          position: absolute;
-          left: -10px;
-          top: 50%;
-          transform: translateY(-50%);
-          border-width: 8px 10px 8px 0;
-          border-style: solid;
-          border-color: transparent #ffffff transparent transparent;
-      }
-
-      .appointment-whatsapp-trigger:hover .appointment-tooltip {
-          opacity: 1;
-          left: 75px;
-          transform: translateY(-50%) scale(1);
-      }
-
-      /* WhatsApp Appointment Container */
-      .whatsapp-appointment-container {
-          position: fixed;
-          bottom: 100px;
-          left: 30px;
-          width: 350px;
-          height: 500px;
-          background-color: #f5f5f5;
-          border-radius: 16px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          z-index: 1000;
-          opacity: 0;
-          transform: translateY(20px) scale(0.9);
-          pointer-events: none;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          border: 1px solid rgba(0, 0, 0, 0.08);
-      }
-
-      .whatsapp-appointment-container.active {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-          pointer-events: all;
-          animation: fadeInUp 0.5s ease;
-      }
-
-      /* WhatsApp Appointment Header */
-      .whatsapp-appointment-header {
-          background: linear-gradient(135deg, #25D366, #128C7E);
-          padding: 18px 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          color: #ffffff;
-          position: relative;
-          overflow: hidden;
-      }
-      
-      .whatsapp-appointment-header::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2325d366' fill-opacity='0.05'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-          opacity: 0.3;
-      }
-
-      .whatsapp-appointment-title {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-weight: 600;
-          font-size: 16px;
-          position: relative;
-          z-index: 1;
-          letter-spacing: 0.5px;
-      }
-
-      /* Chatbot controls */
-      .chatbot-controls {
-          display: flex;
-          gap: 8px;
-          position: relative;
-          z-index: 1;
-      }
-
-      .chatbot-controls button {
-          background: rgba(255, 255, 255, 0.2);
-          border: none;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: #ffffff;
-          cursor: pointer;
-          transition: all 0.3s ease;
-      }
-
-      .chatbot-controls button:hover {
-          background: rgba(255, 255, 255, 0.3);
-          transform: scale(1.1);
-      }
-
-      /* Chatbot messages */
-      .chatbot-messages {
-          flex: 1;
-          overflow-y: auto;
-          padding: 15px;
-          background-color: #f5f5f5;
-          background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2325d366' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2H6zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
-
-      .chat-notification {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background-color: #ff4081;
-          color: #ffffff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 12px;
-          font-weight: bold;
-          z-index: 2;
-      }
-
-      /* Chatbot input */
-      .chatbot-input {
-          display: flex;
-          padding: 12px;
-          background-color: #ffffff;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
-      }
-
-      .chatbot-input input {
-          flex: 1;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 25px;
-          background-color: #f0f0f0;
-          font-size: 14px;
-          outline: none;
-          transition: all 0.3s ease;
-      }
-
-      .chatbot-input input:focus {
-          background-color: #e8e8e8;
-          box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
-      }
-
-      .chatbot-input button {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #25D366, #128C7E);
-          border: none;
-          margin-left: 10px;
-          color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .chatbot-input button:hover {
-          transform: scale(1.1);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
-
-      /* Message styles */
-      .message-container {
-          display: flex;
-          margin-bottom: 15px;
-      }
-
-      .bot-container {
-          justify-content: flex-start;
-      }
-
-      .user-container {
-          justify-content: flex-end;
-      }
-
-      .message {
-          max-width: 80%;
-          padding: 12px 15px;
-          border-radius: 15px;
-          font-size: 14px;
-          line-height: 1.5;
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      .bot-message {
-          background-color: #ffffff;
-          border-top-left-radius: 5px;
-          color: #333333;
-      }
-
-      .user-message {
-          background: linear-gradient(135deg, #25D366, #128C7E);
-          color: white;
-          border-top-right-radius: 5px;
-      }
-
-      .message-time {
-          font-size: 11px;
-          color: #999;
-          margin-top: 5px;
-          text-align: right;
-      }
-
-      /* Typing indicator */
-      .typing-indicator {
-          display: flex;
-          padding: 12px 15px;
-          background-color: #ffffff;
-          border-radius: 15px;
-          border-top-left-radius: 5px;
-          width: 60px;
-          justify-content: center;
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      .typing-indicator span {
-          height: 8px;
-          width: 8px;
-          background-color: #bbb;
-          border-radius: 50%;
-          display: inline-block;
-          margin: 0 2px;
-          animation: typing 1.4s infinite both;
-      }
-
-      .typing-indicator span:nth-child(2) {
-          animation-delay: 0.2s;
-      }
-
-      .typing-indicator span:nth-child(3) {
-          animation-delay: 0.4s;
-      }
-
-      @keyframes typing {
-          0% {
-              transform: translateY(0px);
-              background-color: #bbb;
-          }
-          28% {
-              transform: translateY(-5px);
-              background-color: #999;
-          }
-          44% {
-              transform: translateY(0px);
-              background-color: #bbb;
-          }
-      }
-
-      /* Suggested buttons */
-      .chatbot-suggested-btns {
-          display: none;
-          flex-wrap: wrap;
-          gap: 8px;
-          padding: 10px 15px;
-          background-color: #ffffff;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
-      }
-
-      .suggested-btn {
-          background-color: #f0f0f0;
-          border: 1px solid #e0e0e0;
-          border-radius: 18px;
-          padding: 8px 15px;
-          font-size: 13px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          color: #333;
-          font-weight: 500;
-      }
-
-      .suggested-btn:hover {
-          background-color: #e8e8e8;
-          transform: translateY(-2px);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .whatsapp-suggested-btn {
-          border-left: 3px solid #25D366;
-      }
-      
-      /* Responsive styles for WhatsApp appointment */
-      @media (max-width: 768px) {
-          .whatsapp-appointment-container {
-              width: 90%;
-              max-width: 350px;
-              left: 50%;
-              transform: translateX(-50%) translateY(20px) scale(0.95);
-              bottom: 80px;
-              height: 80vh;
-              max-height: 500px;
-          }
-          
-          .whatsapp-appointment-container.active {
-              transform: translateX(-50%) translateY(0) scale(1);
-          }
-          
-          .appointment-whatsapp-trigger {
-              left: 20px;
-              bottom: 20px;
-              width: 55px;
-              height: 55px;
-          }
-          
-          .appointment-tooltip {
-              display: none;
-          }
-          
-          .whatsapp-appointment-header {
-              padding: 15px;
-          }
-          
-          .chatbot-input input {
-              font-size: 13px;
-              padding: 8px 12px;
-          }
-          
-          .chatbot-input button {
-              width: 36px;
-              height: 36px;
-          }
-          
-          .message {
-              font-size: 13px;
-              padding: 10px 12px;
-              max-width: 85%;
-          }
-          
-          .animated-whatsapp-btn {
-              padding: 10px 16px;
-              font-size: 13px;
-          }
-      }
-      
-      /* Updated bot message container styles */
-      .bot-container {
-          padding-left: 10px;
-      }
-      
-      .bot-container .message-content {
-          margin-left: 0;
-      }
-      
-      .animated-whatsapp-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          background: linear-gradient(135deg, #25D366, #128C7E);
-          color: white;
-          padding: 12px 20px;
-          border-radius: 30px;
-          text-decoration: none;
-          font-weight: 600;
-          box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          position: relative;
-          overflow: hidden;
-          z-index: 1;
-      }
-      
-      .animated-whatsapp-btn:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-          color: white;
-      }
+}
