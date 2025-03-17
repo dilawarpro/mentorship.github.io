@@ -960,7 +960,7 @@ First, I'll need your email address to send you confirmation details.`);
     <li>Lifetime FREE web hosting with SSL (SAVE up to Rs. 18000 per year) and FREE subdomain for unlimited websites (First time in the history of tech education).</li>
     <li>No need to pay any e-commerce platform fees (SAVE $25/month or $300/year or Rs. 85,000 per year).</li>
     <li>More comprehensive and detailed learning experience and extra features than 2 and 6 months mentorship program.</li>
-    <li>100% guaranteed job placement in our digital marketing company at https://marketoze.dilawarpro.com</li>
+    <li>100% guaranteed job placement in our digital marketing company at <a href="https://marketoze.dilawarpro.com">Marketoze</a></li>
     <li>Optional courses (Digital Marketing or Domain Flipping) and YouTube Automation Included for FREE</li>
     <li>Lifetime FREE personalized special students support by the Mentor</li>
     <li>1-on-1 classes and flexible classes timing</li>
