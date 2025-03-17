@@ -995,7 +995,7 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`Ap is mentorship ko befikr ho k join kar lien. This mentorship will not disappoint you at any cost because I truly understand k ap kitni mushkil sy fee pay kariengy.`);
+        addBotMessage(`Ap is mentorship ko befikr ho ky join kar sakty hain. This mentorship will not disappoint you at any cost because I truly understand k ap kitni mushkil sy fee pay kariengy.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
@@ -1014,23 +1014,23 @@ First, I'll need your email address to send you confirmation details.`);
                         addBotMessage(`Hamari puri koshish hogi ky first module complete hoty he apki income start ho jayegi Insha'Allah.`);
                         
                         // Fifth delay - 5 seconds
-                        setTimeout(() => {
-                            addBotMessage(`Don't worry just trust me and start taking your classes as soon as possible. I will take you to the next level.`);
+                        // setTimeout(() => {
+                        //     addBotMessage(`Don't worry just trust me and start taking your classes as soon as possible. I will take you to the next level.`);
                             
                             // Sixth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
+                                addBotMessage(`Agar mentorship complete karny k baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
                                 
                                 // Ask if user has read website details instead of showing menu options
                                 setTimeout(() => {
                                     askAboutWebsiteReading();
                                 }, 2000);
-                            }, 5000); // 5 seconds delay
-                        }, 5000); // 5 seconds delay
-                    }, 6000); // 6 seconds delay
-                }, 5000); // 5 seconds delay
-            }, 4000); // 4 seconds delay
-        }, 5000); // 5 seconds delay
+                            }, 8000); // 5 seconds delay
+                        }, 8000); // 5 seconds delay
+                    }, 8000); // 6 seconds delay
+                }, 8000); // 5 seconds delay
+            // }, 8000); // 4 seconds delay
+        }, 6000); // 5 seconds delay
     }
 
     // Function to ask if user has read website details
