@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Mentorship Appointment | Dilawar Pro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+            --primary-color-1: rgb(0, 221, 255);
+            --primary-color-2: rgb(255, 0, 212);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+        
+        .form-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .btn-gradient {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color-1);
+            box-shadow: 0 0 0 0.25rem rgba(0, 221, 255, 0.25);
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .appointment-summary {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .appointment-summary p {
+            margin-bottom: 8px;
+        }
+        
+        .appointment-summary strong {
+            color: var(--primary-color-2);
+        }
+
+        /* Date suggestion buttons */
+        .date-suggestions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .date-btn {
+            flex: 1;
+            min-width: 120px;
+            border: 2px solid transparent;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-image: linear-gradient(white, white), var(--primary-gradient);
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .date-btn:hover, .date-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-btn.active {
+            background-image: var(--primary-gradient);
+            color: white;
+        }
+
+        .date-btn .day {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .date-btn .date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Time slots */
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .time-slot:hover, .time-slot.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Appointment ID */
+        .appointment-id {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 0px;
+    min-width: 0px;
+    max-height: none;
+    max-width: none;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+    -webkit-filter: none;
+            filter: none;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+    opacity: 1;
+    visibility: visible;">
+          <a class="navbar-brand" href="https://mentorship.dilawarpro.com" style="color: white;
+          padding: 5px;
+          background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+          border-radius: 30px;">Mentorship By Dilawar
+              <!-- <img src="your-logo.png" alt="Logo" class="navbar-logo"> -->
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://dilawarpro.com">Mentor Profile</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://marketoze.dilawarpro.com">Company Profile</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#Outline">Mentorship Outline</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="appointment">Book a FREE Appointment</a>
+                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#Fee-structure">Fee Structure</a>
+                  </li>
+              </ul>
+          </div>
+        </div>
+  </nav>  
+
+    <!-- Main Content -->
+    <main class="container mb-5">
+        <div class="row justify-content-center">
+            <!-- Booking Form -->
+            <div class="col-md-8 col-lg-6">
+                <div class="form-card" data-aos="zoom-in" data-aos-duration="800">
+                    <h2 class="gradient-text text-center mb-4">Appointment Booking</h2>
+                    <p class="text-center mb-4">Fill out the form below to schedule your mentorship consultation</p>
+                    
+                    <form id="appointmentForm">
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="100">
+                            <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
+                            <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="200">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                            <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="300">
+                            <input type="tel" class="form-control" id="whatsapp" placeholder="WhatsApp Number" required>
+                            <label for="whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp Number</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="400">
+                            <input type="text" class="form-control" id="city" placeholder="Your City" required>
+                            <label for="city"><i class="fas fa-map-marker-alt me-2"></i>Your City</label>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="500">
+                            <label class="form-label"><i class="fas fa-graduation-cap me-2"></i>Interested Program</label>
+                            <select class="form-select" id="program" required>
+                                <option value="" selected disabled>Select a program</option>
+                                <option value="2 Months Mentorship Program">2 Months Mentorship Program</option>
+                                <option value="Champions Mentorship Program">Champions Mentorship Program</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="600">
+                            <label class="form-label"><i class="fas fa-calendar-alt me-2"></i>Preferred Date</label>
+                            
+                            <!-- Date Suggestion Buttons -->
+                            <div class="date-suggestions" id="dateSuggestions">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            
+                            <!-- Custom Date Option -->
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" type="radio" name="dateOption" id="customDateRadio" value="custom">
+                                    <label class="form-check-label" for="customDateRadio">
+                                        Choose another date
+                                    </label>
+                                </div>
+                                <input type="date" class="form-control" id="appointmentDate" disabled>
+                                <input type="hidden" id="selectedDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="700">
+                            <label class="form-label"><i class="fas fa-clock me-2"></i>Preferred Time</label>
+                            <div class="time-slots" id="timeSlots">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <input type="hidden" id="selectedTime" required>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="800">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="confirmCheck" required>
+                                <label class="form-check-label" for="confirmCheck">
+                                    I confirm that I have read the complete details at <a href="https://mentorship.dilawarpro.com" target="_blank">mentorship.dilawarpro.com</a>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" data-aos="zoom-in" data-aos-delay="900">
+                            <button type="submit" class="btn btn-gradient btn-lg w-100">
+                                <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Appointment Summary Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--primary-gradient); color: white;">
+                    <h5 class="modal-title" id="appointmentModalLabel">Appointment Confirmation</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-check-circle confirmation-icon"></i>
+                        <h4>Your Appointment is Ready!</h4>
+                        <div class="appointment-id" id="appointmentId">
+                            <i class="fas fa-ticket-alt me-2"></i>Appointment ID: <span id="appointmentIdValue"></span>
+                        </div>
+                        <p>Please share this summary on WhatsApp to confirm your appointment.</p>
+                    </div>
+                    
+                    <div class="appointment-summary">
+                        <h5 class="gradient-text">Appointment Details</h5>
+                        <div id="appointmentSummary"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" id="whatsappShare" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Share on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize AOS Animation Library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 800
+            });
+
+            // Generate date suggestions for the next 3 days
+            generateDateSuggestions();
+            
+            // Generate time slots from 10 AM to 5 PM
+            generateTimeSlots();
+
+            // Form submission handler
+            const appointmentForm = document.getElementById('appointmentForm');
+            appointmentForm.addEventListener('submit', handleFormSubmit);
+            
+            // Custom date option handler
+            document.getElementById('customDateRadio').addEventListener('change', function() {
+                document.getElementById('appointmentDate').disabled = false;
+                
+                // Deselect any active date buttons
+                const dateBtns = document.querySelectorAll('.date-btn');
+                dateBtns.forEach(btn => btn.classList.remove('active'));
+            });
+            
+            // Set minimum date to today for appointment date picker
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').min = today;
+            
+            // Handle custom date selection
+            document.getElementById('appointmentDate').addEventListener('change', function() {
+                document.getElementById('selectedDate').value = this.value;
+            });
+        });
+        
+        // Generate date suggestions for the next 3 days
+        function generateDateSuggestions() {
+            const dateSuggestions = document.getElementById('dateSuggestions');
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            for (let i = 0; i < 3; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() + i);
+                
+                const dayName = days[date.getDay()];
+                const dayNum = date.getDate();
+                const month = months[date.getMonth()];
+                
+                const dateBtn = document.createElement('div');
+                dateBtn.className = 'date-btn';
+                dateBtn.innerHTML = `
+                    <div class="day">${dayName}</div>
+                    <div class="date">${dayNum} ${month}</div>
+                `;
+                
+                // Store the date value in ISO format
+                const dateValue = date.toISOString().split('T')[0];
+                dateBtn.dataset.date = dateValue;
+                
+                // Add click event
+                dateBtn.addEventListener('click', function() {
+                    // Remove active class from all date buttons
+                    document.querySelectorAll('.date-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Update hidden input
+                    document.getElementById('selectedDate').value = this.dataset.date;
+                    
+                    // Disable custom date input and uncheck radio
+                    document.getElementById('appointmentDate').disabled = true;
+                    document.getElementById('customDateRadio').checked = false;
+                });
+                
+                dateSuggestions.appendChild(dateBtn);
+            }
+        }
+        
+        // Generate time slots from 10 AM to 5 PM
+        function generateTimeSlots() {
+            const timeSlots = document.getElementById('timeSlots');
+            const startHour = 10; // 10 AM
+            const endHour = 17;   // 5 PM
+            
+            for (let hour = startHour; hour <= endHour; hour++) {
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot';
+                
+                // Format time in 12-hour format
+                const hour12 = hour > 12 ? hour - 12 : hour;
+                const amPm = hour >= 12 ? 'PM' : 'AM';
+                timeSlot.textContent = `${hour12}:00 ${amPm}`;
+                
+                // Store the time value
+                timeSlot.dataset.time = `${hour}:00`;
+                
+                // Add click event
+                timeSlot.addEventListener('click', function() {
+                    // Remove active class from all time slots
+                    document.querySelectorAll('.time-slot').forEach(slot => {
+                        slot.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked time slot
+                    this.classList.add('active');
+                    
+                    // Update hidden input
+                    document.getElementById('selectedTime').value = this.textContent;
+                });
+                
+                timeSlots.appendChild(timeSlot);
+            }
+        }
+        
+        // Generate a unique appointment ID
+        function generateAppointmentId() {
+            const prefix = 'APPT';
+            const timestamp = new Date().getTime().toString().slice(-6);
+            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            return `${prefix}-${timestamp}-${random}`;
+        }
+
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Validate date and time selection
+            if (!document.getElementById('selectedDate').value) {
+                alert('Please select a date for your appointment.');
+                return;
+            }
+            
+            if (!document.getElementById('selectedTime').value) {
+                alert('Please select a time for your appointment.');
+                return;
+            }
+            
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const city = document.getElementById('city').value;
+            const program = document.getElementById('program').value;
+            
+            // Get selected date
+            let appointmentDate;
+            if (document.getElementById('customDateRadio').checked) {
+                appointmentDate = formatDate(document.getElementById('appointmentDate').value);
+            } else {
+                appointmentDate = formatDate(document.getElementById('selectedDate').value);
+            }
+            
+            // Get selected time
+            const appointmentTime = document.getElementById('selectedTime').value;
+            
+            // Generate unique appointment ID
+            const appointmentId = generateAppointmentId();
+            document.getElementById('appointmentIdValue').textContent = appointmentId;
+            
+            // Create appointment summary
+            const summaryHTML = `
+                <p><strong>Appointment ID:</strong> ${appointmentId}</p>
+                <p><strong>Name:</strong> ${fullName}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+                <p><strong>City:</strong> ${city}</p>
+                <p><strong>Program:</strong> ${program}</p>
+                <p><strong>Appointment Date:</strong> ${appointmentDate}</p>
+                <p><strong>Appointment Time:</strong> ${appointmentTime}</p>
+                <p><strong>Requested On:</strong> ${getCurrentDateTime()}</p>
+            `;
+            
+            // Update modal content
+            document.getElementById('appointmentSummary').innerHTML = summaryHTML;
+            
+            // Create WhatsApp share link with your WhatsApp number
+            const whatsappMessage = encodeURIComponent(
+                `*Mentorship Appointment Request*\n\n` +
+                `Appointment ID: ${appointmentId}\n` +
+                `Name: ${fullName}\n` +
+                `Email: ${email}\n` +
+                `WhatsApp: ${whatsapp}\n` +
+                `City: ${city}\n` +
+                `Program: ${program}\n` +
+                `Appointment Date: ${appointmentDate}\n` +
+                `Appointment Time: ${appointmentTime}\n` +
+                `Requested On: ${getCurrentDateTime()}\n\n` +
+                `I have read all the details at mentorship.dilawarpro.com and would like to confirm my appointment. Please guide me further.`
+            );
+            
+            const whatsappLink = `https://wa.me/923314041010?text=${whatsappMessage}`;
+            document.getElementById('whatsappShare').href = whatsappLink;
+            
+            // Show modal with animation
+            const appointmentModal = new bootstrap.Modal(document.getElementById('appointmentModal'));
+            appointmentModal.show();
+        }
+
+        // Format date to readable format
+        function formatDate(dateString) {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Get current date and time
+        function getCurrentDateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return now.toLocaleDateString('en-US', options);
+        }
+    </script>
+</body>
+</html>
