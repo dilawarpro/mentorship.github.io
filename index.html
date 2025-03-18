@@ -1,530 +1,1713 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Your Mentorship Appointment | Dilawar Pro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-            --primary-color-1: rgb(0, 221, 255);
-            --primary-color-2: rgb(255, 0, 212);
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        
-        .gradient-header {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
-        
-        .gradient-text {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
-        }
-        
-        .form-card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .btn-gradient {
-            background: var(--primary-gradient);
-            border: none;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .btn-gradient:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color-1);
-            box-shadow: 0 0 0 0.25rem rgba(0, 221, 255, 0.25);
-        }
-        
-        .confirmation-icon {
-            font-size: 4rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-        }
-        
-        .appointment-summary {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-        }
-        
-        .appointment-summary p {
-            margin-bottom: 8px;
-        }
-        
-        .appointment-summary strong {
-            color: var(--primary-color-2);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentorship By Dilawar | Your Premier and Trusted Learning Partner</title>
+  <link rel="shortcut icon" href="dilawarmentorship.jpeg" type="image/x-icon">
+  <meta name="description" content="Mentorship By Dilawar is the premier and trusted learning partner for students, job holders, freelancers, and developers to become financially strong and independent">
+  <!-- Added Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+ <link rel="stylesheet" href="style.css">
+ <meta name="google-site-verification" content="CMUBjCw1BQH7lGigd0Jof3FRtxP7gszIM7QrsJ5nVew" />
+  <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '372940805190869');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=372940805190869&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-019FF0PCS3"></script>
+<!-- Start of Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11378236426"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-11378236426'); </script>
+<!-- Ended of Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-019FF0PCS3');
+</script>
+  <style>
+    .fa-3x {
+    font-size: 3em;
+    color: #0d6efd;
+}
+/* #text-size{
+  font-size: xx-large;
+} */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.rainbow {
+  position: relative;
+  z-index: 0;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rainbow Animation */
+.rainbow::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+  background-repeat: no-repeat; 
+  background-size: 80% 50%, 80% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  animation: rotate 2s linear infinite;
+}
+
+/* Image */
+.rainbow::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background-image: url("dilawarmentorship.jpeg");
+  background-size: cover;
+  border-radius: 50%;
+}
+    .rating-icon {
+      color: #fbb300; 
+      font-size: 24px; 
+/*       margin-right: 10px; */
+    }
+
+    th {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+th, td {
+    text-align: center;
+}
+td {
+    background-color: #f8f9fa;
+}
+.total-cost {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #f1f1f1 !important;
+}
+.total-discount {
+  font-weight: bold;
+  font-size: 18px;
+  background: #00c56a;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+#progress-bar {
+    width: 5px;  /* Set the width of the progress bar */
+    height: 0;   /* Start the height at 0 */
+    background: linear-gradient(to bottom, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+    position: fixed;
+    top: 0;
+    right: 0; 
+    border-radius: 20px;
+    z-index: 1000;
+    transition: height 0.3s ease;
+  }
+   /* .whatsapp-container {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            animation: float 3s infinite ease-in-out;
+            z-index: 9999;
         }
 
-        /* Date suggestion buttons */
-        .date-suggestions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+        .whatsapp-container img {
+            width: 66px;
+            height: auto;
         }
 
-        .date-btn {
-            flex: 1;
-            min-width: 120px;
-            border: 2px solid transparent;
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-            background-image: linear-gradient(white, white), var(--primary-gradient);
-            border-radius: 10px;
-            padding: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .date-btn:hover, .date-btn.active {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .date-btn.active {
-            background-image: var(--primary-gradient);
-            color: white;
-        }
-
-        .date-btn .day {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .date-btn .date {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Time slots */
-        .time-slots {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .time-slot {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .time-slot:hover, .time-slot.active {
-            background: var(--primary-gradient);
-            color: white;
-            border-color: transparent;
-        }
-
-        /* Appointment ID */
-        .appointment-id {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 15px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-    </style>
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        } */
+/* .ul-custom-icons{
+  list-style-type: disclosure-closed;
+} */
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="gradient-header text-center">
-        <div class="container">
-            <h1 class="fw-bold">Mentorship By Dilawar</h1>
-            <p class="lead">Book Your FREE Appointment</p>
+ 
+  <nav class="navbar navbar-expand-lg navbar-light" style="border: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.1);
+  min-height: 0px;
+  min-width: 0px;
+  max-height: none;
+  max-width: none;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-filter: none;
+          filter: none;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: 1;
+  visibility: visible;">
+        <a class="navbar-brand" href="https://mentorship.dilawarpro.com" style="color: white;
+        padding: 5px;
+        background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+        border-radius: 30px;">Mentorship By Dilawar
+            <!-- <img src="your-logo.png" alt="Logo" class="navbar-logo"> -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://dilawarpro.com">Mentor Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://marketoze.dilawarpro.com">Company Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Outline">Mentorship Outline</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="appointment">Book a FREE Appointment</a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Fee-structure">Fee Structure</a>
+                </li>
+            </ul>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container mb-5">
+      </div>
+</nav>
+<!--   Added Preloader -->
+<div id="progress-bar"></div>
+<script>
+  document.addEventListener("scroll", function() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = (scrollTop / scrollHeight) * 100;
+    document.getElementById("progress-bar").style.height = scrollProgress + "%";
+  });
+</script>
+<!--   Ended Preloader -->
+      <div class="container mt-5">
         <div class="row justify-content-center">
-            <!-- Booking Form -->
-            <div class="col-md-8 col-lg-6">
-                <div class="form-card" data-aos="zoom-in" data-aos-duration="800">
-                    <h2 class="gradient-text text-center mb-4">Appointment Booking</h2>
-                    <p class="text-center mb-4">Fill out the form below to schedule your mentorship consultation</p>
-                    
-                    <form id="appointmentForm">
-                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="100">
-                            <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
-                            <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
+                <div class="card course-card" style="padding: 8px;">
+                  <div class="container" style="margin-top: 75px;">
+<center><div class="rainbow">
+</div>
+</center>
+                    <h1 class="text-center" style="margin-top: -38px; font-size: 24px; font-weight: bold;">
+                      Mentorship By Dilawar - Your Premier and Trusted Learning Partner 
+  <span style="vertical-align: middle; margin-left: 2px;">
+    <img src="twitter-verified-seeklogo.com.svg" width="30px" alt="Verified">
+  </span>
+</h1>
+                      <img src="mentoring.webp" alt="Mentorship By Dilawar" style="
+    width: 100%;
+    margin-bottom: 15px;
+">
+                <p class="p-justify">
+                 Stop wasting your time on fake guru's and courses that are totally scam. Join Mentorship By Dilawar to learn the most in-demand, high-income digital skills step by step, practically and strategically, from the comfort of your home in an all-in-one package. Join NOW and start your exciting success journey TODAY with an industry-expert mentor.
+              </p>
+              <a href="https://dilawarpro.com">
+                  <button class="btn btn-primary" id="animate-btn">
+                     Mentor Portfolio <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </button>
+              </a>
+              <p class="p-justify">
+                  After this mentorship, you'll be able to make <b><a href="#income-sources">15+ high income sources</a></b>. Register NOW and get guaranteed results within a month of starting your first class.
+              </p>
+              <p style="margin: -5px 0px 10px -5px;">
+                  <span class="fas fa-check-circle text-success"></span> <b>Requirements to Join</b> <br>
+                  <span class="fas fa-laptop"></span> Laptop or PC <br>
+                  <span class="fas fa-wifi"></span> Stable Internet Connection <br>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 576 512">
+                      <style>svg{fill:#212529}</style>
+                      <path d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l44.9 74.7c-16.1 17.6-28.6 38.5-36.6 61.5c-1.9-1.8-3.5-3.9-4.9-6.3L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152zM432 224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zm0 240a24 24 0 1 0 0-48 24 24 0 1 0 0 48zM368 321.6V328c0 8.8 7.2 16 16 16s16-7.2 16-16v-6.4c0-5.3 4.3-9.6 9.6-9.6h40.5c7.7 0 13.9 6.2 13.9 13.9c0 5.2-2.9 9.9-7.4 12.3l-32 16.8c-5.3 2.8-8.6 8.2-8.6 14.2V384c0 8.8 7.2 16 16 16s16-7.2 16-16v-5.1l23.5-12.3c15.1-7.9 24.5-23.6 24.5-40.6c0-25.4-20.6-45.9-45.9-45.9H409.6c-23 0-41.6 18.6-41.6 41.6z"/>
+                  </svg><b>Who can join:</b> Students (Intermediate or above), Freelancers, Developers, Job Holders, Housewives
+              </p>
+                     <p class="visitor-count">
+                <i class="fas fa-eye"></i> Current Visitors:
+                <span id="visitorCount">Loading...</span>
+              </p>
+              
+              <script>
+                // Generate a random starting visitor count between 200 and 300
+                document.addEventListener('DOMContentLoaded', () => {
+                  // Generate a random starting number between 200 and 300
+                  const randomStart = Math.floor(Math.random() * 101) + 200; 
+              
+                  // Randomly decide whether to increase by 2 or 5
+                  const randomIncrease = Math.random() < 0.5 ? 2 : 5;
+              
+                  // Set the new visitor count based on randomStart and the increase
+                  const newStartCount = randomStart + randomIncrease;
+              
+                  document.getElementById('visitorCount').textContent = newStartCount;
+              
+                  // Simulate dynamic visitor count changes
+                  setInterval(() => {
+                    const currentCount = parseInt(document.getElementById('visitorCount').textContent);
+                    // Random fluctuation between -2 and +3 visitors
+                    const change = Math.floor(Math.random() * 6) - 2;
+                    const newCount = Math.max(200, currentCount + change); // Keep minimum at 200
+                    document.getElementById('visitorCount').textContent = newCount;
+                  }, 2000); // Update every 2 seconds
+                });
+              </script>
+              <p class="p-justify">
+                  <b style="color: #ff2020; text-decoration: underline;">Attention Please:</b> After completing this mentorship, you'll get a chance to work as a Senior Developer, Marketing Expert, SEO Specialist or a Mentor with us.
+              </p>              
+ 
+                    <div>
+                            <h1>
+                              <span class="course-icon">
+                                
+                                <!-- <i class="fa-solid fa-user-graduate" style="color: #0d6efd; font-size: 30px;"></i> -->
+                                 <img src="icons/graduation-student.webp" alt="learning-programs" width="55px">
+                              </span> <b style="margin-left: -10px !important;">Our AI-Powered Learning Programs</b>
+                          </h1>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                             Advanced Web Programming
+                          </div>
+                          <div class="course">
+                            <span class="course-icon"><i class="fas fa-check"></i></span>
+                           Clients Hunting (Secret, Unique and Pro Strategies)
                         </div>
-                        
-                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="200">
-                            <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
-                            <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                          <div class="course">
+                            <span class="course-icon"><i class="fas fa-check"></i></span>
+                           E-commerce with FREE hosting and NO subscription charges <b>(First time in the history of tech education)</b>.
                         </div>
-                        
-                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="300">
-                            <input type="tel" class="form-control" id="whatsapp" placeholder="WhatsApp Number" required>
-                            <label for="whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp Number</label>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                            WordPress Development
+                          </div>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                            Blogging with AdSense Approval
+                          </div>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                              Affiliate Marketing (Including Amazon Affiliate)
+                          </div>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                            Search Engine Optimization (SEO) Mastery
+                          </div>
+                          <div class="course">
+                              <span class="course-icon"><i class="fas fa-check"></i></span>
+                            Social Media Marketing (SMM) Expert
+                          </div>
+                          <div class="course">
+                            <span class="course-icon"><i class="fas fa-check"></i></span>
+                           Guest Posting and Backlinking
                         </div>
-                        
-                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="400">
-                            <input type="text" class="form-control" id="city" placeholder="Your City" required>
-                            <label for="city"><i class="fas fa-map-marker-alt me-2"></i>Your City</label>
+                        <div class="course">
+                          <span class="course-icon"><i class="fas fa-check"></i></span>
+                          AI Prompt Engineering
+                      </div>
+                      <div class="course">
+                        <span class="course-icon"><i class="fas fa-check"></i></span>
+                       Content Writing with AI
+                    </div>
+                    <div class="course">
+                      <span class="course-icon"><i class="fas fa-check"></i></span>
+                       Graphics Designing with Canva
+                  </div>
+                  <div class="course">
+                    <span class="course-icon"><i class="fas fa-check"></i></span>
+                   Freelancing - Be Your Own Boss
+                </div>
+                  <div class="course">
+                    <span class="course-icon"><i class="fas fa-check"></i></span>
+                    Digital Marketing OR Domain Flipping (Optional on one-time payment of fee)
+                </div>
+                <!-- <div class="course">
+                  <span class="course-icon"><i class="fas fa-check"></i></span>
+                 Communication Skills
+              </div> -->
+              <div class="course">
+                <span class="course-icon"><i class="fas fa-check"></i></span>
+               YouTube Automation (Only for Champions Mentorship Program students)
+            </div>
+                          </div>
                         </div>
-                        
-                        <div class="mb-3" data-aos="fade-up" data-aos-delay="500">
-                            <label class="form-label"><i class="fas fa-graduation-cap me-2"></i>Interested Program</label>
-                            <select class="form-select" id="program" required>
-                                <option value="" selected disabled>Select a program</option>
-                                <option value="2 Months Mentorship Program">2 Months Mentorship Program</option>
-                                <option value="Champions Mentorship Program">Champions Mentorship Program</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3" data-aos="fade-up" data-aos-delay="600">
-                            <label class="form-label"><i class="fas fa-calendar-alt me-2"></i>Preferred Date</label>
+                    <div class="card-body">
+                      
+                        <h1>
+                            <span class="project-icon">
+                              <!-- <i class="fas fa-tasks" style="color: #0d6efd; font-size: 30px;"></i> -->
+                               <img src="icons/mentor-projects.webp" alt="webs" width="55px">
                             
-                            <!-- Date Suggestion Buttons -->
-                            <div class="date-suggestions" id="dateSuggestions">
-                                <!-- Will be populated by JavaScript -->
-                            </div>
-                            
-                            <!-- Custom Date Option -->
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="form-check me-3">
-                                    <input class="form-check-input" type="radio" name="dateOption" id="customDateRadio" value="custom">
-                                    <label class="form-check-label" for="customDateRadio">
-                                        Choose another date
-                                    </label>
-                                </div>
-                                <input type="date" class="form-control" id="appointmentDate" disabled>
-                                <input type="hidden" id="selectedDate" required>
-                            </div>
+                            </span>Websites and Web Apps Created By Mentor
+                        </h1>
+                        <div class="course">
+                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                          <a href="https://dilawarpro.com">dilawarpro.com</a>
+                      </div>
+                        <div class="course">
+                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                          <a href="https://lovecalcu.com">lovecalcu.com</a>
+                      </div>
+                    <div class="course">
+                      <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                      <a href="https://aiovd.com/">aiovd.com</a>
+                  </div>
+                        <div class="course">
+                            <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <a href="https://mentorship.dilawarpro.com">mentorship.dilawarpro.com</a>
                         </div>
-                        
-                        <div class="mb-3" data-aos="fade-up" data-aos-delay="700">
-                            <label class="form-label"><i class="fas fa-clock me-2"></i>Preferred Time</label>
-                            <div class="time-slots" id="timeSlots">
-                                <!-- Will be populated by JavaScript -->
-                            </div>
-                            <input type="hidden" id="selectedTime" required>
+                        <!-- <div class="course">
+                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                          <a href="https://dilawarworld.netlify.app/">dilawarworld.netlify.app</a>
+                      </div> -->
+                        <div class="course">
+                            <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <a href="https://marketoze.dilawarpro.com">marketoze.company</a>
                         </div>
-                        
-                        <div class="mb-3" data-aos="fade-up" data-aos-delay="800">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="confirmCheck" required>
-                                <label class="form-check-label" for="confirmCheck">
-                                    I confirm that I have read the complete details at <a href="https://mentorship.dilawarpro.com" target="_blank">mentorship.dilawarpro.com</a>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center" data-aos="zoom-in" data-aos-delay="900">
-                            <button type="submit" class="btn btn-gradient btn-lg w-100">
-                                <i class="fas fa-calendar-check me-2"></i>Book Appointment
-                            </button>
-                        </div>
-                    </form>
+                        <div class="course">
+                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                          <a href="https://snapmp3.com">snapmp3.com</a>
+                      </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-    
-    <!-- Appointment Summary Modal -->
-    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header" style="background: var(--primary-gradient); color: white;">
-                    <h5 class="modal-title" id="appointmentModalLabel">Appointment Confirmation</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-check-circle confirmation-icon"></i>
-                        <h4>Your Appointment is Ready!</h4>
-                        <div class="appointment-id" id="appointmentId">
-                            <i class="fas fa-ticket-alt me-2"></i>Appointment ID: <span id="appointmentIdValue"></span>
-                        </div>
-                        <p>Please share this summary on WhatsApp to confirm your appointment.</p>
-                    </div>
-                    
-                    <div class="appointment-summary">
-                        <h5 class="gradient-text">Appointment Details</h5>
-                        <div id="appointmentSummary"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="#" id="whatsappShare" class="btn btn-success" target="_blank">
-                        <i class="fab fa-whatsapp me-2"></i>Share on WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
-        // Initialize AOS Animation Library
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                once: true,
-                duration: 800
-            });
-
-            // Generate date suggestions for the next 3 days
-            generateDateSuggestions();
+    <!-- Project -->
+    <div class="container mt-6">
+      <div class="row justify-content-center">
+              <div class="card course-card">
+                <div class="card-body">
             
-            // Generate time slots from 10 AM to 5 PM
-            generateTimeSlots();
-
-            // Form submission handler
-            const appointmentForm = document.getElementById('appointmentForm');
-            appointmentForm.addEventListener('submit', handleFormSubmit);
-            
-            // Custom date option handler
-            document.getElementById('customDateRadio').addEventListener('change', function() {
-                document.getElementById('appointmentDate').disabled = false;
+                  <h1 style="font-size: 24px;">
+                      <!-- <i class="fa-solid fa-rocket" style="color: #0d6efd; font-size: 30px;"></i> -->
+                      <img src="icons/protoype-2.webp" alt="webs" width="55px">
+                      Prototypes of Projects Created By Previous Batch Students 
+                  </h1>
+                  <div class="course">
+                      <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                      <a href="https://mentorship-by-dilawar.github.io/project-1/">mentorshipbydilawar/project-1</a>
+                  </div>
+                  <div class="course">
+                      <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                      <a href="https://mentorship-by-dilawar.github.io/project-2/">mentorshipbydilawar/project-2</a>
+                  </div>
+                  <div class="course">
+                      <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+                      <a href="https://mentorship-by-dilawar.github.io/project-3">mentorshipbydilawar/project-3</a> & Many More Projects...
+                  </div>
                 
-                // Deselect any active date buttons
-                const dateBtns = document.querySelectorAll('.date-btn');
-                dateBtns.forEach(btn => btn.classList.remove('active'));
-            });
+              </div>
+            </div>
+          </div>
+  <div class="container" style="margin-top: 30px;">
+    <h1 class="text-center mb-4" style="font-size: 30px;"> 
+      <!-- <i class="fa-solid fa-gem" style=" color: #0d6efd;"></i>  -->
+      <img src="icons/features-diamond.webp" alt="features" width="55px">
+Why Choose Mentorship By Dilawar?</h1>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-handshake-angle" style="color: #0d6efd; font-size:3rem;"></i> -->
+           <img src="icons/hand-shake.png" alt="handshake" class="featutes-icons">
+          <p>Learn from expert and experienced trainer</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-medal" style="color: #0d6efd;font-size: 3em;"></i> -->
+           <img src="icons/trophy.png" alt="medal" class="featutes-icons">
+          <p>Thousands of satisfied and successful students</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+         <!-- <i class="fa-solid fa-hand-holding-dollar" style="color: #0d6efd; font-size:3rem;"></i> -->
+          <img src="icons/money-back.webp" alt="moneyback" class="featutes-icons">
+          <p>7-Day easy refund — Join with full confidence and trust</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fas fa-server fa-3x"></i> -->
+          <img src="icons/money-bag.webp" alt="dollarmoney" class="featutes-icons">
+          <p>Enjoy lifetime FREE web hosting with SSL and SAVE up to Rs. 18,000 per year. Say good-bye to hosting charges</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fas fa-house-signal fa-3x"></i> -->
+           <img src="icons/home-wifi.webp" alt="homewifi" class="featutes-icons">
+          <p>LIVE online regular classes - Learn from the comfort of your home</p> 
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-headset" style="color: #0d6efd; font-size:3rem;"></i> -->
+           <img src="icons/support.webp" alt="support" class="featutes-icons">
+          <p>Lifetime students support by the mentor anytime, anywhere</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fas fa-user-tie fa-3x"></i> -->
+           <img src="icons/job-placement.avif" alt="jobplacement" class="featutes-icons">
+          <p>100% guaranteed job placement in our digital marketing company at <a href="https://marketoze.dilawarpro.com">Marketoze</a></p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-people-group" style="color: #0d6efd; font-size:3rem;"></i> -->
+          <img src="icons/community.webp" alt="community" class="featutes-icons">
+          <p>WhatsApp group chat support where you can ask questions and get answers instantly anywhere and anytime</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fas fa-video fa-3x"></i> -->
+          <img src="icons/ai-integration.webp" alt="AI" class="featutes-icons">
+          <p>AI-integration in all modules for more efficient, easy, faster and smart work</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-file-invoice-dollar" style="color: #0d6efd;font-size: 3em;" ></i> -->
+          <img src="icons/no-charges.webp" alt="nocharges" class="featutes-icons">
+          <p>No e-commerce platform subscription charges or selling fees – SAVE up to $25/month, $300/year, or Rs. 85,000/year.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fas fa-gem fa-3x"></i> -->
+          <img src="icons/diamond.webp" alt="valuable" class="featutes-icons">
+          <p>Only valuable and updated content</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature">
+          <!-- <i class="fa-solid fa-shapes fa-2xl" style="color: #0d6efd;font-size: 3em;"></i> -->
+          <img src="icons/projects.webp" alt="projects" class="featutes-icons">
+          <p>Well-organized, strategic, and 100% practical project-based content</p>
+        </div>
+      </div>
+      <div class="container my-2">
+        <h2 class="text-center mb-2">Compare different learning options to find the best fit for your success.</h2>
+        <div class="table-responsive">
+          <table class="table table-custom text-center align-middle">
+            <thead>
+              <tr>
+                <th>Features</th>
+                <th class="highlight">Mentorship By Dilawar</th>
+                <th>YouTube</th>
+                <th>Other Courses</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Cost</th>
+                <td><span class="icon icon-info">&#9432;</span> Slightly more cost</td>
+                <td><span class="icon icon-check">&#10003;</span> Free</td>
+                <td><span class="icon icon-info">&#9432;</span> Less cost</td>
+              </tr>
+              <tr>
+                <th>Time Required</th>
+                <td><span class="icon icon-check">&#10003;</span> Less time</td>
+                <td><span class="icon icon-times">&#10007;</span> Too much time</td>
+                <td><span class="icon icon-info">&#9432;</span> more time</td>
+              </tr>
+              <tr>
+                <th>Experience</th>
+                <td><span class="icon icon-check">&#10003;</span> Realtime experience with projects</td>
+                <td><span class="icon icon-times">&#10007;</span> No experience</td>
+                <td><span class="icon icon-times">&#10007;</span> No experience</td>
+              </tr>
+              <tr>
+                <th>Knowledge</th>
+                <td><span class="icon icon-check">&#10003;</span> Expert guidance</td>
+                <td><span class="icon icon-times">&#10007;</span> Scattered knowledge</td>
+                <td><span class="icon icon-times">&#10007;</span> No proper knowledge</td>
+              </tr>
+              <tr>
+                <th>Support</th>
+                <td><span class="icon icon-check">&#10003;</span> Proper mentoring & support</td>
+                <td><span class="icon icon-times">&#10007;</span> No support</td>
+                <td><span class="icon icon-times">&#10007;</span> No support</td>
+              </tr>
+              <tr>
+                <th>Content Quality</th>
+                <td><span class="icon icon-check">&#10003;</span> Value rich content</td>
+                <td><span class="icon icon-info">&#9432;</span> Low value</td>
+                <td><span class="icon icon-times">&#10007;</span> No value</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- What you will learn --> 
+  <div class="container mt-5" id="Outline">
+    <div class="row justify-content-center">
+            <div class="card course-card">
+              <h1 class="heading-5">
+                <!-- <i class="fa-solid fa-route" style="color: #0d6efd; font-size: 30px;"></i> -->
+                 <img src="icons/roadmap.webp" alt="roadmap" width="55px">
+               <span style="font-size: 24px; font-weight: bold;">In Mentorship By Dilawar, You'll Learn:</span>
+            </h1>
+            <small class="text-muted mb-2">Updated 06 February 2025</small>
+                <div class="course">
+                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                 <b class="modules">Module01: Web Programming</b><br>
+                 <ul class="ul-custom-icons">
+                  <li>What is web programming?</li>
+                  <li>How to create professional websites and high-end web applications that are compatible with all web browsers and devices (Android, iOS, and desktop) using advanced web technologies and libraries.</li>
+                  <li>How to use AI for Web Programming</li>
+                  <li>Master web programming by building LIVE projects listed below:
+                    <ol>
+                      <li>Portfolio website</li>
+                      <li>Blogging website</li>
+                      <li>Business website</li>
+                      <li>WhatsApp link generator web app</li>
+                      <li>Image converter and downloader web app and many more exciting projects</li>
+                    </ol>
+                  </li>
+                  <li>How to host a website on the internet for FREE with SSL (SAVE up to Rs. 18,000 per year) and how to connect your hosting with your custom domain.</li>
+                </ul>                
+              </div>
+              <div class="course">
+                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+               <b class="modules">Module 02: Clients Hunting</b><br>
+               <ul class="ul-custom-icons">
+                <li>What is clients hunting?</li>
+                <li>How to hunt unlimited local and international clients organically for your specific skills.</li>
+                <li>Get the most secret, unique and pro clients hunting methods and strategies.</li>
+                <li>How to communicate and deal with the clients professionally.</li>
+                <li>How to collect payments from clients</li>
+                <li>How to close deal with the clients.</li>
+
+              </ul>                
+            </div>
+              <div class="course">
+                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                <b class="modules">Module 03: E-Commerce</b><br>
+                <ul class="ul-custom-icons">
+                  <li>What is E-commerce?</li>
+                  <li>How to create modern E-commerce stores absolutely FREE of cost for selling products and dropshipping (local & international). <mark>NO need to pay any subscription charges or selling fees</mark> to platforms like <a href="https://www.shopify.com/pricing">Shopify</a> ($300/year or SAVE up to Rs. 85,000 yearly), <a href="https://sell.amazon.com/pricing">Amazon</a> (SAVE $0.99 per order), <a href="https://www.ebay.com/">eBay</a> (SAVE $0.30 per order), and other selling platforms.</li>
+                  <li>What is Daraz? How to start Daraz dropshipping and How to list products from Daraz to your E-commerce website.</li>
+                  <li>How to use AI for E-Commerce</li>
+                    <li>How to create successful and profitable e-commerce stores and brands.</li>
+                </ul>
+                
+
+            </div>
+              <div class="course">
+                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                  <b class="modules">Module 04: WordPress Development</b><br>
+                  <ul class="ul-custom-icons">
+                    <li>What is WordPress?</li>
+                    <li>How to download and install WordPress with localhost on your computer or laptop.</li>
+                    <li>How to use AI for WordPress</li>
+                    <li>How to set up WordPress themes.</li>
+                    <li>How to set up plugins for full customization to build complete websites using WordPress.</li>
+                  </ul>                  
+              </div>
+              <div class="course">
+                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                  <b class="modules">Module 05: Blogging with AdSense</b><br>
+                  <ul class="ul-custom-icons">
+                    <li>What is blogging?</li>
+                    <li>How to generate passive income through blogging by displaying ads from <a href="https://adsense.google.com/start/">Google AdSense</a> and other multiple ad networks.</li>
+                    <li>How to use AI for Blogging</li>
+                    <li>Learn about quick AdSense approval tricks, keyword research, niche research, AdSense arbitration, finding high CPC keywords, and writing SEO-friendly blogs that rank on Google and other search engines.</li>
+                  </ul>
+                  
+              </div>
+              <div class="course">
+                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                  <b class="modules">Module 06: Affiliate Marketing</b><br>
+                  <ul class="ul-custom-icons">
+                    <li>What is affiliate marketing?</li>
+                    <li>How to use AI for Affiliate marketing</li>
+                    <li>How to make passive income through affiliate marketing.</li>
+                    <li>It includes finding the best affiliate companies or businesses that pay high affiliate commissions.</li>
+                  </ul>
+                  
+              </div>
+
+
+              <div class="course">
+                <b class="modules">Module 07: Search Engine Optimization</b><br>
+                <ul class="ul-custom-icons">
+                  <li>What is Search Engine Optimization (SEO)?</li>
+                  <li>How to rank websites and web apps organically on search engines through Search Engine Optimization (SEO).</li>
+                  <li>How to use AI for SEO</li>
+                  <li>Learn to become an expert in <a id="onPageLink">On-Page SEO</a> (Click for more details), <a id="offPageLink">Off-Page SEO</a>, <a id="technicalLink">Technical SEO</a>, 
+                      Local SEO (List and rank local businesses on Google), E-Commerce SEO, and YouTube SEO.
+                  </li>
+                </ul>
+                
+                <!-- On-Page SEO Modal -->
+                <div id="onPageModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close-btn" onclick="closeModal('onPageModal')">&times;</span>
+                            <h2>On-Page SEO</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>Content Quality</li>
+                                <li>Image Optimization</li>
+                                <li>Keywords</li>
+                                <li>HTML Tags</li>
+                                <li>Responsive Design</li>
+                                <li>Internal & External Links</li>
+                                <li>Meta Data</li>
+                                <li>URL</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="close-footer-btn" onclick="closeModal('onPageModal')">Close</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Off-Page SEO Modal -->
+                <div id="offPageModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close-btn" onclick="closeModal('offPageModal')">&times;</span>
+                            <h2>Off-Page SEO</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>Backlinks</li>
+                                <li>Guest Posting</li>
+                                <li>Social Promotions</li>
+                                <li>Listings</li>
+                                <li>Podcasts</li>
+                                <li>Reviews</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="close-footer-btn" onclick="closeModal('offPageModal')">Close</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technical SEO Modal -->
+                <div id="technicalModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close-btn" onclick="closeModal('technicalModal')">&times;</span>
+                            <h2>Technical SEO</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>Website Speed</li>
+                                <li>404 Page</li>
+                                <li>Broken Links (Find & Fix)</li>
+                                <li>Google Search Console</li>
+                                <li>Google Analytics</li>
+                                <li>Structured Data</li>
+                                <li>Canonicalization</li>
+                                <li>XML Sitemap</li>
+                                <li>SSL and HTTPS</li>
+                                <li>Social Sharing Buttons</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="close-footer-btn" onclick="closeModal('technicalModal')">Close</button>
+                        </div>
+                    </div>
+                </div> 
+              </div>          
             
-            // Set minimum date to today for appointment date picker
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('appointmentDate').min = today;
-            
-            // Handle custom date selection
-            document.getElementById('appointmentDate').addEventListener('change', function() {
-                document.getElementById('selectedDate').value = this.value;
+              <div class="course">
+                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                  <b class="modules">Module 08: Social Media Marketing</b><br>
+                  <ul class="ul-custom-icons">
+                    <li>What is Social Media Marketing (SMM)?</li>
+                    <li>How to make money from Google Ads, Meta Ads (Facebook & Instagram), TikTok Ads, and Snapchat Ads.</li>
+                    <li>How to set up and optimize social media ads LIVE with a minimum budget while achieving maximum results.</li>
+                    <li>How to use AI for SMM</li>
+                    <li>How to sell your digital services or products globally by using Social Media Marketing (SMM).</li>
+                    <li>Learn the advanced and pro social media marketing strategies and techniques.</li>
+                </ul>                
+              </div>
+              <div class="course">
+                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                <b class="modules">Module 09: Guest Posting and Backlinking</b><br>
+                <ul class="ul-custom-icons">
+                  <li>What is guest posting and backlinking?</li>
+                  <li>How to get high quality do-follow quality backlinks with high domain and page authority (DA & PA) from well-authoritied websites to increase users on your new site.</li>
+                  <li>How to use AI for Guest Posting</li>
+                  <li>How to write guest posts for well-established and well-authoritied sites to obtain quality backlinks for your new websites.</li>
+                </ul>
+                
+            </div>
+            <div class="course">
+              <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+              <b class="modules">Module 10: AI Prompt Engineering</b><br> 
+              <ul class="ul-custom-icons">
+                <li>What is Prompt Engineering?</li>
+                <li>What are the most advanced AI models and how to use these models effectively to boost up your career.</li>
+                <li>How to give better commands to AI models for accurate and improved results.</li>
+                <li>How to crack the limitations of AI models to get maximum outputs from these models.</li>
+                <li>Learn to use artificial intelligence (AI) to boost up your career for more efficient, faster, and happier work.</li>
+              </ul>
+              
+          </div>
+          <div class="course">
+            <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+            <b class="modules">Module 11: Content Writing with AI</b><br>
+            <ul class="ul-custom-icons">
+              <li>What is content writing?</li>
+              <li>How to write SEO-friendly content using advanced AI models.</li>
+              <li>How to use advanced AI models like an expert content writer to write SEO-friendly blogs and articles or content.</li>
+            </ul>            
+        </div>
+        <div class="course">
+          <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+          <b class="modules">Module 12: Graphics Designing with Canva</b><br> 
+          <ul class="ul-custom-icons">
+            <li>What is Canva?</li>
+            <li>How to use Canva for graphic designing.</li>
+            <li>How to create visually appealing, stunning, and attractive graphics with Canva.</li>
+            <li>Learn to create social media posts, presentations, posters, videos, logos, and much more with Canva.</li>
+          </ul>          
+      </div>
+        <div class="course">
+          <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+          <b class="modules">Module 13: Freelancing</b><br> 
+          <ul class="ul-custom-icons">
+            <li>What is Freelancing?</li>
+            <li>Learn how to create an account, sell on freelancing marketplaces (Fiverr, Upwork, People Per Hour, Guru.com, and Freelancer.com, etc)</li>
+            <li>How to use AI for Freelancing?</li>
+            <li>Learn how to boost your account and beat the competition in freelancing marketplaces to get more orders.</li>
+          </ul>          
+      </div>
+      <div class="course">
+        <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+        <b class="modules">Module 14: Digital Marketing Expert</b><br> 
+        <ul class="ul-custom-icons">
+          <li>What is Digital Marketing?</li>
+          <li>How to promote and sell products and services using the internet and digital channels like websites, social media, email, and search engines to reach and engage with potential customers.</li>
+          <li>How to use AI for Digital Marketing?</li>
+          <li>Learn how to advertise and connect with people online to grow a business.</li>
+          <li>Master the advanced digital marketing techniques and pro strategies to become an expert digital marketer.</li>
+        </ul>      
+    </div>
+    <span class="choice">OR</span>
+    <div class="course">
+      <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+      <b class="modules"> Domain Flipping</b><br>
+      <ul class="ul-custom-icons">
+        <li>What is Domain Flipping?</li>
+        <li>How to find and buy low-cost domain names, and then resell them for a higher price.</li>
+        <li>How to use AI for Domain Flipping?</li>
+        <li>The goal is to identify domain names with high potential value and sell them to buyers who need them for more than their original price.</li>
+      </ul>   
+  </div>
+<div class="course">
+  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+  <b class="modules">Module 15: YouTube, FB & TikTok Automation</b><br> 
+  <ul class="ul-custom-icons">
+    <li>What is YouTube Automation?</li>
+    <li>How to start profitable and successful faceless YouTube channels and TikTok accounts step-by-step without showing your face and voice using smart and advanced FREE AI tools.</li>
+    <li>How to start your passive income from YouTube automation through ads, affiliations, and sponsorships.</li>
+    <li>How to create attractive and engaging YouTube, Facebook, and TikTok videos using advanced AI tools.</li>
+  </ul>
+  
+</div>
+                  </div>
+                </div>
+              </div>
+                <br>
+               <marquee style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 1px; border-radius: 10px; color: white;" >
+                  <h4>💎 Providing value and quality content since 2017 | 👨🏻‍💻 100% practical training | 🔄 7-day refund guarantee | 🎖️Get expert mentorship</h4>
+                  </marquee>
+                <!-- Added students reviews -->
+<h1 class="text-center mt-4 mb-4">Recent AdSense Approvals and Students Feedbacks - Click To Preview <i class="fa-solid fa-eye"></i></h1>
+
+<!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="feature">
+      <div class="card">
+        
+        <a href="web-stats-image.jpeg" data-fancybox="gallery" data-caption="AdSense Approvals and Website Stats">
+          <img src="web-stats-thumbnail.jpeg" class="card-img-top" alt="AdSense Approvals and Website Stats">
+        </a>
+      </div>
+        <!-- <div class="card-body">
+          <h5 class="card-title">Student Name</h5>
+          <p class="card-text">Review text from Student 1.</p>
+        </div> -->
+      </div>
+    </div>
+    <!-- Repeat the above code for other students' reviews -->
+    <div class="col-md-4 mb-4">
+      <div class="feature">
+      <div class="card">
+        <a href="review1-full.jpg" data-fancybox="gallery" data-caption="Student 2">
+          <img src="review1.jpg" class="card-img-top" alt="Student 2">
+        </a>
+       
+      </div>
+    </div>
+    </div>
+     <div class="col-md-4 mb-4">
+      <div class="feature">
+      <div class="card">
+        <a href="student-3-full.jpeg" data-fancybox="gallery" data-caption="Student 3">
+          <img src="student-3-display.jpeg" class="card-img-top" alt="Student 3">
+        </a>
+      </div>
+      </div>
+    </div>
+    <audio src="audio-1.ogg" controls></audio>
+    <audio src="audio-2.ogg" controls></audio>
+    <audio src="audio-4.ogg" controls></audio>
+    <!-- <audio src="audio-3.ogg" controls></audio> -->
+      <!-- Testimonial 3 - Bootstrap Brain Component -->
+<!-- <section class="bg-light py-xl-8">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center"> <i class="fa-regular fa-face-smile"></i> Happy Mentees</h2>
+        <p class="display-5 mb-4 mb-md-5 text-center">We deliver what we promise. See what mentees are saying about us.</p>
+        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+      </div>
+    </div>
+  </div>
+
+  <div class="container overflow-hidden">
+    <div class="row gy-4 gy-md-0 gx-xxl-5">
+      <div class="col-12 col-md-4">
+        <div class="card border-0 border-bottom border-primary shadow-sm">
+          <div class="card-body p-4 p-xxl-5">
+            <figure>
+              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="male-avatar.png" alt="avatar-image">
+              <figcaption>
+                <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
+                <blockquote class="bsb-blockquote-icon mb-4 testimonials">Joining Mentorship By Dilawar was one of the best decisions I ever made! The mentor is honest and much supportive. I can not say enough good things about this program. The mentors brought real-world experience to the table. This program is worth every minute, Don't miss-out if you are serious about your career!</blockquote>
+                <h4 class="mb-2">Haris Ali</h4>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card border-0 border-bottom border-primary shadow-sm">
+          <div class="card-body p-4 p-xxl-5">
+            <figure>
+              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="female-avatar.webp" alt="Fiza Rehman">
+              <figcaption>
+                <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
+                <blockquote class="bsb-blockquote-icon mb-4 testimonials">This mentorship program has been a game-changer for me! As a mother of four children and my husband is currently jobless, I now earn enough to easily meet my expenses. You are the best sir and stay blessed. I am excited to continue my journey. Truly a fantastic program for every housewife!</blockquote>
+                <h4 class="mb-2">Fiza Rehman</h4>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card border-0 border-bottom border-primary shadow-sm">
+          <div class="card-body p-4 p-xxl-5">
+            <figure>
+              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="male-avatar.png" alt="Abdullah Rafiq">
+              <figcaption>
+                <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
+                <blockquote class="bsb-blockquote-icon mb-4 testimonials">I joined the Mentorship By Dilawar program, and it transformed my skills! The guidance was personalized and practical, making complex concepts easy to grasp. Fantastic Mentor having massive knowldge and experience in tech. Highly recommended to anyone for guaranteed success and growth!</blockquote>
+                <h4 class="mb-2">Abdullah Rafiq</h4>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+  </div>
+ </div>
+ 
+<script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const audios = document.querySelectorAll('audio');
+            let currentlyPlaying = null;
+
+            function pauseOtherAudios(currentAudio) {
+                audios.forEach(audio => {
+                    if (audio !== currentAudio && !audio.paused) {
+                        audio.pause();
+                    }
+                });
+            }
+
+            audios.forEach(audio => {
+                audio.addEventListener('play', function() {
+                    if (currentlyPlaying && currentlyPlaying !== this) {
+                        currentlyPlaying.pause();
+                    }
+                    currentlyPlaying = this;
+                    pauseOtherAudios(this);
+                });
+
+                audio.addEventListener('pause', function() {
+                    if (currentlyPlaying === this) {
+                        currentlyPlaying = null;
+                    }
+                });
             });
         });
-        
-        // Generate date suggestions for the next 3 days
-        function generateDateSuggestions() {
-            const dateSuggestions = document.getElementById('dateSuggestions');
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            
-            for (let i = 0; i < 3; i++) {
-                const date = new Date();
-                date.setDate(date.getDate() + i);
-                
-                const dayName = days[date.getDay()];
-                const dayNum = date.getDate();
-                const month = months[date.getMonth()];
-                
-                const dateBtn = document.createElement('div');
-                dateBtn.className = 'date-btn';
-                dateBtn.innerHTML = `
-                    <div class="day">${dayName}</div>
-                    <div class="date">${dayNum} ${month}</div>
-                `;
-                
-                // Store the date value in ISO format
-                const dateValue = date.toISOString().split('T')[0];
-                dateBtn.dataset.date = dateValue;
-                
-                // Add click event
-                dateBtn.addEventListener('click', function() {
-                    // Remove active class from all date buttons
-                    document.querySelectorAll('.date-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Update hidden input
-                    document.getElementById('selectedDate').value = this.dataset.date;
-                    
-                    // Disable custom date input and uncheck radio
-                    document.getElementById('appointmentDate').disabled = true;
-                    document.getElementById('customDateRadio').checked = false;
-                });
-                
-                dateSuggestions.appendChild(dateBtn);
-            }
-        }
-        
-        // Generate time slots from 10 AM to 5 PM
-        function generateTimeSlots() {
-            const timeSlots = document.getElementById('timeSlots');
-            const startHour = 10; // 10 AM
-            const endHour = 17;   // 5 PM
-            
-            for (let hour = startHour; hour <= endHour; hour++) {
-                const timeSlot = document.createElement('div');
-                timeSlot.className = 'time-slot';
-                
-                // Format time in 12-hour format
-                const hour12 = hour > 12 ? hour - 12 : hour;
-                const amPm = hour >= 12 ? 'PM' : 'AM';
-                timeSlot.textContent = `${hour12}:00 ${amPm}`;
-                
-                // Store the time value
-                timeSlot.dataset.time = `${hour}:00`;
-                
-                // Add click event
-                timeSlot.addEventListener('click', function() {
-                    // Remove active class from all time slots
-                    document.querySelectorAll('.time-slot').forEach(slot => {
-                        slot.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked time slot
-                    this.classList.add('active');
-                    
-                    // Update hidden input
-                    document.getElementById('selectedTime').value = this.textContent;
-                });
-                
-                timeSlots.appendChild(timeSlot);
-            }
-        }
-        
-        // Generate a unique appointment ID
-        function generateAppointmentId() {
-            const prefix = 'APPT';
-            const timestamp = new Date().getTime().toString().slice(-6);
-            const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-            return `${prefix}-${timestamp}-${random}`;
-        }
-
-        // Handle form submission
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            // Validate date and time selection
-            if (!document.getElementById('selectedDate').value) {
-                alert('Please select a date for your appointment.');
-                return;
-            }
-            
-            if (!document.getElementById('selectedTime').value) {
-                alert('Please select a time for your appointment.');
-                return;
-            }
-            
-            // Get form values
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const city = document.getElementById('city').value;
-            const program = document.getElementById('program').value;
-            
-            // Get selected date
-            let appointmentDate;
-            if (document.getElementById('customDateRadio').checked) {
-                appointmentDate = formatDate(document.getElementById('appointmentDate').value);
-            } else {
-                appointmentDate = formatDate(document.getElementById('selectedDate').value);
-            }
-            
-            // Get selected time
-            const appointmentTime = document.getElementById('selectedTime').value;
-            
-            // Generate unique appointment ID
-            const appointmentId = generateAppointmentId();
-            document.getElementById('appointmentIdValue').textContent = appointmentId;
-            
-            // Create appointment summary
-            const summaryHTML = `
-                <p><strong>Appointment ID:</strong> ${appointmentId}</p>
-                <p><strong>Name:</strong> ${fullName}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>WhatsApp:</strong> ${whatsapp}</p>
-                <p><strong>City:</strong> ${city}</p>
-                <p><strong>Program:</strong> ${program}</p>
-                <p><strong>Appointment Date:</strong> ${appointmentDate}</p>
-                <p><strong>Appointment Time:</strong> ${appointmentTime}</p>
-                <p><strong>Requested On:</strong> ${getCurrentDateTime()}</p>
-            `;
-            
-            // Update modal content
-            document.getElementById('appointmentSummary').innerHTML = summaryHTML;
-            
-            // Create WhatsApp share link with your WhatsApp number
-            const whatsappMessage = encodeURIComponent(
-                `*Mentorship Appointment Request*\n\n` +
-                `Appointment ID: ${appointmentId}\n` +
-                `Name: ${fullName}\n` +
-                `Email: ${email}\n` +
-                `WhatsApp: ${whatsapp}\n` +
-                `City: ${city}\n` +
-                `Program: ${program}\n` +
-                `Appointment Date: ${appointmentDate}\n` +
-                `Appointment Time: ${appointmentTime}\n` +
-                `Requested On: ${getCurrentDateTime()}\n\n` +
-                `I have read all the details at mentorship.dilawarpro.com and would like to confirm my appointment. Please guide me further.`
-            );
-            
-            const whatsappLink = `https://wa.me/923314041010?text=${whatsappMessage}`;
-            document.getElementById('whatsappShare').href = whatsappLink;
-            
-            // Show modal with animation
-            const appointmentModal = new bootstrap.Modal(document.getElementById('appointmentModal'));
-            appointmentModal.show();
-        }
-
-        // Format date to readable format
-        function formatDate(dateString) {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        }
-
-        // Get current date and time
-        function getCurrentDateTime() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            return now.toLocaleDateString('en-US', options);
-        }
     </script>
+
+<!-- Ended students reviews -->
+<!-- Sources of income -->
+
+<div class="container mt-6" id="income-sources">
+  <div class="card course-card mb-4">
+    <h2>
+      <!-- <i class="fa-solid fa-sack-dollar" style="color: #0d6efd; font-size: 30px;"></i> -->
+      <img src="icons/dollarsack.webp" alt="dollars" width="55px">
+       Sources Of Income You Can Make After Joining Mentorship By Dilawar
+  </h2>
+  <div class="card">
+    <!-- <iframe width="100%" height="245px" src="https://drive.google.com/file/d/1yY3Af-jDODaSdkXzLa2bO58Os8mI4BHe/preview" title="Google Drive video player" frameborder="0" allowfullscreen></iframe> -->
+    <img src="income-sources.jpeg" class="card-img-bottom" alt="income-sources">
+    </div>
+    <div class="course">
+       <p style="margin-top: 10px;">According to our case study, You'll be able to make <b>15+ high income sources</b> after joining <strong>Mentorship By Dilawar</strong>.</p>
+       <ol>
+        <li>Blogging (Make money by displaying <a href="https://adsense.google.com/start/">Google AdSense</a> and other multiple ad networks ads on your websites and web apps)</li>
+        <li>Affiliate marketing (Earn commissions by promoting and selling physical or digital products on your sites).</li>
+        <li>Guest posting (Offering sponsored guest posts on your websites and web apps)</li>
+        <li>Creating commercial websites for businesses and startups</li>
+        <li>Creating and selling digital products (Themes, Plugins and Scripts) on platforms like <a href="https://themeforest.net/">themeforest</a>, <a href="https://author.envato.com/">envato</a>, <a href="https://themewagon.com/theme-price/pro/">themewagon</a> and other such type of platforms</li>
+        <li>Selling AdSense approved websites</li>
+        <li>Search engine optimization (SEO) Services</li>
+        <li>Social media marketing (SMM) Services</li>
+        <li>Domain flipping (Selling domain names)</li>
+        <li>Digital marketing company</li>
+        <li>Content writing for businesses or other websites owners</li>
+        <li>Freelancing - Be your own boss. (Selling services on marketplaces like <a href="https://www.fiverr.com/">Fiverr</a>, <a href="https://www.upwork.com/">Upwork</a>, <a href="https://www.peopleperhour.com/">PeoplePerHour</a>, <a href="https://www.guru.com/">Guru.com</a>, <a href="https://www.naukri.com/">Naukri</a>, and <a href="https://www.mustakbil.com/">Mustakbil</a> etc)</li>
+        <li>Web hosting business/services</li>
+        <li>Creating and selling your own mentorship by adding more value to your content.</li>
+        <li>Creating multiple e-commerce stores to sell physical and digital products with <mark>No subscription charges and selling fees</mark> like Shopify ($25 per month), eBay ($0.30 per order), Amazon (0.99$ per order), and other selling platforms.</li>
+        <li>Creating a YouTube channel and monetizing it through Google AdSense along with many more income sources discussed in your classes.</li>
+       </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ADDED FREE DEMO SESSION -->
+<!-- <center>
+  <h1 class="text-center mt-4 mb-4">FREE Demo Video - Click To Watch (Old Video) <i class="fas fa-video"></i></h1>
+  <div class="col-md-12 mb-4">
+    <div class="feature" style="margin: 15px;">
+      <div class="card">
+        <iframe width="100%" height="250px" src="https://drive.google.com/file/d/1nkSenAc6avMnIY6R9mtBXPaexBNoxYZ4/preview" title="Google Drive video player" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</center> -->
+<!-- ENDED FREE DEMO SESSION -->
+                <!-- ADDED FAQ's -->
+                    <div class="container mt-2" id="frequently-asked-questions">
+                      <h1 class="text-center mb-4" id="text-size"><i class="fa-regular fa-circle-question"></i> Frequently Asked Questions (FAQ's)</h1>
+                      <div class="accordion" id="faqAccordion">
+              <!-- FAQ Item 1 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq0">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0">
+                      What is a mentorship program?
+                    </button>
+                </h2>
+                <div id="collapse0" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                      A mentorship program helps individuals grow personally and professionally by providing guidance, career advice, and knowledge from experienced mentors.</div>
+                </div>
+            </div>
+<!-- FAQ Item 3 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                      Which is the best mentorship program in Pakistan?
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                       <strong>Mentorship By Dilawar</strong> is the best program because it offers all the most in-demand and high-income skills step-by-step, practically and strategically.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 Endded -->
+                          <!-- FAQ Item 1 -->
+                          <div class="accordion-item">
+                              <h2 class="accordion-header" id="faq1">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    Will the classes be online or physical, and what are the benefits of online classes?
+                                  </button>
+                              </h2>
+                              <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                  <div class="accordion-body">
+                                    Your classes will be online, so you can take your classes from the comfort of your home, giving you the freedom of location and time to learn. You can also reach out to your mentor on WhatsApp with any questions, in addition to the live classes. Your mentor will ensure you have a great learning experience.
+                                  </div>
+                              </div>
+                          </div>
+              
+                          <!-- FAQ Item 2 -->
+                          <!-- <div class="accordion-item">
+                              <h2 class="accordion-header" id="faq2">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    Agar is mentorship ke baad aapko projects nahi milte ya apki income start na huwi, to kiya aapki fee wapas kar di jayegi?
+                              </h2>
+                              <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                  <div class="accordion-body">
+                                    Ji haan, Agar mentorship complete karne ke baad aapko projects nahi milte ya aapki income shuru nahi hoti, to aapki total fee wapas kar di jayegi.
+                                  </div>
+                              </div>
+                          </div> -->
+              
+                          <!-- Add more FAQ items here -->
+              <!-- FAQ Item 3 -->
+              <!-- <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                      Is mentorship mein aapko kiya provide kiya jayega?
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                      Is mentorship program main aapko expert mentors ki taraf sy unique and valuable content provide kiya jayega jo is mentorship ky ilawa kisi sy nhi mil sakta. Read more about your mentor at <a href="https://dilawarpro.com">Mentor Profile</a>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- FAQ Item 3 Endded -->
+
+            <!-- FAQ Item 4 -->
+            <!-- <div class="accordion-item">
+              <h2 class="accordion-header" id="faq4">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                    Agar aapko mentorship samajh nahi aati, to kya karna chahiye?
+              </h2>
+              <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Agar aapko kuch samajh na aaye ya aap is mentorship se satisfied nahi hote, to aap apni fee 3 din ke andar wapas le sakte hain, jaise ke hamari website par mentioned hai.
+                  </div>
+              </div>
+          </div> -->
+<!-- FAQ Item 5 --> 
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                  Kiya aapko is mentorship main step-by-step guide kiya jayega?
+            </h2>
+            <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Ji haan, is mentorship main aapko sab kuch easy aur simple way mein, step-by-step, practically aur strategically guide kiya jayega. Yeh mentorship aapki expectations se bhi zyada payback kar sakta hai aapko.
+                </div>
+            </div>
+        </div> -->
+          <!-- FAQ Item 5 Endded -->  
+          <!-- FAQ Item 6 -->
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="faq6">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+                  Mentor aapko kab tak support kariengy?
+            </h2>
+            <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Jab tak aapki income shuru nahi hoti, tab tak aapka mentor aapke saath hai, aur mentorship complete hone ke baad bhi aapko mentor ki taraf se support diya jayega.
+                </div>
+            </div>
+        </div> -->
+          <!-- FAQ Item 6 Endded -->      
+           <!-- FAQ Item 7 -->
+           <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="faq7">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7">
+                  Kiya aapko is mentorship ke baad job mil sakti hai?
+            </h2>
+            <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Ji haan, mentorship ke baad aapko hamary digital marketing company mein permanent remote job offer ki jayegi. Check out my company profile at <a href="https://marketoze.dilawarpro.com">Marketoze</a>
+                </div>
+            </div>
+        </div> -->
+          <!-- FAQ Item 7 Endded -->  
+          <!-- FAQ Item 8 -->
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="faq8">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8">
+                  Agar aapko yeh mentorship pasand nahi aayi, to phir aap kiya kar sakty hain?
+            </h2>
+            <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Aap pehle registration karwa kar 3 din classes lein, phir decide karen ki aapko kya karna chahiye. Agar aap continue karna chahte hain, to kar lijiye, nahi to aap apni fee wapas le sakte hain.
+                </div>
+            </div>
+        </div> -->
+          <!-- FAQ Item 8 Endded --> 
+            <!-- FAQ Item 9 -->
+            <!-- <div class="accordion-item">
+              <h2 class="accordion-header" id="faq9">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9">
+                    What are the benefits of joining Mentorship By Dilawar?
+              </h2>
+              <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    There are many benefits of joining this mentorship program. <br>
+                    After this mentorship, You'll be able to create <b><a href="#income-sources">15+ high income sources</a></b>. Let me explain some of them. <br><br>
+                    
+                    <ol>
+                      <li>After this mentorship, if you sell a basic level AdSense-approved website/web application, its starting cost is almost $100 USD (approx. 30,000 PKR). 
+                          If you sell a high-end AdSense-approved website/web application, its starting cost is almost $400 USD (1 lac PKR+). 
+                          If you sell 4 basic level AdSense-approved sites or web applications in a month, you can easily make 1 lac PKR+ from the comfort of your home. 
+                          In case of any trust issues, you can research this on Google yourself.
+                      </li>
+                      <li>If you cannot work with blogs or AdSense, you can start creating and selling website templates.
+                      </li>
+                      <li>If that doesn't work for you, you can create an e-commerce store and start selling beauty products, skin whitening creams, or any other products. 
+                          Start by selling locally in Pakistan and once you gain some experience, begin selling internationally.
+                      </li>
+                      <li>If you cannot do that either, start a digital marketing company and begin selling services through social ads.
+                      </li>
+                      <li>You can also sell your own web hosting services to multiple companies and organizations.
+                      </li>
+                  </ol>
+                  
+                  <p>Even if you can't start your own business, you can work for my digital marketing company at <a href="https://marketoze.dilawarpro.com">Marketoze</a>. The salary package will be according to your skillsets and expertise.
+                  </p>
+                  
+                  <p>But I'm sure you won't need a job because you can create your own multiple high income sources after this mentorship. Additionally, you can generate other <b><a href="#income-sources">multiple high income sources</a></b> after this mentorship that are listed above.
+                  </p>
+                  </div>
+              </div>
+          </div> -->
+            <!-- FAQ Item 9 Endded -->
+             <!-- FAQ Item 8 -->
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header" id="faq10">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10">
+                 Classes mode kiya hoga? Physical hongy ya online?
+            </h2>
+            <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We've online training mode. Aapke classes online hongy jo aap apny ghar ky comfort zone sy ly sakty hain by allowing you flexibility of location and time. Aapka koi bhi question ya doubt ho to wo aap LIVE classes ky ilawa directly apny ghar k comfort zone sy apny mentor sy WhatsApp py bhi puch sakty hain jo apko aik acha experience provide kary ga.
+                </div>
+            </div>
+        </div> -->
+          <!-- FAQ Item 8 Endded -->  
+                  </div>
+                  </div>
+
+<!--                 Ended FAQ's -->
+  <div class="container mt-6">
+  <div class="card course-card mb-4">
+    <h2 style="font-size: 22px;">
+      <i class="fa-solid fa-award"></i>
+       Certificate of completion
+  </h2>
+  <div class="card">
+    <a href="certificate-of-completion.jpeg" data-fancybox="gallery" data-caption="Certification">
+      <img src="certificate-of-completion.jpeg" class="card-img-top" alt="Certification">
+    </a>
+  </div>
+  </div>
+</div>
+<!-- Registration Process -->
+
+<div class="container mt-6" id="Register">
+          <div class="card course-card">
+            <h2>
+              <!-- <i class="fa-solid fa-file-pen" style="color: #0d6efd; font-size: 30px;"></i> -->
+               <img src="icons/registration-process.webp" alt="reg-process" width="55px">
+               <span style="margin-left: -10px;">Registration Process</span>
+          </h2>
+              
+              <div class="course">
+                <!-- <span class="checkmark"><i class="fas fa-check"></i></span>-->
+                <p>We have a simple and easy 3-step registration process. Please follow the steps below to get registered:</p> 
+               <b class="modules">Step 01:</b> Submit your complete details, including your full name, father's name, email address, city, and WhatsApp number.
+            
+            </div>
+            <div class="course">
+                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+                <b class="modules">Step 02:</b> Join our WhatsApp group to access the LIVE 3-Day FREE classes. Here's the link: <a href="https://chat.whatsapp.com/E6CeMbw5X08C1RC2z44HXL">Join WhatsApp Group</a>.
+            </div>
+            <div class="course">
+              <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
+              <b class="modules">Step 03:</b> After attending the FREE classes, decide the program you want to continue by submitting your selected program fee.
+          </div>
+            <p><strong>Important Note:</strong> You can get a full easy and guaranteed refund within 7 days if not interested.</p>
+          </div>
+      </div>
+
+                                  <!-- FEE STRUCTURE -->
+                    <div class="container" style="margin-top: 15px;" id="Fee-structure">
+                      <h1 class="text-center mb-2" id="text-size">Fee Structure</h1>
+                      <div class="row">
+                     <!-- Start of 2 months mentorship program -->
+                     <div class="col-md-6 mb-4">
+                      <div class="feature">
+                        <div class="card"> 
+                          <div class="card-header">
+                            <h3>2 Months Mentorship Program</h3>
+                            <i class="fas fa-calendar-alt"></i> Class Days: 6 (Monday to Saturday)
+                          </div>
+                          <div class="card-body">
+                            <p><i class="fas fa-clock"></i> Est. Duration: 2 Months (48 Days)</p>
+                            <p> <i class="fa-solid fa-file-invoice-dollar"></i> Registration Fee: Rs. 5,000</p>
+                            <p><i class="fas fa-money-bill"></i> 2 months mentorship actual fee: Rs. <del>30,000</del></p>
+                            <p><i class="fa-solid fa-money-bill-1"></i> Fee after a final discount: Rs. 20,000 ($70) one-time only <span style="color: #00af15;">(1 year web hosting and Optional courses are included for FREE)</span></p>
+                            <p><i class="fas fa-money-bill-wave"></i> 2 Months Installments Fee: Rs. 12,500 ($45) per month <span style="color: #ff2020;">(1 Year FREE web hosting included and Optional courses are NOT included)</span></p>
+                            <a class="apply-button" href="https://mentorship.dilawarpro.com/2-months-registration" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 12px 26px; font-weight: bold;">Become a Pro  <i class="fa-solid fa-circle-arrow-right"></i></a>
+                          </div>
+                        </div>   
+                      </div>
+                    </div>
+                     <!-- Start of 6 months mentorship program -->
+                     <!-- <div class="col-md-4 mb-4">
+                      <div class="feature">
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>6 Months Mentorship Program</h3>
+                            <i class="fas fa-calendar-alt"></i> Class Days: Weekend (Saturday, Sunday)
+                          </div>
+                          <div class="card-body">
+                            <p><i class="fas fa-clock"></i> Est. Duration: 6 Months (48 Days)</p>
+                            <p><i class="fas fa-money-bill"></i> 6 Months Mentorship Actual Fee: Rs. <del>33,000</del></p>
+                            <p><i class="fa-solid fa-money-bill-1"></i> Fee After a final discount: Rs. 28,000 (90$) one-time only. <span style="color: #00af15;">(1 year web hosting and optional courses included for FREE)</span></p>
+                            <p><i class="fas fa-money-bill-wave"></i> 6 Months Installments Fee: Rs. 5,500 ($20) per month <span style="color: #ff2020;">(1 year web hosting and optional courses NOT included)</span></p>
+                            <a class="apply-button" href="https://mentorship.dilawarpro.com/6-months-registration" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 12px 26px; font-weight: bold;">Become a Pro  <i class="fa-solid fa-circle-arrow-right"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>     -->
+                      
+                        <!-- End of 6 months mentorship program -->
+
+                        <!-- Start of 1:1 months mentorship program -->
+                     <div class="col-md-6 mb-4">
+                      <div class="feature"> 
+                        <div class="card">
+                          <div class="card-header">
+                            <h3>Champions Mentorship Program <span> <br> (<i class="fa-solid fa-crown"></i> Best Choice)</span></h3>
+                            <i class="fas fa-calendar-alt"></i> Class Days: Flexible
+                          </div>
+                          <div class="card-body">
+                            <p><i class="fas fa-clock"></i> Est. Duration: Less then 2 Months</p>
+                            <p> <i class="fa-solid fa-file-invoice-dollar"></i> Registration Fee: Rs. 5,000</p>
+                            <p><i class="fas fa-money-bill"></i> Champions mentorship program actual fee: Rs. <del>35,000</del></p>
+                            <p><i class="fa-solid fa-money-bill-1"></i> Fee after a final discount: Rs. 25,000 ($90) one-time payment.</p>
+                            <p>
+                              <i class="fa-solid fa-gift fa-bounce"></i> 
+                              <a id="specialMentorshipLink" style="color:#007bff !important;">Click here to see what's included in Champions Mentorship Program</a>
+                          </p>
+                          <p style="background: #00c56a;
+                                color: white;
+                                border-radius: 10px;
+                                padding: 2px 8px 2px 8px; width: fit-content; margin: 0 auto; margin-bottom: 5px;
+                                margin-top: 15px;"> <i class="fa-solid fa-heart"></i> Loved by thousands of students - Recommended for creative students</p>
+                          <!-- Special Mentorship Modal -->
+                          <div id="specialMentorship" class="modal">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <span class="close-btn" onclick="closeModal('specialMentorship')">&times;</span>
+                                      <p style="color: white !important; font-weight: bold;">After Joining Champions Mentorship Program, You'll Get:</p>
+                                  </div>
+                                  <div class="modal-body">
+                                      <ol>
+                                          <li>Lifetime FREE web hosting with SSL - SAVE up to Rs. 18000 per year and FREE subdomain for unlimited websites.</li>
+                                          <li>No e-commerce platform subscription charges or selling fees – Save up to $25/month, $300/year, or Rs. 85,000/year.</li>
+                                          <li>More comprehensive learning experience and extra features than 2 and 6 months mentorship program.</li>
+                                          <li>100% guaranteed job placement in our digital marketing company at <a href="https://marketoze.dilawarpro.com">Marketoze</a>.</li>
+                                          <li>Additional courses (Digital Marketing OR Domain Flipping) included for FREE (No additional charges).</li>
+                                          <li>Personalized special FREE lifetime student support.</li>
+                                          <li>Flexible classes timing (1-on-1 Classes).</li>
+                                          <li>YouTube Automation Included.</li>
+                                          <li>All the courses and modules listed above</li>
+                                      </ol>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button class="close-footer-btn" onclick="closeModal('specialMentorship')">Close</button>
+                                  </div>
+                              </div>
+                          </div>
+                            <a class="apply-button" href="https://mentorship.dilawarpro.com/champions-mentorship" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 12px 26px; font-weight: bold;"> Become a Pro + Champion <i class="fa-solid fa-trophy"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>    
+                      </div>
+
+                    </div>
+                       <!-- End of 1:1 months mentorship program -->
+                        <div style="text-align: center; margin: -10px 5px 10px 5px; padding: 5px;">
+                          <small class="text-muted">
+                            <b style="color: #ff2020;">Important Note:</b> This is the full discounted fee structure for the complete mentorship program. There is a special discount for orphans.
+                        </small>
+                        
+        </div>
+        <!-- Added Worth of Program -->
+<!-- <h1 class="text-center">Total Worth of This Mentorship Program</h1>
+<div class="mb-4" style="margin: 10px;">
+<div class="feature">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Actual Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Web Programming</td>
+            <td>15,000</td>
+        </tr>
+        <tr>
+            <td>WordPress Development</td>
+            <td>12,000</td>
+        </tr> -->
+        <!-- Add other course rows here -->
+        <!-- <tr>
+          <td>Blogging Expert</td>
+          <td>10,000</td>
+      </tr>
+      <tr>
+        <td>Affiliate Marketing</td>
+        <td>12,000</td>
+    </tr>
+    <tr>
+      <td>Search Engine Optimization</td>
+      <td>16,000</td>
+  </tr>
+  <tr>
+    <td>Social Media Marketing</td>
+    <td>8,000</td>
+</tr>
+<tr>
+  <td>Guest Posting/Backlinking</td>
+  <td>6,500</td>
+</tr>
+<tr>
+<td>Prompt Engineering</td>
+<td>18,000</td>
+</tr>
+<tr>
+<td>Content Writing</td>
+<td>8,000</td>
+</tr>
+<tr>
+<td>Freelancing</td>
+<td>5,000</td>
+</tr>
+<tr>
+  <td>Domain Flipping/Digital Marketing</td>
+  <td>20,000</td>
+  </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="total-cost">Total Actual Cost</td>
+          <td class="total-cost">Rs. <del>130,500</del></td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-right total-discount">Discounted Cost: Rs. 30,000
+</div>
+</div>
+</div> -->
+<!-- Added ChatBot -->
+<!-- Chatbot Trigger Button -->
+<div class="chatbot-trigger animate__animated animate__pulse animate__infinite" id="chatbotTrigger">
+  <i class="fa-brands fa-rocketchat fa-lg" style="color: #ffffff;"></i>
+  <span class="chat-notification">1</span>
+</div>
+
+<!-- Chatbot Container -->
+<div class="chatbot-container" id="chatbotContainer">
+  <div class="chatbot-header">
+      <div class="chatbot-title">
+          <img src="https://dilawarpro.com/skills-profile-picture.png" alt="Mentor Logo" class="chatbot-logo">
+          <span>Mentorship By Dilawar</span>
+      </div>
+      <div class="chatbot-controls">
+          <button class="minimize-btn" id="minimizeBtn"><i class="fas fa-minus"></i></button>
+          <button class="close-btn" id="closeBtn"><i class="fas fa-times"></i></button>
+      </div>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages">
+      <!-- Messages will be added here dynamically -->
+  </div>
+  <div class="chatbot-suggested-btns" id="suggestedButtons">
+      <!-- Suggested buttons will be added here dynamically -->
+  </div>
+  <div class="chatbot-input">
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- Ended ChatBot -->
+ 
+                        <hr>
+                        <footer class="footer">
+                          
+                               <p class="text-center">© 2025 All Rights Reserved <a href="https://marketoze.dilawarpro.com">Marketoze</a>  | <a href="https://mentorship.dilawarpro.com">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="https://mentorship.dilawarpro.com/privacy-policy">Privacy Policy</a> | <a href="https://mentorship.dilawarpro.com/refund-policy">Refund Policy</a> | <a href="mailto:businesswithdilawar@gmail.com">Report a problem</a> | Designed and Developed By <a href="https://dilawarpro.com">Dilawar</a> In 🇵🇰</p>
+                              <!-- <div class="col-md-6"> -->
+                                <div class="payment-icons" style="margin-bottom: 10px;">
+                                  <h2 class="text-center">Our Payment Partners</h2>
+                                  <img src="United_Bank_Limited_logo.svg.png" alt="bank" class="payment-card">
+                                  <img src="sadapay.png" alt="sadapay" class="payment-card">
+                                  <img src="nayapay.png" alt="nayapay" class="payment-card">
+                                  <img src="easypaisa.png" alt="easypaisa" class="payment-card">
+                                  <img src="jazzcash.png" alt="jazzcash" class="payment-card">
+                                </div>
+                          <ul class="list-inline social-icons text-center" style="font-size: 25px;"><h2>Stay Connected</h2>
+                                  <li class="list-inline-item">
+                                      <a href="https://facebook.com/mentorshipbydilawar"><i class="fab fa-facebook-f"></i></a>
+                                  </li>
+                                  <li class="list-inline-item">
+                                      <a href="https://instagram.com/mentorshipbydilawar"><i class="fab fa-instagram"></i></a>
+                                  </li>
+                                  <li class="list-inline-item">
+                                      <a href="https://wa.me/923314041010"><i class="fab fa-whatsapp"></i></a>
+                                  </li>
+                                  <li class="list-inline-item">
+                                    <a href="https://tiktok.com/@mentorshipbydilawar"><i class="fab fa-tiktok"></i></a>
+                                </li>
+                                
+                              </ul>
+                        </footer>
+          <!-- Bootstrap JS and Font Awesome JS Links (for icons) -->
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+          <script>
+            // Use setTimeout to delay the execution of Toastify
+            setTimeout(function() {
+              Toastify({
+                text: "Thank you for choosing Mentorship By Dilawar as your trusted and premier learning partner :)",
+                duration: 8000,
+                gravity: "bottom", // Display at the bottom
+                position: "center", // Display on the right side
+                style: {
+                  background: "linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%)",
+                  borderRadius: "8px", // Set border radius
+                  margin: "5px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Add box shadow
+                },
+              }).showToast();
+            }, 5000); // 5 seconds after the page load
+          </script>
+ <script src="script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>                 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script>
+    $(document).ready(function() {
+      $('[data-fancybox="gallery"]').fancybox({
+        animationEffect: "zoom-in-out",
+        transitionEffect: "circular",
+        buttons: ["zoom", "close"],
+      });
+    });     // Added SA
+
+     // Wait for the document to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Delay the display of the message by 5 seconds (5000 milliseconds)
+            setTimeout(function () {
+                Swal.fire({
+                    title: 'Register Now!',
+                    text: "Registrations for the new batch are now open. Join now and become a Champion! 🏆",
+                    icon: 'info',
+                    confirmButtonText: 'Close'
+                });
+            }, 8000);
+        });
+     // Added Connefti
+     // Half Screen Animation
+// Wrap your animation code in a setTimeout function
+setTimeout(function() {
+  const count = 200,
+    defaults = {
+      origin: { y: 0.7 },
+      zIndex: 99999, // Set zIndex to 99999
+    };
+
+  function fire(particleRatio, opts) {
+    confetti(
+      Object.assign({}, defaults, opts, {
+        particleCount: Math.floor(count * particleRatio),
+      })
+    );
+  }
+
+  fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+  });
+
+  fire(0.2, {
+    spread: 60,
+  });
+
+  fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8,
+  });
+
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2,
+  });
+
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+  });
+}, 8000); // 10 seconds delay (10,000 milliseconds)
+     // Full screen animation 
+    // Wrap your animation code in a setTimeout function
+// setTimeout(function() {
+//   const duration = 15 * 1000,
+//     animationEnd = Date.now() + duration,
+//     defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 99999 };
+
+//   function randomInRange(min, max) {
+//     return Math.random() * (max - min) + min;
+//   }
+
+//   const interval = setInterval(function() {
+//     const timeLeft = animationEnd - Date.now();
+
+//     if (timeLeft <= 0) {
+//       return clearInterval(interval);
+//     }
+
+//     const particleCount = 50 * (timeLeft / duration);
+//     confetti(
+//       Object.assign({}, defaults, {
+//         particleCount,
+//         origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+//       })
+//     );
+//     confetti(
+//       Object.assign({}, defaults, {
+//         particleCount,
+//         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+//       })
+//     );
+//   }, 250);
+// }, 10000);
+  </script>    
+  <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init();
+</script> -->
+<script>
+// Get modal elements
+const onPageModal = document.getElementById('onPageModal');
+const offPageModal = document.getElementById('offPageModal');
+const technicalModal = document.getElementById('technicalModal');
+const specialMentorshipModal = document.getElementById('specialMentorship');
+
+// Get link elements
+const onPageLink = document.getElementById('onPageLink');
+const offPageLink = document.getElementById('offPageLink');
+const technicalLink = document.getElementById('technicalLink');
+const specialMentorshipLink = document.getElementById('specialMentorshipLink');
+
+// Open modals
+onPageLink.onclick = function() {
+    onPageModal.style.display = 'block';
+}
+
+offPageLink.onclick = function() {
+    offPageModal.style.display = 'block';
+}
+
+technicalLink.onclick = function() {
+    technicalModal.style.display = 'block';
+}
+
+specialMentorshipLink.onclick = function() {
+    specialMentorshipModal.style.display = 'block';
+}
+
+// Close modals
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+    if (event.target == onPageModal) {
+        onPageModal.style.display = 'none';
+    } else if (event.target == offPageModal) {
+        offPageModal.style.display = 'none';
+    } else if (event.target == technicalModal) {
+        technicalModal.style.display = 'none';
+    } else if (event.target == specialMentorshipModal) {
+        specialMentorshipModal.style.display = 'none';
+    }
+}
+</script>
 </body>
 </html>
