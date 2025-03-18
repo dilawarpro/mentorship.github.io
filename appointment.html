@@ -486,7 +486,7 @@
               // Create WhatsApp share link with your WhatsApp number
     const whatsappMessage = encodeURIComponent(
         `*Mentorship Appointment Request*\n\n` +
-        `*🎫 Appointment ID:* ${appointmentId}\n` +
+        `*🆔 Appointment ID:* ${appointmentId}\n` +
         `*👤 Name:* ${fullName}\n` +
         `*📧 Email:* ${email}\n` +
         `*📱 WhatsApp:* ${whatsapp}\n` +
@@ -496,7 +496,7 @@
         `*⏰ Appointment Time:* ${appointmentTime}\n` +
         `*📝 Requested On:* ${getCurrentDateTime()}\n\n` +
         
-        `I have read all the details at mentorship.dilawarpro.com and would like to confirm my appointment. Please confirm my appointment and guide me further.`
+        `I have read all the details at mentorship.dilawarpro.com and would like to confirm my appointment. Please guide me further.`
     );      
             const whatsappLink = `https://wa.me/923314041010?text=${whatsappMessage}`;
             document.getElementById('whatsappShare').href = whatsappLink;
