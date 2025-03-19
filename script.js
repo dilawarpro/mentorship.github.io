@@ -951,7 +951,7 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to suggest Champion Mentorship Program
     function suggestChampionMentorshipProgram() {
-        addBotMessage(`If you are creative and have a creative mindset then I would recommend ap Champion Mentorship Program join kar lien.`);
+        addBotMessage(`If you have a creative mindset then I would recommend ap Champion Mentorship Program join kar lien.`);
         
         // Add detailed benefits after a short delay
         setTimeout(() => {
@@ -979,7 +979,7 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`Is mentorship main apke sath kuch ayesi pro tips, hacks, secrets and smart strategies share ki jayengi jis sy ap within 20 to 30 days main apni income start kar sakty hain.`);
+                addBotMessage(`Main apky sath kuch ayesi pro tips, hacks, secrets and smart strategies share krunga jis sy first module complete hoty he apki income start ho jayegi.`);
                 
                 // Show booking options
                 showSuggestedButtons([
@@ -1063,7 +1063,7 @@ You've multiple options to choose but hamara sab sy best package champions mento
                     "Service-based mentorship",
                     "Starter mentorship program",
                     "2 months mentorship program",
-                    "Champion mentorship program",
+                    "Champion mentorship program (Recommended)",
                     "Registration Process",
                     "Payment Methods"
                 ]);
@@ -1149,8 +1149,8 @@ You've multiple options to choose but hamara sab sy best package champions mento
 
 <ol style="margin-left: 20px; padding-left: 10px;">
     <li><strong>Step 01:</strong> Submit your complete details, including your full name, father's name, email address, city, and WhatsApp number.</li>
-    <li><strong>Step 02:</strong> Join our WhatsApp group to access the LIVE 3-Day FREE classes. Here's the link: <a href="https://chat.whatsapp.com/JrMGJFzWF4F7oFRTXV5Xbo" target="_blank">Join WhatsApp Group</a>.</li>
-    <li><strong>Step 03:</strong> After attending the FREE classes, decide the program you want to continue by submitting your selected program fee.</li>
+    <li><strong>Step 02:</strong> Join without risk! Just pay your registration and start taking classes. If you're not satisfied in the first 7 days, we'll refund your registration fee.</li>
+    <li><strong>Step 03:</strong> If you're satisfied with the mentorship program, you can pay the remaining fee in installments or one-time only.</li>
 </ol>
 
 <p><strong>Important Note:</strong> You can get a full easy and guaranteed refund within 7 days if not interested.</p>`);
