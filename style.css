@@ -836,9 +836,9 @@ audio{
       left: auto;
   }
   
-  /* .chatbot-trigger {
+  .chatbot-trigger {
       bottom: 20px;
       right: 20px;
       left: auto;
-  } */
+  }
 } 

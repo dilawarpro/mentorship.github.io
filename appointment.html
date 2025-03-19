@@ -151,11 +151,14 @@
         }
 
         .time-slot:hover, .time-slot.active {
-            background: var(--primary-gradient);
-            /* background-image: var(--primary-gradient); */
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .time-slot.active {
+            background-image: var(--primary-gradient);
+            color: white;
+        }
         /* Appointment ID */
         .appointment-id {
             background: var(--primary-gradient);
