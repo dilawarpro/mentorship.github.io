@@ -302,121 +302,6 @@
             </div>
         </div>
     </div>
-     <script>
-                            // Include SweetAlert2 library for notifications
-                            const script = document.createElement('script');
-                            script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
-                            document.head.appendChild(script);
-
-                            document.getElementById('bookAppointmentBtn').addEventListener('click', function(event) {
-                                event.preventDefault(); // Prevent form submission
-
-                                // Validate form fields
-                                const fullName = document.getElementById('fullName').value.trim();
-                                const email = document.getElementById('email').value.trim();
-                                const whatsapp = document.getElementById('whatsapp').value.trim();
-                                const city = document.getElementById('city').value.trim();
-                                const program = document.getElementById('program').value;
-                                const selectedDate = document.getElementById('selectedDate').value;
-                                const selectedTime = document.getElementById('selectedTime').value;
-                                const confirmCheck = document.getElementById('confirmCheck').checked;
-
-                                if (!fullName) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please enter your full name.',
-                                    });
-                                    return;
-                                }
-
-                                if (!email) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please enter your email address.',
-                                    });
-                                    return;
-                                }
-
-                                if (!whatsapp) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please enter your WhatsApp number.',
-                                    });
-                                    return;
-                                }
-
-                                if (!city) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please enter your city.',
-                                    });
-                                    return;
-                                }
-
-                                if (!program) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please select an interested program.',
-                                    });
-                                    return;
-                                }
-
-                                if (!selectedDate) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please select a date for your appointment.',
-                                    });
-                                    return;
-                                }
-
-                                if (!selectedTime) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Missing Information',
-                                        text: 'Please select a time for your appointment.',
-                                    });
-                                    return;
-                                }
-
-                                if (!confirmCheck) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Confirmation Required',
-                                        text: 'Please confirm that you have read the details.',
-                                    });
-                                    return;
-                                }
-
-                                // Trigger form submission logic
-                                handleFormSubmit(event);
-
-                                // Wait for the modal to be fully displayed before taking the screenshot
-                                setTimeout(() => {
-                                    const modalBody = document.querySelector('.modal-body');
-                                    html2canvas(modalBody).then(canvas => {
-                                        // Create a download link for the screenshot
-                                        const link = document.createElement('a');
-                                        link.download = 'appointment-summary.png';
-                                        link.href = canvas.toDataURL('image/png');
-                                        link.click();
-                                    });
-                                }, 500); // Delay to ensure modal content is rendered
-                            });
-
-                            // Add animation to the checkmark icon
-                            const appointmentModal = document.getElementById('appointmentModal');
-                            appointmentModal.addEventListener('shown.bs.modal', function () {
-                                const checkmarkIcon = document.querySelector('.confirmation-icon');
-                                checkmarkIcon.classList.add('animate__animated', 'animate__bounceIn');
-                            });
-                        </script>
-
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS Animation Library -->
@@ -663,5 +548,120 @@ function generateAppointmentId() {
             return now.toLocaleDateString('en-US', options);
         }
     </script>
+    <script>
+        // Include SweetAlert2 library for notifications
+        const script = document.createElement('script');
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
+
+        document.getElementById('bookAppointmentBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Validate form fields
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const program = document.getElementById('program').value;
+            const selectedDate = document.getElementById('selectedDate').value;
+            const selectedTime = document.getElementById('selectedTime').value;
+            const confirmCheck = document.getElementById('confirmCheck').checked;
+
+            if (!fullName) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please enter your full name.',
+                });
+                return;
+            }
+
+            if (!email) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please enter your email address.',
+                });
+                return;
+            }
+
+            if (!whatsapp) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please enter your WhatsApp number.',
+                });
+                return;
+            }
+
+            if (!city) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please enter your city.',
+                });
+                return;
+            }
+
+            if (!program) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please select an interested program.',
+                });
+                return;
+            }
+
+            if (!selectedDate) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please select a date for your appointment.',
+                });
+                return;
+            }
+
+            if (!selectedTime) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Information',
+                    text: 'Please select a time for your appointment.',
+                });
+                return;
+            }
+
+            if (!confirmCheck) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Confirmation Required',
+                    text: 'Please confirm that you have read the details.',
+                });
+                return;
+            }
+
+            // Trigger form submission logic
+            handleFormSubmit(event);
+
+            // Wait for the modal to be fully displayed before taking the screenshot
+            setTimeout(() => {
+                const modalBody = document.querySelector('.modal-body');
+                html2canvas(modalBody).then(canvas => {
+                    // Create a download link for the screenshot
+                    const link = document.createElement('a');
+                    link.download = 'appointment-summary.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+            }, 500); // Delay to ensure modal content is rendered
+        });
+
+        // Add animation to the checkmark icon
+        const appointmentModal = document.getElementById('appointmentModal');
+        appointmentModal.addEventListener('shown.bs.modal', function () {
+            const checkmarkIcon = document.querySelector('.confirmation-icon');
+            checkmarkIcon.classList.add('animate__animated', 'animate__bounceIn');
+        });
+    </script>
+
 </body>
 </html>
