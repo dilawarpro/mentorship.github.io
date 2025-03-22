@@ -402,10 +402,16 @@
             const currentDate = now.toISOString().split('T')[0];
 
             for (let hour = startHour; hour <= endHour; hour++) {
-            // Skip past times for the current date
-            if (document.getElementById('selectedDate').value === currentDate && hour <= currentHour) {
-                continue;
-            }
+                // Skip past times for the current date
+                if (document.getElementById('selectedDate').value === currentDate && hour <= currentHour) {
+                    continue;
+                }
+
+                // Ensure the selected date is valid
+                if (!document.getElementById('selectedDate').value) {
+                    console.error("No date selected. Please select a date.");
+                    return;
+                }
 
             const timeSlot = document.createElement('div');
             timeSlot.className = 'time-slot';
