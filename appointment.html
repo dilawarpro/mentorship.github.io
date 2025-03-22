@@ -32,10 +32,13 @@
         
         .gradient-text {
             background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 15px;
             font-weight: bold;
+            letter-spacing: 1px;
         }
         
         .form-card {
@@ -170,6 +173,10 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
+
+        .toast-container {
+            z-index: 1055; /* Ensure it appears above other elements */
+        }
     </style>
 </head>
 <body>
@@ -299,6 +306,18 @@
                         <i class="fab fa-whatsapp me-2"></i>Confirm on WhatsApp
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+        <div id="toastNotification" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Appointment booked successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
     </div>
@@ -490,12 +509,12 @@ function generateAppointmentId() {
             
             // Validate date and time selection
             if (!document.getElementById('selectedDate').value) {
-                alert('Please select a date for your appointment.');
+                showToast('Please select a date for your appointment.', 'danger');
                 return;
             }
             
             if (!document.getElementById('selectedTime').value) {
-                alert('Please select a time for your appointment.');
+                showToast('Please select a time for your appointment.', 'danger');
                 return;
             }
             
@@ -562,14 +581,43 @@ function generateAppointmentId() {
             // Take a screenshot of the appointment summary
             setTimeout(() => {
                 const summaryElement = document.querySelector('.modal-content');
+                const confirmationIcon = document.querySelector('.confirmation-icon');
+
+                // Temporarily change the icon color to a solid color
+                confirmationIcon.style.color = 'var(--primary-color-2)';
+                confirmationIcon.style.background = 'none';
+
                 html2canvas(summaryElement).then(canvas => {
                     // Trigger download of the screenshot
                     const link = document.createElement('a');
                     link.href = canvas.toDataURL('image/png');
                     link.download = `Appointment_Summary_${appointmentId}.png`;
                     link.click();
+
+                    // Revert the icon back to its original gradient style
+                    confirmationIcon.style.color = 'transparent';
+                    confirmationIcon.style.background = 'var(--primary-gradient)';
+                    confirmationIcon.style.webkitBackgroundClip = 'text';
+                    confirmationIcon.style.backgroundClip = 'text';
+
+                    // Show success toast
+                    showToast('Appointment booked successfully!', 'success');
                 });
             }, 500); // Delay to ensure modal is fully rendered
+        }
+
+        // Function to show toast notifications
+        function showToast(message, type = 'success') {
+            const toastElement = document.getElementById('toastNotification');
+            const toastBody = toastElement.querySelector('.toast-body');
+
+            // Update toast message and type
+            toastBody.textContent = message;
+            toastElement.className = `toast align-items-center text-bg-${type} border-0`;
+
+            // Show the toast
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
         }
 
         // Format date to readable format
