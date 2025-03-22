@@ -399,49 +399,50 @@
             const endHour = 17;   // 5 PM
             const now = new Date();
             const currentHour = now.getHours();
-            const currentMinutes = now.getMinutes();
-            const selectedDate = document.getElementById('selectedDate').value;
-            const today = new Date().toISOString().split('T')[0];
-
-            // Clear previous time slots
-            timeSlots.innerHTML = '';
+            const currentDate = now.toISOString().split('T')[0];
 
             for (let hour = startHour; hour <= endHour; hour++) {
-                const timeSlot = document.createElement('div');
-                timeSlot.className = 'time-slot';
-                
-                // Format time in 12-hour format
-                const hour12 = hour > 12 ? hour - 12 : hour;
-                const amPm = hour >= 12 ? 'PM' : 'AM';
-                timeSlot.textContent = `${hour12}:00 ${amPm}`;
-                
-                // Store the time value
-                timeSlot.dataset.time = `${hour}:00`;
+            // Skip past times for the current date
+            if (document.getElementById('selectedDate').value === currentDate && hour <= currentHour) {
+                continue;
+            }
 
-                // Disable past time slots only for today
-                if (selectedDate === today && (hour < currentHour || (hour === currentHour && currentMinutes > 0))) {
-                    timeSlot.classList.add('disabled');
-                    timeSlot.style.pointerEvents = 'none';
-                    timeSlot.style.opacity = '0.5';
-                } else {
-                    // Add click event for future time slots
-                    timeSlot.addEventListener('click', function() {
-                        // Remove active class from all time slots
-                        document.querySelectorAll('.time-slot').forEach(slot => {
-                            slot.classList.remove('active');
-                        });
-                        
-                        // Add active class to clicked time slot
-                        this.classList.add('active');
-                        
-                        // Update hidden input
-                        document.getElementById('selectedTime').value = this.textContent;
-                    });
-                }
-                
-                timeSlots.appendChild(timeSlot);
+            const timeSlot = document.createElement('div');
+            timeSlot.className = 'time-slot';
+
+            // Format time in 12-hour format
+            const hour12 = hour > 12 ? hour - 12 : hour;
+            const amPm = hour >= 12 ? 'PM' : 'AM';
+            timeSlot.textContent = `${hour12}:00 ${amPm}`;
+
+            // Store the time value
+            timeSlot.dataset.time = `${hour}:00`;
+
+            // Add click event
+            timeSlot.addEventListener('click', function () {
+                // Remove active class from all time slots
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('active');
+                });
+
+                // Add active class to clicked time slot
+                this.classList.add('active');
+
+                // Update hidden input
+                document.getElementById('selectedTime').value = this.textContent;
+            });
+
+            timeSlots.appendChild(timeSlot);
             }
         }
+
+        // Update time slots dynamically when the selected date changes
+        document.getElementById('selectedDate').addEventListener('change', function () {
+            const timeSlots = document.getElementById('timeSlots');
+            timeSlots.innerHTML = ''; // Clear existing time slots
+            generateTimeSlots(); // Regenerate time slots
+        });
+
         // Set to store previously generated appointment IDs
         const generatedIds = new Set();
 
