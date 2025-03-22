@@ -342,6 +342,20 @@
             // Handle custom date selection
             document.getElementById('appointmentDate').addEventListener('change', function() {
                 document.getElementById('selectedDate').value = this.value;
+
+                // Regenerate time slots based on the selected date
+                generateTimeSlots(this.value);
+            });
+
+            // Handle date button selection
+            document.querySelectorAll('.date-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const selectedDate = this.dataset.date;
+                    document.getElementById('selectedDate').value = selectedDate;
+
+                    // Regenerate time slots based on the selected date
+                    generateTimeSlots(selectedDate);
+                });
             });
         });
         
@@ -393,37 +407,52 @@
         }
         
         // Generate time slots from 10 AM to 5 PM
-        function generateTimeSlots() {
+        function generateTimeSlots(selectedDate) {
             const timeSlots = document.getElementById('timeSlots');
+            timeSlots.innerHTML = ''; // Clear existing time slots
+        
             const startHour = 10; // 10 AM
             const endHour = 17;   // 5 PM
-            
+            const now = new Date(); // Get the current date and time
+            const currentHour = now.getHours();
+            const currentMinutes = now.getMinutes();
+        
+            // Check if the selected date is today
+            const isToday = selectedDate === now.toISOString().split('T')[0];
+        
             for (let hour = startHour; hour <= endHour; hour++) {
                 const timeSlot = document.createElement('div');
                 timeSlot.className = 'time-slot';
-                
+        
                 // Format time in 12-hour format
                 const hour12 = hour > 12 ? hour - 12 : hour;
                 const amPm = hour >= 12 ? 'PM' : 'AM';
                 timeSlot.textContent = `${hour12}:00 ${amPm}`;
-                
+        
                 // Store the time value
                 timeSlot.dataset.time = `${hour}:00`;
-                
-                // Add click event
-                timeSlot.addEventListener('click', function() {
-                    // Remove active class from all time slots
-                    document.querySelectorAll('.time-slot').forEach(slot => {
-                        slot.classList.remove('active');
+        
+                // Disable past time slots only if the selected date is today
+                if (isToday && (hour < currentHour || (hour === currentHour && currentMinutes > 0))) {
+                    timeSlot.classList.add('disabled');
+                    timeSlot.style.pointerEvents = 'none';
+                    timeSlot.style.opacity = '0.5';
+                } else {
+                    // Add click event for valid time slots
+                    timeSlot.addEventListener('click', function () {
+                        // Remove active class from all time slots
+                        document.querySelectorAll('.time-slot').forEach(slot => {
+                            slot.classList.remove('active');
+                        });
+        
+                        // Add active class to clicked time slot
+                        this.classList.add('active');
+        
+                        // Update hidden input
+                        document.getElementById('selectedTime').value = this.textContent;
                     });
-                    
-                    // Add active class to clicked time slot
-                    this.classList.add('active');
-                    
-                    // Update hidden input
-                    document.getElementById('selectedTime').value = this.textContent;
-                });
-                
+                }
+        
                 timeSlots.appendChild(timeSlot);
             }
         }
