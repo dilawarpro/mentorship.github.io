@@ -1,6 +1,7 @@
 {
   "name": "Mentorship By Dilawar",
   "short_name": "Mentorship By Dilawar",
+  "version": "2.2.7", 
   "description": "Your Premier and Trusted Learning Partner",
   "start_url": "/index.html",
   "scope": "/",
@@ -19,4 +20,3 @@
       "type": "image/png"
     }
   ]
-}
