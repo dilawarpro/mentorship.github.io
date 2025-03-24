@@ -843,7 +843,7 @@ audio{
   }
 } 
 
-#animate-btn{
+#install-button{
   padding: 8px 20px;
   border-radius: 30px;
   border: none;
@@ -859,14 +859,14 @@ audio{
   -webkit-animation: pulse 2s infinite;
  animation: pulse512 2s infinite; */
 }
-#animate-btn:hover {
+#install-button:hover {
   background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
   transform: translateY(-2px);
   /* animation: none; */
   border: none;
 }
 
-#animate-btn span {
+#install-button span {
   position: relative;
   z-index: 2;
 }
