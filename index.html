@@ -1724,40 +1724,42 @@ window.onclick = function(event) {
 
   // Listen for the `beforeinstallprompt` event
   window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default mini-infobar from appearing
     deferredPrompt = e; // Save the event for later use
-    document.getElementById('install-button').style.display = 'block'; // Show the button
-  });
+    const installButton = document.getElementById('install-button');
+    installButton.style.display = 'block'; // Show the "Add to Home" button
 
-  // Handle the "Add to Home" button click
-  document.getElementById('install-button').addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt(); // Show the install prompt
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
+    // Add click event listener to the button
+    installButton.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt(); // Show the install prompt
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null; // Reset the deferred prompt
       }
-      deferredPrompt = null; // Reset the deferred prompt
-    }
+    });
   });
 
   // Hide the button if the app is already installed
   window.addEventListener('appinstalled', () => {
     console.log('PWA installed');
-    document.getElementById('install-button').style.display = 'none';
+    const installButton = document.getElementById('install-button');
+    installButton.style.display = 'none'; // Hide the "Add to Home" button
   });
-</script>
 
-<!-- Register a service worker for offline support -->
-<script>
+  // Register a service worker for offline support
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
-    }).catch((error) => {
-      console.error('Service Worker registration failed:', error);
-    });
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
   }
 </script>
 </body>

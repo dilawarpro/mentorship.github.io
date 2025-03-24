@@ -843,27 +843,32 @@ audio{
   }
 } 
 
-#install-button{
-  padding: 8px 20px;
+#install-button {
+  padding: 12px 25px; /* Increased padding for better clickability */
   border-radius: 30px;
   border: none;
   display: block;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Adjusted margin for better spacing */
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px; /* Slightly larger font size for better readability */
+  color: white; /* Ensures text is visible on the gradient background */
+  text-transform: uppercase; /* Makes the text uppercase for emphasis */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for a more modern look */
   background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
-  /* transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  -webkit-animation: pulse 2s infinite;
- animation: pulse512 2s infinite; */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  cursor: pointer; /* Ensures the button looks clickable */
 }
+
 #install-button:hover {
-  background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-  transform: translateY(-2px);
-  /* animation: none; */
-  border: none;
+  background-image: linear-gradient(to right, rgb(255, 0, 212) 0%, rgb(0, 221, 255) 100%); /* Reversed gradient on hover */
+  transform: translateY(-3px); /* Adds a lift effect on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+
+#install-button:active {
+  transform: translateY(0); /* Removes the lift effect when clicked */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduces shadow on click */
 }
 
 #install-button span {
