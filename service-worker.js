@@ -1,58 +1,46 @@
-const CACHE_NAME = "mentorship-cache-v3";
+const CACHE_NAME = "mentorship-cache-v1";
 const urlsToCache = [
   "/",
   "/index.html",
-  "/styles.css",
-  "/scripts.js",
-  "/dilawarmentorship.jpeg",
-  "/offline.html" // Ensure you have an offline fallback page
+  "/appointment.html",
+  "/2-months-mentorship.html",
+  "/champions-mentorship.html",
+  "/refund-policy.html",
+  "/404.html",
+  "/styles.css", // Add your CSS file paths
+  "/scripts.js", // Add your JS file paths
+  "/dilawarmentorship.jpeg" // Add your image paths
 ];
 
-// Install and cache files
+// Install the service worker and cache all specified files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache)
-        .then(() => console.log("Files cached successfully"))
-        .catch(error => console.error("Cache failed:", error));
+      return cache.addAll(urlsToCache);
     })
   );
 });
 
-// Fetch resources from cache or network, with offline fallback
+// Fetch resources from the cache or network
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      if (response) {
-        console.log("Serving from cache:", event.request.url);
-        return response;
-      }
-
-      return fetch(event.request).catch(() => {
-        if (event.request.mode === "navigate") {
-          return caches.match("/offline.html");
-        }
-      });
+      return response || fetch(event.request);
     })
   );
 });
 
-// Activate service worker and delete old caches
+// Update the service worker and remove old caches
 self.addEventListener("activate", event => {
-  console.log("Service Worker Activated...");
-
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     })
   );
-
-  self.clients.claim();
-})
+});
