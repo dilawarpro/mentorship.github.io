@@ -7,37 +7,44 @@ const urlsToCache = [
   "/champions-mentorship.html",
   "/refund-policy.html",
   "/404.html",
-  "/styles.css", // Add your CSS file paths
-  "/scripts.js", // Add your JS file paths
-  "/dilawarmentorship.jpeg" // Add your image paths
+  "/styles.css",
+  "/scripts.js",
+  "/dilawarmentorship.jpeg"
 ];
 
-// Install event - Cache all specified files
+// Install event: Cache files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(urlsToCache);
     })
   );
+  self.skipWaiting(); // Activate service worker immediately
 });
 
-// Fetch event - Use cache-first strategy
+// Fetch event: Serve from cache first
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request).then(fetchResponse => {
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, fetchResponse.clone()); // Store fetched response in cache
-          return fetchResponse;
+      return response || fetch(event.request)
+        .then(networkResponse => {
+          // Cache the new response dynamically
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // If offline and resource isn't cached, serve a fallback
+          if (event.request.destination === "document") {
+            return caches.match("/404.html");
+          }
         });
-      }).catch(() => {
-        return caches.match("/404.html"); // Serve 404 page if resource is not cached and network is unavailable
-      });
     })
   );
 });
 
-// Activate event - Remove old caches
+// Activate event: Cleanup old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -50,4 +57,5 @@ self.addEventListener("activate", event => {
       );
     })
   );
+  self.clients.claim(); // Take control of open pages
 });
