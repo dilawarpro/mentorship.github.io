@@ -12,7 +12,7 @@ const urlsToCache = [
   "/dilawarmentorship.jpeg" // Add your image paths
 ];
 
-// Install the service worker and cache all specified files
+// Install event - Cache all specified files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -21,16 +21,23 @@ self.addEventListener("install", event => {
   );
 });
 
-// Fetch resources from the cache or network
+// Fetch event - Use cache-first strategy
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+      return response || fetch(event.request).then(fetchResponse => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, fetchResponse.clone()); // Store fetched response in cache
+          return fetchResponse;
+        });
+      }).catch(() => {
+        return caches.match("/404.html"); // Serve 404 page if resource is not cached and network is unavailable
+      });
     })
   );
 });
 
-// Update the service worker and remove old caches
+// Activate event - Remove old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -43,4 +50,4 @@ self.addEventListener("activate", event => {
       );
     })
   );
-})
+});
