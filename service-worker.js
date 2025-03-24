@@ -16,34 +16,16 @@ const urlsToCache = [
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log("[Service Worker] Caching all resources");
       return cache.addAll(urlsToCache);
     })
   );
 });
 
-// Fetch resources from the cache or network with fallback logic
+// Fetch resources from the cache or network
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      // Return cached response if found, otherwise fetch from network
-      return (
-        response ||
-        fetch(event.request)
-          .then(networkResponse => {
-            // Cache the new resource for future offline use
-            return caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            });
-          })
-          .catch(() => {
-            // Fallback for offline usage (e.g., return a default offline page)
-            if (event.request.mode === "navigate") {
-              return caches.match("/404.html");
-            }
-          })
-      );
+      return response || fetch(event.request);
     })
   );
 });
@@ -55,11 +37,10 @@ self.addEventListener("activate", event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
-            console.log(`[Service Worker] Deleting old cache: ${cacheName}`);
             return caches.delete(cacheName);
           }
         })
       );
     })
   );
-});
+})
