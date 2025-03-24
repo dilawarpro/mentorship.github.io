@@ -1,29 +1,25 @@
-const CACHE_NAME = "mentorship-cache-v2"; // Updated version
+const CACHE_NAME = "mentorship-cache-v3";
 const urlsToCache = [
   "/",
   "/index.html",
-  "/appointment.html",
-  "/2-months-mentorship.html",
-  "/champions-mentorship.html",
-  "/refund-policy.html",
-  "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg"
+  "/dilawarmentorship.jpeg",
+  "/offline.html" // Ensure you have an offline fallback page
 ];
 
-// Install event: Cache all essential files
+// Install and cache files
 self.addEventListener("install", event => {
-  console.log("Service Worker Installing...");
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
+      return cache.addAll(urlsToCache)
+        .then(() => console.log("Files cached successfully"))
+        .catch(error => console.error("Cache failed:", error));
     })
   );
-  self.skipWaiting(); // Activate immediately
 });
 
-// Fetch event: Serve from cache first, then network
+// Fetch resources from cache or network, with offline fallback
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
@@ -31,28 +27,20 @@ self.addEventListener("fetch", event => {
         console.log("Serving from cache:", event.request.url);
         return response;
       }
-      
-      console.log("Fetching from network:", event.request.url);
-      return fetch(event.request)
-        .then(networkResponse => {
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        })
-        .catch(() => {
-          // If offline and no cache, show fallback
-          if (event.request.mode === "navigate") {
-            return caches.match("/404.html");
-          }
-        });
+
+      return fetch(event.request).catch(() => {
+        if (event.request.mode === "navigate") {
+          return caches.match("/offline.html");
+        }
+      });
     })
   );
 });
 
-// Activate event: Remove old caches and update
+// Activate service worker and delete old caches
 self.addEventListener("activate", event => {
-  console.log("Service Worker Activating...");
+  console.log("Service Worker Activated...");
+
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -65,5 +53,6 @@ self.addEventListener("activate", event => {
       );
     })
   );
+
   self.clients.claim();
-});
+})
