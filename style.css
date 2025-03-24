@@ -842,3 +842,31 @@ audio{
       left: auto;
   }
 } 
+
+#animate-btn{
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
+  /* transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  -webkit-animation: pulse 2s infinite;
+ animation: pulse512 2s infinite; */
+}
+#animate-btn:hover {
+  background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+  transform: translateY(-2px);
+  /* animation: none; */
+  border: none;
+}
+
+#animate-btn span {
+  position: relative;
+  z-index: 2;
+}

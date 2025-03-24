@@ -261,6 +261,9 @@ td {
                      Mentor Portfolio <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   </button>
               </a>
+              <button class="btn btn-primary" id="install-button">
+                <i class="fa-solid fa-download"></i> Add to Home
+             </button>
               <p class="p-justify">
                   After this mentorship, you'll be able to make <b><a href="#income-sources">15+ high income sources</a></b>. Register NOW and get guaranteed results within a month of starting your first class.
               </p>
@@ -1714,6 +1717,47 @@ window.onclick = function(event) {
         specialMentorshipModal.style.display = 'none';
     }
 }
+</script>
+<script>
+  let deferredPrompt;
+
+  // Listen for the `beforeinstallprompt` event
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e; // Save the event for later use
+    document.getElementById('install-button').style.display = 'block'; // Show the button
+  });
+
+  // Handle the "Add to Home" button click
+  document.getElementById('install-button').addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Show the install prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      deferredPrompt = null; // Reset the deferred prompt
+    }
+  });
+
+  // Hide the button if the app is already installed
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA installed');
+    document.getElementById('install-button').style.display = 'none';
+  });
+</script>
+
+<!-- Register a service worker for offline support -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    }).catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+  }
 </script>
 </body>
 </html>
