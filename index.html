@@ -262,8 +262,8 @@ td {
                      Mentor Portfolio <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   </button>
               </a>
-              <button class="btn btn-primary" id="install-button">
-                <i class="fa-solid fa-download"></i> Add to Home
+              <button class="btn btn-primary" id="install-button" style="display: none;">
+                <i class="fa-solid fa-download"></i> Install App
              </button>
               <p class="p-justify">
                   After this mentorship, you'll be able to make <b><a href="#income-sources">15+ high income sources</a></b>. Register NOW and get guaranteed results within a month of starting your first class.
@@ -1751,15 +1751,17 @@ window.onclick = function(event) {
     installButton.style.display = 'none'; // Hide the "Add to Home" button
   });
 
-  // Register a service worker for offline support
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("Service Worker registered with scope:", registration.scope);
+        })
+        .catch(error => {
+          console.error("Service Worker registration failed:", error);
+        });
+    });
   }
 </script>
 </body>
