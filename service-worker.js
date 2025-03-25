@@ -1,5 +1,5 @@
-const CACHE_NAME = "mentorship-cache-v1";
-const urlsToCache = [
+let CACHE_VERSION = 'app-v27';
+let CACHE_FILES = [
   "/",
   "/index.html",
   "/appointment.html",
