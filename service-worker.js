@@ -1,40 +1,50 @@
-const CACHE_NAME = "mentorship-cache-v2";
+const CACHE_NAME = "mentorship-cache-v3"; // Update version when making changes
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/appointment.html",
-  "/2-months-mentorship.html",
-  "/champions-mentorship.html",
-  "/refund-policy.html",
-  "/404.html",
-  "/styles.css",
-  "/scripts.js",
-  "/dilawarmentorship.jpeg",
-  "/offline.html" // Ensure you have an offline fallback page
+  "index.html",
+  "appointment.html",
+  "2-months-mentorship.html",
+  "champions-mentorship.html",
+  "refund-policy.html",
+  "404.html",
+  "styles.css",
+  "scripts.js",
+  "dilawarmentorship.jpeg",
+  "offline.html" // Ensure this file exists and is accessible
 ];
 
-// Install service worker and cache required assets
+// Install and pre-cache assets
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache).catch(err => console.error("Failed to cache files", err));
-    })
+      return cache.addAll(urlsToCache);
+    }).catch(err => console.error("Failed to cache files", err))
   );
   self.skipWaiting(); // Activate the new service worker immediately
 });
 
-// Fetch resources from cache, fallback to network, then offline page
+// Fetch strategy with improved cache handling
 self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return; // Ignore non-GET requests
+
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request)
         .then(networkResponse => {
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone()); // Update cache dynamically
-            return networkResponse;
-          });
-        })
-        .catch(() => caches.match("/offline.html")); // Fallback for offline users
+          // Cache only static assets (HTML, CSS, JS, images)
+          if (!event.request.url.includes("/api/")) { 
+            return caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          }
+          return networkResponse;
+        });
+    }).catch(() => {
+      // Return offline.html only for HTML requests
+      if (event.request.destination === "document") {
+        return caches.match("/offline.html");
+      }
     })
   );
 });
@@ -46,7 +56,6 @@ self.addEventListener("activate", event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -54,4 +63,4 @@ self.addEventListener("activate", event => {
     })
   );
   self.clients.claim(); // Take control immediately
-})
+});
