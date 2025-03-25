@@ -32,7 +32,7 @@ function shouldCache(request) {
   return contentType.includes('text/html') ||
          contentType.includes('text/css') ||
          contentType.includes('text/javascript') ||
-         contentType.includes('image/') ||
+         contentType.includes('icons/') ||
          contentType.includes('application/json');
 }
 
