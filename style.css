@@ -853,7 +853,7 @@ audio{
   font-weight: bold;
   font-size: 16px; /* Slightly larger font size for better readability */
   color: white; /* Ensures text is visible on the gradient background */
-  text-transform: uppercase; /* Makes the text uppercase for emphasis */
+  /* text-transform: uppercase; */
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for a more modern look */
   background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
   transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
