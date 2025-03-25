@@ -6,6 +6,8 @@ const urlsToCache = [
   "2-months-mentorship.html",
   "champions-mentorship.html",
   "refund-policy.html",
+  "manifest.json",
+  "bootstrap.min.css",
   "404.html",
   "styles.css", // Add your CSS file paths
   "scripts.js", // Add your JS file paths
@@ -37,14 +39,11 @@ self.addEventListener("fetch", event => {
       }
       return fetch(event.request)
         .then(networkResponse => {
-          // Only cache GET requests
-          if (event.request.method === "GET") {
-            return caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            });
-          }
-          return networkResponse; // Return the network response for non-GET requests
+          // Clone and cache the network response
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
         })
         .catch(() => {
           // Serve offline.html for navigation requests when offline
