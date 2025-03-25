@@ -1,5 +1,5 @@
-let CACHE_VERSION = 'app-v27';
-let CACHE_FILES = [
+const CACHE_NAME = "mentorship-cache-v1";
+const urlsToCache = [
   "/",
   "/index.html",
   "/appointment.html",
@@ -8,58 +8,65 @@ let CACHE_FILES = [
   "/refund-policy.html",
   "/404.html",
   "/styles.css", // Add your CSS file paths
-  "/scripts.js",
-  'js/libraries/bootstrap.min.js',
-  'js/libraries/sweetalert2.all.min.js',
-  'manifest.json',
-  '/icons', // Add your JS file paths
+  "/scripts.js", // Add your JS file paths
   "/dilawarmentorship.jpeg" // Add your image paths
 ];
 
-self.addEventListener('install', (event) => {
+// Install the service worker and cache all specified files
+self.addEventListener("install", event => {
   event.waitUntil(
-      caches.open(CACHE_VERSION).then((cache) => {
-          console.log('Opened cache');
-          return cache.addAll(CACHE_FILES);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll([
+        ...urlsToCache,
+        "/offline.html" // Add an explicit offline fallback page
+      ]);
+    })
   );
+  // Force the waiting service worker to become the active service worker
   self.skipWaiting();
 });
 
-self.addEventListener('fetch', (event) => {
-  if (!navigator.onLine) {
-      event.respondWith(
-          caches.match(event.request).then((response) => {
-              return response || fetchAndCache(event);
-          })
-      );
-  }
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-      caches.keys().then((keys) => {
-          return Promise.all(
-              keys.map((key) => {
-                  if (key !== CACHE_VERSION) {
-                      return caches.delete(key);
-                  }
-              })
-          );
-      })
-  );
-  self.clients.claim();
-});
-
-function fetchAndCache(event) {
-  return fetch(event.request).then((response) => {
-      if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+// Fetch resources with Cache First, Network Fallback strategy
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse; // Serve from cache if available
       }
-      let responseClone = response.clone();
-      caches.open(CACHE_VERSION).then((cache) => {
-          cache.put(event.request, responseClone);
-      });
-      return response;
-  });
-}
+      return fetch(event.request)
+        .then(networkResponse => {
+          // Clone and cache the network response
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // Serve offline.html for navigation requests when offline
+          if (event.request.mode === "navigate") {
+            return caches.match("/offline.html");
+          }
+        });
+    })
+  );
+});
+
+// Update the service worker and remove old caches
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    Promise.all([
+      // Remove old caches
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Take control of all clients immediately
+      self.clients.claim()
+    ])
+  );
+});
