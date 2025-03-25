@@ -76,6 +76,16 @@ async function updateStaticCache() {
   return newStaticCache;
 }
 
+// Helper function to check if we're offline
+async function isOffline() {
+  try {
+    const response = await fetch('/offline-check.txt', { method: 'HEAD' });
+    return !response.ok;
+  } catch (error) {
+    return true;
+  }
+}
+
 // Install event - cache static assets
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -117,6 +127,25 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     (async () => {
       try {
+        // Check if we're offline
+        const offline = await isOffline();
+        
+        if (offline) {
+          // If offline, try cache first
+          const cachedResponse = await caches.match(event.request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          
+          // If no cache and it's a navigation request, return offline page
+          if (event.request.mode === 'navigate') {
+            return caches.match('/404.html');
+          }
+          
+          throw new Error('Offline and no cache available');
+        }
+
+        // Online - try network first
         const networkResponse = await fetchWithRetry(event.request);
         
         if (networkResponse.ok && shouldCache(event.request)) {
@@ -127,14 +156,15 @@ self.addEventListener("fetch", event => {
         
         return networkResponse;
       } catch (error) {
-        console.error('Network request failed:', error);
+        console.error('Request failed:', error);
         
+        // Try cache as fallback
         const cachedResponse = await caches.match(event.request);
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Return offline fallback for navigation requests
+        // If both network and cache fail, return offline fallback for navigation requests
         if (event.request.mode === 'navigate') {
           return caches.match('/404.html');
         }
@@ -185,9 +215,26 @@ self.addEventListener("online", () => {
       const cache = await caches.open(DYNAMIC_CACHE);
       await cache.addAll(STATIC_ASSETS);
       await manageDynamicCacheSize(cache);
+      
+      // Notify clients that we're back online
+      const clients = await self.clients.matchAll();
+      clients.forEach(client => {
+        client.postMessage({ type: 'ONLINE_STATUS', status: true });
+      });
     } catch (error) {
       console.error('Online sync failed:', error);
     }
+  })();
+});
+
+// Handle offline state
+self.addEventListener("offline", () => {
+  (async () => {
+    // Notify clients that we're offline
+    const clients = await self.clients.matchAll();
+    clients.forEach(client => {
+      client.postMessage({ type: 'ONLINE_STATUS', status: false });
+    });
   })();
 });
 
