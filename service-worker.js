@@ -1,15 +1,15 @@
 const CACHE_NAME = "mentorship-cache-v1";
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/appointment.html",
-  "/2-months-mentorship.html",
-  "/champions-mentorship.html",
-  "/refund-policy.html",
-  "/404.html",
-  "/styles.css", // Add your CSS file paths
-  "/scripts.js", // Add your JS file paths
-  "/dilawarmentorship.jpeg" // Add your image paths
+  "index.html",
+  "appointment.html",
+  "2-months-mentorship.html",
+  "champions-mentorship.html",
+  "refund-policy.html",
+  "404.html",
+  "styles.css", // Add your CSS file paths
+  "scripts.js", // Add your JS file paths
+  "dilawarmentorship.jpeg" // Add your image paths
 ];
 
 // Install the service worker and cache all specified files
@@ -19,7 +19,9 @@ self.addEventListener("install", event => {
       return cache.addAll([
         ...urlsToCache,
         "/offline.html" // Add an explicit offline fallback page
-      ]);
+      ]).catch((error) => {
+        console.error('Failed to cache resources:', error);
+      });
     })
   );
   // Force the waiting service worker to become the active service worker
