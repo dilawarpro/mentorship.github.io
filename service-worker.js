@@ -1,5 +1,11 @@
-const CACHE_NAME = "mentorship-cache-v1";
-const urlsToCache = [
+const CACHE_VERSION = "v1";
+const STATIC_CACHE = `static-cache-${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `dynamic-cache-${CACHE_VERSION}`;
+const MAX_DYNAMIC_CACHE_ITEMS = 50;
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second
+
+const STATIC_ASSETS = [
   "/",
   "/index.html",
   "/appointment.html",
@@ -7,79 +13,187 @@ const urlsToCache = [
   "/champions-mentorship.html",
   "/refund-policy.html",
   "/404.html",
-  "/styles.css", // Add your CSS file paths
-  "/scripts.js", // Add your JS file paths
-  "/dilawarmentorship.jpeg" // Add your image paths
+  "/styles.css",
+  "/scripts.js",
+  "/dilawarmentorship.jpeg"
 ];
 
-// Install the service worker and cache all specified files
+// Helper function to check if a request should be cached
+function shouldCache(request) {
+  const url = new URL(request.url);
+  // Skip non-GET requests and requests with query parameters
+  if (request.method !== 'GET' || url.search) return false;
+  
+  // Check content type
+  const contentType = request.headers.get('content-type');
+  if (!contentType) return true;
+  
+  // Cache only specific content types
+  return contentType.includes('text/html') ||
+         contentType.includes('text/css') ||
+         contentType.includes('text/javascript') ||
+         contentType.includes('image/') ||
+         contentType.includes('application/json');
+}
+
+// Helper function to manage dynamic cache size
+async function manageDynamicCacheSize(cache) {
+  const keys = await cache.keys();
+  if (keys.length > MAX_DYNAMIC_CACHE_ITEMS) {
+    await Promise.all(
+      keys.slice(0, keys.length - MAX_DYNAMIC_CACHE_ITEMS)
+        .map(key => cache.delete(key))
+    );
+  }
+}
+
+// Helper function to fetch with retry and exponential backoff
+async function fetchWithRetry(request, retries = MAX_RETRIES) {
+  try {
+    return await fetch(request);
+  } catch (error) {
+    if (retries > 0) {
+      await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (MAX_RETRIES - retries + 1)));
+      return fetchWithRetry(request, retries - 1);
+    }
+    throw error;
+  }
+}
+
+// Helper function to update static cache
+async function updateStaticCache() {
+  const newStaticCache = `static-cache-${CACHE_VERSION}-${Date.now()}`;
+  await caches.open(newStaticCache).then(cache => cache.addAll(STATIC_ASSETS));
+  
+  // Clean up old static caches
+  const oldCaches = await caches.keys();
+  await Promise.all(
+    oldCaches
+      .filter(key => key.startsWith('static-cache-') && key !== newStaticCache)
+      .map(key => caches.delete(key))
+  );
+  
+  return newStaticCache;
+}
+
+// Install event - cache static assets
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
-  );
-  // Force the waiting service worker to become the active service worker
-  self.skipWaiting();
-});
-
-// Fetch resources with Network First, Cache Fallback strategy
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Clone the response before caching it
-        const responseToCache = response.clone();
-        
-        // Update the cache with the new response
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
-        
-        return response;
-      })
-      .catch(() => {
-        // If network request fails, try to get from cache
-        return caches.match(event.request);
-      })
+    Promise.all([
+      caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS)),
+      caches.open(DYNAMIC_CACHE),
+      self.skipWaiting()
+    ])
   );
 });
 
-// Update the service worker and remove old caches
+// Activate event - clean up old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     Promise.all([
-      // Remove old caches
       caches.keys().then(cacheNames => {
         return Promise.all(
-          cacheNames.map(cacheName => {
-            if (cacheName !== CACHE_NAME) {
-              return caches.delete(cacheName);
-            }
-          })
+          cacheNames
+            .filter(cacheName => 
+              (cacheName.startsWith('static-cache-') || cacheName.startsWith('dynamic-cache-')) &&
+              cacheName !== STATIC_CACHE &&
+              cacheName !== DYNAMIC_CACHE
+            )
+            .map(cacheName => caches.delete(cacheName))
         );
       }),
-      // Take control of all clients immediately
       self.clients.claim()
     ])
   );
 });
 
-// Handle periodic cache updates
+// Fetch event - implement Network First, Cache Fallback strategy
+self.addEventListener("fetch", event => {
+  // Skip cross-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  event.respondWith(
+    (async () => {
+      try {
+        const networkResponse = await fetchWithRetry(event.request);
+        
+        if (networkResponse.ok && shouldCache(event.request)) {
+          const cache = await caches.open(DYNAMIC_CACHE);
+          await cache.put(event.request, networkResponse.clone());
+          await manageDynamicCacheSize(cache);
+        }
+        
+        return networkResponse;
+      } catch (error) {
+        console.error('Network request failed:', error);
+        
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        // Return offline fallback for navigation requests
+        if (event.request.mode === 'navigate') {
+          return caches.match('/404.html');
+        }
+      }
+    })()
+  );
+});
+
+// Handle background sync
+self.addEventListener("sync", event => {
+  if (event.tag === "sync-cache") {
+    event.waitUntil(
+      (async () => {
+        try {
+          await updateStaticCache();
+          const cache = await caches.open(DYNAMIC_CACHE);
+          await cache.addAll(STATIC_ASSETS);
+          await manageDynamicCacheSize(cache);
+        } catch (error) {
+          console.error('Background sync failed:', error);
+        }
+      })()
+    );
+  }
+});
+
+// Handle periodic background sync
 self.addEventListener("periodicsync", event => {
   if (event.tag === "update-cache") {
     event.waitUntil(
-      caches.open(CACHE_NAME).then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+      (async () => {
+        try {
+          await updateStaticCache();
+          await caches.open(DYNAMIC_CACHE);
+        } catch (error) {
+          console.error('Periodic sync failed:', error);
+        }
+      })()
     );
   }
 });
 
 // Handle online/offline state changes
 self.addEventListener("online", () => {
-  // Update cache when coming back online
-  caches.open(CACHE_NAME).then(cache => {
-    return cache.addAll(urlsToCache);
-  });
+  (async () => {
+    try {
+      await updateStaticCache();
+      const cache = await caches.open(DYNAMIC_CACHE);
+      await cache.addAll(STATIC_ASSETS);
+      await manageDynamicCacheSize(cache);
+    } catch (error) {
+      console.error('Online sync failed:', error);
+    }
+  })();
+});
+
+// Handle service worker messages
+self.addEventListener("message", event => {
+  if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
