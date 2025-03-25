@@ -7,29 +7,31 @@ const urlsToCache = [
   "champions-mentorship.html",
   "refund-policy.html",
   "404.html",
-  "styles.css", // Add your CSS file paths
-  "scripts.js", // Add your JS file paths
-  "dilawarmentorship.jpeg" // Add your image paths
+  "styles.css",
+  "scripts.js",
+  "dilawarmentorship.jpeg",
+  "/offline.html"
 ];
 
 // Install the service worker and cache all specified files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll([
-        ...urlsToCache,
-        "/offline.html" // Add an explicit offline fallback page
-      ]).catch((error) => {
-        console.error('Failed to cache resources:', error);
+      return cache.addAll(urlsToCache).catch(error => {
+        console.error("Failed to cache resources:", error);
       });
     })
   );
-  // Force the waiting service worker to become the active service worker
   self.skipWaiting();
 });
 
 // Fetch resources with Cache First, Network Fallback strategy
 self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") {
+    // Ignore non-GET requests
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
@@ -37,11 +39,17 @@ self.addEventListener("fetch", event => {
       }
       return fetch(event.request)
         .then(networkResponse => {
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== "basic") {
+            return networkResponse; // Do not cache non-200 responses or cross-origin requests
+          }
           // Clone and cache the network response
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache).catch(error => {
+              console.warn("Failed to cache request:", event.request.url, error);
+            });
           });
+          return networkResponse;
         })
         .catch(() => {
           // Serve offline.html for navigation requests when offline
@@ -57,7 +65,6 @@ self.addEventListener("fetch", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     Promise.all([
-      // Remove old caches
       caches.keys().then(cacheNames => {
         return Promise.all(
           cacheNames.map(cacheName => {
@@ -67,7 +74,6 @@ self.addEventListener("activate", event => {
           })
         );
       }),
-      // Take control of all clients immediately
       self.clients.claim()
     ])
   );
