@@ -32,6 +32,11 @@ self.addEventListener("install", event => {
 
 // Fetch resources with Cache First, Network Fallback strategy
 self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") {
+    // Skip caching for non-GET requests
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
@@ -39,17 +44,24 @@ self.addEventListener("fetch", event => {
       }
       return fetch(event.request)
         .then(networkResponse => {
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== "basic") {
+            return networkResponse; // Skip caching invalid responses
+          }
           // Clone and cache the network response
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache).catch(error => {
+              console.warn("Failed to cache response:", error);
+            });
           });
+          return networkResponse;
         })
         .catch(() => {
           // Serve offline.html for navigation requests when offline
           if (event.request.mode === "navigate") {
             return caches.match("/offline.html");
           }
+          // Optionally, return a fallback for other types of requests
         });
     })
   );
