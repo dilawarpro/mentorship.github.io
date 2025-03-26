@@ -1,51 +1,57 @@
-const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v2";
 const urlsToCache = [
   "/",
   "/index.html",
   "/appointment.html",
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
-  "/refund-policy.html", // ✅ Make sure this is included
+  "/refund-policy.html",
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg"
+  "/dilawarmentorship.jpeg",
+  "/offline.html" // Ensure you have an offline fallback page
 ];
 
-// Install and Cache
+// Install service worker and cache required assets
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
+      return cache.addAll(urlsToCache).catch(err => console.error("Failed to cache files", err));
     })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Activate the new service worker immediately
 });
 
-// Fetch and Serve Cached Content
+// Fetch resources from cache, fallback to network, then offline page
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return; // Ignore non-GET requests
-
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => {
-        // If offline and no cache, show custom offline page
-        return caches.match("/refund-policy.html") || caches.match("/404.html");
-      });
+      return response || fetch(event.request)
+        .then(networkResponse => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone()); // Update cache dynamically
+            return networkResponse;
+          });
+        })
+        .catch(() => caches.match("/offline.html")); // Fallback for offline users
     })
   );
 });
 
-// Activate and Clear Old Cache
+// Activate service worker, remove old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) return caches.delete(cacheName);
+          if (cacheName !== CACHE_NAME) {
+            console.log("Deleting old cache:", cacheName);
+            return caches.delete(cacheName);
+          }
         })
       );
     })
   );
-  self.clients.claim();
-});
+  self.clients.claim(); // Take control immediately
+})
