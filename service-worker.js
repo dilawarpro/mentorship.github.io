@@ -44,8 +44,7 @@ self.addEventListener("fetch", event => {
           return networkResponse;
         });
     }).catch(() => {
-      // Show browser’s default offline page instead of an error
-      return fetch(event.request);
+      // **Key Fix:** Do not return a response here, let the browser handle it
     })
   );
 });
