@@ -1,4 +1,4 @@
-const CACHE_NAME = "mentorship-cache-v8"; // Increment version to force update
+const CACHE_NAME = "mentorship-cache-v9"; // Update cache version
 
 const urlsToCache = [
   "/",
@@ -21,7 +21,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-// ✅ Fetch Handler - Serve Cache First (Works Even When Offline)
+// ✅ Fetch Handler - Cache First, Then Network
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return; // Ignore non-GET requests
 
@@ -40,7 +40,7 @@ self.addEventListener("fetch", event => {
   );
 });
 
-// ✅ Activate - Clear Old Cache
+// ✅ Activate - Delete Old Caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -52,4 +52,4 @@ self.addEventListener("activate", event => {
     })
   );
   self.clients.claim();
-});
+})
