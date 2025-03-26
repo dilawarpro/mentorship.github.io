@@ -1,56 +1,42 @@
-const CACHE_NAME = "mentorship-cache-v5"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
   "/appointment.html",
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
-  "/refund-policy.html",
+  "/refund-policy.html", // ✅ Make sure this is included
   "/404.html",
   "/styles.css",
   "/scripts.js",
   "/dilawarmentorship.jpeg"
 ];
 
-const MAX_CACHE_ITEMS = 50; // Limit cache size
-
-// Install service worker and cache required assets
+// Install and Cache
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(urlsToCache);
-    }).catch(err => console.error("Cache error:", err))
+    })
   );
-  self.skipWaiting(); // Activate new service worker immediately
+  self.skipWaiting();
 });
 
-// Fetch resources from cache or network
+// Fetch and Serve Cached Content
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return; // Ignore non-GET requests
 
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request)
-        .then(networkResponse => {
-          if (!event.request.url.includes("/api/") && event.request.url.startsWith(self.location.origin)) {
-            return caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, networkResponse.clone());
-              cache.keys().then(keys => {
-                if (keys.length > MAX_CACHE_ITEMS) cache.delete(keys[0]); // Remove old cache items
-              });
-              return networkResponse;
-            });
-          }
-          return networkResponse;
-        });
-    }).catch(() => {
-      // Show browser’s default offline page instead of an error
-      return fetch(event.request);
+      return response || fetch(event.request).catch(() => {
+        // If offline and no cache, show custom offline page
+        return caches.match("/refund-policy.html") || caches.match("/404.html");
+      });
     })
   );
 });
 
-// Activate service worker and delete old caches
+// Activate and Clear Old Cache
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -61,5 +47,5 @@ self.addEventListener("activate", event => {
       );
     })
   );
-  self.clients.claim(); // Take control immediately
+  self.clients.claim();
 });
