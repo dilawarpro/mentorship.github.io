@@ -1,51 +1,76 @@
-const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v1";
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/appointment.html",
-  "/2-months-mentorship.html",
-  "/champions-mentorship.html",
-  "/refund-policy.html", // ✅ Make sure this is included
-  "/404.html",
-  "/styles.css",
-  "/scripts.js",
-  "/dilawarmentorship.jpeg"
+  "index.html",
+  "appointment.html",
+  "2-months-mentorship.html",
+  "champions-mentorship.html",
+  "refund-policy.html",
+  "manifest.json",
+  "bootstrap.min.css",
+  "404.html",
+  "styles.css", // Add your CSS file paths
+  "scripts.js", // Add your JS file paths
+  "dilawarmentorship.jpeg" // Add your image paths
 ];
 
-// Install and Cache
+// Install the service worker and cache all specified files
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
-  );
-  self.skipWaiting();
-});
-
-// Fetch and Serve Cached Content
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return; // Ignore non-GET requests
-
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => {
-        // If offline and no cache, show custom offline page
-        return caches.match("/refund-policy.html") || caches.match("/404.html");
+      return cache.addAll([
+        ...urlsToCache,
+        "/offline.html" // Add an explicit offline fallback page
+      ]).catch((error) => {
+        console.error('Failed to cache resources:', error);
       });
     })
   );
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting();
 });
 
-// Activate and Clear Old Cache
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) return caches.delete(cacheName);
+// Fetch resources with Cache First, Network Fallback strategy
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse; // Serve from cache if available
+      }
+      return fetch(event.request)
+        .then(networkResponse => {
+          // Clone and cache the network response
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
         })
-      );
+        .catch(() => {
+          // Serve offline.html for navigation requests when offline
+          if (event.request.mode === "navigate") {
+            return caches.match("/offline.html");
+          }
+        });
     })
   );
-  self.clients.claim();
+});
+
+// Update the service worker and remove old caches
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    Promise.all([
+      // Remove old caches
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Take control of all clients immediately
+      self.clients.claim()
+    ])
+  );
 });
