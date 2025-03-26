@@ -1,4 +1,5 @@
-const CACHE_NAME = "mentorship-cache-v7"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v8"; // Increment version to force update
+
 const urlsToCache = [
   "/",
   "/index.html",
@@ -12,38 +13,34 @@ const urlsToCache = [
   "/dilawarmentorship.jpeg"
 ];
 
-// ✅ Install and Cache
+// ✅ Install and Cache Files
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
-  self.skipWaiting(); // Force immediate activation
+  self.skipWaiting();
 });
 
-// ✅ Fetch and Serve Cached Content
+// ✅ Fetch Handler - Serve Cache First (Works Even When Offline)
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return; // Ignore non-GET requests
 
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request)
-        .then(networkResponse => {
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone()); // Update cache
-            return networkResponse;
-          });
-        })
-        .catch(() => {
-          // If offline and not cached, show fallback page
-          return caches.match(event.request.url.includes(".html") ? "/404.html" : "/");
+      return response || fetch(event.request).then(networkResponse => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, networkResponse.clone()); // Cache updated response
+          return networkResponse;
         });
+      });
+    }).catch(() => {
+      // If offline and request is for an HTML page, show fallback
+      return caches.match(event.request.url.includes(".html") ? "/404.html" : "/");
     })
   );
 });
 
-// ✅ Activate and Clear Old Cache
+// ✅ Activate - Clear Old Cache
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -55,11 +52,4 @@ self.addEventListener("activate", event => {
     })
   );
   self.clients.claim();
-});
-
-// ✅ Keep Service Worker Alive (Prevent Auto Kill)
-self.addEventListener("periodicsync", event => {
-  if (event.tag === "pwa-keepalive") {
-    event.waitUntil(Promise.resolve()); // Keeps the service worker alive
-  }
 });
