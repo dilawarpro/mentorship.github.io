@@ -2,6 +2,7 @@ const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
+  "offline.html",
   "/appointment.html",
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
