@@ -44,14 +44,48 @@ self.addEventListener("fetch", event => {
           return networkResponse;
         });
     }).catch(() => {
-      // Serve fallback offline page for navigation requests
+      // Serve fallback offline response for navigation requests
       if (event.request.mode === "navigate") {
-        return caches.match("/offline.html").then(response => {
-          if (response) return response;
-          return caches.match("/404.html").then(response => {
-            if (response) return response;
-            return caches.match("/index.html");
-          });
+        return new Response(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Offline</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            color: #333;
+          }
+          h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+          }
+          button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          button:hover {
+            background-color: #0056b3;
+          }
+        </style>
+          </head>
+          <body>
+        <h1>You're offline. Please connect to the internet and try again!</h1>
+        <button onclick="location.href='/'">Back to Home</button>
+          </body>
+          </html>
+        `, {
+          headers: { "Content-Type": "text/html" }
         });
       }
       return new Response("You're currently offline. Please connect to the internet and try again!", {
