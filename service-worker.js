@@ -15,7 +15,8 @@ const STATIC_ASSETS = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg"
+  "/dilawarmentorship.jpeg",
+  "/offline.html" // Add offline page
 ];
 
 // Helper function to check if a request should be cached
@@ -60,6 +61,37 @@ async function fetchWithRetry(request, retries = MAX_RETRIES) {
   }
 }
 
+// Helper function to check if we're offline
+async function isOffline() {
+  try {
+    const response = await fetch('/offline-check.txt', { 
+      method: 'HEAD',
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache' }
+    });
+    return !response.ok;
+  } catch (error) {
+    return true;
+  }
+}
+
+// Helper function to update static cache
+async function updateStaticCache() {
+  const newStaticCache = `mentorship-static-cache-${CACHE_VERSION}-${Date.now()}`;
+  const cache = await caches.open(newStaticCache);
+  await cache.addAll(STATIC_ASSETS);
+  
+  // Clean up old static caches
+  const oldCaches = await caches.keys();
+  await Promise.all(
+    oldCaches
+      .filter(key => key.startsWith('mentorship-static-cache-') && key !== newStaticCache)
+      .map(key => caches.delete(key))
+  );
+  
+  return newStaticCache;
+}
+
 // Install event - cache static assets
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -88,57 +120,150 @@ self.addEventListener("activate", event => {
             .map(cacheName => caches.delete(cacheName))
         );
       }),
-      self.clients.claim()
+      self.clients.claim(),
+      // Check network status and notify clients
+      (async () => {
+        const offline = await isOffline();
+        const clients = await self.clients.matchAll();
+        clients.forEach(client => {
+          client.postMessage({ 
+            type: 'ONLINE_STATUS', 
+            status: !offline 
+          });
+        });
+      })()
     ])
   );
   console.log('Service Worker activated and controlling the page');
 });
 
-// Fetch event - implement Cache First, Network Fallback strategy for offline support
+// Fetch event - implement Network First with Cache Fallback for better offline experience
 self.addEventListener("fetch", event => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
 
-  event.respondWith(
-    (async () => {
-      // Try cache first
-      const cachedResponse = await caches.match(event.request);
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+  // For page navigations, check network status first
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      (async () => {
+        try {
+          // First check if we're offline
+          const offline = await isOffline();
+          
+          if (offline) {
+            // We're offline, try to get from cache
+            const cachedResponse = await caches.match(event.request);
+            if (cachedResponse) {
+              // Notify that we're using cached content
+              const clients = await self.clients.matchAll();
+              clients.forEach(client => {
+                client.postMessage({ 
+                  type: 'ONLINE_STATUS', 
+                  status: false,
+                  message: 'Using cached content - you are offline'
+                });
+              });
+              return cachedResponse;
+            }
+            
+            // If not in cache, return offline page
+            return caches.match('/offline.html') || 
+                   caches.match('/404.html') || 
+                   caches.match('/index.html');
+          }
+          
+          // We're online, try network first
+          const networkResponse = await fetchWithRetry(event.request);
+          
+          // Cache the response
+          if (networkResponse.ok && shouldCache(event.request)) {
+            const cache = await caches.open(DYNAMIC_CACHE);
+            await cache.put(event.request, networkResponse.clone());
+            await manageDynamicCacheSize(cache);
+          }
+          
+          // Notify that we're online
+          const clients = await self.clients.matchAll();
+          clients.forEach(client => {
+            client.postMessage({ 
+              type: 'ONLINE_STATUS', 
+              status: true 
+            });
+          });
+          
+          return networkResponse;
+        } catch (error) {
+          console.error('Navigation request failed:', error);
+          
+          // Network failed, try cache
+          const cachedResponse = await caches.match(event.request);
+          if (cachedResponse) {
+            // Notify that we're using cached content
+            const clients = await self.clients.matchAll();
+            clients.forEach(client => {
+              client.postMessage({ 
+                type: 'ONLINE_STATUS', 
+                status: false,
+                message: 'Using cached content - network error'
+              });
+            });
+            return cachedResponse;
+          }
+          
+          // If not in cache, return offline page
+          return caches.match('/offline.html') || 
+                 caches.match('/404.html') || 
+                 caches.match('/index.html');
+        }
+      })()
+    );
+  } else {
+    // For non-navigation requests, use cache-first strategy
+    event.respondWith(
+      (async () => {
+        // Try cache first
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-      try {
-        // If not in cache, try network
-        const networkResponse = await fetchWithRetry(event.request);
-        
-        // Cache successful responses if they should be cached
-        if (networkResponse.ok && shouldCache(event.request)) {
-          const cache = await caches.open(DYNAMIC_CACHE);
-          await cache.put(event.request, networkResponse.clone());
-          await manageDynamicCacheSize(cache);
+        try {
+          // If not in cache, try network
+          const networkResponse = await fetchWithRetry(event.request);
+          
+          // Cache successful responses if they should be cached
+          if (networkResponse.ok && shouldCache(event.request)) {
+            const cache = await caches.open(DYNAMIC_CACHE);
+            await cache.put(event.request, networkResponse.clone());
+            await manageDynamicCacheSize(cache);
+          }
+          
+          return networkResponse;
+        } catch (error) {
+          console.error('Network request failed:', error);
+          
+          // For API requests, return a JSON error
+          if (event.request.headers.get('accept')?.includes('application/json')) {
+            return new Response(JSON.stringify({ 
+              error: 'Network error', 
+              offline: true 
+            }), {
+              status: 503,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+          
+          // For other requests, return a simple error response
+          return new Response('Network error occurred - you are offline', {
+            status: 503,
+            headers: { 'Content-Type': 'text/plain' }
+          });
         }
-        
-        return networkResponse;
-      } catch (error) {
-        console.error('Network request failed:', error);
-        
-        // If network fails and it's a navigation request, return offline page
-        if (event.request.mode === 'navigate' ||
-            (event.request.method === 'GET' && 
-             event.request.headers.get('accept')?.includes('text/html'))) {
-          return caches.match('/404.html') || caches.match('/index.html');
-        }
-        
-        // For other requests, return a simple error response
-        return new Response('Network error occurred', {
-          status: 408,
-          headers: { 'Content-Type': 'text/plain' }
-        });
-      }
-    })()
-  );
+      })()
+    );
+  }
 });
 
 // Handle background sync for offline form submissions
@@ -162,8 +287,27 @@ self.addEventListener("sync", event => {
             // If successful, remove from pending queue
             await removePendingSubmission(submission.id);
           }
+          
+          // Notify clients that sync is complete
+          const clients = await self.clients.matchAll();
+          clients.forEach(client => {
+            client.postMessage({ 
+              type: 'SYNC_COMPLETE', 
+              success: true 
+            });
+          });
         } catch (error) {
           console.error('Background sync failed:', error);
+          
+          // Notify clients that sync failed
+          const clients = await self.clients.matchAll();
+          clients.forEach(client => {
+            client.postMessage({ 
+              type: 'SYNC_COMPLETE', 
+              success: false,
+              error: error.message
+            });
+          });
         }
       })()
     );
@@ -233,23 +377,51 @@ async function removePendingSubmission(id) {
   // Placeholder - implement with IndexedDB
 }
 
+// Periodic network status check
+setInterval(async () => {
+  const offline = await isOffline();
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({ 
+      type: 'ONLINE_STATUS', 
+      status: !offline 
+    });
+  });
+}, 30000); // Check every 30 seconds
+
 // Handle online/offline state changes
-self.addEventListener("online", () => {
+self.addEventListener("online", async () => {
+  // Register sync to process any pending submissions
   self.registration.sync.register('sync-forms');
   
+  // Update caches when back online
+  try {
+    await updateStaticCache();
+    const dynamicCache = await caches.open(DYNAMIC_CACHE);
+    await manageDynamicCacheSize(dynamicCache);
+  } catch (error) {
+    console.error('Cache update failed:', error);
+  }
+  
   // Notify clients that we're back online
-  self.clients.matchAll().then(clients => {
-    clients.forEach(client => {
-      client.postMessage({ type: 'ONLINE_STATUS', status: true });
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({ 
+      type: 'ONLINE_STATUS', 
+      status: true,
+      message: 'You are back online'
     });
   });
 });
 
-self.addEventListener("offline", () => {
+self.addEventListener("offline", async () => {
   // Notify clients that we're offline
-  self.clients.matchAll().then(clients => {
-    clients.forEach(client => {
-      client.postMessage({ type: 'ONLINE_STATUS', status: false });
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({ 
+      type: 'ONLINE_STATUS', 
+      status: false,
+      message: 'You are offline. Some features may be limited.'
     });
   });
 });
