@@ -89,7 +89,6 @@ self.addEventListener("fetch", event => {
       margin: 20px 0;
       line-height: 1.6;
       animation: fadeIn 2s ease-in-out;
-      color: #555;
     }
     .button {
       display: inline-block;
