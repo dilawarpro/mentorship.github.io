@@ -1,4 +1,4 @@
-const CACHE_NAME = "mentorship-cache-v7"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v5"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
@@ -9,8 +9,7 @@ const urlsToCache = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg",
-  "/offline.html" // Offline page
+  "/dilawarmentorship.jpeg"
 ];
 
 const MAX_CACHE_ITEMS = 50; // Limit cache size
@@ -37,16 +36,17 @@ self.addEventListener("fetch", event => {
             return caches.open(CACHE_NAME).then(cache => {
               cache.put(event.request, networkResponse.clone());
               cache.keys().then(keys => {
-                if (keys.length > MAX_CACHE_ITEMS) {
-                  cache.delete(keys[0]); // Remove old cache items
-                }
+                if (keys.length > MAX_CACHE_ITEMS) cache.delete(keys[0]); // Remove old cache items
               });
               return networkResponse;
             });
           }
           return networkResponse;
         });
-    }).catch(() => caches.match("/offline.html")) // Show offline page when offline
+    }).catch(() => {
+      // Show browser’s default offline page instead of an error
+      return fetch(event.request);
+    })
   );
 });
 
@@ -62,9 +62,4 @@ self.addEventListener("activate", event => {
     })
   );
   self.clients.claim(); // Take control immediately
-
-  // Notify clients to refresh for immediate activation
-  self.clients.matchAll({ type: "window" }).then(clients => {
-    clients.forEach(client => client.navigate(client.url));
-  });
 });
