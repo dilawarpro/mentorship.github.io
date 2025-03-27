@@ -2,7 +2,6 @@ const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
-  "/offline.html",
   "/appointment.html",
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
@@ -45,13 +44,11 @@ self.addEventListener("fetch", event => {
           return networkResponse;
         });
     }).catch(() => {
-      // Serve fallback offline page for all navigation requests
+      // Serve fallback offline page for navigation requests
       if (event.request.mode === "navigate") {
-        return caches.match("/offline.html").then(response => {
-          return response || new Response("Offline page not found.", { status: 404 });
-        });
+        return caches.match("/offline.html");
       }
-      return new Response("You are offline and this resource is not cached.", {
+      return new Response("You're currently offline. Please connect to the internet and try again!", {
         status: 503,
         statusText: "Service Unavailable"
       });
