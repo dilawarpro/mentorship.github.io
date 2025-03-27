@@ -1,4 +1,4 @@
-const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
+const CACHE_NAME = "mentorship-cache-v7"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
@@ -9,45 +9,48 @@ const urlsToCache = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg"
+  "/dilawarmentorship.jpeg",
+  "/offline.html" // Offline page
 ];
 
+const MAX_CACHE_ITEMS = 50; // Limit cache size
+
+// Install service worker and cache required assets
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    }).catch(err => console.error("Cache error:", err))
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Activate new service worker immediately
 });
 
+// Fetch resources from cache or network
 self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return; // Ignore non-GET requests
+
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => {
-        return new Response(
-          `<html>
-            <head>
-              <title>Offline</title>
-              <style>
-                body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                img { width: 100px; margin-bottom: 20px; }
-                .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; 
-                       text-decoration: none; border-radius: 5px; margin-top: 20px; }
-              </style>
-            </head>
-            <body>
-              <img src="/dilawarmentorship.jpeg" alt="Logo">
-              <h2>You are Offline</h2>
-              <p>Please check your internet connection.</p>
-              <a href="/" class="btn">Go Back Home</a>
-            </body>
-          </html>`, 
-          { headers: { "Content-Type": "text/html" } }
-        );
-      });
-    })
+      return response || fetch(event.request)
+        .then(networkResponse => {
+          if (!event.request.url.includes("/api/") && event.request.url.startsWith(self.location.origin)) {
+            return caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, networkResponse.clone());
+              cache.keys().then(keys => {
+                if (keys.length > MAX_CACHE_ITEMS) {
+                  cache.delete(keys[0]); // Remove old cache items
+                }
+              });
+              return networkResponse;
+            });
+          }
+          return networkResponse;
+        });
+    }).catch(() => caches.match("/offline.html")) // Show offline page when offline
   );
 });
 
+// Activate service worker and delete old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -58,5 +61,10 @@ self.addEventListener("activate", event => {
       );
     })
   );
-  self.clients.claim();
+  self.clients.claim(); // Take control immediately
+
+  // Notify clients to refresh for immediate activation
+  self.clients.matchAll({ type: "window" }).then(clients => {
+    clients.forEach(client => client.navigate(client.url));
+  });
 });
