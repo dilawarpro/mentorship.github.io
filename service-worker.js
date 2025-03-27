@@ -47,7 +47,11 @@ self.addEventListener("fetch", event => {
     }).catch(() => {
       // Serve fallback offline page for navigation requests
       if (event.request.mode === "navigate") {
-        return caches.match("/offline.html");
+        return caches.match("/offline.html").then(response => {
+          return response || caches.match("/404.html").then(response => {
+            return response || new Response("Offline page not found.", { status: 404 });
+          });
+        });
       }
       return new Response("You are offline and this resource is not cached.", {
         status: 503,
