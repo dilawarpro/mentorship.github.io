@@ -2,6 +2,7 @@ const CACHE_NAME = "mentorship-cache-v6"; // Increment cache version
 const urlsToCache = [
   "/",
   "/index.html",
+  "/offline.html",
   "/appointment.html",
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
@@ -46,7 +47,7 @@ self.addEventListener("fetch", event => {
     }).catch(() => {
       // Serve fallback offline page for navigation requests
       if (event.request.mode === "navigate") {
-        return caches.match("/index.html");
+        return caches.match("/offline.html");
       }
       return new Response("You are offline and this resource is not cached.", {
         status: 503,
