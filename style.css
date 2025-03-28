@@ -10,6 +10,7 @@
       transform: rotate(1turn);
     }
   }
+  
   .modules{
     background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
     color: white;
@@ -118,12 +119,12 @@
 }
 .toastify {
   position: fixed;
+  background: green !important;
   bottom: 20px;
   left: 5%;
   right: 5%;
   transform: translateX(-50%);
   max-width: 90%; /* Adjusted max-width to prevent full screen spread */
-  background-color: #444; /* Background color */
   width: fit-content !important;
   color: #fff;
   border-radius: 8px;
