@@ -116,7 +116,7 @@ self.addEventListener("fetch", event => {
 </head>
 <body>
   <img src="/dilawarmentorship.jpeg" alt="Logo" class="logo">
-  <p class="message"><i class="fas fa-wifi-slash"></i> You are offline. Please check your connection.</p>
+  <p class="message"><i class="fas fa-wifi-slash"></i> You're currently offline. Please connect to the internet and try again!</p>
   <a href="https://mentorship.dilawarpro.com" class="button"><i class="fas fa-home"></i> Back to Home</a>
 </body>
 </html>
