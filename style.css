@@ -256,7 +256,6 @@ audio{
 }
 
 #animate-btn{
-  color: white;
   padding: 8px 20px;
   border-radius: 30px;
   border: none;
@@ -264,7 +263,6 @@ audio{
   margin: 0 auto;
   margin-bottom: 10px;
   font-weight: bold;
-  background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   /* position: relative;
