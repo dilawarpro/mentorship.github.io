@@ -999,7 +999,7 @@ First, I'll need your email address to send you confirmation details.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
-            addBotMessage(`Jo value aur content quality apko is mentorship program main mil sakta hai wo kisi aur mentorship main nhi mil sakta not even YouTube and other cheap courses that are available in the market.`);
+            addBotMessage(`Jo value aur content quality apko is mentorship program main mil sakta hai wo kisi aur mentorship main nhi mil sakta not even on YouTube and other cheap courses that are available in the market.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
