@@ -454,7 +454,7 @@ This is our best package for those serious about transforming their career.`);
             
 <ol style="margin-left: 20px; padding-left: 10px;">
     <li><strong>Basic Mentorship Package</strong>: Includes weekly one-on-one sessions, personalized learning path, and access to our resource library.</li>
-    <li><strong>Premium Mentorship Package</strong>: Includes everything in the Basic package, plus priority support, industry networking opportunities, and project-based learning with real-world applications.</li>
+    <li><strong>Premium Mentorship Package</strong>: Includes everything in the 2 Months Mentorship, plus priority support, industry networking opportunities, and project-based learning with real-world applications.</li>
 </ol>
 
 Would you like to know more about a specific package or book an appointment?`);
@@ -462,22 +462,22 @@ Would you like to know more about a specific package or book an appointment?`);
             // Show appropriate buttons based on appointment status
             if (chatbotState.appointmentBooked) {
                 showSuggestedButtons([
-                    "Basic Package details",
-                    "Premium Package details",
+                    "2 Months Mentorship details",
+                    "Champions Mentorship details",
                     "Which mentorship program is right for me?",
                     "Back to menu"
                 ]);
             } else if (chatbotState.bookingInProgress) {
                 showSuggestedButtons([
-                    "Basic Package details",
-                    "Premium Package details",
+                    "2 Months Mentorship details",
+                    "Champions Mentorship details",
                     "Cancel booking",
                     "Back to menu"
                 ]);
             } else {
                 showSuggestedButtons([
-                    "Basic Package details",
-                    "Premium Package details",
+                    "2 Months Mentorship details",
+                    "Champions Mentorship details",
                     "Which mentorship program is right for me?",
                     "Book an appointment",
                     "Back to menu"
@@ -592,7 +592,7 @@ You can always extend your mentorship period if needed.`);
             
             showSuggestedButtons(menuOptions);
         }
-        else if (selection.toLowerCase().includes("basic package")) {
+        else if (selection.toLowerCase().includes("2 Months Mentorship")) {
             addBotMessage(`<strong>Basic Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Weekly 60-minute one-on-one sessions</li>
@@ -607,7 +607,7 @@ This package is perfect for beginners or those looking for structured guidance.`
             // Show appropriate buttons based on appointment status
             let buttons = [];
             
-            buttons.push("Premium Package details");
+            buttons.push("Champions Mentorship details");
             
             if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
                 buttons.push("Book an appointment");
@@ -619,11 +619,11 @@ This package is perfect for beginners or those looking for structured guidance.`
             
             showSuggestedButtons(buttons);
         }
-        else if (selection.toLowerCase().includes("premium package")) {
+        else if (selection.toLowerCase().includes("Champions Mentorship")) {
             addBotMessage(`<strong>Premium Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Bi-weekly 90-minute one-on-one sessions</li>
-    <li>Everything in the Basic package</li>
+    <li>Everything in the 2 Months Mentorship</li>
     <li>Priority support with 24-hour response time</li>
     <li>Industry networking opportunities</li>
     <li>Project-based learning with real-world applications</li>
@@ -635,7 +635,7 @@ This package is ideal for serious learners aiming for professional growth.`);
             // Show appropriate buttons based on appointment status
             let buttons = [];
             
-            buttons.push("Basic Package details");
+            buttons.push("2 Months Mentorship details");
             
             if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
                 buttons.push("Book an appointment");
@@ -786,7 +786,7 @@ First, I'll need your email address to send you confirmation details.`);
                 "How long is the mentorship?",
                 "No, that's all for now"
             ]);
-        }, 1000);
+        }, 2000);
     }
     
     function generalResponse(message) {
@@ -979,7 +979,7 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`Main apky sath kuch ayesi pro tips, hacks, secrets and smart strategies share krunga jis sy first module complete hoty he apki income start ho jayegi.`);
+                addBotMessage(`Is mentorship program main apky sath kuch ayesi pro tips and smart strategies share ki jayengi jis first module complete hoty he apki income start ho jayegi.`);
                 
                 // Show booking options
                 showSuggestedButtons([
@@ -995,42 +995,38 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`Ap is mentorship ko befikr ho ky join kar sakty hain. This mentorship will not disappoint you at any cost because I truly understand k ap kitni mushkil sy fee pay kariengy.`);
+        addBotMessage(`Ap is mentorship ko befikr ho k join kar sakty hain. This mentorship will not disappoint you at any cost because I really understand k ap kitni mushkil sy fee pay kariengy.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
-            addBotMessage(`Believe me is mentorship main apka 1 second aur 1 paisa bhi waste nhi hoga.`);
+            addBotMessage(`Jo value aur content quality apko is mentorship program main mil sakta hai wo kisi aur mentorship main nhi mil sakta not even YouTube and other cheap courses that are available in the market.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Sab kuch practically and strategically guide karny sy ly k apki first income tak main apky sath hun don't worry.`);
+                addBotMessage(`Agar ap mehnat karty hain to ap mere digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi remotely work kar sakty hain.`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`Agar ap mehnat karty hain to is mentorship k baad main apko apny digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist ya phir as a Mentor job py rakh longa.`);
+                    addBotMessage(`I'm 100% sure agar ap mehnat karty hain to first module k foran baad he apki income start ho jayegi because main apko sab kuch step-by-step practically and strategically guide krunga.`);
                     
-                    // Fourth delay - 6 seconds
-                    setTimeout(() => {
-                        addBotMessage(`Hamari puri koshish hogi ky first module complete hoty he apki income start ho jayegi Insha'Allah.`);
-                        
-                        // Fifth delay - 5 seconds
-                        // setTimeout(() => {
-                        //     addBotMessage(`Don't worry just trust me and start taking your classes as soon as possible. I will take you to the next level.`);
                             
                             // Sixth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny k baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
+                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to phir ap apni complete fee wapas ly sakty hain.`);
+                            // Add more Auto replies
+                            // setTimeout(() => {
+                            //     addBotMessage(``);
                                 
                                 // Ask if user has read website details instead of showing menu options
                                 setTimeout(() => {
                                     askAboutWebsiteReading();
-                                }, 2000);
+                                }, 4000);
                             }, 8000); // 5 seconds delay
                         }, 8000); // 5 seconds delay
                     }, 8000); // 6 seconds delay
                 }, 8000); // 5 seconds delay
-            // }, 8000); // 4 seconds delay
-        }, 6000); // 5 seconds delay
+
+           // Add more timing and Auto replies
     }
 
     // Function to ask if user has read website details
