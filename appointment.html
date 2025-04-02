@@ -584,8 +584,8 @@ function generateAppointmentId() {
                 const confirmationIcon = document.querySelector('.confirmation-icon');
 
                 // Temporarily change the icon color to a solid color
-                confirmationIcon.style.color = 'var(--primary-color-2)';
-                confirmationIcon.style.background = 'none';
+                confirmationIcon.style.color = 'transparent';
+                confirmationIcon.style.background = 'linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%)';
 
                 html2canvas(summaryElement).then(canvas => {
                     // Trigger download of the screenshot
