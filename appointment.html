@@ -15,7 +15,6 @@
             --primary-gradient: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
             --primary-color-1: rgb(0, 221, 255);
             --primary-color-2: rgb(255, 0, 212);
-            --primary-color-3: linear-gradient(to right, #00DDFF 0%, #FF00D4 100%);;
         }
         
         body {
@@ -585,7 +584,7 @@ function generateAppointmentId() {
                 const confirmationIcon = document.querySelector('.confirmation-icon');
 
                 // Temporarily change the icon color to a solid color
-                confirmationIcon.style.color = 'var(--primary-color-3)';
+                confirmationIcon.style.color = 'var(--primary-color-1)';
                 confirmationIcon.style.background = 'none';
 
                 html2canvas(summaryElement).then(canvas => {
