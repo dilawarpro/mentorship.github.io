@@ -246,14 +246,14 @@ audio{
   font-weight: bold;
   color: #0c5460;
 }
-#visitorCount {
+/* #visitorCount {
   color: #00ff00;
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
   font-size: 30px;
   background: radial-gradient(black, transparent);
   padding: 5px;
   border-radius: 8px;
-}
+} */
 
 #animate-btn{
   padding: 8px 20px;
