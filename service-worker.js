@@ -6,7 +6,6 @@ const urlsToCache = [
   "/2-months-mentorship.html",
   "/champions-mentorship.html",
   "/refund-policy.html",
-  "/404.html",
   "/styles.css", // Add your CSS file paths
   "/scripts.js", // Add your JS file paths
   "/dilawarmentorship.jpeg" // Add your image paths
@@ -39,9 +38,7 @@ self.addEventListener("fetch", event => {
       );
     }).catch(() => {
       // Fallback for offline scenarios
-      if (event.request.mode === "navigate") {
-        return caches.match("/404.html");
-      }
+      return caches.match("/index.html"); // Serve the homepage as a fallback
     })
   );
 });
