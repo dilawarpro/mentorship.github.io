@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // If this is the first time opening, show greeting
         if (chatbotState.conversationHistory.length === 0) {
             setTimeout(() => {
-                addBotMessage("👋 Hello! I'm your Mentorship By Dilawar assistant. May I know your name?");
+                addBotMessage("Hello!👋 I'm your AI Assistant for Mentorship By Dilawar. May I know your name please?");
             }, 500);
         }
     }
