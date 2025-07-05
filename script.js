@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Check for "I've read the website now" option
-        if (selection.toLowerCase().includes("i've read the website now")) {
+        if (selection.toLowerCase().includes("I've read the website now")) {
             // Ask which program they want to join
             addBotMessage(`Great! Which mentorship program would you like to join?`);
             
@@ -979,7 +979,7 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`Is mentorship program main apky sath kuch ayesi pro tips and smart strategies share ki jayengi jis first module complete hoty he apki income start ho jayegi.`);
+                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi because apko sab kuch step-by-step practically and strategically guide kiya jayega.`);
                 
                 // Show booking options
                 showSuggestedButtons([
@@ -995,24 +995,24 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`Ap is mentorship ko befikr ho k join kar sakty hain. This mentorship will not disappoint you at any cost because I really understand k ap kitni mushkil sy fee pay kariengy.`);
+        addBotMessage(`${name} Ap is mentorship ko befikr ho k join kar sakty hain. This mentorship will not disappoint you at any cost because I really understand k ap kitni mushkil sy fee pay kariengy.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
-            addBotMessage(`Jo value aur content quality apko is mentorship program main mil sakta hai wo kisi aur mentorship main nhi mil sakta not even on YouTube and other cheap courses that are available in the market.`);
+            addBotMessage(`Jo value aur quality content apko is mentorship program main mil sakta hy wo koi aur nhi dy sakta not even YouTube and other cheap courses that are available in the market.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Agar ap mehnat karty hain to ap mere digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi remotely work kar sakty hain.`);
+                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`I'm 100% sure agar ap mehnat karty hain to first module k foran baad he apki income start ho jayegi because main apko sab kuch step-by-step practically and strategically guide krunga.`);
+                    addBotMessage(`Aap pehlay website sy details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
                     
                             
                             // Sixth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to phir ap apni complete fee wapas ly sakty hain.`);
+                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
                             // Add more Auto replies
                             // setTimeout(() => {
                             //     addBotMessage(``);
