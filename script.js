@@ -995,10 +995,7 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-    const name = chatbotState.userName; // get the saved name
-    addBotMessage(`${name} Ap is mentorship ko befikar ho k join kar sakty hain. This mentorship will not disappoint you at any cost because I really understand k ap kitni mushkil sy fee pay kariengy.`);
-}
-
+        addBotMessage(`${name} Ap is mentorship ko befikar ho k join kar sakty hain. This mentorship will not disappoint you at any cost because I really understand k ap kitni mushkil sy fee pay kariengy.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
