@@ -198,80 +198,80 @@ Champions<!DOCTYPE html>
                     <p class="text-center mb-4" style="color: red !important; text-align: justify !important; font-weight: bolder;">Please make sure you have read and checked all the details on the website before booking an appointment. This will help us save time!</p>
                     <p class="text-center mb-4">Fill out the form below to schedule your mentorship consultation</p>
                     
-                    <form id="appointmentForm" novalidate>
-    <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="100">
-        <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
-        <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
-        <div class="invalid-feedback">Please enter your full name.</div>
-    </div>
-    
-    <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="200">
-        <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
-        <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
-        <div class="invalid-feedback">Please enter a valid email address.</div>
-    </div>
-    
-    <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="300">
-        <input type="tel" class="form-control" id="whatsapp" placeholder="WhatsApp Number" required>
-        <label for="whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp Number</label>
-        <div class="invalid-feedback">Please enter your WhatsApp number.</div>
-    </div>
-    
-    <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="400">
-        <input type="text" class="form-control" id="city" placeholder="Your City" required>
-        <label for="city"><i class="fas fa-map-marker-alt me-2"></i>Your City</label>
-        <div class="invalid-feedback">Please enter your city.</div>
-    </div>
-    
-    <div class="mb-3" data-aos="fade-up" data-aos-delay="500">
-        <label class="form-label"><i class="fas fa-graduation-cap me-2"></i>Interested Program</label>
-        <select class="form-select" id="program" required>
-            <option value="" selected disabled>Select a program</option>
-            <option value="Champions Mentorship Program">Champions Mentorship Program (Recommended)</option>
-            <option value="2 Months Mentorship Program">2 Months Mentorship Program</option>
-        </select>
-        <div class="invalid-feedback">Please select a program.</div>
-    </div>
-    
-    <div class="mb-3" data-aos="fade-up" data-aos-delay="600">
-        <label class="form-label"><i class="fas fa-calendar-alt me-2"></i>Preferred Date</label>
-        <div class="date-suggestions" id="dateSuggestions"></div>
-        <div class="d-flex align-items-center mt-2">
-            <div class="form-check me-3">
-                <input class="form-check-input" type="radio" name="dateOption" id="customDateRadio" value="custom">
-                <label class="form-check-label" for="customDateRadio">
-                    Choose another date
-                </label>
-            </div>
-            <input type="date" class="form-control" id="appointmentDate" disabled>
-            <input type="hidden" id="selectedDate" required>
-        </div>
-        <div class="invalid-feedback d-block" id="dateError" style="display:none;">Please select a date for your appointment.</div>
-    </div>
-    
-    <div class="mb-3" data-aos="fade-up" data-aos-delay="700">
-        <label class="form-label"><i class="fas fa-clock me-2"></i>Preferred Time</label>
-        <div class="time-slots" id="timeSlots"></div>
-        <input type="hidden" id="selectedTime" required>
-        <div class="invalid-feedback d-block" id="timeError" style="display:none;">Please select a time for your appointment.</div>
-    </div>
-    
-    <div class="mb-3" data-aos="fade-up" data-aos-delay="800">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="confirmCheck" required>
-            <label class="form-check-label" for="confirmCheck">
-                I confirm that I have read the complete details at <a href="https://mentorship.dilawarpro.com" >mentorship.dilawarpro.com</a>
-            </label>
-            <div class="invalid-feedback">You must confirm you have read the details.</div>
-        </div>
-    </div>
-    
-    <div class="text-center" data-aos="zoom-in" data-aos-delay="900">
-        <button type="submit" class="btn btn-gradient btn-lg w-100">
-            <i class="fas fa-calendar-check me-2"></i>Book Appointment
-        </button>
-    </div>
-</form>
+                    <form id="appointmentForm">
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="100">
+                            <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
+                            <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="200">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email Address" required>
+                            <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="300">
+                            <input type="tel" class="form-control" id="whatsapp" placeholder="WhatsApp Number" required>
+                            <label for="whatsapp"><i class="fab fa-whatsapp me-2"></i>WhatsApp Number</label>
+                        </div>
+                        
+                        <div class="mb-3 form-floating" data-aos="fade-up" data-aos-delay="400">
+                            <input type="text" class="form-control" id="city" placeholder="Your City" required>
+                            <label for="city"><i class="fas fa-map-marker-alt me-2"></i>Your City</label>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="500">
+                            <label class="form-label"><i class="fas fa-graduation-cap me-2"></i>Interested Program</label>
+                            <select class="form-select" id="program" required>
+                                <option value="" selected disabled>Select a program</option>
+                                <option value="Champions Mentorship Program">Champions Mentorship Program (Recommended)</option>
+                                <option value="2 Months Mentorship Program">2 Months Mentorship Program</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="600">
+                            <label class="form-label"><i class="fas fa-calendar-alt me-2" required></i>Preferred Date</label>
+                            
+                            <!-- Date Suggestion Buttons -->
+                            <div class="date-suggestions" id="dateSuggestions">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            
+                            <!-- Custom Date Option -->
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" type="radio" name="dateOption" id="customDateRadio" value="custom">
+                                    <label class="form-check-label" for="customDateRadio">
+                                        Choose another date
+                                    </label>
+                                </div>
+                                <input type="date" class="form-control" id="appointmentDate" disabled>
+                                <input type="hidden" id="selectedDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="700">
+                            <label class="form-label"><i class="fas fa-clock me-2"></i>Preferred Time</label>
+                            <div class="time-slots" id="timeSlots">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <input type="hidden" id="selectedTime" required>
+                        </div>
+                        
+                        <div class="mb-3" data-aos="fade-up" data-aos-delay="800">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="confirmCheck" required>
+                                <label class="form-check-label" for="confirmCheck">
+                                    I confirm that I have read the complete details at <a href="https://mentorship.dilawarpro.com" >mentorship.dilawarpro.com</a>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" data-aos="zoom-in" data-aos-delay="900">
+                            <button type="submit" class="btn btn-gradient btn-lg w-100">
+                                <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -503,17 +503,18 @@ function generateAppointmentId() {
     return appointmentId;
 }
 
+        // Handle form submission
         function handleFormSubmit(event) {
             event.preventDefault();
             
- 
+            // Validate date and time selection
             if (!document.getElementById('selectedDate').value) {
-                alert('Please select a date for your appointment.');
+                showToast('Please select a date for your appointment.', 'danger');
                 return;
             }
             
             if (!document.getElementById('selectedTime').value) {
-                alert('Please select a time for your appointment.');
+                showToast('Please select a time for your appointment.', 'danger');
                 return;
             }
             
@@ -599,9 +600,24 @@ function generateAppointmentId() {
                     confirmationIcon.style.webkitBackgroundClip = 'text';
                     confirmationIcon.style.backgroundClip = 'text';
 
-                    // No toast here
+                    // Show success toast
+                    showToast('Appointment booked! Please share this summary on WhatsApp to confirm your appointment.', 'success');
                 });
             }, 500); // Delay to ensure modal is fully rendered
+        }
+
+        // Function to show toast notifications
+        function showToast(message, type = 'success') {
+            const toastElement = document.getElementById('toastNotification');
+            const toastBody = toastElement.querySelector('.toast-body');
+
+            // Update toast message and type
+            toastBody.textContent = message;
+            toastElement.className = `toast align-items-center text-bg-${type} border-0`;
+
+            // Show the toast
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
         }
 
         // Format date to readable format
@@ -622,67 +638,6 @@ function generateAppointmentId() {
             };
             return now.toLocaleDateString('en-US', options);
         }
-
-        // Add this after your DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('appointmentForm');
-    form.addEventListener('submit', function(event) {
-        let valid = true;
-
-        // Validate all required fields
-        ['fullName', 'email', 'whatsapp', 'city', 'program'].forEach(id => {
-            const input = document.getElementById(id);
-            if (!input.value) {
-                input.classList.add('is-invalid');
-                valid = false;
-            } else {
-                input.classList.remove('is-invalid');
-            }
-        });
-
-        // Validate date
-        const selectedDate = document.getElementById('selectedDate').value;
-        if (!selectedDate) {
-            document.getElementById('dateError').style.display = 'block';
-            valid = false;
-        } else {
-            document.getElementById('dateError').style.display = 'none';
-        }
-
-        // Validate time
-        const selectedTime = document.getElementById('selectedTime').value;
-        if (!selectedTime) {
-            document.getElementById('timeError').style.display = 'block';
-            valid = false;
-        } else {
-            document.getElementById('timeError').style.display = 'none';
-        }
-
-        // Validate checkbox
-        const confirmCheck = document.getElementById('confirmCheck');
-        if (!confirmCheck.checked) {
-            confirmCheck.classList.add('is-invalid');
-            valid = false;
-        } else {
-            confirmCheck.classList.remove('is-invalid');
-        }
-
-        if (!valid) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
-
-    // Remove validation error on input
-    ['fullName', 'email', 'whatsapp', 'city', 'program'].forEach(id => {
-        document.getElementById(id).addEventListener('input', function() {
-            if (this.value) this.classList.remove('is-invalid');
-        });
-    });
-    document.getElementById('confirmCheck').addEventListener('change', function() {
-        if (this.checked) this.classList.remove('is-invalid');
-    });
-});
     </script>
 </body>
 </html>
