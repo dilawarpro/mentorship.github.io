@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Check for "I've read the website now" option
-        if (selection.toLowerCase().includes("i've read the website now")) {
+        if (selection.toLowerCase().includes("I've read the website now")) {
             // Ask which program they want to join
             addBotMessage(`Great! Which mentorship program would you like to join?`);
             
@@ -592,7 +592,7 @@ You can always extend your mentorship period if needed.`);
             
             showSuggestedButtons(menuOptions);
         }
-        else if (selection.toLowerCase().includes("2 months mentorship")) {
+        else if (selection.toLowerCase().includes("2 Months Mentorship")) {
             addBotMessage(`<strong>Basic Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Weekly 60-minute one-on-one sessions</li>
@@ -619,7 +619,7 @@ This package is perfect for beginners or those looking for structured guidance.`
             
             showSuggestedButtons(buttons);
         }
-        else if (selection.toLowerCase().includes("champions mentorship")) {
+        else if (selection.toLowerCase().includes("Champions Mentorship")) {
             addBotMessage(`<strong>Premium Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Bi-weekly 90-minute one-on-one sessions</li>
@@ -979,7 +979,7 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi`);
+                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi because apko sab kuch step-by-step practically and strategically guide kiya jayega.`);
                 
                 // Show booking options
                 showSuggestedButtons([
@@ -1003,37 +1003,30 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, Social Media Marketing Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
+                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`Aap pehlay website sy important details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
+                    addBotMessage(`Aap pehlay website sy details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
                     
-                    // Sixth delay - 8 seconds
-                    setTimeout(() => {
-                        addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milty ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
-                        
-                        // Show "Benefits of Mentorship By Dilawar" suggestion button after trust factors
-                        setTimeout(() => {
-                            showSuggestedButtons([
-                                "Benefits of Mentorship By Dilawar",
-                                "Tell me about the mentorship packages",
-                                "Which mentorship program is right for me?",
-                                "Where are you located?",
-                                "What are the fees?",
-                                "How long is the mentorship?",
-                                "Book an appointment"
-                            ]);
-                        }, 2000);
+                            
+                            // Sixth delay - 5 seconds
+                            setTimeout(() => {
+                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
+                            // Add more Auto replies
+                            // setTimeout(() => {
+                            //     addBotMessage(``);
+                                
+                                // Ask if user has read website details instead of showing menu options
+                                setTimeout(() => {
+                                    askAboutWebsiteReading();
+                                }, 4000);
+                            }, 8000); // 5 seconds delay
+                        }, 8000); // 5 seconds delay
+                    }, 8000); // 6 seconds delay
+                }, 8000); // 5 seconds delay
 
-                        // Ask if user has read website details instead of showing menu options
-                        setTimeout(() => {
-                            askAboutWebsiteReading();
-                        }, 4000);
-                    }, 8000); // 8 seconds delay
-                }, 8000); // 8 seconds delay
-            }, 8000); // 8 seconds delay
-        }, 4000); // 4 seconds delay
+           // Add more timing and Auto replies
     }
 
     // Function to ask if user has read website details
