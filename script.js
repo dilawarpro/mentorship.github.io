@@ -263,107 +263,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
     
-    // Add Benefits button to main menu options
-    function getMenuOptions() {
-        let menuOptions = [
-            "Benefits of Mentorship By Dilawar", // <-- New button
-            "Tell me about the mentorship packages",
-            "Which mentorship program is right for me?",
-            "Where are you located?",
-            "What are the fees?",
-            "How long is the mentorship?"
-        ];
-        if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-            menuOptions.push("Book an appointment");
-        }
-        return menuOptions;
-    }
-
-    // Show benefits after asking for name
     function handleNameInput(name) {
         chatbotState.userName = name;
         chatbotState.currentStep = 'menu';
-
-        addBotMessage(`I am happy to meet you, ${name}! 😊`);
-
+        
+        addBotMessage(`I am happy to meet you, ${name}! 😊 How can I help you today?`);
+        
+        // Show trust factors first
         setTimeout(() => {
-            addBotMessage(`Alright ${name}, First of all let me tell you the benefits of joining this mentorship program.`);
-            setTimeout(() => {
-                addBotMessage(`Please stay connected for a while.`);
-                setTimeout(() => {
-                    addBotMessage(`Is mentorship k baad ap 15+ high income sources bnaa sakty jo ap hamari website sy check kar sakty hain.`);
-                    setTimeout(() => {
-                        addBotMessage(`Is mentorship ko complete karny k baad agar ap AdSense approved websites sell karien gy to ap monthly easily 4-5 websites sell kar sakty hain.`);
-                        setTimeout(() => {
-                            addBotMessage(`1 AdSense approved website ki price 25 thousands sy start hoti hy.`);
-                            setTimeout(() => {
-                                addBotMessage(`It means agar ap 1 month main 4 websites sell kariengy to ap easily 1 lac+ per month income generate kar sakty hain.`);
-                                setTimeout(() => {
-                                    addBotMessage(`Keep in mind that it's not that easy as you think. Isky liye apko starting days main mehnat karni hogi.`);
-                                    setTimeout(() => {
-                                        addBotMessage(`Agar ap businesses and startups ko website services sell kariengy phir bhi ap monthly basis py 6 figure income bana sakty hain.`);
-                                        setTimeout(() => {
-                                            addBotMessage(`1 business website ki price 30 thousands sy start hoti hy.`);
-                                            setTimeout(() => {
-                                                addBotMessage(`Isky ilawa ap digital marketing, social media marketing, freelancing and seo services k through bhi achi income generate kar sakty hain.`);
-                                                setTimeout(() => {
-                                                    addBotMessage(`Agar apko further income sources k bary main jan'na hy to ap simply hamari website py check kar sakty hain.`);
-                                                    setTimeout(() => {
-                                                        showSuggestedButtons(getMenuOptions());
-                                                    }, 2000);
-                                                }, 5000);
-                                            }, 4000);
-                                        }, 5000);
-                                    }, 5000);
-                                }, 5000);
-                            }, 3000);
-                        }, 5000);
-                    }, 4000);
-                }, 2000);
-            }, 4000);
-        }, 500);
+            showTrustFactors();
+        }, 2000);
     }
-
-    // Handle Benefits button click
+    
     function handleMenuSelection(selection) {
-        if (selection === "Benefits of Mentorship By Dilawar") {
-            addBotMessage(`Alright ${chatbotState.userName}, First of all let me tell you the benefits of joining this mentorship program.`);
-            setTimeout(() => {
-                addBotMessage(`Please stay connected for a while.`);
-                setTimeout(() => {
-                    addBotMessage(`Is mentorship k baad ap 15+ high income sources bnaa sakty jo ap hamari website sy check kar sakty hain.`);
-                    setTimeout(() => {
-                        addBotMessage(`Is mentorship ko complete karny k baad agar ap AdSense approved websites sell karien gy to ap monthly easily 4-5 websites sell kar sakty hain.`);
-                        setTimeout(() => {
-                            addBotMessage(`1 AdSense approved website ki price 25 thousands sy start hoti hy.`);
-                            setTimeout(() => {
-                                addBotMessage(`It means agar ap 1 month main 4 websites sell kariengy to ap easily 1 lac+ per month income generate kar sakty hain.`);
-                                setTimeout(() => {
-                                    addBotMessage(`Keep in mind that it's not that easy as you think. Isky liye apko starting days main mehnat karni hogi.`);
-                                    setTimeout(() => {
-                                        addBotMessage(`Agar ap businesses and startups ko website services sell kariengy phir bhi ap monthly basis py 6 figure income bana sakty hain.`);
-                                        setTimeout(() => {
-                                            addBotMessage(`1 business website ki price 30 thousands sy start hoti hy.`);
-                                            setTimeout(() => {
-                                                addBotMessage(`Isky ilawa ap digital marketing, social media marketing, freelancing and seo services k through bhi achi income generate kar sakty hain.`);
-                                                setTimeout(() => {
-                                                    addBotMessage(`Agar apko further income sources k bary main jan'na hy to ap simply hamari website py check kar sakty hain.`);
-                                                    setTimeout(() => {
-                                                        showSuggestedButtons(getMenuOptions());
-                                                    }, 2000);
-                                                }, 5000);
-                                            }, 4000);
-                                        }, 5000);
-                                    }, 5000);
-                                }, 5000);
-                            }, 3000);
-                        }, 5000);
-                    }, 4000);
-                }, 2000);
-            }, 4000);
-            return;
-        }
-
         // Check for registration process option
         if (selection.toLowerCase().includes("registration process")) {
             showRegistrationProcess();
@@ -377,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Check for "I've read the website now" option
-        if (selection.toLowerCase().includes("i've read the website now")) {
+        if (selection.toLowerCase().includes("I've read the website now")) {
             // Ask which program they want to join
             addBotMessage(`Great! Which mentorship program would you like to join?`);
             
@@ -680,7 +592,7 @@ You can always extend your mentorship period if needed.`);
             
             showSuggestedButtons(menuOptions);
         }
-        else if (selection.toLowerCase().includes("2 months mentorship")) {
+        else if (selection.toLowerCase().includes("2 Months Mentorship")) {
             addBotMessage(`<strong>Basic Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Weekly 60-minute one-on-one sessions</li>
@@ -707,7 +619,7 @@ This package is perfect for beginners or those looking for structured guidance.`
             
             showSuggestedButtons(buttons);
         }
-        else if (selection.toLowerCase().includes("champions mentorship")) {
+        else if (selection.toLowerCase().includes("Champions Mentorship")) {
             addBotMessage(`<strong>Premium Mentorship Package Details</strong>:
 <ul style="margin-left: 20px; padding-left: 10px;">
     <li>Bi-weekly 90-minute one-on-one sessions</li>
@@ -1067,14 +979,14 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi.`);
+                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi`);
                 
                 // Show booking options
                 showSuggestedButtons([
                     "Book an appointment",
                     "Registration Process",
                     "Payment Methods",
-                    "Which Mentorship Program is Right For You?",
+                    "Which mentorship program is right for me?",
                     "Back to menu"
                 ]);
             }, 8000); // 8 seconds delay
@@ -1091,27 +1003,30 @@ First, I'll need your email address to send you confirmation details.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
+                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, Social Media Marketing Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`Aap pehlay website sy details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
+                    addBotMessage(`Aap pehlay website sy important details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
                     
                             
                             // Sixth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
+                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milty ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
                             // Add more Auto replies
-                            // setTimeout(() => {
-                            //     addBotMessage(``);
-                                
+                            setTimeout(() => {
+                                addBotMessage(`Now let me tell you the benefits of joining this mentorship program.`);
+                                setTimeout(() => {
+                                addBotMessage(`Please stay connected for a while.`);
                                 // Ask if user has read website details instead of showing menu options
                                 setTimeout(() => {
                                     askAboutWebsiteReading();
                                 }, 4000);
-                            }, 8000); // 5 seconds delay
-                        }, 8000); // 5 seconds delay
-                    }, 8000); // 6 seconds delay
+                            }, 8000); 
+                        }, 8000); 
+                    }, 8000);
+                     }, 5000);
+                      }, 5000); // 6 seconds delay
                 }, 8000); // 5 seconds delay
 
            // Add more timing and Auto replies
