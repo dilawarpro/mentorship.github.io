@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatbotState.userName = name;
         chatbotState.currentStep = 'menu';
         
-        addBotMessage(`I am happy to meet you, ${name}! 😊 How can I help you today?`);
+        addBotMessage(`Welcome ${name}! 😊 I'm your Student Care Support assistant. How can I help you today? Whether you're interested in learning about our programs, booking a consultation, or need guidance on which course fits you best, I'm here to assist.`);
         
         // Show trust factors first
         setTimeout(() => {
@@ -289,35 +289,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Check for "I've read the website now" option
-        if (selection.toLowerCase().includes("I've read the website now")) {
-            // Ask which program they want to join
-            addBotMessage(`Great! Which mentorship program would you like to join?`);
-            
-            // Add a delay before showing the options
-            setTimeout(() => {
-                addBotMessage(`You can join the following mentorship programs:
+            if (selection.toLowerCase().includes("I've reviewed")) {
+                // Ask which program they want to join
+                addBotMessage(`Perfect! Which mentorship program would you like to explore?`);
+                
+                // Add a delay before showing the options
+                setTimeout(() => {
+                    addBotMessage(`Here are our available mentorship programs:
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Service-based mentorship</strong> to get guaranteed clients and projects (if you already have a skill)</li>
-    <li><strong>Starter mentorship program</strong> (Web programming, SEO + SMM)</li>
-    <li><strong>2 months mentorship program</strong></li>
-    <li><strong>Champion mentorship program</strong> (Recommended)</li>
+    <li><strong>Service-Based Mentorship</strong> - Perfect if you already have a skill and want to start earning from clients.</li>
+    <li><strong>Starter Program</strong> - Covers Web Programming, SEO & Social Media Marketing fundamentals.</li>
+    <li><strong>2-Month Intensive Program</strong> - Comprehensive training with intensive support.</li>
+    <li><strong>Champion Program</strong> - Our most comprehensive program with lifetime benefits (Highly Recommended).</li>
 </ol>
 
-You've multiple options to choose but hamara sab sy best package champions mentorship program hy`);
+The Champion Program is our most popular choice for students serious about building a sustainable digital career.`);
+                    
+                    // Show buttons for each program
+                    showSuggestedButtons([
+                        "Service-Based Mentorship",
+                        "Starter Program",
+                        "2-Month Intensive Program",
+                        "Champion Program (Recommended)"
+                    ]);
+                }, 2000); // 2 seconds delay
                 
-                // Show buttons for each program
-                showSuggestedButtons([
-                    "Service-based mentorship",
-                    "Starter mentorship program",
-                    "2 months mentorship program",
-                    "Champion mentorship program"
-                ]);
-            }, 2000); // 2 seconds delay
-            
-            return;
-        }
-        
-        // Check for cancel booking option
+                return;
+            }        // Check for cancel booking option
         if (selection.toLowerCase().includes("cancel booking")) {
             chatbotState.bookingInProgress = false;
             chatbotState.currentStep = 'menu';
@@ -337,26 +335,26 @@ You've multiple options to choose but hamara sab sy best package champions mento
         // Process selection
         if (selection.toLowerCase().includes("which mentorship") || selection.toLowerCase().includes("right for me")) {
             // First message
-            addBotMessage("Please let me know ap ny konsa mentorship program join karna hy then I'll guide you according to your preferred mentorship program.");
+            addBotMessage("Great question! To help you choose the right program, please tell me which mentorship program interests you most. I can then provide detailed information tailored to your needs.");
             
             // Add a delay before showing the options
             setTimeout(() => {
-                addBotMessage(`You can join the following mentorship programs:
+                addBotMessage(`Here are our available mentorship programs:
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Service-based mentorship</strong> to get guaranteed clients and projects (if you already have a skill)</li>
-    <li><strong>Starter mentorship program</strong> (Web programming, SEO + SMM)</li>
-    <li><strong>2 months mentorship program</strong></li>
-    <li><strong>Champion mentorship program</strong> (Recommended)</li>
+    <li><strong>Service-Based Mentorship</strong> - Perfect if you already have a skill and want to start earning from clients.</li>
+    <li><strong>Starter Program</strong> - Covers Web Programming, SEO & Social Media Marketing fundamentals.</li>
+    <li><strong>2-Month Intensive Program</strong> - Comprehensive training with intensive support.</li>
+    <li><strong>Champion Program</strong> - Our most comprehensive program with lifetime benefits (Highly Recommended).</li>
 </ol>
 
-You've multiple options to choose but hamara sab sy best package champions mentorship program hy`);
+The Champion Program is our most popular choice for students serious about building a sustainable digital career.`);
                 
                 // Show buttons for each program
                 showSuggestedButtons([
-                    "Service-based mentorship",
-                    "Starter mentorship program",
-                    "2 months mentorship program",
-                    "Champion mentorship program",
+                    "Service-Based Mentorship",
+                    "Starter Program",
+                    "2-Month Intensive Program",
+                    "Champion Program (Recommended)",
                     "Back to menu"
                 ]);
             }, 2000); // 2 seconds delay
@@ -364,120 +362,127 @@ You've multiple options to choose but hamara sab sy best package champions mento
             return;
         }
         else if (selection.toLowerCase().includes("service-based")) {
-            addBotMessage(`The <strong>Service-based mentorship</strong> is perfect for those who already have a skill and want to monetize it. 
+            addBotMessage(`The <strong>Service-Based Mentorship</strong> is perfect for those who already have a skill and want to monetize it immediately. 
 
 This program focuses on:
 <ul style="margin-left: 20px; padding-left: 10px;">
-    <li>Finding and securing clients</li>
-    <li>Project management</li>
-    <li>Pricing your services</li>
+    <li>Finding and securing qualified clients</li>
+    <li>Effective project management techniques</li>
+    <li>Professional service pricing strategies</li>
     <li>Building a sustainable freelance business</li>
+    <li>Client retention and relationship management</li>
 </ul>`);
             
             // Recommend Champion program after a short delay
             setTimeout(() => {
-                addBotMessage(`However, I would recommend you consider our <strong>Champion Mentorship Program</strong> for the most comprehensive experience and best value.`);
+                addBotMessage(`However, if you want the most comprehensive experience with long-term earning potential and lifetime support, I'd recommend our <strong>Champion Mentorship Program</strong>.`);
                 setTimeout(() => {
                     suggestChampionMentorshipProgram();
                 }, 2000);
             }, 3000);
         }
-        else if (selection.toLowerCase().includes("starter mentorship")) {
-            addBotMessage(`The <strong>Starter mentorship program</strong> is designed for beginners who want to learn in-demand skills.
+        else if (selection.toLowerCase().includes("starter")) {
+            addBotMessage(`The <strong>Starter Program</strong> is designed for beginners who want to learn in-demand digital skills.
 
 This program covers:
 <ul style="margin-left: 20px; padding-left: 10px;">
-    <li>Web programming fundamentals</li>
-    <li>Search Engine Optimization (SEO)</li>
-    <li>Social Media Marketing (SMM)</li>
-    <li>Building your first projects</li>
+    <li>Web programming and development fundamentals</li>
+    <li>Search Engine Optimization (SEO) strategies</li>
+    <li>Social Media Marketing (SMM) best practices</li>
+    <li>Building your first real-world projects</li>
+    <li>Basic client acquisition techniques</li>
 </ul>`);
             
             // Recommend Champion program after a short delay
             setTimeout(() => {
-                addBotMessage(`However, I would recommend you consider our <strong>Champion Mentorship Program</strong> for the most comprehensive experience and best value.`);
+                addBotMessage(`If you're looking for a more advanced and comprehensive program with extended support and additional benefits, I'd recommend considering our <strong>Champion Mentorship Program</strong>.`);
                 setTimeout(() => {
                     suggestChampionMentorshipProgram();
                 }, 2000);
             }, 3000);
         }
-        else if (selection.toLowerCase().includes("2 months")) {
-            addBotMessage(`The <strong>2 months mentorship program</strong> is an intensive program for those who want to accelerate their learning.
+        else if (selection.toLowerCase().includes("2-month")) {
+            addBotMessage(`The <strong>2-Month Intensive Program</strong> is perfect for those who want to accelerate their learning in a structured timeline.
 
 This program includes:
 <ul style="margin-left: 20px; padding-left: 10px;">
-    <li>Twice weekly one-on-one sessions</li>
-    <li>Personalized curriculum</li>
-    <li>Hands-on projects</li>
-    <li>Job placement assistance</li>
+    <li>Twice-weekly one-on-one mentorship sessions</li>
+    <li>Personalized curriculum tailored to your goals</li>
+    <li>Hands-on projects with real-world applications</li>
+    <li>Career guidance and job placement assistance</li>
+    <li>Comprehensive module coverage</li>
 </ul>
 
-<p><strong>Fee Structure:</strong></p>
+<p><strong>Program Structure:</strong></p>
 <ul style="margin-left: 20px; padding-left: 10px;">
-    <li>Class Days: 6 (Monday to Saturday)</li>
-    <li>Est. Duration: 2 Months (48 Days)</li>
+    <li>Class Schedule: 6 days per week (Monday to Saturday)</li>
+    <li>Program Duration: Approximately 2 months (48 days)</li>
     <li>Registration Fee: Rs. 5,000</li>
-    <li>2 months mentorship actual fee: Rs. 30,000</li>
-    <li>Fee after a final discount: Rs. 20,000 ($70) one-time only (1 year web hosting and Optional courses are included for FREE)</li>
-    <li>2 Months Installments Fee: Rs. 12,500 ($45) per month (1 Year FREE web hosting included and Optional courses are NOT included)</li>
+    <li>Program Fee: Rs. 30,000</li>
+    <li>Discounted One-Time Payment: Rs. 20,000 ($70) - Includes 1 year free web hosting and optional courses</li>
+    <li>Monthly Installment Option: Rs. 12,500 ($45) per month - Includes 1 year free web hosting</li>
 </ul>`);
             
             // Recommend Champion program after a short delay
             setTimeout(() => {
-                addBotMessage(`However, I would recommend you consider our <strong>Champion Mentorship Program</strong> for the most comprehensive experience and best value.`);
+                addBotMessage(`For even more comprehensive benefits including lifetime support and job placement guarantees, the <strong>Champion Mentorship Program</strong> offers exceptional value.`);
                 setTimeout(() => {
                     suggestChampionMentorshipProgram();
                 }, 2000);
             }, 3000);
         }
         else if (selection.toLowerCase().includes("champion")) {
-            addBotMessage(`The <strong>Champion mentorship program</strong> is our most comprehensive and recommended program.
+            addBotMessage(`The <strong>Champion Mentorship Program</strong> is our flagship offering and most comprehensive program.
 
 This premium program offers:
 <ul style="margin-left: 20px; padding-left: 10px;">
-    <li>Extended mentorship period</li>
-    <li>Advanced skill development</li>
-    <li>Real-world client projects</li>
-    <li>Ongoing support even after program completion</li>
-    <li>Exclusive networking opportunities</li>
+    <li>Flexible extended mentorship period</li>
+    <li>Advanced skill development in 15+ digital income streams</li>
+    <li>Real-world client projects and practical experience</li>
+    <li>Ongoing personalized support even after program completion</li>
+    <li>Exclusive job placement opportunities</li>
+    <li>Lifetime free web hosting with SSL certificates</li>
+    <li>1-on-1 sessions with scheduling flexibility</li>
+    <li>Industry networking and partnership opportunities</li>
 </ul>
 
-This is our best package for those serious about transforming their career.`);
+This is our recommended package for students serious about transforming their career and building multiple income sources.`);
             
             // Suggest Champion Mentorship Program after a short delay
             setTimeout(() => {
                 suggestChampionMentorshipProgram();
             }, 3000);
         }
-        else if (selection.toLowerCase().includes("packages") || selection.toLowerCase().includes("tell me about")) {
-            addBotMessage(`We offer two comprehensive mentorship packages, ${chatbotState.userName}:
+        else if (selection.toLowerCase().includes("tell me about")) {
+            addBotMessage(`We offer comprehensive mentorship packages designed to meet different learning needs and career goals:
             
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Basic Mentorship Package</strong>: Includes weekly one-on-one sessions, personalized learning path, and access to our resource library.</li>
-    <li><strong>Premium Mentorship Package</strong>: Includes everything in the 2 Months Mentorship, plus priority support, industry networking opportunities, and project-based learning with real-world applications.</li>
+    <li><strong>Starter Program</strong>: Perfect for beginners. Covers Web Programming, SEO, and Social Media Marketing fundamentals with weekly one-on-one sessions and personalized guidance.</li>
+    <li><strong>2-Month Intensive Program</strong>: Ideal for faster learning. Includes twice-weekly sessions, hands-on projects, career guidance, and intensive support.</li>
+    <li><strong>Champion Program</strong>: Our most comprehensive package. Features lifetime support, job placement assistance, unlimited email consultations, and exclusive networking opportunities.</li>
 </ol>
 
-Would you like to know more about a specific package or book an appointment?`);
+Would you like detailed information about any specific program?`);
             
             // Show appropriate buttons based on appointment status
             if (chatbotState.appointmentBooked) {
                 showSuggestedButtons([
-                    "2 Months Mentorship details",
-                    "Champions Mentorship details",
+                    "2-Month Intensive Program details",
+                    "Champion Program details",
                     "Which mentorship program is right for me?",
                     "Back to menu"
                 ]);
             } else if (chatbotState.bookingInProgress) {
                 showSuggestedButtons([
-                    "2 Months Mentorship details",
-                    "Champions Mentorship details",
+                    "2-Month Intensive Program details",
+                    "Champion Program details",
                     "Cancel booking",
                     "Back to menu"
                 ]);
             } else {
                 showSuggestedButtons([
-                    "2 Months Mentorship details",
-                    "Champions Mentorship details",
+                    "2-Month Intensive Program details",
+                    "Champion Program details",
                     "Which mentorship program is right for me?",
                     "Book an appointment",
                     "Back to menu"
@@ -485,7 +490,7 @@ Would you like to know more about a specific package or book an appointment?`);
             }
         } 
         else if (selection.toLowerCase().includes("located") || selection.toLowerCase().includes("where")) {
-            addBotMessage("Our mentorship sessions are conducted remotely, so you can join from anywhere in the world! This means your room is your classroom. We use professional conferencing tools to ensure a seamless experience, giving you the freedom of location and time.");
+            addBotMessage("Our mentorship program is completely online and conducted remotely, so you can join from anywhere in the world! Whether you're in Pakistan, the United States, the UK, Canada, or any other country, our sessions are accessible. Your home office becomes your classroom. We use professional video conferencing tools to ensure high-quality interactions and seamless learning experience, giving you complete flexibility with location and scheduling.");
             
             // Show appropriate buttons based on appointment status
             let buttons = [];
@@ -501,28 +506,29 @@ Would you like to know more about a specific package or book an appointment?`);
             showSuggestedButtons(buttons);
         }
         else if (selection.toLowerCase().includes("fees") || selection.toLowerCase().includes("cost") || selection.toLowerCase().includes("price")) {
-            addBotMessage(`<strong>Fee Structure for Our Mentorship Programs</strong>
+            addBotMessage(`<strong>Complete Fee Structure for Our Mentorship Programs</strong>
 
 <div style="margin-left: 20px; padding-left: 10px;">
-    <h4>2 Months Mentorship Program</h4>
+    <h4>2-Month Intensive Program</h4>
     <ul>
-        <li>Class Days: 6 (Monday to Saturday)</li>
-        <li>Est. Duration: 2 Months (48 Days)</li>
-        <li>Registration Fee: Rs. 5,000</li>
-        <li>2 months mentorship actual fee: Rs. 30,000</li>
-        <li>Fee after a final discount: Rs. 20,000 ($70) one-time only (1 year web hosting and Optional courses are included for FREE)</li>
-        <li>2 Months Installments Fee: Rs. 12,500 ($45) per month (1 Year FREE web hosting included and Optional courses are NOT included)</li>
+        <li><strong>Class Schedule:</strong> 6 days per week (Monday to Saturday)</li>
+        <li><strong>Program Duration:</strong> Approximately 2 months (48 days)</li>
+        <li><strong>Registration Fee:</strong> Rs. 5,000</li>
+        <li><strong>Program Fee:</strong> Rs. 30,000</li>
+        <li><strong>Discounted One-Time Payment:</strong> Rs. 20,000 ($70) - Includes 1 year free web hosting and optional courses</li>
+        <li><strong>Monthly Installment Option:</strong> Rs. 12,500 ($45) per month - Includes 1 year free web hosting</li>
     </ul>
 
-    <h4>Champions Mentorship Program (Best Choice)</h4>
+    <h4>Champion Mentorship Program (Recommended)</h4>
     <ul>
-        <li>Class Days: Flexible</li>
-        <li>Est. Duration: Less than 2 Months</li>
-        <li>Registration Fee: Rs. 5,000</li>
-        <li>Champions mentorship program actual fee: Rs. 35,000</li>
-        <li>Fee after a final discount: Rs. 25,000 ($90) one-time payment</li>
+        <li><strong>Class Schedule:</strong> Flexible (1-on-1 sessions)</li>
+        <li><strong>Program Duration:</strong> Less than 2 months with flexible timing</li>
+        <li><strong>Registration Fee:</strong> Rs. 5,000</li>
+        <li><strong>Program Fee:</strong> Rs. 35,000</li>
+        <li><strong>Discounted One-Time Payment:</strong> Rs. 25,000 ($90) - Our best value offer</li>
+        <li><strong>Additional Benefits:</strong> Lifetime free web hosting, job placement guarantee, and ongoing support</li>
     </ul>
-    <p><em>The Champions Mentorship Program is loved by thousands of students and is recommended for creative students.</em></p>
+    <p><em>The Champion Program is highly recommended and loved by our student community for its comprehensive benefits and lifetime support.</em></p>
 </div>`);
             
             // Show appropriate buttons based on appointment status
@@ -542,15 +548,16 @@ Would you like to know more about a specific package or book an appointment?`);
             showSuggestedButtons(buttons);
         }
         else if (selection.toLowerCase().includes("duration") || selection.toLowerCase().includes("how long")) {
-            addBotMessage(`Our mentorship programs are flexible in duration:
+            addBotMessage(`Our mentorship programs offer flexible durations based on your commitment level and learning pace:
 
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Short-term</strong>: 1-month program for specific skill development</li>
-    <li><strong>Standard</strong>: 3-month program for comprehensive learning</li>
-    <li><strong>Extended</strong>: 6-month program for in-depth mastery</li>
+    <li><strong>Accelerated Program:</strong> Complete core skills in 4-6 weeks with intensive 3-4 hour daily sessions</li>
+    <li><strong>Standard Program (2-Month):</strong> Comprehensive learning in 2 months with balanced daily sessions</li>
+    <li><strong>Flexible Champion Program:</strong> Learn at your own pace with 1-on-1 sessions adapted to your schedule</li>
+    <li><strong>Extended Support:</strong> Continue with our mentor beyond the program for advanced training</li>
 </ol>
 
-You can always extend your mentorship period if needed.`);
+All programs include lifetime access to course materials and lifetime support from your mentor. You can always extend your mentorship period or add advanced modules as needed.`);
             
             // Show appropriate buttons based on appointment status
             let buttons = [];
@@ -951,20 +958,20 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to suggest Champion Mentorship Program
     function suggestChampionMentorshipProgram() {
-        addBotMessage(`If you have a creative mindset then I would recommend ap Champion Mentorship Program join kar lien.`);
+        addBotMessage(`If you have a creative mindset and serious about your career growth, I recommend the Champion Mentorship Program.`);
         
         // Add detailed benefits after a short delay
         setTimeout(() => {
             addBotMessage(`By Joining Champion Mentorship Program (CMP), You'll Get:
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li>Lifetime FREE web hosting with SSL (SAVE up to Rs. 18000 per year) and FREE subdomain for unlimited websites (First time in the history of tech education).</li>
-    <li>No need to pay any e-commerce platform fees (SAVE $25/month or $300/year or Rs. 85,000 per year).</li>
-    <li>More comprehensive and detailed learning experience and extra features than 2 and 6 months mentorship program.</li>
+    <li>Lifetime FREE web hosting with SSL (SAVE up to Rs. 18,000 per year) and FREE subdomain for unlimited websites.</li>
+    <li>No e-commerce platform fees required (SAVE $25/month or $300/year or Rs. 85,000 per year).</li>
+    <li>Comprehensive and detailed learning experience with advanced features and practical applications.</li>
     <li>100% guaranteed job placement in our digital marketing company at <a href="https://marketoze.dilawarpro.com">Marketoze</a></li>
-    <li>Optional courses (Digital Marketing or Domain Flipping) and YouTube Automation Included for FREE</li>
-    <li>Lifetime FREE personalized special students support by the Mentor</li>
-    <li>1-on-1 classes and flexible classes timing</li>
-    <li>All the modules listed on our website at mentorship.dilawarpro.com and much more...</li>
+    <li>Optional courses (Digital Marketing or Domain Flipping) and YouTube Automation included for FREE.</li>
+    <li>Lifetime personalized support from your mentor.</li>
+    <li>1-on-1 classes with flexible timing to fit your schedule.</li>
+    <li>Real-world projects and practical hands-on training with all modules covered on our website.</li>
 </ol>
 
 <p><strong>Fee Structure:</strong></p>
@@ -972,14 +979,14 @@ First, I'll need your email address to send you confirmation details.`);
     <li>Class Days: Flexible</li>
     <li>Est. Duration: Less than 2 Months</li>
     <li>Registration Fee: Rs. 5,000</li>
-    <li>Champions mentorship program actual fee: Rs. 35,000</li>
-    <li>Fee after a final discount: Rs. 25,000 ($90) one-time payment</li>
+    <li>Champions mentorship program fee: Rs. 35,000</li>
+    <li>Fee after discount: Rs. 25,000 ($90) one-time payment</li>
 </ul>
-<p><em>The Champions Mentorship Program is loved by thousands of students and is recommended for creative students.</em></p>`);
+<p><em>The Champions Mentorship Program is loved by thousands of students worldwide.</em></p>`);
             
             // Add final message after a longer delay
             setTimeout(() => {
-                addBotMessage(`We are 100% sure agar ap mehnat karty hain to first module complete hoty he apki income start ho jayegi because apko sab kuch step-by-step practically and strategically guide kiya jayega.`);
+                addBotMessage(`We are confident that with consistent effort on your part, you'll start generating income right after completing the first module. You'll receive step-by-step guidance and strategic direction throughout your learning journey.`);
                 
                 // Show booking options
                 showSuggestedButtons([
@@ -995,28 +1002,25 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`${chatbotState.userName} ap is mentorship ko befikar ho k join kar sakty hain. This mentorship will not disappoint you at any cost because we really understand k ap kitni mushkil sy fee pay kariengy.`);
+        addBotMessage(`${chatbotState.userName}, you can join this mentorship with complete confidence. This program is designed to deliver real value and will not disappoint you because we understand the investment you're making.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
-            addBotMessage(`Jo value aur quality content apko is mentorship program main mil sakta hy wo koi aur nhi dy sakta not even YouTube and other cheap courses that are available in the market.`);
+            addBotMessage(`The quality of content and practical guidance you'll receive in this mentorship program is unmatched. You won't find this level of detail and hands-on training anywhere else, not even on YouTube or other affordable courses available in the market.`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Agar ap mehnat karty hain to ap hamary digital marketing company main as a Senior Developer, SEO Expert, SMM Specialist or as a Mentor bhi ghar baith k kaam kar sakty hain and we'll pay you for it!`);
+                addBotMessage(`Once you complete this program and master the skills, you have the opportunity to work with our digital marketing company as a Senior Developer, SEO Expert, SMM Specialist, or even as a Mentor from the comfort of your home - and we'll pay you for it!`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`Aap pehlay website sy details check kar k appointment book karwa lien and we'll schedule 1-1 meeting for you with your mentor then decide apko join karna chahiye ya nhi.`);
+                    addBotMessage(`I recommend reviewing all the course details on our website first, then booking a 1-on-1 meeting with your potential mentor. This way, you can make an informed decision about whether this program is right for you.`);
                     
                             
-                            // Sixth delay - 5 seconds
+                            // Fourth delay - 5 seconds
                             setTimeout(() => {
-                                addBotMessage(`Agar mentorship complete karny ke baad aapko projects nahi milte ya aapki income start nahi hoti to apki total fee wapas kar di jayegi apko.`);
-                            // Add more Auto replies
-                            // setTimeout(() => {
-                            //     addBotMessage(``);
-                                
+                                addBotMessage(`Here's our commitment to you: If you don't achieve the promised results or your income doesn't start within the program timeline, we'll refund your complete program fee with no questions asked.`);
+                            
                                 // Ask if user has read website details instead of showing menu options
                                 setTimeout(() => {
                                     askAboutWebsiteReading();
@@ -1032,34 +1036,34 @@ First, I'll need your email address to send you confirmation details.`);
     // Function to ask if user has read website details
     function askAboutWebsiteReading() {
         chatbotState.currentStep = 'website_reading';
-        addBotMessage(`${chatbotState.userName}, have you read all the details from our website completely?`);
-        showSuggestedButtons(["Yes, I've read everything", "No, I haven't read everything yet"]);
+        addBotMessage(`${chatbotState.userName}, have you reviewed all the course details and modules on our website?`);
+        showSuggestedButtons(["Yes, I've reviewed everything", "No, I need more time to review"]);
     }
 
     // Function to handle response about website reading
     function handleWebsiteReadingResponse(response) {
         if (response.toLowerCase().includes("yes")) {
             // User has read the website - ask which program they want to join
-            addBotMessage(`Great! Which mentorship program would you like to join?`);
+            addBotMessage(`Excellent! Which mentorship program would you like to enroll in?`);
             
             // Add a delay before showing the options
             setTimeout(() => {
-                addBotMessage(`You can join the following mentorship programs:
+                addBotMessage(`Here are our available mentorship programs:
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Service-based mentorship</strong> to get guaranteed clients and projects (if you already have a skill)</li>
-    <li><strong>Starter mentorship program</strong> (Web programming, SEO + SMM)</li>
-    <li><strong>2 months mentorship program</strong></li>
-    <li><strong>Champion mentorship program</strong> (Recommended)</li>
+    <li><strong>Service-Based Mentorship</strong> - Perfect if you already have a skill and want to start earning from clients.</li>
+    <li><strong>Starter Program</strong> - Covers Web Programming, SEO & Social Media Marketing fundamentals.</li>
+    <li><strong>2-Month Intensive Program</strong> - Comprehensive training with intensive support.</li>
+    <li><strong>Champion Program</strong> - Our most comprehensive program with lifetime benefits (Highly Recommended).</li>
 </ol>
 
-You've multiple options to choose but hamara sab sy best package champions mentorship program hy`);
+The Champion Program is our most popular choice for students serious about building a sustainable digital career.`);
                 
                 // Show buttons for each program
                 showSuggestedButtons([
-                    "Service-based mentorship",
-                    "Starter mentorship program",
-                    "2 months mentorship program",
-                    "Champion mentorship program (Recommended)",
+                    "Service-Based Mentorship",
+                    "Starter Program",
+                    "2-Month Intensive Program",
+                    "Champion Program (Recommended)",
                     "Registration Process",
                     "Payment Methods"
                 ]);
@@ -1068,7 +1072,7 @@ You've multiple options to choose but hamara sab sy best package champions mento
             chatbotState.currentStep = 'menu';
         } else {
             // User hasn't read the website
-            addBotMessage(`I recommend reading all the details on our website first at mentorship.dilawarpro.com to better understand our programs. Once you've done that, come back here and we can proceed with selecting a mentorship program.`);
+            addBotMessage(`I understand. I recommend spending some time reviewing all the course details on our website at mentorship.dilawarpro.com. This will help you understand the complete curriculum, modules, and what to expect from each program.`);
             
             // Show menu options
             setTimeout(() => {
@@ -1079,7 +1083,7 @@ You've multiple options to choose but hamara sab sy best package champions mento
                     "Where are you located?",
                     "What are the fees?",
                     "How long is the mentorship?",
-                    "I've read the website now"
+                    "I've reviewed the website now"
                 ];
                 
                 showSuggestedButtons(menuOptions);
@@ -1116,15 +1120,32 @@ You've multiple options to choose but hamara sab sy best package champions mento
     function showPaymentMethods() {
         addBotMessage(`<strong>Payment Methods for Mentorship Program</strong>
 
-<p><strong>Bank Name:</strong> United Bank Limited (UBL)</p>
-<p><strong>Account Title:</strong> DILAWAR KHAN</p>
-<p><strong>IBAN:</strong> PK66UNIL0109000285863354</p>
-<p><strong>Account Number:</strong> 0443285863354</p>
+We offer multiple convenient payment options to make it easy for you to enroll:
 
-<p><strong>EasyPaisa/JazzCash:</strong> 03104212713</p>
-<p><strong>Account Title:</strong> DILAWAR KHAN</p>
+<p><strong>Bank Transfer (Pakistan):</strong></p>
+<ul style="margin-left: 20px; padding-left: 10px;">
+    <li><strong>Bank Name:</strong> United Bank Limited (UBL)</li>
+    <li><strong>Account Title:</strong> DILAWAR KHAN</li>
+    <li><strong>IBAN:</strong> PK66UNIL0109000285863354</li>
+    <li><strong>Account Number:</strong> 0443285863354</li>
+</ul>
 
-<p><em>After payment, send invoice or screenshot of your payment then we'll send you a receipt of your payment after verification within few minutes.</em></p>`);
+<p><strong>Mobile Payment (Pakistan):</strong></p>
+<ul style="margin-left: 20px; padding-left: 10px;">
+    <li><strong>EasyPaisa/JazzCash:</strong> 03104212713</li>
+    <li><strong>Account Title:</strong> DILAWAR KHAN</li>
+</ul>
+
+<p><strong>Payment Process:</strong></p>
+<ol style="margin-left: 20px; padding-left: 10px;">
+    <li>Choose your preferred payment method above</li>
+    <li>Send your payment with a screenshot or invoice</li>
+    <li>We'll verify your payment within a few minutes</li>
+    <li>You'll receive a receipt and enrollment confirmation</li>
+    <li>Your program will be activated immediately</li>
+</ol>
+
+<p><em>If you need international payment options or have questions about payment, please contact us via WhatsApp or email.</em></p>`);
 
         // Show appropriate buttons
         setTimeout(() => {
@@ -1139,17 +1160,26 @@ You've multiple options to choose but hamara sab sy best package champions mento
 
     // Add a new function to display registration process
     function showRegistrationProcess() {
-        addBotMessage(`<strong>Registration Process</strong>
+        addBotMessage(`<strong>Student Registration Process</strong>
         
-<p>We have a simple and easy 3-step registration process. Please follow the steps below to get registered:</p>
+Getting started with our mentorship program is simple and straightforward:
 
 <ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Step 01:</strong> Submit your complete details, including your full name, father's name, email address, city, and WhatsApp number.</li>
-    <li><strong>Step 02:</strong> Join without risk! Just pay your registration and start taking classes. If you're not satisfied in the first 7 days, we'll refund your registration fee.</li>
-    <li><strong>Step 03:</strong> If you're satisfied with the mentorship program, you can pay the remaining fee in installments or one-time only.</li>
+    <li><strong>Step 1 - Complete Registration:</strong> Fill out your complete information including full name, contact details, email address, city, and WhatsApp number.</li>
+    <li><strong>Step 2 - Make Your First Payment:</strong> Start risk-free! Pay only your registration fee (Rs. 5,000) to begin the program. If you're not satisfied within the first 7 days, we'll refund your fee without any questions.</li>
+    <li><strong>Step 3 - Begin Your Journey:</strong> Start attending classes and begin learning. After the first week, if you're happy with the program, pay the remaining program fee either in installments or as a one-time payment.</li>
 </ol>
 
-<p><strong>Important Note:</strong> You can get a full easy and guaranteed refund within 7 days if not interested.</p>`);
+<p><strong>Important Benefits:</strong></p>
+<ul style="margin-left: 20px; padding-left: 10px;">
+    <li>7-day money-back guarantee with no questions asked</li>
+    <li>Flexible payment options (one-time or installments)</li>
+    <li>Immediate access to all course materials and mentorship</li>
+    <li>Lifetime support from your mentor</li>
+    <li>Start earning during or immediately after the program</li>
+</ul>
+
+<p><em>Our goal is your success, so we've made the enrollment process as simple and risk-free as possible.</em></p>`);
 
         // Show appropriate buttons
         setTimeout(() => {
