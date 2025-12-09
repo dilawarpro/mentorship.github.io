@@ -11,15 +11,25 @@
     }
   }
   
-  .modules{
-    background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-    color: white;
-    padding: 6px;
-    border-radius: 0px 8px 0px 8px;
-    box-shadow: rgb(71 9 245 / 35%) 0px 4px 16px;
-    font-size: 12px;
-    /* box-shadow: rgb(71 9 245 / 33%) 0px -6px 16px; */
-  }
+  .modules {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0, 221, 255, 0.3);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  margin-bottom: 1rem;
+}
+
+.modules:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 221, 255, 0.4);
+}
   .choice{
     margin: -10px auto 10px auto;
     background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
