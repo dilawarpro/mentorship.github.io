@@ -8,7 +8,7 @@ const CORE_ASSETS = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpeg",
+  "/dilawarmentorship.jpg",
   "/manifest.json"
 ];
 
@@ -121,8 +121,8 @@ self.addEventListener("push", event => {
   const title = data.title || "New Notification";
   const options = {
     body: data.body || "You have a new message.",
-    icon: data.icon || "/dilawarmentorship.jpeg",
-    badge: data.badge || "/dilawarmentorship.jpeg",
+    icon: data.icon || "/dilawarmentorship.jpg",
+    badge: data.badge || "/dilawarmentorship.jpg",
     data: data.url || "/",
     vibrate: [100, 50, 100],
     requireInteraction: true
