@@ -1,4 +1,4 @@
-dilawarmentorship.jpgconst CACHE_VERSION = 'v8'; // <-- Always increment on update
+const CACHE_VERSION = 'v8'; // <-- Always increment on update
 const STATIC_CACHE = `static-cache-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-cache-${CACHE_VERSION}`;
 
