@@ -25,9 +25,12 @@
   }
   </script>
   <!-- Added Google Fonts -->
-<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
@@ -254,38 +257,1412 @@ td {
   });
 </script>
 <!--   Ended Preloader -->
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-                <div class="card course-card" style="padding: 8px;">
-                  <div class="container" style="margin-top: 75px;">
-<center><div class="rainbow">
-</div>
-</center>
-                    <h1 class="text-center" style="margin-top: -38px; font-size: 24px; font-weight: bold;">
-                   Mentorship By Dilawar | Practical Full-stack AI Digital Marketing Mentorship.
-  <span style="vertical-align: middle; margin-left: 2px;">
-    <img src="twitter-verified-seeklogo.com.svg" width="30px" alt="Verified">
-  </span>
-</h1>
-                      <img src="mentoring.webp" alt="Mentorship By Dilawar" style="
-    width: 100%;
-    margin-bottom: 15px;
-"><hr>
-          <h2 style="font-weight: bold;">❌ Stop Wasting your Time and Efforts on Fake Gurus and Scam Courses</h2>
-                <p class="p-justify">
-                  Are you unemployed, confused, frustrated and tired of fake gurus and scam courses? Join Mentorship By Dilawar and become a <strong>Full-stack AI Digital Marketing</strong> Expert from the comfort of your home. <a href="appointment.html">Book your FREE appointment NOW</a>.
-                 <h2 style="font-weight: bold;">👨🏻‍💻 Start your High Profile Full-stack AI Digital Career TODAY</h2>
-              <p class="p-justify">
-                No tech degree? No Problem! Your high profile Full-stack AI Digital Marketing starts with Mentorship By Dilawar, trusted by 5,000+ students worldwide. From total beginners to earning professionals, this mentorship has turned dreams into successful digital careers.
-                </p>
-                  <h2 style="font-weight: bold;">💸 0 to 6-Figures income challenge in 30 Days</h2>
-                <p class="p-justify">
-                   Join us today and start your exciting and successful Full-stack AI Digital Marketing career TODAY with an <a href="https://dilawarpro.com">Industry-Expert Mentor</a> and start a 30-day challenge to make a 6-figures income per month with proven, smart and pro strategies. We'll not left you alone in your struggling days or whenever you are stucked. 
-              </p>
-             <h2 style="font-weight: bold;">✅ Join Risk-Free with Our 7-Day Return Policy</h2>
-              <p class="p-justify">
-                We deliver pure value with real results that's why we offer no full advance payment policy. Join first and pay later only if you truly find value and love this mentorship.
-              <a href="https://dilawarpro.com">
+
+<style>
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #5b21b6;
+      --primary-light: #f5f3ff;
+      --accent: #f59e0b;
+      --accent-light: #fffbeb;
+      --cyan: #06b6d4;
+      --cyan-light: #ecfeff;
+      --dark: #0f172a;
+      --dark-secondary: #1e293b;
+      --gray: #64748b;
+      --gray-light: #94a3b8;
+      --light-bg: #faf8ff;
+      --white: #ffffff;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --rose: #f43f5e;
+      --rose-light: #fff1f2;
+      --blue: #3b82f6;
+      --blue-light: #eff6ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+    }
+
+    /* =============================
+       MENTORSHIP TRUST SECTION
+    ============================= */
+    .mentor-trust {
+      background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 50%, var(--white) 100%);
+      padding: 100px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative Elements */
+    .mentor-trust .deco-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(124, 58, 237, 0.03) 1px, transparent 0);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .mentor-trust .deco-blob-1 {
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .mentor-trust .deco-blob-2 {
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .mentor-trust .deco-blob-3 {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.03) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---- Mentor Badge ---- */
+    .mentor-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      text-transform: uppercase;
+    }
+
+    .mentor-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+
+    /* ---- Heading ---- */
+    .mentor-heading {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+
+    .mentor-heading .grad-text {
+      background: linear-gradient(135deg, var(--primary), #a855f7, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mentor-heading .underline-accent {
+      position: relative;
+      display: inline-block;
+    }
+
+    .mentor-heading .underline-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(245, 158, 11, 0.25);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .mentor-sub {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin: 0 auto 22px;
+      line-height: 1.8;
+    }
+
+    .mentor-sub strong {
+      color: var(--dark-secondary);
+    }
+
+    /* Mentor intro line */
+    .mentor-intro {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      padding: 10px 24px 10px 10px;
+      border-radius: 60px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      margin-bottom: 50px;
+    }
+
+    .mentor-intro .mentor-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--white);
+    }
+
+    .mentor-intro .mentor-info .m-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--dark);
+    }
+
+    .mentor-intro .mentor-info .m-title {
+      font-size: 0.73rem;
+      color: var(--gray);
+    }
+
+    .mentor-intro .verified-badge {
+      background: var(--success-light);
+      color: var(--success);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* =============================
+       STATS CARDS
+    ============================= */
+    .stat-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card .card-glow {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .stat-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.1);
+      border-color: rgba(124, 58, 237, 0.12);
+    }
+
+    .stat-card .s-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+    }
+
+    .stat-card .s-icon.ic-purple { background: var(--primary-light); color: var(--primary); }
+    .stat-card .s-icon.ic-amber  { background: var(--accent-light); color: var(--accent); }
+    .stat-card .s-icon.ic-cyan   { background: var(--cyan-light); color: var(--cyan); }
+    .stat-card .s-icon.ic-green  { background: var(--success-light); color: var(--success); }
+    .stat-card .s-icon.ic-rose   { background: var(--rose-light); color: var(--rose); }
+    .stat-card .s-icon.ic-blue   { background: var(--blue-light); color: var(--blue); }
+
+    .stat-card .s-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .s-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* =============================
+       WHAT YOU'LL MASTER
+    ============================= */
+    .skills-section {
+      margin-top: 60px;
+      margin-bottom: 55px;
+    }
+
+    .skills-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--dark-secondary);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .skill-chip .ai-tag {
+      background: linear-gradient(135deg, var(--primary), #a855f7);
+      color: white;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-chip i {
+      font-size: 0.95rem;
+    }
+
+    /* =============================
+       STUDENT SUCCESS MARQUEE
+    ============================= */
+    .marquee-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gray-light);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 25px;
+    }
+
+    .marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+      padding: 16px 0;
+      margin-bottom: 15px;
+    }
+
+    .marquee-wrapper::before,
+    .marquee-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 140px;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--light-bg), transparent);
+    }
+
+    .marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--light-bg), transparent);
+    }
+
+    .marquee-row {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      width: max-content;
+    }
+
+    .marquee-row.scroll-left {
+      animation: scrollLeft 35s linear infinite;
+    }
+
+    .marquee-row.scroll-right {
+      animation: scrollRight 35s linear infinite;
+    }
+
+    .marquee-row:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scrollRight {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .student-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      min-width: 280px;
+    }
+
+    .student-card:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      border-color: rgba(124, 58, 237, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .student-card .sc-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .student-card .sc-info .sc-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--dark);
+    }
+
+    .student-card .sc-info .sc-role {
+      font-size: 0.72rem;
+      color: var(--gray-light);
+    }
+
+    .student-card .sc-result {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .student-card .sc-result .result-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    .student-card .sc-result .result-label {
+      font-size: 0.65rem;
+      color: var(--gray-light);
+    }
+
+    /* =============================
+       TESTIMONIALS
+    ============================= */
+    .review-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: all 0.35s ease;
+      height: 100%;
+      position: relative;
+    }
+
+    .review-card .quote-icon {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-size: 2.5rem;
+      color: rgba(124, 58, 237, 0.06);
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.08);
+    }
+
+    .review-card .stars {
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .review-card .outcome-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .outcome-badge.earning {
+      background: var(--success-light);
+      color: #059669;
+    }
+
+    .outcome-badge.career {
+      background: var(--blue-light);
+      color: #2563eb;
+    }
+
+    .outcome-badge.growth {
+      background: var(--accent-light);
+      color: #d97706;
+    }
+
+    .review-card .review-text {
+      font-size: 0.93rem;
+      color: var(--gray);
+      line-height: 1.78;
+      margin-bottom: 22px;
+    }
+
+    .review-card .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-card .reviewer .r-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .review-card .reviewer .r-info .r-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--dark);
+    }
+
+    .review-card .reviewer .r-info .r-detail {
+      font-size: 0.76rem;
+      color: var(--gray-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .review-card .before-after {
+      margin-top: 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .review-card .before-after .ba-tag {
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .ba-tag.before {
+      background: var(--rose-light);
+      color: var(--rose);
+    }
+
+    .ba-tag.after {
+      background: var(--success-light);
+      color: var(--success);
+    }
+
+    /* =============================
+       PLATFORMS & TOOLS
+    ============================= */
+    .tools-section {
+      margin-top: 55px;
+      margin-bottom: 55px;
+      text-align: center;
+    }
+
+    .tools-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark-secondary);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+    }
+
+    .tool-badge:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+    }
+
+    .tool-badge i {
+      font-size: 1rem;
+    }
+
+    /* =============================
+       BOTTOM CTA
+    ============================= */
+    .cta-bottom {
+      margin-top: 60px;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a103d 50%, var(--primary-dark) 100%);
+      border-radius: 24px;
+      padding: 50px 45px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bottom .cta-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .cta-bottom .cta-glow-1 {
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-bottom .cta-glow-2 {
+      position: absolute;
+      bottom: -50px;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content .cta-avatars {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .cta-content .cta-avatars .ca {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid rgba(26, 16, 61, 0.8);
+      margin-left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: white;
+    }
+
+    .cta-content .cta-avatars .ca:first-child { margin-left: 0; }
+
+    .cta-content .cta-avatars .ca-more {
+      background: var(--primary);
+      font-size: 0.6rem;
+    }
+
+    .cta-content .cta-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .cta-content .cta-live .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+      animation: pulse 1.5s infinite;
+    }
+
+    .cta-content h3 {
+      color: var(--white);
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-content h3 .cta-highlight {
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-content .cta-desc {
+      color: var(--gray-light);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .cta-content .cta-rating {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      margin-bottom: 28px;
+    }
+
+    .cta-content .cta-rating .star-color {
+      color: var(--accent);
+    }
+
+    .cta-content .cta-rating strong {
+      color: white;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .btn-mentor {
+      padding: 15px 34px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-mentor.btn-gold {
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      color: var(--dark);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-mentor.btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+      color: var(--dark);
+    }
+
+    .btn-mentor.btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-mentor.btn-ghost:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .cta-features {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-features .cf-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .cta-features .cf-item i {
+      color: var(--success);
+      font-size: 0.85rem;
+    }
+
+    /* =============================
+       RESPONSIVE
+    ============================= */
+    @media (max-width: 991px) {
+      .mentor-heading { font-size: 2.1rem; }
+      .cta-content h3 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 767px) {
+      .mentor-trust { padding: 60px 0 50px; }
+      .mentor-heading { font-size: 1.65rem; }
+      .mentor-sub { font-size: 0.95rem; }
+      .stat-card { margin-bottom: 12px; }
+      .review-card { margin-bottom: 16px; }
+      .cta-bottom { padding: 35px 22px; border-radius: 18px; }
+      .cta-content h3 { font-size: 1.3rem; }
+      .mentor-intro { flex-wrap: wrap; justify-content: center; gap: 8px; }
+      .skill-chip { font-size: 0.78rem; padding: 8px 14px; }
+    }
+  </style>
+  <section class="mentor-trust">
+
+  <!-- Decorative Elements -->
+  <div class="deco-grid"></div>
+  <div class="deco-blob-1"></div>
+  <div class="deco-blob-2"></div>
+  <div class="deco-blob-3"></div>
+
+  <div class="container section-content">
+
+    <!-- ---- Header ---- -->
+    <div class="text-center">
+      <div class="mentor-badge">
+        <span class="pulse-dot"></span>
+        Full-Stack AI Digital Marketing Mentorship
+      </div>
+
+      <h2 class="mentor-heading">
+        Trusted by <span class="grad-text">5,200+ Students</span><br>
+        to Build <span class="underline-accent">Real Careers</span> in Digital Marketing
+      </h2>
+
+      <p class="mentor-sub">
+        Learn <strong>AI-powered digital marketing</strong> from scratch to advanced —
+        SEO, Ads, Social Media, Content, Analytics & more — with
+        <strong>hands-on mentorship by Dilawar</strong>.
+      </p>
+
+      <!-- Mentor Intro Pill -->
+      <div class="mentor-intro">
+        <div class="mentor-avatar">D</div>
+        <div class="mentor-info text-start">
+          <div class="m-name">Dilawar</div>
+          <div class="m-title">Full-Stack AI Digital Marketing Mentor</div>
+        </div>
+        <div class="verified-badge">
+          <i class="bi bi-patch-check-fill"></i> Verified Mentor
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Stats ---- -->
+    <div class="row g-3 justify-content-center">
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(124,58,237,0.1), transparent);"></div>
+          <div class="s-icon ic-purple"><i class="bi bi-people-fill"></i></div>
+          <div class="s-number">5.2K+</div>
+          <div class="s-label">Students Mentored</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(245,158,11,0.1), transparent);"></div>
+          <div class="s-icon ic-amber"><i class="bi bi-star-fill"></i></div>
+          <div class="s-number">4.9/5</div>
+          <div class="s-label">Average Rating</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(16,185,129,0.1), transparent);"></div>
+          <div class="s-icon ic-green"><i class="bi bi-briefcase-fill"></i></div>
+          <div class="s-number">93%</div>
+          <div class="s-label">Placement Rate</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(6,182,212,0.1), transparent);"></div>
+          <div class="s-icon ic-cyan"><i class="bi bi-globe2"></i></div>
+          <div class="s-number">35+</div>
+          <div class="s-label">Countries</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(244,63,94,0.1), transparent);"></div>
+          <div class="s-icon ic-rose"><i class="bi bi-rocket-takeoff-fill"></i></div>
+          <div class="s-number">780+</div>
+          <div class="s-label">Freelancers Launched</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-card">
+          <div class="card-glow" style="background: radial-gradient(circle, rgba(59,130,246,0.1), transparent);"></div>
+          <div class="s-icon ic-blue"><i class="bi bi-play-btn-fill"></i></div>
+          <div class="s-number">200+</div>
+          <div class="s-label">Hours of Content</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Skills You'll Master ---- -->
+    <div class="skills-section text-center">
+      <p class="skills-label">What you'll master in this mentorship</p>
+      <div class="skills-grid">
+        <span class="skill-chip"><i class="bi bi-search"></i> SEO & Technical SEO <span class="ai-tag">AI</span></span>
+        <span class="skill-chip"><i class="bi bi-megaphone-fill"></i> Google Ads & PPC</span>
+        <span class="skill-chip"><i class="bi bi-facebook"></i> Meta / Facebook Ads</span>
+        <span class="skill-chip"><i class="bi bi-camera-reels-fill"></i> Social Media Marketing</span>
+        <span class="skill-chip"><i class="bi bi-pencil-square"></i> AI Content Writing <span class="ai-tag">AI</span></span>
+        <span class="skill-chip"><i class="bi bi-envelope-fill"></i> Email Marketing</span>
+        <span class="skill-chip"><i class="bi bi-bar-chart-fill"></i> Analytics & Data <span class="ai-tag">AI</span></span>
+        <span class="skill-chip"><i class="bi bi-wordpress"></i> WordPress & Funnels</span>
+        <span class="skill-chip"><i class="bi bi-robot"></i> AI Automation <span class="ai-tag">AI</span></span>
+        <span class="skill-chip"><i class="bi bi-tiktok"></i> Short-Form Video</span>
+        <span class="skill-chip"><i class="bi bi-palette-fill"></i> Canva & Design</span>
+        <span class="skill-chip"><i class="bi bi-chat-dots-fill"></i> ChatGPT for Marketing <span class="ai-tag">AI</span></span>
+        <span class="skill-chip"><i class="bi bi-cart-fill"></i> E-Commerce Marketing</span>
+        <span class="skill-chip"><i class="bi bi-geo-alt-fill"></i> Local SEO & GMB</span>
+      </div>
+    </div>
+
+    <!-- ---- Student Success Marquee ---- -->
+    <div class="text-center">
+      <p class="marquee-label">Student success stories</p>
+    </div>
+
+    <!-- Row 1 - Scroll Left -->
+    <div class="marquee-wrapper">
+      <div class="marquee-row scroll-left">
+        <!-- SET 1 -->
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">AH</div>
+          <div class="sc-info">
+            <div class="sc-name">Ayesha Hussain</div>
+            <div class="sc-role">Freelancer → Agency Owner</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$4.2K/mo</div>
+            <div class="result-label">Revenue</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">JR</div>
+          <div class="sc-info">
+            <div class="sc-name">James Rodriguez</div>
+            <div class="sc-role">Career Switcher → SEO Lead</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$72K/yr</div>
+            <div class="result-label">Salary</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">PK</div>
+          <div class="sc-info">
+            <div class="sc-name">Priya Kapoor</div>
+            <div class="sc-role">Student → Digital Marketer</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">Placed</div>
+            <div class="result-label">in 45 days</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #ea580c, #f97316);">MO</div>
+          <div class="sc-info">
+            <div class="sc-name">Mohamed Osman</div>
+            <div class="sc-role">0 to Freelance in 60 days</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$2.8K/mo</div>
+            <div class="result-label">Freelance</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #d946ef, #e879f9);">SK</div>
+          <div class="sc-info">
+            <div class="sc-name">Sofia Kim</div>
+            <div class="sc-role">Housewife → Ads Specialist</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$3.5K/mo</div>
+            <div class="result-label">Income</div>
+          </div>
+        </div>
+
+        <!-- SET 2 (Duplicate) -->
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">AH</div>
+          <div class="sc-info">
+            <div class="sc-name">Ayesha Hussain</div>
+            <div class="sc-role">Freelancer → Agency Owner</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$4.2K/mo</div>
+            <div class="result-label">Revenue</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">JR</div>
+          <div class="sc-info">
+            <div class="sc-name">James Rodriguez</div>
+            <div class="sc-role">Career Switcher → SEO Lead</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$72K/yr</div>
+            <div class="result-label">Salary</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">PK</div>
+          <div class="sc-info">
+            <div class="sc-name">Priya Kapoor</div>
+            <div class="sc-role">Student → Digital Marketer</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">Placed</div>
+            <div class="result-label">in 45 days</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #ea580c, #f97316);">MO</div>
+          <div class="sc-info">
+            <div class="sc-name">Mohamed Osman</div>
+            <div class="sc-role">0 to Freelance in 60 days</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$2.8K/mo</div>
+            <div class="result-label">Freelance</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #d946ef, #e879f9);">SK</div>
+          <div class="sc-info">
+            <div class="sc-name">Sofia Kim</div>
+            <div class="sc-role">Housewife → Ads Specialist</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$3.5K/mo</div>
+            <div class="result-label">Income</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 - Scroll Right -->
+    <div class="marquee-wrapper">
+      <div class="marquee-row scroll-right">
+        <!-- SET 1 -->
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #dc2626, #ef4444);">TA</div>
+          <div class="sc-info">
+            <div class="sc-name">Tariq Ali</div>
+            <div class="sc-role">Teacher → Content Marketer</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$55K/yr</div>
+            <div class="result-label">New Career</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">LM</div>
+          <div class="sc-info">
+            <div class="sc-name">Laura Mitchell</div>
+            <div class="sc-role">Startup Founder → 10x Growth</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">10x ROI</div>
+            <div class="result-label">Ad Spend</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #16a34a, #22c55e);">RV</div>
+          <div class="sc-info">
+            <div class="sc-name">Rahul Verma</div>
+            <div class="sc-role">Graduate → Remote Job (UK)</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">£48K/yr</div>
+            <div class="result-label">Remote</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #7c3aed, #6366f1);">NB</div>
+          <div class="sc-info">
+            <div class="sc-name">Nadia Bakri</div>
+            <div class="sc-role">0 Skills → Upwork Top Rated</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">Top Rated</div>
+            <div class="result-label">Upwork</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">CT</div>
+          <div class="sc-info">
+            <div class="sc-name">Chris Thompson</div>
+            <div class="sc-role">Retail → E-Commerce Expert</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$6.1K/mo</div>
+            <div class="result-label">Revenue</div>
+          </div>
+        </div>
+
+        <!-- SET 2 (Duplicate) -->
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #dc2626, #ef4444);">TA</div>
+          <div class="sc-info">
+            <div class="sc-name">Tariq Ali</div>
+            <div class="sc-role">Teacher → Content Marketer</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$55K/yr</div>
+            <div class="result-label">New Career</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">LM</div>
+          <div class="sc-info">
+            <div class="sc-name">Laura Mitchell</div>
+            <div class="sc-role">Startup Founder → 10x Growth</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">10x ROI</div>
+            <div class="result-label">Ad Spend</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #16a34a, #22c55e);">RV</div>
+          <div class="sc-info">
+            <div class="sc-name">Rahul Verma</div>
+            <div class="sc-role">Graduate → Remote Job (UK)</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">£48K/yr</div>
+            <div class="result-label">Remote</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #7c3aed, #6366f1);">NB</div>
+          <div class="sc-info">
+            <div class="sc-name">Nadia Bakri</div>
+            <div class="sc-role">0 Skills → Upwork Top Rated</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">Top Rated</div>
+            <div class="result-label">Upwork</div>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="sc-avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">CT</div>
+          <div class="sc-info">
+            <div class="sc-name">Chris Thompson</div>
+            <div class="sc-role">Retail → E-Commerce Expert</div>
+          </div>
+          <div class="sc-result">
+            <div class="result-num">$6.1K/mo</div>
+            <div class="result-label">Revenue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Testimonials ---- -->
+    <div class="row g-4 mt-3">
+
+      <!-- Testimonial 1 -->
+      <div class="col-md-4">
+        <div class="review-card">
+          <i class="bi bi-quote quote-icon"></i>
+          <div class="stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="outcome-badge earning">
+            <i class="bi bi-currency-dollar"></i> Earning $4.2K/month
+          </div>
+          <p class="review-text">
+            "I was a complete beginner — didn't even know what SEO meant. Dilawar's
+            mentorship changed everything. Within 4 months, I started my own agency
+            and now handle 8 clients. The AI tools he taught saved me hundreds of hours!"
+          </p>
+          <div class="reviewer">
+            <div class="r-avatar" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">AH</div>
+            <div class="r-info">
+              <div class="r-name">Ayesha Hussain</div>
+              <div class="r-detail"><i class="bi bi-geo-alt-fill"></i> Dubai, UAE • Agency Owner</div>
+            </div>
+          </div>
+          <div class="before-after">
+            <span class="ba-tag before">Before: Zero knowledge</span>
+            <span class="ba-tag after">After: Agency owner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-md-4">
+        <div class="review-card">
+          <i class="bi bi-quote quote-icon"></i>
+          <div class="stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="outcome-badge career">
+            <i class="bi bi-briefcase-fill"></i> Landed $72K/yr job
+          </div>
+          <p class="review-text">
+            "I was stuck in a dead-end retail job. Dilawar's structured curriculum
+            and personal guidance helped me transition into digital marketing. Got hired
+            as an SEO Lead at a top agency within 3 months of completing the mentorship."
+          </p>
+          <div class="reviewer">
+            <div class="r-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">JR</div>
+            <div class="r-info">
+              <div class="r-name">James Rodriguez</div>
+              <div class="r-detail"><i class="bi bi-geo-alt-fill"></i> Austin, TX • SEO Lead</div>
+            </div>
+          </div>
+          <div class="before-after">
+            <span class="ba-tag before">Before: Retail worker</span>
+            <span class="ba-tag after">After: SEO Lead — $72K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-md-4">
+        <div class="review-card">
+          <i class="bi bi-quote quote-icon"></i>
+          <div class="stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="outcome-badge growth">
+            <i class="bi bi-graph-up-arrow"></i> 10x business growth
+          </div>
+          <p class="review-text">
+            "As a small business owner, I was wasting money on agencies. Dilawar taught me
+            how to run my own ads and do SEO with AI tools. My revenue went from $8K to
+            $85K/month. This mentorship pays for itself 100x over."
+          </p>
+          <div class="reviewer">
+            <div class="r-avatar" style="background: linear-gradient(135deg, #ea580c, #f97316);">SK</div>
+            <div class="r-info">
+              <div class="r-name">Samantha Kwon</div>
+              <div class="r-detail"><i class="bi bi-geo-alt-fill"></i> Toronto, CA • E-Commerce Owner</div>
+            </div>
+          </div>
+          <div class="before-after">
+            <span class="ba-tag before">Before: $8K/mo revenue</span>
+            <span class="ba-tag after">After: $85K/mo revenue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Tools & Platforms ---- -->
+    <div class="tools-section">
+      <p class="tools-label">AI Tools & platforms you'll master</p>
+      <div class="tools-row">
+        <div class="tool-badge"><i class="bi bi-robot"></i> ChatGPT</div>
+        <div class="tool-badge"><i class="bi bi-stars"></i> Jasper AI</div>
+        <div class="tool-badge"><i class="bi bi-search"></i> SEMrush</div>
+        <div class="tool-badge"><i class="bi bi-bar-chart-line-fill"></i> Google Analytics</div>
+        <div class="tool-badge"><i class="bi bi-megaphone-fill"></i> Google Ads</div>
+        <div class="tool-badge"><i class="bi bi-meta"></i> Meta Ads Manager</div>
+        <div class="tool-badge"><i class="bi bi-wordpress"></i> WordPress</div>
+        <div class="tool-badge"><i class="bi bi-palette-fill"></i> Canva</div>
+        <div class="tool-badge"><i class="bi bi-envelope-fill"></i> Mailchimp</div>
+        <div class="tool-badge"><i class="bi bi-lightning-fill"></i> Zapier</div>
+        <div class="tool-badge"><i class="bi bi-camera-video-fill"></i> CapCut</div>
+        <div class="tool-badge"><i class="bi bi-cpu-fill"></i> Midjourney</div>
+        <div class="tool-badge"><i class="bi bi-graph-up"></i> Ahrefs</div>
+        <div class="tool-badge"><i class="bi bi-funnel-fill"></i> ClickFunnels</div>
+      </div>
+    </div>
+
+    <!-- ---- Bottom CTA ---- -->
+    <div class="cta-bottom">
+      <div class="cta-pattern"></div>
+      <div class="cta-glow-1"></div>
+      <div class="cta-glow-2"></div>
+
+      <div class="cta-content text-center">
+
+        <div class="cta-avatars">
+          <div class="ca" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">AH</div>
+          <div class="ca" style="background: linear-gradient(135deg, #059669, #10b981);">JR</div>
+          <div class="ca" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">PK</div>
+          <div class="ca" style="background: linear-gradient(135deg, #ea580c, #f97316);">MO</div>
+          <div class="ca" style="background: linear-gradient(135deg, #d946ef, #e879f9);">SK</div>
+          <div class="ca" style="background: linear-gradient(135deg, #dc2626, #ef4444);">TA</div>
+          <div class="ca ca-more">5K+</div>
+        </div>
+
+        <div class="cta-live">
+          <span class="live-dot"></span>
+          LIMITED SPOTS — NEXT BATCH STARTING SOON
+        </div>
+
+        <h3>
+          Start Your <span class="cta-highlight">AI Digital Marketing</span><br>
+          Career with Dilawar Today
+        </h3>
+
+        <p class="cta-desc">
+          Join 5,200+ students who transformed their careers & income through mentorship.
+        </p>
+
+        <p class="cta-rating">
+          Rated <strong><span class="star-color">★★★★★</span> 4.9/5</strong> from 2,800+ student reviews
+        </p>
+
+        <div class="cta-btns">
+          <a href="#" class="btn-mentor btn-gold">
+            <i class="bi bi-rocket-takeoff-fill"></i> Enroll Now — Limited Seats
+          </a>
+          <a href="#" class="btn-mentor btn-ghost">
+            <i class="bi bi-calendar-check"></i> Book Free Discovery Call
+          </a>
+        </div>
+
+        <div class="cta-features">
+          <span class="cf-item"><i class="bi bi-check-circle-fill"></i> 1-on-1 Mentorship</span>
+          <span class="cf-item"><i class="bi bi-check-circle-fill"></i> Lifetime Access</span>
+          <span class="cf-item"><i class="bi bi-check-circle-fill"></i> Real Projects</span>
+          <span class="cf-item"><i class="bi bi-check-circle-fill"></i> Certificate</span>
+          <span class="cf-item"><i class="bi bi-check-circle-fill"></i> Job & Freelance Support</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ===== END MENTORSHIP TRUST SECTION ===== -->
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+             <a href="https://dilawarpro.com">
                 <button class="btn btn-primary" id="animate-btn" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;">
                    Mentor Portfolio <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
