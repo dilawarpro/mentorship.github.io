@@ -1684,131 +1684,118 @@ td {
           <b>Who can join:</b> Students (Above Matric), Freelancers, Developers, Job Holders, Housewives
         </li>
       </ul>
+
+      <div class="visitor-count" style="background: linear-gradient(90deg, #00ddff 0%, #ff00d4 100%); color: #fff; border-radius: 10px; padding: 10px 16px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; font-size: 1.1rem;">
+        <i class="fas fa-eye" style="font-size: 1.5rem; vertical-align: middle;"></i>
+        <span id="visitorCount" style="font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; margin: 0 8px;">Loading...</span>
+        <span style="font-size: 1rem; font-weight: bold;">active learners reading details on this website</span>
+        <span class="badge bg-danger" style="margin-left: 8px; font-size: 0.95rem;">LIVE</span>
+      </div>
+      <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const randomStart = Math.floor(Math.random() * 501) + 4000;
+        document.getElementById('visitorCount').textContent = randomStart.toLocaleString();
+        setInterval(() => {
+          const countEl = document.getElementById('visitorCount');
+          let currentCount = parseInt(countEl.textContent.replace(/,/g, ''));
+          const change = Math.floor(Math.random() * 11) - 3;
+          let newCount = Math.max(4000, Math.min(4500, currentCount + change));
+          countEl.textContent = newCount.toLocaleString();
+        }, Math.floor(Math.random() * 1200) + 1800);
+      });
+      </script>
+
+      <h1>
+        <span class="course-icon">
+          <img src="icons/ai-integration.webp" alt="learning-programs" width="55px">
+        </span> <b style="margin-left: -10px !important;">Our Full Stacked AI-Powered Learning Programs</b>
+      </h1>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Advanced Web Programing (Lifetime FREE Hosting)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Clients Hunting (Pro & Smart Strategies)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        E-Commerce (No monthly fee & subscription charges)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        WordPress Development
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        EMD & Auto Blogging with Quick AdSense Approval Tricks <b>(Make money while you sleep)</b>
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Affiliate Marketing (Including Amazon Affiliates)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        SEO & SMM Mastery
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Guest Posting & Backlinking 
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        AI Prompt Engineering
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        AI Content Writing
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Canva Graphics Designing
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Freelancing (Be your own Boss)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Digital Marketing or Domain Flipping (Optional on one-time payment of fee)
+      </div>
+      <div class="course">
+        <span class="course-icon"><i class="fas fa-check"></i></span>
+        Social Media Automation (YouTube, TikTok, Facebook & Instagram)
+      </div>
+
+      <h1>
+        <span class="project-icon">
+          <img src="icons/mentor-projects.webp" alt="webs" width="55px">
+        </span>Websites Created By Me
+      </h1>
+      <div class="course">
+        <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+        <a href="https://dilawarpro.com">dilawarpro.com</a>
+      </div>
+      <div class="course">
+        <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+        <a href="https://lovecalcu.com">Love calculator</a>
+      </div>
+      <div class="course">
+        <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+        <a href="https://aiovd.com/">All in one video downloader</a>
+      </div>
+      <div class="course">
+        <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+        <a href="https://mentorship.dilawarpro.com">Mentorship By Dilawar</a>
+      </div>
+      <div class="course">
+        <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
+        <a href="https://brandliox.dilawarpro.com">Brandliox</a>
+      </div>
     </div>
   </div>
 </div>
-              <div class="visitor-count" style="background: linear-gradient(90deg, #00ddff 0%, #ff00d4 100%); color: #fff; border-radius: 10px; padding: 10px 16px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; font-size: 1.1rem;">
-                <i class="fas fa-eye" style="font-size: 1.5rem; vertical-align: middle;"></i>
-                <span id="visitorCount" style="font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; margin: 0 8px;">Loading...</span>
-                <span style="font-size: 1rem; font-weight: bold;">active learners reading details on this website</span>
-                <span class="badge bg-danger" style="margin-left: 8px; font-size: 0.95rem;">LIVE</span>
-              </div>
-              <script>
-              document.addEventListener('DOMContentLoaded', () => {
-                const randomStart = Math.floor(Math.random() * 501) + 4000;
-                document.getElementById('visitorCount').textContent = randomStart.toLocaleString();
-                setInterval(() => {
-                  const countEl = document.getElementById('visitorCount');
-                  let currentCount = parseInt(countEl.textContent.replace(/,/g, ''));
-                  const change = Math.floor(Math.random() * 11) - 3;
-                  let newCount = Math.max(4000, Math.min(4500, currentCount + change));
-                  countEl.textContent = newCount.toLocaleString();
-                }, Math.floor(Math.random() * 1200) + 1800);
-              });
-              </script>
- 
-                    <div>
-                            <h1>
-                              <span class="course-icon">
-                                
-                                <!-- <i class="fa-solid fa-user-graduate" style="color: #0d6efd; font-size: 30px;"></i> -->
-                                 <img src="icons/ai-integration.webp" alt="learning-programs" width="55px">
-                              </span> <b style="margin-left: -10px !important;">Our Full Stacked AI-Powered Learning Programs</b>
-                          </h1>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                             Advanced Web Programing (Lifetime FREE Hosting)
-                          </div>
-                          <div class="course">
-                            <span class="course-icon"><i class="fas fa-check"></i></span>
-                           Clients Hunting (Pro & Smart Strategies)
-                        </div>
-                          <div class="course">
-                            <span class="course-icon"><i class="fas fa-check"></i></span>
-                           E-Commerce (No monthly fee & subscription charges)
-                        </div>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                            WordPress Development
-                          </div>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                          EMD & Auto Blogging with Quick AdSense Approval Tricks <b>(Make money while you sleep)</b>
-                          </div>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                              Affiliate Marketing (Including Amazon Affiliates)
-                          </div>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                            SEO & SMM Mastery
-                          </div>
-                          <div class="course">
-                              <span class="course-icon"><i class="fas fa-check"></i></span>
-                            Guest Posting & Backlinking 
-                          </div>
-                          <div class="course">
-                            <span class="course-icon"><i class="fas fa-check"></i></span>
-                           AI Prompt Engineering
-                        </div>
-                        <div class="course">
-                          <span class="course-icon"><i class="fas fa-check"></i></span>
-                          AI Content Writing
-                      </div>
-                      <div class="course">
-                        <span class="course-icon"><i class="fas fa-check"></i></span>
-                       Canva Graphics Designing
-                    </div>
-                    <div class="course">
-                      <span class="course-icon"><i class="fas fa-check"></i></span>
-                       Freelancing (Be your own Boss)
-                  </div>
-                  <div class="course">
-                    <span class="course-icon"><i class="fas fa-check"></i></span>
-                   Digital Marketing or Domain Flipping (Optional on one-time payment of fee)
-                </div>
-                  <div class="course">
-                    <span class="course-icon"><i class="fas fa-check"></i></span>
-                    Social Media Automation (YouTube, TikTok, Facebook & Instagram)
-                </div>
-                          </div>
-                        </div>
-                    <div class="card-body">
-                      
-                        <h1>
-                            <span class="project-icon">
-                               <img src="icons/mentor-projects.webp" alt="webs" width="55px">
-                            
-                            </span>Websites Created By Me
-                        </h1>
-                        <div class="course">
-                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                          <a href="https://dilawarpro.com">dilawarpro.com</a>
-                      </div>
-                        <div class="course">
-                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                          <a href="https://lovecalcu.com">Love calculator</a>
-                      </div>
-                    <div class="course">
-                      <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                      <a href="https://aiovd.com/">All in one video downloader</a>
-                  </div>
-                        <div class="course">
-                            <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                            <a href="https://mentorship.dilawarpro.com">Mentorship By Dilawar</a>
-                        </div>
-                        <div class="course">
-                            <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                            <a href="https://brandliox.dilawarpro.com">Brandliox</a>
-                        </div>
-                        <!-- <div class="course">
-                          <span class="website-icon"><i class="fas fa-external-link-alt"></i></span>
-                          <a href="https://snapmp3.com">snapmp3.com</a>
-                      </div> -->
-                    </div>
-                </div>
-            </div>
-    </div>
+    
     <!-- Project -->
     <div class="container mt-6">
       <div class="row justify-content-center">
