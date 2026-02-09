@@ -1002,35 +1002,28 @@ First, I'll need your email address to send you confirmation details.`);
 
     // Function to show trust factors with timed messages
     function showTrustFactors() {
-        addBotMessage(`${chatbotState.userName}, you can join this mentorship with complete confidence. This program is designed to deliver real value and will not disappoint you because we understand the investment you're making.`);
+        addBotMessage(`${chatbotState.userName}, you can join this mentorship program with complete peace of mind. Believe me, this mentorship will benefit you a lot. If you don't gain any value from it or your income doesn't start, I will happily return your full fee.`);
         
         // First delay - 5 seconds
         setTimeout(() => {
-            addBotMessage(`The quality of content and practical guidance you'll receive in this mentorship program is unmatched. You won't find this level of detail and hands-on training anywhere else, not even on YouTube or other affordable courses available in the market.`);
+            addBotMessage(`Additionally, you can work remotely from home with my digital marketing company. Read more about my company here: <a href="https://brandliox.dilawarpro.com" target="_blank">https://brandliox.dilawarpro.com</a>`);
             
             // Second delay - 4 seconds
             setTimeout(() => {
-                addBotMessage(`Once you complete this program and master the skills, you have the opportunity to work with our digital marketing company as a Senior Developer, SEO Expert, SMM Specialist, or even as a Mentor from the comfort of your home - and we'll pay you for it!`);
+                addBotMessage(`If you still have trust concerns, you don't have to pay the full fee upfront. You can attend 3 to 4 classes first, then decide whether you want to continue or not.`);
                 
                 // Third delay - 5 seconds
                 setTimeout(() => {
-                    addBotMessage(`I recommend reviewing all the course details on our website first, then booking a 1-on-1 meeting with your potential mentor. This way, you can make an informed decision about whether this program is right for you.`);
+                    addBotMessage(`Feel free to check my portfolio. Look at it, think it through, and understand my work. If you feel confident, then join. My portfolio link: <a href="https://dilawarpro.com" target="_blank">https://dilawarpro.com</a>`);
                     
-                            
-                            // Fourth delay - 5 seconds
-                            setTimeout(() => {
-                                addBotMessage(`Here's our commitment to you: If you don't achieve the promised results or your income doesn't start within the program timeline, we'll refund your complete program fee with no questions asked.`);
-                            
-                                // Ask if user has read website details instead of showing menu options
-                                setTimeout(() => {
-                                    askAboutWebsiteReading();
-                                }, 4000);
-                            }, 8000); // 5 seconds delay
-                        }, 8000); // 5 seconds delay
-                    }, 8000); // 6 seconds delay
+                    // Fourth delay - 5 seconds
+                    setTimeout(() => {
+                        // Ask if user has read website details instead of showing menu options
+                        askAboutWebsiteReading();
+                    }, 8000); // 5 seconds delay
                 }, 8000); // 5 seconds delay
-
-           // Add more timing and Auto replies
+            }, 8000); // 6 seconds delay
+        }, 8000); // 5 seconds delay
     }
 
     // Function to ask if user has read website details
