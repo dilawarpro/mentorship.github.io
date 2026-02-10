@@ -1107,6 +1107,53 @@ td {
     }
 
     /* =============================
+       ACCORDION STYLING
+    ============================= */
+    #modulesAccordion .accordion-button {
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    #modulesAccordion .accordion-button:not(.collapsed) {
+      background: linear-gradient(135deg, rgba(13, 110, 253, 0.08) 0%, rgba(0, 221, 255, 0.05) 100%);
+      box-shadow: inset 0 2px 6px rgba(13, 110, 253, 0.1);
+      color: #0d6efd !important;
+    }
+
+    #modulesAccordion .accordion-button:hover {
+      background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(0, 221, 255, 0.03) 100%);
+    }
+
+    #modulesAccordion .accordion-item {
+      transition: all 0.3s ease;
+    }
+
+    #modulesAccordion .accordion-item:hover {
+      box-shadow: 0 6px 16px rgba(0, 221, 255, 0.15) !important;
+      transform: translateY(-2px);
+    }
+
+    #modulesAccordion .accordion-body {
+      padding: 20px;
+      line-height: 1.8;
+    }
+
+    #modulesAccordion .accordion-body ul {
+      margin: 0;
+    }
+
+    #modulesAccordion .accordion-body li {
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    #modulesAccordion .accordion-button::after {
+      transition: transform 0.3s ease;
+    }
+
+    /* =============================
        RESPONSIVE
     ============================= */
     @media (max-width: 991px) {
@@ -1981,17 +2028,31 @@ td {
   <!-- What you will learn --> 
   <div class="container mt-5" id="outline">
     <div class="row justify-content-center">
-            <div class="card course-card">
-              <h1 class="heading-5">
-                <!-- <i class="fa-solid fa-route" style="color: #0d6efd; font-size: 30px;"></i> -->
-                 <img src="icons/roadmap.webp" alt="roadmap" width="55px">
-               <span style="font-size: 24px; font-weight: bold;">In Mentorship By Dilawar, You'll Learn:</span>
-            </h1>
-            <small class="text-danger text-center mb-2">AI is included in all modules</small>
-                <div class="course">
-                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                 <b class="modules">Module01: Web Programming + AI</b><br>
-                 <ul class="ul-custom-icons">
+      <div class="card course-card">
+        <h1 class="heading-5">
+          <!-- <i class="fa-solid fa-route" style="color: #0d6efd; font-size: 30px;"></i> -->
+          <img src="icons/roadmap.webp" alt="roadmap" width="55px">
+          <span style="font-size: 24px; font-weight: bold;">In Mentorship By Dilawar, You'll Learn:</span>
+        </h1>
+        <div class="text-center mb-4">
+          <span class="badge" style="background: linear-gradient(135deg, #00ddff 0%, #ff00d4 100%); font-size: 0.95rem; padding: 8px 16px; border-radius: 20px; color: white; font-weight: 600; box-shadow: 0 4px 15px rgba(0, 221, 255, 0.3);">
+            <i class="bi bi-lightning-fill"></i> AI is included in all modules
+          </span>
+        </div>
+
+        <!-- Accordion -->
+        <div class="accordion accordion-flush" id="modulesAccordion" style="background: transparent; border: none;">
+          
+          <!-- Module 01 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse01" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-code-slash" style="margin-right: 10px;"></i>Module 01: Web Programming + AI
+              </button>
+            </h2>
+            <div id="collapse01" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
                   <li>What is web programming?</li>
                   <li>How to create professional websites and high-end progressive web apps that are compatible with all web browsers and devices (Android, iOS, and desktop) using advanced web technologies and libraries.</li>
                   <li>How to use AI for Web Programming</li>
@@ -2007,73 +2068,121 @@ td {
                     </ol>
                   </li>
                   <li>How to host a website on the internet forever for FREE with SSL (SAVE up to Rs. 18,000 per year) and how to connect your hosting with your custom domain.</li>
-                </ul>                
+                </ul>
               </div>
-              <div class="course">
-                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-               <b class="modules">Module 02: Clients Hunting + AI</b><br>
-               <ul class="ul-custom-icons">
-                <li>What is clients hunting?</li>
-                <li>How to hunt unlimited local and international clients organically</li>
-                <li>How to use AI for clients hunting</li>
-                <li>Get the most secret, unique and pro clients hunting strategies.</li>
-                <li>How to communicate and deal with the clients professionally.</li>
-                <li>How to collect payments from clients</li>
-                <li>How to close deal with the clients.</li>
-
-              </ul>                
             </div>
-              <div class="course">
-                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                <b class="modules">Module 03: E-Commerce + AI</b><br>
+          </div>
+
+          <!-- Module 02 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse02" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-people-fill" style="margin-right: 10px;"></i>Module 02: Clients Hunting + AI
+              </button>
+            </h2>
+            <div id="collapse02" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is clients hunting?</li>
+                  <li>How to hunt unlimited local and international clients organically</li>
+                  <li>How to use AI for clients hunting</li>
+                  <li>Get the most secret, unique and pro clients hunting strategies.</li>
+                  <li>How to communicate and deal with the clients professionally.</li>
+                  <li>How to collect payments from clients</li>
+                  <li>How to close deal with the clients.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Module 03 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse03" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-shop" style="margin-right: 10px;"></i>Module 03: E-Commerce + AI
+              </button>
+            </h2>
+            <div id="collapse03" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
                 <ul class="ul-custom-icons">
                   <li>What is E-commerce?</li>
                   <li>How to create modern E-commerce stores absolutely FREE of cost for selling products and dropshipping (local & international). <mark>NO need to pay any subscription charges or selling fees</mark> to platforms like <a href="https://www.shopify.com/pricing">Shopify</a> ($300/year or SAVE up to Rs. 85,000 yearly), <a href="https://sell.amazon.com/pricing">Amazon</a> (SAVE $0.99 per order), <a href="https://www.ebay.com/">eBay</a> (SAVE $0.30 per order), and other selling platforms.</li>
                   <li>What is Daraz? How to start Daraz dropshipping and How to list products from Daraz to your E-commerce website.</li>
                   <li>How to use AI for E-Commerce</li>
-                    <li>How to create successful and profitable e-commerce stores and brands.</li>
+                  <li>How to create successful and profitable e-commerce stores and brands.</li>
                 </ul>
-                
-
+              </div>
             </div>
-              <div class="course">
-                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                  <b class="modules">Module 04: WordPress + AI</b><br>
-                  <ul class="ul-custom-icons">
-                    <li>What is WordPress?</li>
-                    <li>How to download and install WordPress with localhost on your computer or laptop.</li>
-                    <li>How to use AI for WordPress</li>
-                    <li>How to set up WordPress themes.</li>
-                    <li>How to set up plugins for full customization to build complete websites using WordPress.</li>
-                  </ul>                  
+          </div>
+
+          <!-- Module 04 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse04" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-wordpress" style="margin-right: 10px;"></i>Module 04: WordPress + AI
+              </button>
+            </h2>
+            <div id="collapse04" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is WordPress?</li>
+                  <li>How to download and install WordPress with localhost on your computer or laptop.</li>
+                  <li>How to use AI for WordPress</li>
+                  <li>How to set up WordPress themes.</li>
+                  <li>How to set up plugins for full customization to build complete websites using WordPress.</li>
+                </ul>
               </div>
-              <div class="course">
-                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                  <b class="modules">Module 05: Blogging with AdSense + AI</b><br>
-                  <ul class="ul-custom-icons">
-                    <li>What is blogging?</li>
-                    <li>What is EMD (Exact Match Domain) and auto blogging?</li>
-                    <li>How to generate passive income through blogging by displaying ads from <a href="https://adsense.google.com/start/">Google AdSense</a> and other multiple ad networks.</li>
-                    <li>How to use AI for Blogging</li>
-                    <li>Learn about quick AdSense approval tricks, keyword research, niche research, AdSense arbitration, finding high CPC keywords, and writing SEO-friendly blogs that rank on Google and other search engines.</li>
-                  </ul>
-                  
+            </div>
+          </div>
+
+          <!-- Module 05 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse05" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-file-earmark-text" style="margin-right: 10px;"></i>Module 05: Blogging with AdSense + AI
+              </button>
+            </h2>
+            <div id="collapse05" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is blogging?</li>
+                  <li>What is EMD (Exact Match Domain) and auto blogging?</li>
+                  <li>How to generate passive income through blogging by displaying ads from <a href="https://adsense.google.com/start/">Google AdSense</a> and other multiple ad networks.</li>
+                  <li>How to use AI for Blogging</li>
+                  <li>Learn about quick AdSense approval tricks, keyword research, niche research, AdSense arbitration, finding high CPC keywords, and writing SEO-friendly blogs that rank on Google and other search engines.</li>
+                </ul>
               </div>
-              <div class="course">
-                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                  <b class="modules">Module 06: Affiliate Marketing + AI</b><br>
-                  <ul class="ul-custom-icons">
-                    <li>What is affiliate marketing?</li>
-                    <li>How to use AI for Affiliate marketing</li>
-                    <li>How to make passive income through affiliate marketing.</li>
-                    <li>It includes finding the best affiliate companies or businesses that pay high affiliate commissions.</li>
-                  </ul>
-                  
+            </div>
+          </div>
+
+          <!-- Module 06 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse06" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-link-45deg" style="margin-right: 10px;"></i>Module 06: Affiliate Marketing + AI
+              </button>
+            </h2>
+            <div id="collapse06" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is affiliate marketing?</li>
+                  <li>How to use AI for Affiliate marketing</li>
+                  <li>How to make passive income through affiliate marketing.</li>
+                  <li>It includes finding the best affiliate companies or businesses that pay high affiliate commissions.</li>
+                </ul>
               </div>
+            </div>
+          </div>
 
 
-              <div class="course">
-                <b class="modules">Module 07: Search Engine Optimization (SEO) + AI</b><br>
+          <!-- Module 07 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse07" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-search" style="margin-right: 10px;"></i>Module 07: Search Engine Optimization (SEO) + AI
+              </button>
+            </h2>
+            <div id="collapse07" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
                 <ul class="ul-custom-icons">
                   <li>What is Search Engine Optimization (SEO)?</li>
                   <li>How to rank websites and web apps organically on search engines through Search Engine Optimization (SEO).</li>
@@ -2157,108 +2266,188 @@ td {
                         </div>
                     </div>
                 </div> 
-              </div>          
-            
-              <div class="course">
-                  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                  <b class="modules">Module 08: Social Media Marketing + AI</b><br>
-                  <ul class="ul-custom-icons">
-                    <li>What is Social Media Marketing (SMM)?</li>
-                    <li>How to make money from Google Ads, Meta Ads (Facebook & Instagram), TikTok Ads, and Snapchat Ads.</li>
-                    <li>How to set up and optimize social media ads LIVE with a minimum budget while achieving maximum results.</li>
-                    <li>How to use AI for SMM</li>
-                    <li>How to sell your digital services or products globally by using Social Media Marketing (SMM).</li>
-                    <li>Learn the advanced and pro social media marketing strategies and techniques.</li>
-                </ul>                
               </div>
-              <div class="course">
-                <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                <b class="modules">Module 09: Guest Posting and Backlinking + AI</b><br>
+            </div>
+          </div>
+
+          <!-- Module 08 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse08" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-megaphone-fill" style="margin-right: 10px;"></i>Module 08: Social Media Marketing + AI
+              </button>
+            </h2>
+            <div id="collapse08" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Social Media Marketing (SMM)?</li>
+                  <li>How to make money from Google Ads, Meta Ads (Facebook & Instagram), TikTok Ads, and Snapchat Ads.</li>
+                  <li>How to set up and optimize social media ads LIVE with a minimum budget while achieving maximum results.</li>
+                  <li>How to use AI for SMM</li>
+                  <li>How to sell your digital services or products globally by using Social Media Marketing (SMM).</li>
+                  <li>Learn the advanced and pro social media marketing strategies and techniques.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 09 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse09" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-pencil-square" style="margin-right: 10px;"></i>Module 09: Guest Posting and Backlinking + AI
+              </button>
+            </h2>
+            <div id="collapse09" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
                 <ul class="ul-custom-icons">
                   <li>What is guest posting and backlinking?</li>
                   <li>How to get high quality do-follow quality backlinks with high domain and page authority (DA & PA) from well-authoritied websites to increase users on your new site.</li>
                   <li>How to use AI for Guest Posting</li>
                   <li>How to write guest posts for well-established and well-authoritied sites to obtain quality backlinks for your new websites.</li>
                 </ul>
-                
-            </div>
-            <div class="course">
-              <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-              <b class="modules">Module 10: AI Prompt Engineering</b><br> 
-              <ul class="ul-custom-icons">
-                <li>What is Prompt Engineering?</li>
-                <li>What are the most advanced AI models and how to use these models effectively to boost up your career.</li>
-                <li>How to give better commands to AI models for accurate and improved results.</li>
-                <li>How to crack the limitations of AI models to get maximum outputs from these models.</li>
-                <li>Learn to use artificial intelligence (AI) to boost up your career for more efficient, faster, and happier work.</li>
-              </ul>
-              
-          </div>
-          <div class="course">
-            <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-            <b class="modules">Module 11: Content Writing + AI</b><br>
-            <ul class="ul-custom-icons">
-              <li>What is content writing?</li>
-              <li>How to write SEO-friendly content using advanced AI models.</li>
-              <li>How to use advanced AI models like an expert content writer to write SEO-friendly blogs and articles or content.</li>
-            </ul>            
-        </div>
-        <div class="course">
-          <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-          <b class="modules">Module 12: Graphics Designing with Canva</b><br> 
-          <ul class="ul-custom-icons">
-            <li>What is Canva?</li>
-            <li>How to use Canva for graphic designing.</li>
-            <li>How to create visually appealing, stunning, and attractive graphics with Canva.</li>
-            <li>Learn to create social media posts, presentations, posters, videos, logos, and much more with Canva.</li>
-          </ul>          
-      </div>
-        <div class="course">
-          <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-          <b class="modules">Module 13: Freelancing + AI</b><br> 
-          <ul class="ul-custom-icons">
-            <li>What is Freelancing?</li>
-            <li>Learn how to create an account, sell on freelancing marketplaces (Fiverr, Upwork, People Per Hour, Guru.com, and Freelancer.com, etc)</li>
-            <li>How to use AI for Freelancing?</li>
-            <li>Learn how to boost your account and beat the competition in freelancing marketplaces to get more orders.</li>
-          </ul>          
-      </div>
-      <div class="course">
-        <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-        <b class="modules">Module 14: Digital Marketing + AI</b><br> 
-        <ul class="ul-custom-icons">
-          <li>What is Digital Marketing?</li>
-          <li>How to promote and sell products and services using the internet and digital channels like websites, social media, email, and search engines to reach and engage with potential customers.</li>
-          <li>How to use AI for Digital Marketing?</li>
-          <li>Learn how to advertise and connect with people online to grow a business.</li>
-          <li>Master the advanced digital marketing techniques and pro strategies to become an expert digital marketer.</li>
-        </ul>      
-    </div>
-    <span class="choice">OR</span>
-    <div class="course">
-      <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-      <b class="modules"> Domain Flipping + AI</b><br>
-      <ul class="ul-custom-icons">
-        <li>What is Domain Flipping?</li>
-        <li>How to find and buy low-cost domain names, and then resell them for a higher price.</li>
-        <li>How to use AI for Domain Flipping?</li>
-        <li>The goal is to identify domain names with high potential value and sell them to buyers who need them for more than their original price.</li>
-      </ul>   
-  </div>
-<div class="course">
-  <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-  <b class="modules">Module 15: YouTube, FB & TikTok Automation + AI</b><br> 
-  <ul class="ul-custom-icons">
-    <li>What is YouTube Automation?</li>
-    <li>How to start profitable and successful faceless YouTube channels and TikTok accounts step-by-step without showing your face and voice using smart and advanced FREE AI tools.</li>
-    <li>How to start your passive income from YouTube automation through ads, affiliations, and sponsorships.</li>
-    <li>How to create attractive and engaging YouTube, Facebook, and TikTok videos using advanced AI tools.</li>
-  </ul>
-  
-</div>
-                  </div>
-                </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Module 10 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-brain" style="margin-right: 10px;"></i>Module 10: AI Prompt Engineering
+              </button>
+            </h2>
+            <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Prompt Engineering?</li>
+                  <li>What are the most advanced AI models and how to use these models effectively to boost up your career.</li>
+                  <li>How to give better commands to AI models for accurate and improved results.</li>
+                  <li>How to crack the limitations of AI models to get maximum outputs from these models.</li>
+                  <li>Learn to use artificial intelligence (AI) to boost up your career for more efficient, faster, and happier work.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 11 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-type" style="margin-right: 10px;"></i>Module 11: Content Writing + AI
+              </button>
+            </h2>
+            <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is content writing?</li>
+                  <li>How to write SEO-friendly content using advanced AI models.</li>
+                  <li>How to use advanced AI models like an expert content writer to write SEO-friendly blogs and articles or content.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 12 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-palette-fill" style="margin-right: 10px;"></i>Module 12: Graphics Designing with Canva
+              </button>
+            </h2>
+            <div id="collapse12" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Canva?</li>
+                  <li>How to use Canva for graphic designing.</li>
+                  <li>How to create visually appealing, stunning, and attractive graphics with Canva.</li>
+                  <li>Learn to create social media posts, presentations, posters, videos, logos, and much more with Canva.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 13 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-laptop" style="margin-right: 10px;"></i>Module 13: Freelancing + AI
+              </button>
+            </h2>
+            <div id="collapse13" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Freelancing?</li>
+                  <li>Learn how to create an account, sell on freelancing marketplaces (Fiverr, Upwork, People Per Hour, Guru.com, and Freelancer.com, etc)</li>
+                  <li>How to use AI for Freelancing?</li>
+                  <li>Learn how to boost your account and beat the competition in freelancing marketplaces to get more orders.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 14 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-graph-up" style="margin-right: 10px;"></i>Module 14: Digital Marketing + AI
+              </button>
+            </h2>
+            <div id="collapse14" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Digital Marketing?</li>
+                  <li>How to promote and sell products and services using the internet and digital channels like websites, social media, email, and search engines to reach and engage with potential customers.</li>
+                  <li>How to use AI for Digital Marketing?</li>
+                  <li>Learn how to advertise and connect with people online to grow a business.</li>
+                  <li>Master the advanced digital marketing techniques and pro strategies to become an expert digital marketer.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 14B (Domain Flipping) -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14b" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-globe-americas" style="margin-right: 10px;"></i>Domain Flipping + AI <span class="badge bg-danger" style="margin-left: 8px; font-size: 0.75rem;">OR</span>
+              </button>
+            </h2>
+            <div id="collapse14b" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is Domain Flipping?</li>
+                  <li>How to find and buy low-cost domain names, and then resell them for a higher price.</li>
+                  <li>How to use AI for Domain Flipping?</li>
+                  <li>The goal is to identify domain names with high potential value and sell them to buyers who need them for more than their original price.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 15 -->
+          <div class="accordion-item" style="border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse15" style="font-weight: 600; color: #0d6efd; padding: 16px;">
+                <i class="bi bi-play-circle" style="margin-right: 10px;"></i>Module 15: YouTube, FB & TikTok Automation + AI
+              </button>
+            </h2>
+            <div id="collapse15" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+              <div class="accordion-body" style="background: #f8f9fa; border-top: 1px solid #e0e0e0;">
+                <ul class="ul-custom-icons">
+                  <li>What is YouTube Automation?</li>
+                  <li>How to start profitable and successful faceless YouTube channels and TikTok accounts step-by-step without showing your face and voice using smart and advanced FREE AI tools.</li>
+                  <li>How to start your passive income from YouTube automation through ads, affiliations, and sponsorships.</li>
+                  <li>How to create attractive and engaging YouTube, Facebook, and TikTok videos using advanced AI tools.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
                 <br>
                <marquee style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 1px; border-radius: 10px; color: white;" >
                   <h4>💎 Providing value and quality content since 2017 | 👨🏻‍💻 100% practical training | 🔄 7-day refund guarantee | 🎖️Get expert mentorship</h4>
@@ -2518,27 +2707,6 @@ td {
                         </div>   
                       </div>
                     </div>
-                     <!-- Start of 6 months mentorship program -->
-                     <!-- <div class="col-md-4 mb-4">
-                      <div class="feature">
-                        <div class="card">
-                          <div class="card-header">
-                            <h3>6 Months Mentorship Program</h3>
-                            <i class="fas fa-calendar-alt"></i> Class Days: Weekend (Saturday, Sunday)
-                          </div>
-                          <div class="card-body">
-                            <p><i class="fas fa-clock"></i> Est. Duration: 6 Months (48 Days)</p>
-                            <p><i class="fas fa-money-bill"></i> 6 Months Mentorship Actual Fee: Rs. <del>33,000</del></p>
-                            <p><i class="fa-solid fa-money-bill-1"></i> Fee After a final discount: Rs. 28,000 (90$) one-time only. <span style="color: #00af15;">(1 year web hosting and optional courses included for FREE)</span></p>
-                            <p><i class="fas fa-money-bill-wave"></i> 6 Months Installments Fee: Rs. 5,500 ($20) per month <span style="color: #ff2020;">(1 year web hosting and optional courses NOT included)</span></p>
-                            <a class="apply-button" href="https://mentorship.dilawarpro.com/6-months-registration" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); padding: 12px 26px; font-weight: bold;">Become a Pro  <i class="fa-solid fa-circle-arrow-right"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>     -->
-                      
-                        <!-- End of 6 months mentorship program -->
-
                         <!-- Start of 1:1 months mentorship program -->
                      <div class="col-md-6 mb-4">
                       <div class="feature"> 
