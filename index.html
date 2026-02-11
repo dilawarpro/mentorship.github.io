@@ -347,7 +347,7 @@ function startUrgency(){
 
 // DISCOUNT GENERATOR
 function generateDiscount(){
-  const discounts=[5000,7000,9000,12000,15000];
+  const discounts=[5000];
   return discounts[Math.floor(Math.random()*discounts.length)];
 }
 
@@ -420,7 +420,7 @@ function revealOffer(area){
 
   document.getElementById("formStatus").innerText="Eligibility confirmed ✅";
 
-  const whatsappNumber="923000000000"; // <-- PUT YOUR NUMBER HERE
+  const whatsappNumber="923314041010"; // <-- PUT YOUR NUMBER HERE
 
   const msg = `Hi! My name is ${name}.
 Email: ${email}
@@ -434,7 +434,13 @@ I want to claim it.`;
   const btn=document.getElementById("whatsappBtn");
   btn.href=waLink;
   btn.style.display="block";
-  btn.onclick=()=>localStorage.setItem("discountClaimed",true);
+  
+  // Close modal and set localStorage flag when user clicks WhatsApp button
+  btn.onclick=()=>{
+    localStorage.setItem("discountClaimed", true);
+    const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
+    if(modal) modal.hide();
+  };
 
   startUrgency();
 }
