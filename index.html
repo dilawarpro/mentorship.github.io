@@ -415,12 +415,13 @@ function revealOffer(area){
   const userStatus = document.getElementById("userStatus").value;
   const timeline = document.getElementById("timeline").value;
 
-  document.getElementById("modalMessage").innerText =
-    `🎉 Great news! A Rs ${discount.toLocaleString()} mentorship discount has been unlocked for people in ${area}.`;
+document.getElementById("modalMessage").innerHTML =
+  `Congratulations! 🎉 Mentorship By Dilawar is offering ${discount.toLocaleString()} discount for students living in <b>${area.toUpperCase()}</b>.`;
+
 
   document.getElementById("formStatus").innerText="Eligibility confirmed ✅";
 
-  const whatsappNumber="923314041010"; // <-- PUT YOUR NUMBER HERE
+  const whatsappNumber="923314041010"; 
 
   const msg = `Hi! My name is ${name}.
 Email: ${email}
@@ -3025,7 +3026,7 @@ I want to claim it.`;
                         <hr>
                         <footer class="footer">
                           
-                               <p class="text-center">© 2025 All Rights Reserved <a href="https://Brandliox.dilawarpro.com">Brandliox</a>  | <a href="https://mentorship.dilawarpro.com">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="https://mentorship.dilawarpro.com/privacy-policy">Privacy Policy</a> | <a href="https://mentorship.dilawarpro.com/refund-policy">Refund Policy</a> | <a href="mailto:businesswithdilawar@gmail.com">Report a problem</a> | Designed and Developed By <a href="https://dilawarpro.com">Dilawar</a> In 🇵🇰</p>
+                               <p class="text-center">© 2026 All Rights Reserved <a href="https://Brandliox.dilawarpro.com">Brandliox</a>  | <a href="https://mentorship.dilawarpro.com">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="https://mentorship.dilawarpro.com/privacy-policy">Privacy Policy</a> | <a href="https://mentorship.dilawarpro.com/refund-policy">Refund Policy</a> | <a href="mailto:businesswithdilawar@gmail.com">Report a problem</a> | Designed and Developed By <a href="https://dilawarpro.com">Dilawar</a> In 🇵🇰</p>
                               <!-- <div class="col-md-6"> -->
                                 <div class="payment-icons" style="margin-bottom: 10px;">
                                   <h2 class="text-center">Our Payment Partners</h2>
@@ -3091,48 +3092,52 @@ I want to claim it.`;
      // Added Connefti
      // Half Screen Animation
 // Wrap your animation code in a setTimeout function
-setTimeout(function() {
-  const count = 200,
-    defaults = {
-      origin: { y: 0.7 },
-      zIndex: 99999, // Set zIndex to 99999
-    };
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const count = 200,
+      defaults = {
+        origin: { y: 0.7 },
+        zIndex: 99999,
+      };
 
-  function fire(particleRatio, opts) {
-    confetti(
-      Object.assign({}, defaults, opts, {
-        particleCount: Math.floor(count * particleRatio),
-      })
-    );
-  }
+    function fire(particleRatio, opts) {
+      confetti(
+        Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio),
+        })
+      );
+    }
 
-  fire(0.25, {
-    spread: 26,
-    startVelocity: 55,
-  });
+    fire(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
 
-  fire(0.2, {
-    spread: 60,
-  });
+    fire(0.2, {
+      spread: 60,
+    });
 
-  fire(0.35, {
-    spread: 100,
-    decay: 0.91,
-    scalar: 0.8,
-  });
+    fire(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
 
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 25,
-    decay: 0.92,
-    scalar: 1.2,
-  });
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
 
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 45,
-  });
-}, 8000); // 10 seconds delay (10,000 milliseconds)
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+  }, 1000); // delay after page load (optional)
+});
+
+// 10 seconds delay (10,000 milliseconds)
      // Full screen animation 
     // Wrap your animation code in a setTimeout function
 // setTimeout(function() {
