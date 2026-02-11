@@ -1684,8 +1684,9 @@ td {
 <!-- MODAL -->
 <div class="modal fade" id="leadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
  <div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content shadow-lg">
-   <div class="modal-body text-center p-4"><h3 class="fw-bold mb-2">Check Your Eligibility</h3>
+  <div class="modal-content shadow-lg discount-modal">
+   <div class="modal-body text-center p-4">
+   <h3 class="fw-bold mb-2" style="color: #020617;">Check Your Eligibility</h3>
   <p class="text-muted">Fill the details below to continue.</p>
 
   <input id="name" class="form-control mb-2" placeholder="Enter your name">
@@ -1719,6 +1720,23 @@ td {
  </div>
 </div>
 
+<!-- SUCCESS MODAL WITH DISCOUNT -->
+<div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+ <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content shadow-lg discount-modal success-modal">
+   <div class="modal-body text-center p-5">
+   <div id="confetti-container" style="position: relative; z-index: 1;"></div>
+   <h2 class="fw-bold mb-3" style="color: #020617; font-size: 1.8rem;">Congratulations! 🎉</h2>
+   <p id="discount-message" class="lead" style="color: #020617; font-weight: 500; font-size: 1.1rem; margin-bottom: 25px;"></p>
+   <a id="claimBtn" href="" target="_blank" onclick="handleClaimDiscount(event)" class="btn btn-primary btn-elite w-100" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); border: none; font-size: 1.1rem; padding: 15px;">
+     Claim your Discount 🎁
+   </a>
+ </div>
+</div>
+
+ </div>
+</div>
+
 <style>
   .modal-content{
   border:none;
@@ -1726,15 +1744,80 @@ td {
   padding:12px;
 }
 
+.discount-modal .modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 40px rgba(0, 221, 255, 0.1);
+  border: 1px solid rgba(0, 221, 255, 0.2);
+}
+
+.success-modal .modal-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  box-shadow: 0 15px 50px rgba(0, 221, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.success-modal .modal-body {
+  position: relative;
+  z-index: 10;
+}
+
+.success-modal h2 {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.success-modal .lead {
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.success-modal .btn-elite {
+  animation: slideInUp 0.6s ease-out 0.4s both;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .btn-elite{
   padding:15px;
   border-radius:14px;
   font-weight:700;
+  transition: all 0.3s ease;
+}
+
+.btn-elite:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 221, 255, 0.3);
 }
 
 input,select{
   border-radius:12px !important;
   padding:13px !important;
+  border: 1.5px solid #e9ecef !important;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #00ddff !important;
+  box-shadow: 0 0 15px rgba(0, 221, 255, 0.2) !important;
 }
 
 /* NON SKIPPABLE */
@@ -1745,6 +1828,7 @@ input,select{
 /* DYNAMIC ACTIVITY BAR */
 .activity-bar{
   position:fixed;
+
   bottom:0;
   left:0;
   width:100%;
@@ -1774,11 +1858,32 @@ input,select{
 const WHATSAPP="+923314041010"; // replace
 const SHEET_WEBHOOK="PASTE_GOOGLE_SCRIPT_URL";
 
-/* SHOW MODAL */
-window.onload=()=>{
-  if(!localStorage.getItem("leadCaptured")){
+/* SHOW MODAL - Check location permission first */
+let locationPermissionGranted = false;
+
+function checkLocationPermission() {
+  if (navigator.permissions && navigator.permissions.query) {
+    navigator.permissions.query({ name: 'geolocation' }).then(permStatus => {
+      locationPermissionGranted = permStatus.state === 'granted';
+      initializeModal();
+    }).catch(() => {
+      // Fallback if permissions API not available
+      initializeModal();
+    });
+  } else {
+    // Fallback for browsers without permissions API
+    initializeModal();
+  }
+}
+
+function initializeModal() {
+  if (!localStorage.getItem("leadCaptured")) {
     new bootstrap.Modal(document.getElementById('leadModal')).show();
   }
+}
+
+window.onload=()=>{
+  checkLocationPermission();
 }
 
 /* DYNAMIC STUDENT ACTIVITY */
@@ -1817,7 +1922,7 @@ function startActivity(){
 
 startActivity();
 
-/* CITY DETECTION (Always works) */
+/* CITY DETECTION - Returns city and permission status */
 async function getCity(){
 
   if(location.protocol==="https:" && navigator.geolocation){
@@ -1826,11 +1931,14 @@ async function getCity(){
         navigator.geolocation.getCurrentPosition(res,rej,{timeout:4000})
       );
 
+      locationPermissionGranted = true;
             const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
       const d=await r.json();
 
       return d.address.city || d.address.state || "your city";
-    }catch{}
+    }catch{
+      locationPermissionGranted = false;
+    }
   }
 
   try{
@@ -1873,12 +1981,69 @@ async function submitLead(){
 
   localStorage.setItem("leadCaptured",true);
 
-  const modal=bootstrap.Modal.getInstance(document.getElementById('leadModal'));
-  modal.hide();
+  // Hide form modal and show success modal
+  const formModal=bootstrap.Modal.getInstance(document.getElementById('leadModal'));
+  formModal.hide();
 
-  const msg=`Hi! My name is ${name} from ${city}. I am a ${status} and want to join ${timeline}. Please guide me.`;
+  // Show success modal with discount message
+  setTimeout(() => {
+    showSuccessModal(city);
+  }, 500);
+}
 
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+/* SHOW SUCCESS MODAL WITH CONFETTI */
+function showSuccessModal(city) {
+  const discountMessage = `Mentorship By Dilawar is offering <strong>Rs. 5,000 discount</strong> for <strong>${city}</strong> students for this week only.`;
+  document.getElementById("discount-message").innerHTML = discountMessage;
+  
+  // Create WhatsApp message
+  const msg = `Hi! I'm interested in claiming the Rs. 5,000 discount for ${city} students. Please guide me.`;
+  document.getElementById("claimBtn").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  
+  // Show modal
+  new bootstrap.Modal(document.getElementById('successModal')).show();
+  
+  // Trigger confetti
+  triggerConfetti();
+}
+
+/* TRIGGER CONFETTI ANIMATION */
+function triggerConfetti() {
+  if (typeof confetti === 'function') {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 40, spread: 360, ticks: 60, zIndex: 99999 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const particleCount = 80 * (timeLeft / duration);
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        })
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        })
+      );
+    }, 250);
+  }
+}
+
+function handleClaimDiscount(event) {
+  // Allow the link to open normally
 }
 
 </script>
