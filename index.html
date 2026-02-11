@@ -342,7 +342,7 @@ function startUrgency(){
       spots--;
       spotsEl.innerText=`Only ${spots} spots left in your area`;
     }
-  },15000);
+  },30000);
 }
 
 // DISCOUNT GENERATOR
@@ -416,7 +416,7 @@ function revealOffer(area){
   const timeline = document.getElementById("timeline").value;
 
 document.getElementById("modalMessage").innerHTML =
-  `Congratulations! 🎉 Mentorship By Dilawar is offering ${discount.toLocaleString()} discount for students living in <b>${area.toUpperCase()}</b>.`;
+  `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. <b>${discount.toLocaleString()}</b> discount for students living in <b>${area.toUpperCase()}</b>.`;
 
 
   document.getElementById("formStatus").innerText="Eligibility confirmed ✅";
@@ -427,7 +427,7 @@ document.getElementById("modalMessage").innerHTML =
 Email: ${email}
 Current Status: ${userStatus}
 Joining Timeline: ${timeline}
-I unlocked a Rs ${discount} mentorship discount for ${area}.
+I claimed a Rs ${discount} mentorship discount for ${area}.
 I want to claim it.`;
 
   const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
