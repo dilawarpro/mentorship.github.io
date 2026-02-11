@@ -1150,7 +1150,7 @@ td {
       </h2>
 
       <p class="mentor-sub">
-      Are you unemployed, or tired of your university, college, or current job? Join Mentorship By Dilawar, trusted by over 5.2k students globally, and learn the exact step-by-step strategies to become a successful <strong>Full-stack AI Digital Marketing Expert</strong> from the comfort of your home.
+      Have no job, or bored and tired of your university, college, or current job? Join Mentorship By Dilawar, trusted by over 5.2k students globally, and learn the exact step-by-step strategies to become a successful <strong>Full-stack AI Digital Marketing Expert</strong> from the comfort of your home.
       </p>
        <h2 class="mentor-heading">
         From <span class="underline-accent">8 Years of Struggle</span><br>
@@ -1677,280 +1677,132 @@ td {
  <!-- Discount Started -->
 
 
-<!-- LIVE ACTIVITY -->
- <div class="activity-bar">
-  <div id="activity" class="marquee"></div>
-</div>
-<!-- MODAL -->
-<div class="modal fade" id="leadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
- <div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content shadow-lg discount-modal">
-   <div class="modal-body text-center p-4">
-   <h3 class="fw-bold mb-2" style="color: #020617;">Check Your Eligibility</h3>
-  <p class="text-muted">Fill the details below to continue.</p>
-
-  <input id="name" class="form-control mb-2" placeholder="Enter your name">
-  <input id="email" class="form-control mb-2" placeholder="Enter your email">
-
-  <select id="status" class="form-select mb-2">
-    <option value="">Current Status</option>
-    <option>Student</option>
-    <option>Job Holder</option>
-    <option>Freelancer</option>
-    <option>Unemployed</option>
-  </select>
-
-  <select id="timeline" class="form-select mb-3">
-    <option value="">When do you want to join?</option>
-    <option>Immediately</option>
-    <option>Within 7 Days</option>
-    <option>This Month</option>
-    <option>Just Exploring</option>
-  </select>
-
-  <button onclick="submitLead()" class="btn btn-success btn-elite w-100">
-    Continue
-  </button>
-
-  <small id="msg" class="text-muted d-block mt-2"></small>
-
- </div>
-</div>
-
- </div>
-</div>
-
-<!-- SUCCESS MODAL WITH DISCOUNT -->
-<div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
- <div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content shadow-lg discount-modal success-modal">
-   <div class="modal-body text-center p-5">
-   <div id="confetti-container" style="position: relative; z-index: 1;"></div>
-   <h2 class="fw-bold mb-3" style="color: #020617; font-size: 1.8rem;">Congratulations! 🎉</h2>
-   <p id="discount-message" class="lead" style="color: #020617; font-weight: 500; font-size: 1.1rem; margin-bottom: 25px;"></p>
-   <a id="claimBtn" href="" target="_blank" onclick="handleClaimDiscount(event)" class="btn btn-primary btn-elite w-100" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%); border: none; font-size: 1.1rem; padding: 15px;">
-     Claim your Discount 🎁
-   </a>
- </div>
-</div>
-
- </div>
-</div>
+<<!-- ============================= -->
+<!-- LOCATION BASED DISCOUNT FLOW -->
+<!-- ============================= -->
 
 <style>
-  .modal-content{
+/* Prevent any layout conflict */
+#leadModal .modal-content,
+#congratsModal .modal-content{
   border:none;
-  border-radius:26px;
+  border-radius:20px;
+  padding:20px;
+}
+
+#leadModal input,
+#leadModal select{
+  border-radius:10px;
   padding:12px;
 }
 
-.discount-modal .modal-content {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 40px rgba(0, 221, 255, 0.1);
-  border: 1px solid rgba(0, 221, 255, 0.2);
-}
-
-.success-modal .modal-content {
-  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-  box-shadow: 0 15px 50px rgba(0, 221, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.success-modal .modal-body {
-  position: relative;
-  z-index: 10;
-}
-
-.success-modal h2 {
-  animation: slideInDown 0.6s ease-out;
-}
-
-.success-modal .lead {
-  animation: slideInUp 0.6s ease-out 0.2s both;
-}
-
-.success-modal .btn-elite {
-  animation: slideInUp 0.6s ease-out 0.4s both;
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.btn-elite{
-  padding:15px;
-  border-radius:14px;
-  font-weight:700;
-  transition: all 0.3s ease;
-}
-
-.btn-elite:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 221, 255, 0.3);
-}
-
-input,select{
-  border-radius:12px !important;
-  padding:13px !important;
-  border: 1.5px solid #e9ecef !important;
-  transition: all 0.3s ease;
-}
-
-input:focus, select:focus {
-  border-color: #00ddff !important;
-  box-shadow: 0 0 15px rgba(0, 221, 255, 0.2) !important;
-}
-
-/* NON SKIPPABLE */
 .modal-backdrop.show{
   opacity:.85;
 }
-
-/* DYNAMIC ACTIVITY BAR */
-.activity-bar{
-  position:fixed;
-
-  bottom:0;
-  left:0;
-  width:100%;
-  background:#020617;
-  color:white;
-  padding:10px 0;
-  overflow:hidden;
-  z-index:9999;
-  font-weight:600;
-}
-
-.marquee{
-  white-space:nowrap;
-  display:inline-block;
-  animation:scroll 24s linear infinite;
-}
-
-@keyframes scroll{
-  from{transform:translateX(100%);}   
-  to{transform:translateX(-100%);} 
-}
-
 </style>
 
- <script>
 
-const WHATSAPP="+923314041010"; // replace
+<!-- LEAD MODAL -->
+<div class="modal fade" id="leadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow">
+      <div class="modal-body text-center">
+
+        <h4 class="fw-bold mb-2">Check Your Eligibility</h4>
+        <p class="text-muted small mb-3">Fill details to continue</p>
+
+        <input id="name" class="form-control mb-2" placeholder="Enter your name">
+        <input id="email" class="form-control mb-2" placeholder="Enter your email">
+
+        <select id="status" class="form-select mb-2">
+          <option value="">Current Status</option>
+          <option>Student</option>
+          <option>Job Holder</option>
+          <option>Freelancer</option>
+          <option>Unemployed</option>
+        </select>
+
+        <select id="timeline" class="form-select mb-3">
+          <option value="">When do you want to join?</option>
+          <option>Immediately</option>
+          <option>Within 7 Days</option>
+          <option>This Month</option>
+          <option>Just Exploring</option>
+        </select>
+
+        <button onclick="submitLead()" class="btn btn-success w-100 fw-bold">
+          Continue
+        </button>
+
+        <small id="msg" class="text-danger d-block mt-2"></small>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+/* ================= CONFIG ================= */
+const WHATSAPP="923314041010";  // without +
 const SHEET_WEBHOOK="PASTE_GOOGLE_SCRIPT_URL";
+/* ========================================== */
 
-/* SHOW MODAL - Check location permission first */
-let locationPermissionGranted = false;
+let detectedCity = "";
 
-function checkLocationPermission() {
-  if (navigator.permissions && navigator.permissions.query) {
-    navigator.permissions.query({ name: 'geolocation' }).then(permStatus => {
-      locationPermissionGranted = permStatus.state === 'granted';
-      initializeModal();
-    }).catch(() => {
-      // Fallback if permissions API not available
-      initializeModal();
-    });
-  } else {
-    // Fallback for browsers without permissions API
-    initializeModal();
-  }
-}
+/* ===== CHECK LOCATION PERMISSION ON LOAD ===== */
+window.addEventListener("load", async ()=>{
 
-function initializeModal() {
-  if (!localStorage.getItem("leadCaptured")) {
-    new bootstrap.Modal(document.getElementById('leadModal')).show();
-  }
-}
-
-window.onload=()=>{
-  checkLocationPermission();
-}
-
-/* DYNAMIC STUDENT ACTIVITY */
-
-const names=[
-"Ali","Ahmed","Hassan","Usman","Zain","Hamza","Bilal","Saad","Farhan","Talha",
-"Ayesha","Fatima","Zara","Hira","Noor","Iqra","Maryam","Kinza","Laiba","Anaya"
-];
-
-const cities=[
-"Lahore","Karachi","Islamabad","Rawalpindi","Multan","Faisalabad","Peshawar","Sialkot"
-];
-
-function activityText(){
-  const name = names[Math.floor(Math.random()*names.length)];
-  const city = cities[Math.floor(Math.random()*cities.length)];
-  const mins = Math.floor(Math.random()*5)+1;
-
-  return `🔥 ${name} from ${city} just applied for mentorship • ${mins} min ago`;
-}
-
-function startActivity(){
-  const el=document.getElementById("activity");
-
-  function update(){
-    let str="";
-    for(let i=0;i<7;i++){
-      str += activityText()+" \u00A0\u00A0\u00A0\u00A0";
-    }
-    el.innerText=str;
-  }
-
-  update();
-  setInterval(update,10000);
-}
-
-startActivity();
-
-/* CITY DETECTION - Returns city and permission status */
-async function getCity(){
-
-  if(location.protocol==="https:" && navigator.geolocation){
-    try{
-      const pos=await new Promise((res,rej)=>
-        navigator.geolocation.getCurrentPosition(res,rej,{timeout:4000})
-      );
-
-      locationPermissionGranted = true;
-            const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
-      const d=await r.json();
-
-      return d.address.city || d.address.state || "your city";
-    }catch{
-      locationPermissionGranted = false;
-    }
+  if (!navigator.geolocation) {
+    showLeadModal();
+    return;
   }
 
   try{
-        const res=await fetch("https://ipwho.is/");
-    const data=await res.json();
-    return data.city || "your city";
+    const permission = await navigator.permissions.query({name:"geolocation"});
+
+    if(permission.state === "granted"){
+      await detectCitySilently(); // do not show modal
+    }else{
+      showLeadModal();
+    }
+
   }catch{
-    return "your city";
+    showLeadModal();
   }
+
+});
+
+
+function showLeadModal(){
+  const modal = new bootstrap.Modal(document.getElementById('leadModal'));
+  modal.show();
 }
 
-/* SUBMIT */
+
+/* ===== CITY DETECTION ===== */
+async function detectCitySilently(){
+  return new Promise((resolve)=>{
+    navigator.geolocation.getCurrentPosition(async(pos)=>{
+      try{
+        const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
+        const d=await r.json();
+        detectedCity = d.address.city || d.address.state || "your city";
+        resolve();
+      }catch{
+        detectedCity="your city";
+        resolve();
+      }
+    },()=>{
+      detectedCity="your city";
+      resolve();
+    });
+  });
+}
+
+
+/* ===== SUBMIT ===== */
 async function submitLead(){
 
   const name=document.getElementById("name").value.trim();
@@ -1965,88 +1817,82 @@ async function submitLead(){
 
   document.getElementById("msg").innerText="Processing...";
 
-  const city=await getCity();
+  await detectCitySilently();
 
+  // Save to sheet
   fetch(SHEET_WEBHOOK,{
     method:"POST",
     body:JSON.stringify({
-      name,
-      email,
-      status,
-      timeline,
-      city,
+      name,email,status,timeline,
+      city:detectedCity,
       time:new Date().toISOString()
     })
   }).catch(()=>{});
 
-  localStorage.setItem("leadCaptured",true);
+  bootstrap.Modal.getInstance(document.getElementById('leadModal')).hide();
 
-  // Hide form modal and show success modal
-  const formModal=bootstrap.Modal.getInstance(document.getElementById('leadModal'));
-  formModal.hide();
-
-  // Show success modal with discount message
-  setTimeout(() => {
-    showSuccessModal(city);
-  }, 500);
+  showCongratsModal(name);
 }
 
-/* SHOW SUCCESS MODAL WITH CONFETTI */
-function showSuccessModal(city) {
-  const discountMessage = `Mentorship By Dilawar is offering <strong>Rs. 5,000 discount</strong> for <strong>${city}</strong> students for this week only.`;
-  document.getElementById("discount-message").innerHTML = discountMessage;
-  
-  // Create WhatsApp message
-  const msg = `Hi! I'm interested in claiming the Rs. 5,000 discount for ${city} students. Please guide me.`;
-  document.getElementById("claimBtn").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-  
-  // Show modal
-  new bootstrap.Modal(document.getElementById('successModal')).show();
-  
-  // Trigger confetti
-  triggerConfetti();
+
+/* ===== CONGRATS MODAL ===== */
+function showCongratsModal(name){
+
+  const modalHTML = `
+  <div class="modal fade" id="congratsModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <h4 class="fw-bold text-success mb-3">
+          Congratulations! 🎉
+        </h4>
+
+        <p class="mb-3">
+          Mentorship By Dilawar is offering 
+          <strong>Rs. 5,000 discount</strong> 
+          for <strong>${detectedCity}</strong> students 
+          for this week only.
+        </p>
+
+        <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+          `Hi! I want to claim my Rs.5000 discount. I am from ${detectedCity}.`
+        )}"
+        target="_blank"
+        class="btn btn-success w-100 fw-bold">
+          Claim your Discount
+        </a>
+      </div>
+    </div>
+  </div>`;
+
+  document.body.insertAdjacentHTML("beforeend",modalHTML);
+
+  const cm = new bootstrap.Modal(document.getElementById("congratsModal"));
+  cm.show();
+
+  launchConfetti();
 }
 
-/* TRIGGER CONFETTI ANIMATION */
-function triggerConfetti() {
-  if (typeof confetti === 'function') {
-    const duration = 3000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 40, spread: 360, ticks: 60, zIndex: 99999 };
 
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
+/* ===== CONFETTI EFFECT ===== */
+function launchConfetti(){
+
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
     }
-
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      const particleCount = 80 * (timeLeft / duration);
-      confetti(
-        Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-        })
-      );
-      confetti(
-        Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        })
-      );
-    }, 250);
-  }
+  })();
 }
-
-function handleClaimDiscount(event) {
-  // Allow the link to open normally
-}
-
 </script>
+
 
 <div class="container mt-6">
   <div class="row justify-content-center">
