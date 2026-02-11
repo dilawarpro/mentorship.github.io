@@ -198,97 +198,68 @@ td {
 <body>
 
   <!-- Dicount started -->
- <!-- ============================= -->
-<!-- COMPLETE DISCOUNT SYSTEM -->
-<!-- ============================= -->
-
-<!-- CONFETTI CDN -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+ <!-- BOOTSTRAP CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-
-/* Prevent overlap with page content */
-body{
-  padding-bottom:65px;
-}
-
-/* ===== BOTTOM DISCOUNT BAR ===== */
-.discount-bar{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:#020617;
-  color:#ffffff;
-  padding:14px 0;
-  overflow:hidden;
-  z-index:9999;
-  font-weight:600;
-  font-size:14px;
-  box-shadow:0 -3px 10px rgba(0,0,0,0.2);
-}
-
-.discount-track{
-  white-space:nowrap;
-  display:inline-block;
-  animation:scrollLeft 28s linear infinite;
-}
-
-.discount-bar a{
-  color:#22c55e;
-  font-weight:700;
-  text-decoration:underline;
-  margin-left:8px;
-}
-
-@keyframes scrollLeft{
-  from{transform:translateX(100%);}
-  to{transform:translateX(-100%);}
-}
-
-/* ===== MODAL SAFE STYLING ===== */
-#leadModal .modal-content{
+.modal-content{
   border:none;
-  border-radius:20px;
-  padding:22px;
+  border-radius:26px;
 }
-
-#leadModal input,
-#leadModal select{
-  border-radius:10px;
-  padding:12px;
+.badge-elite{
+  background:#dcfce7;
+  color:#166534;
+  padding:8px 16px;
+  border-radius:999px;
+  font-weight:700;
 }
-
-.modal-backdrop.show{
-  opacity:.85;
+.countdown{
+  font-size:34px;
+  font-weight:900;
+  color:#16a34a;
 }
-
+.btn-elite{
+  padding:15px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:18px;
+}
+.spots{
+  color:#dc2626;
+  font-weight:700;
+}
+.trust{
+  font-size:14px;
+  color:#64748b;
+}
+input, select{
+  border-radius:12px !important;
+  padding:14px !important;
+}
 </style>
 
-
-<!-- ================= MARQUEE BAR ================= -->
-<div class="discount-bar">
-  <div id="discountText" class="discount-track">
-    Loading discount offer...
-  </div>
-</div>
-
-
-<!-- ================= LEAD MODAL ================= -->
-<div class="modal fade" id="leadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<!-- MODAL HTML -->
+<div class="modal fade" id="discountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow">
-      <div class="modal-body text-center">
+    <div class="modal-content shadow-lg">
+      <div class="modal-body text-center p-4">
+
+        <div class="badge-elite mb-2">LOCATION VERIFIED OFFER</div>
 
         <h4 class="fw-bold mb-2">Claim Your Rs. 5,000 Discount</h4>
         <p class="text-muted small mb-3">Fill details below to continue</p>
 
+        <p id="modalMessage" class="text-muted">
+          Enter your details and allow location access to check your eligibility.
+        </p>
+
         <input id="name" class="form-control mb-2" placeholder="Enter your name">
         <input id="email" class="form-control mb-2" placeholder="Enter your email">
 
-        <select id="status" class="form-select mb-2">
+        <select id="userStatus" class="form-select mb-2">
           <option value="">Current Status</option>
           <option>Student</option>
+          <option>House Wife</option>
           <option>Job Holder</option>
           <option>Freelancer</option>
           <option>Unemployed</option>
@@ -302,140 +273,170 @@ body{
           <option>Just Exploring</option>
         </select>
 
-        <button onclick="submitLead()" class="btn btn-success w-100 fw-bold">
-          Continue
+        <button onclick="unlockOffer()" class="btn btn-success btn-elite w-100">
+          Reveal My Discount
         </button>
 
-        <small id="msg" class="text-danger d-block mt-2"></small>
+        <div id="urgency" class="mt-3" style="display:none;">
+          <div class="countdown" id="countdown"></div>
+          <div class="spots" id="spots"></div>
+        </div>
+
+        <a id="whatsappBtn"
+           href="#"
+           target="_blank"
+           class="btn btn-dark btn-elite w-100 mt-3"
+           style="display:none;">
+           Claim My Discount on WhatsApp
+        </a>
+
+        <div class="trust mt-3">
+          ✔ Verified users only • ✔ No spam • ✔ Takes 10 seconds
+        </div>
+
+        <small id="formStatus" class="text-muted d-block mt-2"></small>
 
       </div>
     </div>
   </div>
 </div>
 
-
+<!-- BOOTSTRAP JS -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
 <script>
 
-/* ===== CONFIG ===== */
-const WHATSAPP="923314041010"; // without +
-const SHEET_WEBHOOK="PASTE_GOOGLE_SCRIPT_URL";
-/* ================== */
-
-let detectedCity="your city";
-
-/* ===== CHECK LOCATION PERMISSION ===== */
-window.addEventListener("load", async ()=>{
-
-  if (navigator.geolocation){
-    try{
-      const permission = await navigator.permissions.query({name:"geolocation"});
-      if(permission.state === "granted"){
-        await detectCity();
-      }
-    }catch{}
+// AUTO SHOW MODAL
+window.addEventListener("load", function(){
+  if(!localStorage.getItem("discountClaimed")){
+    const modal = new bootstrap.Modal(document.getElementById('discountModal'));
+    modal.show();
   }
-
-  updateMarquee();
 });
 
+// URGENCY ENGINE
+function startUrgency(){
+  document.getElementById("urgency").style.display="block";
 
-/* ===== DETECT CITY (ONLY IF ALLOWED) ===== */
-async function detectCity(){
-  return new Promise((resolve)=>{
-    navigator.geolocation.getCurrentPosition(async(pos)=>{
-      try{
-        const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`);
-        const d=await r.json();
-        detectedCity = d.address.city || d.address.state || "your city";
-        resolve();
-      }catch{
-        resolve();
-      }
-    },()=>{
-      resolve();
-    });
-  });
+  let time = 480;
+  const el = document.getElementById("countdown");
+
+  const timer = setInterval(()=>{
+    let m = Math.floor(time/60);
+    let s = time % 60;
+    if(s<10) s="0"+s;
+    el.innerText=`${m}:${s}`;
+    time--;
+    if(time<0){
+      clearInterval(timer);
+      el.innerText="Expired";
+    }
+  },1000);
+
+  let spots = Math.floor(Math.random()*4)+4;
+  const spotsEl = document.getElementById("spots");
+  spotsEl.innerText=`Only ${spots} spots left in your area`;
+
+  setInterval(()=>{
+    if(spots>1){
+      spots--;
+      spotsEl.innerText=`Only ${spots} spots left in your area`;
+    }
+  },15000);
 }
 
-
-/* ===== UPDATE MARQUEE TEXT ===== */
-function updateMarquee(){
-
-  const text = `
-    🎉 Mentorship By Dilawar is offering Rs. 5,000 discount 
-    for <strong>${detectedCity}</strong> students for this week only.
-    <a href="#" onclick="openModal()">Claim your Discount</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-  `;
-
-  document.getElementById("discountText").innerHTML = text + text;
+// DISCOUNT GENERATOR
+function generateDiscount(){
+  const discounts=[5000,7000,9000,12000,15000];
+  return discounts[Math.floor(Math.random()*discounts.length)];
 }
 
+// FORM SUBMIT
+function unlockOffer(){
 
-/* ===== OPEN MODAL ===== */
-function openModal(){
-  const modal = new bootstrap.Modal(document.getElementById('leadModal'));
-  modal.show();
-}
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const userStatus = document.getElementById("userStatus").value;
+  const timeline = document.getElementById("timeline").value;
 
-
-/* ===== SUBMIT FORM ===== */
-async function submitLead(){
-
-  const name=document.getElementById("name").value.trim();
-  const email=document.getElementById("email").value.trim();
-  const status=document.getElementById("status").value;
-  const timeline=document.getElementById("timeline").value;
-
-  if(!name || !email || !status || !timeline){
-    document.getElementById("msg").innerText="Please complete all fields.";
+  if(!name || !email || !userStatus || !timeline){
+    document.getElementById("formStatus").innerText="Please fill all fields.";
     return;
   }
 
-  document.getElementById("msg").innerText="Processing...";
+  document.getElementById("formStatus").innerText="Checking eligibility...";
 
-  await detectCity();
-
-  // Send to Google Sheet (optional)
-  fetch(SHEET_WEBHOOK,{
-    method:"POST",
-    body:JSON.stringify({
-      name,email,status,timeline,
-      city:detectedCity,
-      time:new Date().toISOString()
-    })
-  }).catch(()=>{});
-
-  bootstrap.Modal.getInstance(document.getElementById('leadModal')).hide();
-
-  launchConfetti();
-
-  setTimeout(()=>{
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-      `Hi! I want to claim my Rs.5000 discount. I am from ${detectedCity}.`
-    )}`,'_blank');
-  },1200);
+  if(location.protocol==="https:" && navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(successGPS,detectViaIP,{
+      enableHighAccuracy:true,
+      timeout:15000
+    });
+  }else{
+    detectViaIP();
+  }
 }
 
+// GPS SUCCESS
+async function successGPS(position){
+  const lat=position.coords.latitude;
+  const lon=position.coords.longitude;
 
-/* ===== CONFETTI EFFECT ===== */
-function launchConfetti(){
+  try{
+    const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+    const data=await res.json();
+    const addr=data.address;
 
-  const duration = 2500;
-  const end = Date.now() + duration;
+    let area= addr.suburb || addr.city || addr.state || "your area";
+    revealOffer(area);
 
-  (function frame() {
-    confetti({
-      particleCount: 5,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
+  }catch{
+    detectViaIP();
+  }
+}
 
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
+// IP FALLBACK
+async function detectViaIP(){
+  try{
+    const res=await fetch("https://ipwho.is/");
+    const data=await res.json();
+    let area=data.city || data.region || "your area";
+    revealOffer(area);
+  }catch{
+    revealOffer("your area");
+  }
+}
+
+// FINAL OFFER
+function revealOffer(area){
+
+  const discount = generateDiscount();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const userStatus = document.getElementById("userStatus").value;
+  const timeline = document.getElementById("timeline").value;
+
+  document.getElementById("modalMessage").innerText =
+    `🎉 Great news! A Rs ${discount.toLocaleString()} mentorship discount has been unlocked for people in ${area}.`;
+
+  document.getElementById("formStatus").innerText="Eligibility confirmed ✅";
+
+  const whatsappNumber="923000000000"; // <-- PUT YOUR NUMBER HERE
+
+  const msg = `Hi! My name is ${name}.
+Email: ${email}
+Current Status: ${userStatus}
+Joining Timeline: ${timeline}
+I unlocked a Rs ${discount} mentorship discount for ${area}.
+I want to claim it.`;
+
+  const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+  const btn=document.getElementById("whatsappBtn");
+  btn.href=waLink;
+  btn.style.display="block";
+  btn.onclick=()=>localStorage.setItem("discountClaimed",true);
+
+  startUrgency();
 }
 
 </script>
