@@ -1190,16 +1190,3 @@ Getting started with our mentorship program is simple and straightforward:
 
 // ChatBot Ended
 
-// Location Permission
-window.onload = function () {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      console.log("Permission granted");
-      console.log("Latitude:", position.coords.latitude);
-      console.log("Longitude:", position.coords.longitude);
-    },
-    function (error) {
-      console.log("Permission denied or error");
-    }
-  );
-};

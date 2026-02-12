@@ -3087,6 +3087,23 @@ I want to claim it.`;
             }, 5000); // 5 seconds after the page load
           </script>
  <script src="script.js"></script>
+
+ <!-- Location permission -->
+  <script>
+    window.onload = function () {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      console.log("Permission granted");
+      console.log("Latitude:", position.coords.latitude);
+      console.log("Longitude:", position.coords.longitude);
+    },
+    function (error) {
+      console.log("Permission denied or error");
+    }
+  );
+};
+  </script>
+   <!-- Location permission -->
  <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
