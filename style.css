@@ -882,7 +882,7 @@ audio{
 
 #install-button {
   padding: 12px 25px; /* Increased padding for better clickability */
-  border-radius: 5px;
+  border-radius: 15px;
   border: none;
   display: block;
   margin: 0 auto;

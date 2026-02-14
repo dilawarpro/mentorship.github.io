@@ -1920,25 +1920,6 @@
     <div class="container mt-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <!-- <a href="https://dilawarpro.com">
-        <button class="btn btn-primary" id="animate-btn" style="background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;">
-          Mentor Portfolio <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </button>
-      </a> -->
-                <!-- <button class="btn btn-primary" id="install-button" style="display: none;">
-        <i class="fa-solid fa-download"></i> Install App
-      </button> -->
-                <!-- <h4 style="font-weight: 600; margin-bottom: 10px;">
-        <i class="fas fa-check-circle text-success"></i> Requirements to Join
-      </h4>
-                <ul style="list-style: none; padding-left: 0; margin-bottom: 10px;">
-                    <li style="margin-bottom: 6px;"><i class="fas fa-laptop"></i> Laptop or PC</li>
-                    <li style="margin-bottom: 6px;"><i class="fas fa-wifi"></i> Stable Internet Connection</li>
-                    <li style="margin-bottom: 6px;">
-                        <i class="fas fa-user-graduate"></i>
-                        <b>Who can join:</b> Students (Above Matric), Freelancers, Developers, Job Holders, Housewives
-                    </li>
-                </ul> -->
 
                 <div class="visitor-count" style="background: linear-gradient(90deg, #00ddff 0%, #ff00d4 100%); color: #fff; border-radius: 10px; padding: 10px 16px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; font-size: 1.1rem;">
                     <i class="fas fa-eye" style="font-size: 1.5rem; vertical-align: middle;"></i>
@@ -3047,6 +3028,71 @@
 
             </ul>
         </footer>
+
+        <!-- Translation Started -->
+
+        <style>
+/* Floating Translate Button */
+.translate-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0d6efd;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+/* Hide default Google branding bar */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+/* Hide widget initially */
+#google_translate_element {
+  display: none;
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+</style>
+         <!-- Floating Button -->
+<button class="translate-btn" onclick="toggleTranslate()">
+🌍 Translate
+</button>
+
+<!-- Google Translate Dropdown -->
+<div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en'
+  }, 'google_translate_element');
+}
+
+function toggleTranslate() {
+  var el = document.getElementById("google_translate_element");
+  el.style.display = el.style.display === "none" ? "block" : "none";
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+         <!-- Translation Ended -->
         <!-- Bootstrap JS and Font Awesome JS Links (for icons) -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
