@@ -122,868 +122,285 @@ setInterval(() => {
 
 // ChatBot Started
 // Chatbot for Mentorship By Dilawar
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
+document.addEventListener('DOMContentLoaded', function () {
+
     const chatbotTrigger = document.getElementById('chatbotTrigger');
     const chatbotContainer = document.getElementById('chatbotContainer');
-    const minimizeBtn = document.getElementById('minimizeBtn');
-    const closeBtn = document.getElementById('closeBtn');
     const chatbotMessages = document.getElementById('chatbotMessages');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
     const suggestedButtons = document.getElementById('suggestedButtons');
-    const chatNotification = document.querySelector('.chat-notification');
-    
-    // Chatbot State
-    let chatbotState = {
-        userName: '',
-        userEmail: '',
-        userWhatsapp: '',
-        appointmentDate: '',
-        appointmentTime: '',
-        currentStep: 'greeting',
-        conversationHistory: [],
-        appointmentBooked: false,
-        bookingInProgress: false
+
+    let state = {
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        qualification: '',
+        step: 'greeting',
+        booked: false
     };
-    
-    // Auto open chatbot after 15 seconds
-    setTimeout(() => {
-        openChatbot();
-    }, 15000);
-    
-    // Event Listeners
+
+    // Auto Open
+    setTimeout(() => openChatbot(), 10000);
+
     chatbotTrigger.addEventListener('click', toggleChatbot);
-    minimizeBtn.addEventListener('click', minimizeChatbot);
-    closeBtn.addEventListener('click', closeChatbot);
-    sendBtn.addEventListener('click', handleUserInput);
-    userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            handleUserInput();
-        }
-    });
-    
-    // Chatbot Functions
+    sendBtn.addEventListener('click', handleInput);
+    userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleInput(); });
+
     function toggleChatbot() {
-        if (chatbotContainer.classList.contains('active')) {
-            closeChatbot();
-        } else {
-            openChatbot();
-        }
+        chatbotContainer.classList.toggle('active');
     }
-    
+
     function openChatbot() {
         chatbotContainer.classList.add('active');
-        chatbotTrigger.style.display = 'none';
-        
-        if (chatNotification) {
-            chatNotification.style.display = 'none';
-        }
-        
-        if (chatbotState.conversationHistory.length === 0) {
-            setTimeout(() => {
-                addBotMessage("Hello! 👋 Welcome to the Champions Mentorship Program. I'm your intelligent enrollment assistant, here to guide you every step of the way. Before we begin, may I know your name?");
-            }, 500);
+        if (!state.name) {
+            addBot("Welcome 👋 I’m your AI Strategy Advisor.\n\nBefore we begin, what’s your first name?");
         }
     }
-    
-    function minimizeChatbot() {
-        chatbotContainer.classList.remove('active');
-        chatbotTrigger.style.display = 'block';
-        chatbotTrigger.style.right = '30px';
-        chatbotTrigger.style.left = 'auto';
-    }
-    
-    function closeChatbot() {
-        chatbotContainer.classList.remove('active');
-        chatbotTrigger.style.display = 'block';
-        chatbotTrigger.style.right = '30px';
-        chatbotTrigger.style.left = 'auto';
-    }
-    
-    function handleUserInput() {
+
+    function handleInput() {
         const message = userInput.value.trim();
-        if (message === '') return;
-        
-        addUserMessage(message);
+        if (!message) return;
+
+        addUser(message);
         userInput.value = '';
-        processUserInput(message);
+
+        setTimeout(() => process(message), 500);
     }
-    
-    function processUserInput(message) {
-        chatbotState.conversationHistory.push({
-            sender: 'user',
-            message: message
-        });
-        
-        showTypingIndicator();
-        
-        setTimeout(() => {
-            removeTypingIndicator();
-            
-            switch(chatbotState.currentStep) {
-                case 'greeting':
-                    handleNameInput(message);
-                    break;
-                case 'website_reading':
-                    handleWebsiteReadingResponse(message);
-                    break;
-                case 'appointment_interest':
-                    handleAppointmentInterest(message);
-                    break;
-                case 'menu':
-                    handleMenuSelection(message);
-                    break;
-                case 'email':
-                    handleEmailInput(message);
-                    break;
-                case 'whatsapp':
-                    handleWhatsappInput(message);
-                    break;
-                case 'date':
-                    handleDateInput(message);
-                    break;
-                case 'time':
-                    handleTimeInput(message);
-                    break;
-                case 'confirmation':
-                    handleConfirmation(message);
-                    break;
-                default:
-                    generalResponse(message);
-            }
-        }, 1000);
-    }
-    
-    function handleNameInput(name) {
-        chatbotState.userName = name;
-        chatbotState.currentStep = 'menu';
-        
-        addBotMessage(`Great to meet you, ${name}! 😊 I'm here to help you learn everything about the Champions Mentorship Program — from curriculum details and career benefits to enrollment and scheduling. How can I assist you today?`);
-        
-        setTimeout(() => {
-            showTrustFactors();
-        }, 2000);
-    }
-    
-    function handleMenuSelection(selection) {
-        const sel = selection.toLowerCase();
-        
-        if (sel.includes("registration process")) {
-            showRegistrationProcess();
-            return;
-        }
-        
-        if (sel.includes("payment method")) {
-            showPaymentMethods();
-            return;
-        }
-        
-        if (sel.includes("i've reviewed") || sel.includes("reviewed everything")) {
-            addBotMessage(`Excellent, ${chatbotState.userName}! Since you've reviewed the program details, let me walk you through the Champions Mentorship Program highlights.`);
-            setTimeout(() => {
-                showChampionDetails();
-            }, 2000);
-            return;
-        }
-        
-        if (sel.includes("cancel booking")) {
-            chatbotState.bookingInProgress = false;
-            chatbotState.currentStep = 'menu';
-            addBotMessage(`No worries — I've cancelled the booking process. Feel free to explore more about the Champions Mentorship Program, ${chatbotState.userName}.`);
-            showMainMenu();
-            return;
-        }
-        
-        if (sel.includes("about the program") || sel.includes("tell me about") || sel.includes("program details")) {
-            showChampionDetails();
-            return;
-        }
-        
-        if (sel.includes("what will i learn") || sel.includes("curriculum") || sel.includes("modules")) {
-            showCurriculum();
-            return;
-        }
-        
-        if (sel.includes("who is this for") || sel.includes("right for me") || sel.includes("is this for me")) {
-            showIdealCandidate();
-            return;
-        }
-        
-        if (sel.includes("located") || sel.includes("where") || sel.includes("location")) {
-            addBotMessage(`The Champions Mentorship Program is 100% online. You can join from anywhere in the world — whether you're in Asia, Europe, North America, or the Middle East. All sessions are conducted via professional video conferencing tools, offering you complete flexibility in location and scheduling. Your home becomes your classroom.`);
-            showPostInfoButtons();
-            return;
-        }
-        
-        if (sel.includes("fees") || sel.includes("cost") || sel.includes("price") || sel.includes("pricing")) {
-            showFeeStructure();
-            return;
-        }
-        
-        if (sel.includes("duration") || sel.includes("how long") || sel.includes("time to complete")) {
-            addBotMessage(`The Champions Mentorship Program is designed to be completed in <strong>less than 2 months</strong> with flexible scheduling.
 
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Session Format:</strong> 1-on-1 personalized sessions</li>
-    <li><strong>Schedule:</strong> Flexible — you choose days and times that work for you</li>
-    <li><strong>Pace:</strong> Adaptive to your learning speed</li>
-    <li><strong>Post-Completion:</strong> Lifetime access to materials and ongoing mentor support</li>
-</ul>
+    function process(message) {
 
-Whether you prefer an accelerated pace or a more relaxed schedule, the program adapts to your lifestyle.`);
-            showPostInfoButtons();
-            return;
-        }
-        
-        if (sel.includes("success stories") || sel.includes("results") || sel.includes("testimonials")) {
-            showSuccessStories();
-            return;
-        }
-        
-        if (sel.includes("career opportunities") || sel.includes("job") || sel.includes("earning") || sel.includes("income")) {
-            showCareerOpportunities();
-            return;
-        }
-        
-        if (sel.includes("book") || sel.includes("appointment") || sel.includes("schedule")) {
-            startBookingProcess();
-            return;
-        }
-        
-        if (sel.includes("back to menu") || sel.includes("main menu")) {
-            addBotMessage(`What else would you like to explore about the Champions Mentorship Program, ${chatbotState.userName}?`);
-            showMainMenu();
-            return;
-        }
-        
-        if (sel.includes("no, that's all") || sel.includes("that's all") || sel.includes("nothing else")) {
-            addBotMessage(`It was a pleasure assisting you, ${chatbotState.userName}! 🌟 Remember, the Champions Mentorship Program is your gateway to building a thriving digital career. If you ever have more questions or want to enroll, I'm just a click away. Wishing you all the best!`);
-            clearSuggestedButtons();
-            return;
-        }
-        
-        // Smart fallback with keyword detection
-        if (sel.includes("mentor") || sel.includes("teach") || sel.includes("learn") || sel.includes("skill")) {
-            showChampionDetails();
-            return;
-        }
-        
-        if (sel.includes("pay") || sel.includes("money") || sel.includes("transfer") || sel.includes("bank")) {
-            showPaymentMethods();
-            return;
-        }
-        
-        if (sel.includes("register") || sel.includes("enroll") || sel.includes("join") || sel.includes("sign up") || sel.includes("start")) {
-            showRegistrationProcess();
-            return;
-        }
-        
-        generalResponse(selection);
-    }
-    
-    function showChampionDetails() {
-        addBotMessage(`<strong>🏆 Champions Mentorship Program — Our Flagship Program</strong>
+        switch (state.step) {
 
-The Champions Mentorship Program is a comprehensive, career-transforming experience designed to equip you with 15+ digital income streams and real-world skills.
+            case 'greeting':
+                state.name = message;
+                state.step = 'qualification';
+                addBot(`Great to meet you, ${state.name}.\n\nQuick question:\nAre you serious about building a long-term digital income source?`);
+                showButtons(["Yes, 100% Serious", "Just Exploring"]);
+                break;
 
-<strong>Core Benefits:</strong>
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>🎯 Personalized 1-on-1 mentorship sessions with flexible scheduling</li>
-    <li>📚 Mastery of 15+ in-demand digital skills and income streams</li>
-    <li>💼 100% guaranteed job placement upon completion</li>
-    <li>🌐 Lifetime FREE web hosting with SSL certificates</li>
-    <li>🛒 No e-commerce platform fees — build unlimited stores</li>
-    <li>🎥 Bonus courses: Digital Marketing, Domain Flipping & YouTube Automation</li>
-    <li>🤝 Lifetime personalized mentor support — even after graduation</li>
-    <li>🔧 Hands-on real-world projects with every module</li>
-    <li>🌍 Work remotely from anywhere in the world</li>
-    <li>📈 Start generating income from Module 1</li>
-</ul>
+            case 'qualification':
+                state.qualification = message;
 
-This program has transformed the careers of thousands of students worldwide and remains our most loved and recommended offering.`);
-        
-        setTimeout(() => {
-            let buttons = ["View Fee Structure", "Curriculum & Modules", "Career Opportunities", "Registration Process"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showCurriculum() {
-        addBotMessage(`<strong>📘 Champions Mentorship Program — Curriculum Overview</strong>
+                if (message.includes("Exploring")) {
+                    addBot("Understood. This program is designed only for committed individuals ready to take action.\n\nYou may explore more and return when ready.");
+                    showButtons(["Back"]);
+                } else {
+                    showProgramPositioning();
+                }
+                break;
 
-Our curriculum is designed to take you from beginner to professional with practical, hands-on training:
+            case 'email':
+                if (!validateEmail(message)) {
+                    addBot("Please enter a valid email address.");
+                    return;
+                }
+                state.email = message;
+                state.step = 'phone';
+                addBot("Perfect. Now share your WhatsApp number for confirmation access.");
+                break;
 
-<ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Web Development & Programming</strong> — Build professional websites from scratch</li>
-    <li><strong>E-Commerce Mastery</strong> — Create and manage online stores without platform fees</li>
-    <li><strong>Search Engine Optimization (SEO)</strong> — Rank websites on Google organically</li>
-    <li><strong>Social Media Marketing (SMM)</strong> — Master platforms like Facebook, Instagram & LinkedIn</li>
-    <li><strong>Digital Marketing & Ads</strong> — Run profitable ad campaigns</li>
-    <li><strong>Freelancing & Client Acquisition</strong> — Build a sustainable freelance business</li>
-    <li><strong>Content Creation & Copywriting</strong> — Create high-converting content</li>
-    <li><strong>YouTube Automation</strong> — Build and monetize YouTube channels</li>
-    <li><strong>Domain Flipping</strong> — Buy and sell domains for profit</li>
-    <li><strong>Project Management & Client Relations</strong> — Professional workflow mastery</li>
-</ol>
+            case 'phone':
+                if (!validatePhone(message)) {
+                    addBot("Please enter a valid WhatsApp number.");
+                    return;
+                }
+                state.phone = message;
+                state.step = 'date';
+                addBot("Select your preferred strategy call date:");
+                showButtons(generateDates(5));
+                break;
 
-<p><em>Each module includes real-world projects, assignments, and practical applications. You'll build a professional portfolio as you learn.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["View Fee Structure", "Career Opportunities", "Registration Process"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showCareerOpportunities() {
-        addBotMessage(`<strong>💼 Career & Earning Opportunities After Graduation</strong>
+            case 'date':
+                state.date = message;
+                state.step = 'time';
+                addBot("Choose your time slot:");
+                showButtons(["11:00 AM", "1:00 PM", "3:00 PM", "5:00 PM"]);
+                break;
 
-Graduates of the Champions Mentorship Program unlock multiple career paths:
+            case 'time':
+                state.time = message;
+                state.step = 'confirm';
+                confirmBooking();
+                break;
 
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>🏢 <strong>Guaranteed Job Placement</strong> — Work remotely with our partnered digital marketing agency</li>
-    <li>💻 <strong>Freelancing</strong> — Offer your services on platforms like Upwork, Fiverr & Freelancer</li>
-    <li>🛍️ <strong>E-Commerce Business</strong> — Launch your own online stores with zero platform fees</li>
-    <li>📱 <strong>Social Media Management</strong> — Manage brands and businesses on social platforms</li>
-    <li>🔍 <strong>SEO Consulting</strong> — Help businesses rank higher on search engines</li>
-    <li>🎥 <strong>YouTube Revenue</strong> — Earn through automated YouTube channels</li>
-    <li>🌐 <strong>Domain Flipping</strong> — Buy and resell premium domains for profit</li>
-    <li>📈 <strong>Digital Marketing Agency</strong> — Start your own agency with the skills you've learned</li>
-</ul>
+            case 'confirm':
+                if (message.toLowerCase().includes("confirm")) {
+                    finalizeBooking();
+                } else {
+                    addBot("Type CONFIRM to secure your slot.");
+                }
+                break;
 
-<p><strong>Earning Potential:</strong> Our graduates typically start earning within their first month of training. With dedication and consistent effort, monthly income of Rs. 50,000 to Rs. 500,000+ is achievable within the first year.</p>
-
-<p><em>Your success is our mission — we provide ongoing support and guidance even after program completion.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["View Fee Structure", "Registration Process"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showSuccessStories() {
-        addBotMessage(`<strong>🌟 Student Success & Impact</strong>
-
-Our Champions Mentorship Program has produced remarkable results:
-
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>📊 <strong>Thousands of students</strong> have enrolled and transformed their careers</li>
-    <li>💰 <strong>85%+ graduates</strong> start earning within 30 days of enrollment</li>
-    <li>🌍 Students from <strong>15+ countries</strong> worldwide</li>
-    <li>⭐ <strong>4.9/5 average satisfaction rating</strong> from alumni</li>
-    <li>🤝 <strong>100% job placement rate</strong> for committed graduates</li>
-    <li>📈 Alumni have gone on to build <strong>six-figure businesses</strong></li>
-</ul>
-
-<p><em>Every student's journey is unique, but the common thread is consistent effort paired with expert mentorship. Our graduates are proof that the right guidance can accelerate your career by years.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["Program Details", "View Fee Structure", "Registration Process"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showIdealCandidate() {
-        addBotMessage(`<strong>🎯 Is the Champions Mentorship Program Right for You?</strong>
-
-This program is perfect for you if:
-
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>✅ You want to build a sustainable <strong>online career</strong> from scratch</li>
-    <li>✅ You're a <strong>student, professional, or homemaker</strong> looking for flexible income</li>
-    <li>✅ You want to learn <strong>multiple digital skills</strong> in one program</li>
-    <li>✅ You prefer <strong>1-on-1 personalized mentorship</strong> over generic courses</li>
-    <li>✅ You're serious about <strong>financial independence</strong> and career growth</li>
-    <li>✅ You want <strong>guaranteed job placement</strong> after completion</li>
-    <li>✅ You value <strong>lifetime support</strong> and ongoing guidance</li>
-</ul>
-
-<p><strong>No prior experience required!</strong> Whether you're a complete beginner or have some digital skills, our personalized approach ensures you learn at your own pace and reach your goals.</p>
-
-<p><em>The only prerequisite is a genuine commitment to learning and growth.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["Program Details", "View Fee Structure", "Curriculum & Modules"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showFeeStructure() {
-        addBotMessage(`<strong>💰 Champions Mentorship Program — Fee Structure</strong>
-
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Session Format:</strong> 1-on-1 Personalized Sessions</li>
-    <li><strong>Schedule:</strong> Flexible (you choose your days and times)</li>
-    <li><strong>Estimated Duration:</strong> Less than 2 months</li>
-    <li><strong>Registration Fee:</strong> Rs. 5,000</li>
-    <li><strong>Full Program Fee:</strong> Rs. 35,000</li>
-    <li><strong>Discounted One-Time Payment:</strong> Rs. 25,000 ($90) — <em>Best value!</em></li>
-</ul>
-
-<strong>What's Included in Your Investment:</strong>
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>🌐 Lifetime FREE web hosting with SSL (Save up to Rs. 18,000/year)</li>
-    <li>🛒 Zero e-commerce platform fees (Save $300+/year)</li>
-    <li>📚 Bonus courses: Digital Marketing, Domain Flipping & YouTube Automation</li>
-    <li>💼 100% guaranteed job placement</li>
-    <li>🤝 Lifetime personalized mentor support</li>
-    <li>📋 Real-world projects and portfolio building</li>
-</ul>
-
-<p><em>We also offer a risk-free trial — pay only the registration fee to start, attend 3-4 classes, and then decide if you'd like to continue. Full refund guaranteed within 7 days if you're not satisfied.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["Payment Methods", "Registration Process"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function startBookingProcess() {
-        chatbotState.currentStep = 'email';
-        chatbotState.bookingInProgress = true;
-        addBotMessage(`Wonderful! Let's get your consultation scheduled, ${chatbotState.userName}. 📅
-
-I'll need a few details to set everything up. First, what's your email address? We'll use it to send your appointment confirmation.`);
-        clearSuggestedButtons();
-    }
-    
-    function handleEmailInput(email) {
-        if (!isValidEmail(email)) {
-            addBotMessage("That doesn't appear to be a valid email address. Please double-check and try again — for example: yourname@email.com");
-            return;
-        }
-        
-        chatbotState.userEmail = email;
-        chatbotState.currentStep = 'whatsapp';
-        
-        addBotMessage("Perfect! Now, please share your WhatsApp number (with country code). We'll use it to send you session reminders and important updates.");
-    }
-    
-    function handleWhatsappInput(whatsapp) {
-        if (!isValidPhone(whatsapp)) {
-            addBotMessage("That doesn't seem like a valid phone number. Please enter your WhatsApp number with country code — for example: +923001234567");
-            return;
-        }
-        
-        chatbotState.userWhatsapp = whatsapp;
-        chatbotState.currentStep = 'date';
-        
-        addBotMessage("Excellent! Please select your preferred consultation date from the options below:");
-        
-        const dateOptions = generateDateOptions(7);
-        showSuggestedButtons(dateOptions);
-    }
-    
-    function handleDateInput(date) {
-        chatbotState.appointmentDate = date;
-        chatbotState.currentStep = 'time';
-        
-        addBotMessage(`You've selected <strong>${date}</strong>. Now, choose a time slot that works best for you:`);
-        
-        showSuggestedButtons([
-            "9:00 AM", "10:00 AM", "11:00 AM", 
-            "1:00 PM", "2:00 PM", "3:00 PM", 
-            "4:00 PM", "5:00 PM"
-        ]);
-    }
-    
-    function handleTimeInput(time) {
-        chatbotState.appointmentTime = time;
-        chatbotState.currentStep = 'confirmation';
-        
-        addBotMessage(`Perfect! Here's a summary of your consultation appointment:
-
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Name:</strong> ${chatbotState.userName}</li>
-    <li><strong>Email:</strong> ${chatbotState.userEmail}</li>
-    <li><strong>WhatsApp:</strong> ${chatbotState.userWhatsapp}</li>
-    <li><strong>Date:</strong> ${chatbotState.appointmentDate}</li>
-    <li><strong>Time:</strong> ${chatbotState.appointmentTime}</li>
-    <li><strong>Program:</strong> Champions Mentorship Program</li>
-</ul>
-
-<p>Does everything look correct? Please confirm to finalize your booking.</p>`);
-        
-        showSuggestedButtons(["✅ Yes, confirm appointment", "❌ No, make changes"]);
-    }
-    
-    function handleConfirmation(response) {
-        if (response.toLowerCase().includes("yes") || response.toLowerCase().includes("confirm")) {
-            addBotMessage("🎉 Your consultation has been booked successfully!");
-            
-            setTimeout(() => {
-                showAppointmentSummary();
-                chatbotState.appointmentBooked = true;
-                chatbotState.bookingInProgress = false;
-            }, 1000);
-            
-            chatbotState.currentStep = 'menu';
-        } else {
-            addBotMessage("No problem! Let's redo the booking with the correct details.");
-            startBookingProcess();
+            default:
+                handleMenu(message);
         }
     }
-    
-    function showAppointmentSummary() {
-        const summaryDiv = document.createElement('div');
-        summaryDiv.className = 'appointment-summary';
-        summaryDiv.innerHTML = `
-            <h4>📋 Appointment Confirmation</h4>
-            <div class="summary-content">
-                <p><strong>Name:</strong> ${chatbotState.userName}</p>
-                <p><strong>Email:</strong> ${chatbotState.userEmail}</p>
-                <p><strong>WhatsApp:</strong> ${chatbotState.userWhatsapp}</p>
-                <p><strong>Date:</strong> ${chatbotState.appointmentDate}</p>
-                <p><strong>Time:</strong> ${chatbotState.appointmentTime}</p>
-                <p><strong>Program:</strong> Champions Mentorship Program</p>
-            </div>
-            <p class="share-instruction">Please confirm your appointment via WhatsApp to complete the process</p>
-            <button class="whatsapp-btn" onclick="shareOnWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
-            </button>
-        `;
-        
-        chatbotMessages.appendChild(summaryDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        
-        setTimeout(() => {
-            addBotMessage(`Thank you for scheduling your consultation, ${chatbotState.userName}! 🌟 Is there anything else you'd like to know about the Champions Mentorship Program?`);
-            
-            showSuggestedButtons([
-                "Program Details",
-                "Curriculum & Modules",
-                "Career Opportunities",
-                "Registration Process",
-                "Payment Methods",
-                "No, that's all for now"
-            ]);
-        }, 2000);
+
+    // ===============================
+    // HIGH CONVERSION POSITIONING
+    // ===============================
+    function showProgramPositioning() {
+
+        addBot(`
+<strong>Champions Mentorship Program</strong>
+
+This is a performance-based digital income acceleration system.
+
+✔ 1-on-1 Private Mentorship  
+✔ Real Client Implementation  
+✔ Advanced Digital Skill Systems  
+✔ Remote Job Pathways  
+✔ Lifetime Hosting Infrastructure  
+✔ Strategic Brand Positioning  
+
+⚠ Limited onboarding capacity each month.
+
+Would you like to review details or secure a strategy call?
+        `);
+
+        showButtons(["View Full Details", "Program Investment", "Book Strategy Call"]);
+        state.step = 'menu';
     }
-    
-    function generalResponse(message) {
-        addBotMessage(`I appreciate your message, ${chatbotState.userName}. Let me help you find what you're looking for. Here are the topics I can assist you with:`);
-        
-        chatbotState.currentStep = 'menu';
-        showMainMenu();
-    }
-    
-    function showMainMenu() {
-        let menuOptions = [
-            "Program Details",
-            "Curriculum & Modules",
-            "Who Is This For?",
-            "View Fee Structure",
-            "Career Opportunities",
-            "Success Stories & Results",
-            "How Long Is the Program?",
-            "Where Are You Located?",
-            "Registration Process",
-            "Payment Methods"
-        ];
-        
-        if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-            menuOptions.push("Book an Appointment");
+
+    function handleMenu(message) {
+
+        if (message.includes("Details")) {
+            addBot(`
+This program is structured for serious income builders.
+
+You will:
+• Build monetizable skill assets  
+• Work on real projects  
+• Develop positioning authority  
+• Gain structured execution roadmap  
+
+This is not theory. It is implementation-focused.
+            `);
+            showButtons(["Book Strategy Call"]);
         }
-        
-        if (chatbotState.bookingInProgress) {
-            chatbotState.bookingInProgress = false;
+
+        else if (message.includes("Investment")) {
+            addBot(`
+<strong>Program Investment</strong>
+
+Registration: Rs. 5,000  
+Full Program: Rs. 35,000  
+Discounted One-Time: Rs. 25,000  
+
+Spots are capped to maintain mentorship quality.
+            `);
+            showButtons(["Book Strategy Call"]);
         }
-        
-        showSuggestedButtons(menuOptions);
-    }
-    
-    function showPostInfoButtons() {
-        let buttons = [];
-        
-        if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-            buttons.push("Book an Appointment");
-        } else if (chatbotState.bookingInProgress) {
-            buttons.push("Cancel Booking");
-        }
-        
-        buttons.push("Back to Menu");
-        showSuggestedButtons(buttons);
-    }
-    
-    // Trust Factors - Professional and Name-Free
-    function showTrustFactors() {
-        addBotMessage(`${chatbotState.userName}, we want you to feel completely confident about this decision. Here's our commitment to you — if you don't gain measurable value from the program or don't see income results, we will happily refund your entire fee. That's our promise.`);
-        
-        setTimeout(() => {
-            addBotMessage(`As a graduate, you'll also have the opportunity to work remotely with our partnered digital marketing agency. This means you can start earning immediately after completing the program, right from the comfort of your home.`);
-            
-            setTimeout(() => {
-                addBotMessage(`Still have concerns? You don't need to commit fully upfront. You can attend 3 to 4 classes first, experience the quality of mentorship firsthand, and then decide whether to continue. No pressure, no risk.`);
-                
-                setTimeout(() => {
-                    addBotMessage(`We encourage you to research thoroughly before enrolling. Review the course modules, student testimonials, and program curriculum on our website. Make an informed decision — we're confident the quality speaks for itself.`);
-                    
-                    setTimeout(() => {
-                        askAboutWebsiteReading();
-                    }, 8000);
-                }, 8000);
-            }, 8000);
-        }, 8000);
-    }
-    
-    function askAboutWebsiteReading() {
-        chatbotState.currentStep = 'website_reading';
-        addBotMessage(`${chatbotState.userName}, have you had a chance to review the complete course details and modules on our website?`);
-        showSuggestedButtons(["Yes, I've reviewed everything", "No, I still need to review"]);
-    }
-    
-    function handleWebsiteReadingResponse(response) {
-        if (response.toLowerCase().includes("yes")) {
-            addBotMessage(`Fantastic, ${chatbotState.userName}! Since you're familiar with the program, let me show you exactly what the Champions Mentorship Program offers.`);
-            
-            setTimeout(() => {
-                chatbotState.currentStep = 'menu';
-                showChampionDetails();
-            }, 2000);
-        } else {
-            addBotMessage(`No problem at all! Take your time to explore the complete course details, modules, and student success stories on our website. When you're ready, come back and I'll guide you through the next steps.`);
-            
-            setTimeout(() => {
-                chatbotState.currentStep = 'menu';
-                let menuOptions = [
-                    "Program Details",
-                    "Curriculum & Modules",
-                    "Who Is This For?",
-                    "View Fee Structure",
-                    "Career Opportunities",
-                    "I've reviewed the website now"
-                ];
-                
-                showSuggestedButtons(menuOptions);
-            }, 2000);
+
+        else if (message.includes("Book")) {
+            state.step = 'email';
+            addBot("Excellent decision.\n\nEnter your email to secure your strategy session.");
+            clearButtons();
         }
     }
-    
-    function handleAppointmentInterest(response) {
-        if (response.toLowerCase().includes("yes")) {
-            startBookingProcess();
-        } else {
-            chatbotState.currentStep = 'menu';
-            addBotMessage(`No problem! Feel free to explore more about the Champions Mentorship Program. What would you like to know?`);
-            showMainMenu();
-        }
-    }
-    
-    function showPaymentMethods() {
-        addBotMessage(`<strong>💳 Payment Methods</strong>
 
-We offer multiple convenient payment options for your ease:
+    // ===============================
+    // BOOKING CONFIRMATION
+    // ===============================
+    function confirmBooking() {
 
-<p><strong>Bank Transfer:</strong></p>
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Bank:</strong> United Bank Limited (UBL)</li>
-    <li><strong>IBAN:</strong> PK66UNIL0109000285863354</li>
-    <li><strong>Account Number:</strong> 0443285863354</li>
-</ul>
+        addBot(`
+<strong>Confirm Your Strategy Call</strong>
 
-<p><strong>Mobile Wallets:</strong></p>
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>EasyPaisa / JazzCash:</strong> 03104212713</li>
-</ul>
+Name: ${state.name}
+Email: ${state.email}
+WhatsApp: ${state.phone}
+Date: ${state.date}
+Time: ${state.time}
 
-<p><strong>Payment Process:</strong></p>
-<ol style="margin-left: 20px; padding-left: 10px;">
-    <li>Select your preferred payment method</li>
-    <li>Complete the transfer and take a screenshot</li>
-    <li>Share the payment proof via WhatsApp</li>
-    <li>Receive verification and enrollment confirmation within minutes</li>
-    <li>Your program access is activated immediately</li>
-</ol>
+Type CONFIRM to finalize.
+        `);
+    }
 
-<p><em>For international payments or alternative methods, please reach out to us via WhatsApp — we'll accommodate your needs.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["Registration Process", "View Fee Structure"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
-    }
-    
-    function showRegistrationProcess() {
-        addBotMessage(`<strong>📝 How to Enroll — Simple 3-Step Process</strong>
+    function finalizeBooking() {
 
-Getting started with the Champions Mentorship Program is quick and risk-free:
+        state.booked = true;
 
-<ol style="margin-left: 20px; padding-left: 10px;">
-    <li><strong>Step 1 — Register:</strong> Provide your complete details including full name, email, city, and WhatsApp number. We'll set up your student profile.</li>
-    <li><strong>Step 2 — Start Risk-Free:</strong> Pay only the registration fee (Rs. 5,000) to begin. Attend your first 3-4 sessions. If you're not 100% satisfied within the first 7 days, we'll refund your fee completely — no questions asked.</li>
-    <li><strong>Step 3 — Continue & Excel:</strong> Once you experience the quality of mentorship, pay the remaining program fee (one-time or in installments). Start building your digital career with full support.</li>
-</ol>
+        addBot(`
+✅ Your Strategy Call is Confirmed.
 
-<p><strong>Your Safety Guarantees:</strong></p>
-<ul style="margin-left: 20px; padding-left: 10px;">
-    <li>✅ 7-day money-back guarantee</li>
-    <li>✅ Flexible payment plans available</li>
-    <li>✅ Immediate access to all learning materials</li>
-    <li>✅ Lifetime mentor support</li>
-    <li>✅ Start earning during the program itself</li>
-</ul>
+A confirmation message will be sent to your WhatsApp shortly.
 
-<p><em>We've designed the process to be completely risk-free because we believe in the transformative power of this program.</em></p>`);
-        
-        setTimeout(() => {
-            let buttons = ["Payment Methods", "View Fee Structure"];
-            
-            if (!chatbotState.appointmentBooked && !chatbotState.bookingInProgress) {
-                buttons.push("Book an Appointment");
-            }
-            
-            buttons.push("Back to Menu");
-            showSuggestedButtons(buttons);
-        }, 2000);
+Prepare to discuss your income roadmap and execution plan.
+        `);
+
+        sendToWhatsApp();
+        clearButtons();
     }
-    
-    // Utility Functions
-    function addUserMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message user-message';
-        messageDiv.textContent = message;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-    
-    function addBotMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message bot-message';
-        messageDiv.innerHTML = message;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        
-        chatbotState.conversationHistory.push({
-            sender: 'bot',
-            message: message
-        });
-    }
-    
-    function showTypingIndicator() {
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'typing-indicator';
-        typingDiv.id = 'typingIndicator';
-        typingDiv.innerHTML = '<span></span><span></span><span></span>';
-        chatbotMessages.appendChild(typingDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-    
-    function removeTypingIndicator() {
-        const typingIndicator = document.getElementById('typingIndicator');
-        if (typingIndicator) {
-            typingIndicator.remove();
-        }
-    }
-    
-    function showSuggestedButtons(options) {
-        suggestedButtons.innerHTML = '';
-        
-        options.forEach(option => {
-            const button = document.createElement('button');
-            button.className = 'suggested-btn';
-            button.textContent = option;
-            button.addEventListener('click', function() {
-                userInput.value = option;
-                handleUserInput();
-            });
-            
-            suggestedButtons.appendChild(button);
-        });
-    }
-    
-    function clearSuggestedButtons() {
-        suggestedButtons.innerHTML = '';
-    }
-    
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-    
-    function isValidPhone(phone) {
-        const re = /^\+?[0-9]{10,15}$/;
-        return re.test(phone.replace(/\s+/g, ''));
-    }
-    
-    function generateDateOptions(days) {
-        const options = [];
-        const today = new Date();
-        
-        for (let i = 1; i <= days; i++) {
-            const date = new Date(today);
-            date.setDate(today.getDate() + i);
-            
-            const formattedDate = date.toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            options.push(formattedDate);
-        }
-        
-        return options;
-    }
-    
-    // WhatsApp Sharing - Global Scope
-    window.shareOnWhatsApp = function() {
-        const message = encodeURIComponent(
-            `*Appointment Confirmation — Champions Mentorship Program*\n\n` +
-            `Name: ${chatbotState.userName}\n` +
-            `Email: ${chatbotState.userEmail}\n` +
-            `WhatsApp: ${chatbotState.userWhatsapp}\n` +
-            `Date: ${chatbotState.appointmentDate}\n` +
-            `Time: ${chatbotState.appointmentTime}\n` +
-            `Program: Champions Mentorship Program\n\n` +
-            `I would like to confirm this consultation appointment. Thank you!`
+
+    function sendToWhatsApp() {
+        const msg = encodeURIComponent(
+            `Strategy Call Confirmation\n\nName: ${state.name}\nEmail: ${state.email}\nWhatsApp: ${state.phone}\nDate: ${state.date}\nTime: ${state.time}`
         );
-        
-        const whatsappNumber = '923314041010';
-        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-    };
+        window.open(`https://wa.me/923000000000?text=${msg}`, '_blank');
+    }
+
+    // ===============================
+    // UI HELPERS
+    // ===============================
+    function addUser(text) {
+        const div = document.createElement('div');
+        div.className = 'message user-message';
+        div.textContent = text;
+        chatbotMessages.appendChild(div);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function addBot(text) {
+        const div = document.createElement('div');
+        div.className = 'message bot-message';
+        div.innerHTML = text.replace(/\n/g, "<br>");
+        chatbotMessages.appendChild(div);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showButtons(arr) {
+        suggestedButtons.innerHTML = '';
+        arr.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'suggested-btn';
+            btn.textContent = opt;
+            btn.onclick = () => {
+                userInput.value = opt;
+                handleInput();
+            };
+            suggestedButtons.appendChild(btn);
+        });
+    }
+
+    function clearButtons() {
+        suggestedButtons.innerHTML = '';
+    }
+
+    function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePhone(phone) {
+        return /^\+?[0-9]{10,15}$/.test(phone);
+    }
+
+    function generateDates(days) {
+        const list = [];
+        const today = new Date();
+        for (let i = 1; i <= days; i++) {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+            list.push(d.toLocaleDateString());
+        }
+        return list;
+    }
+
 });
+
 
 
 
