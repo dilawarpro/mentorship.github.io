@@ -976,7 +976,60 @@ The Champions Mentorship Program is perfect for you if:
     };
 });
 
+// ==================== NAME HANDLING (SMART) ====================
 
+function handleNameInput(name) {
+    chatbotState.nameAttempts++;
+
+    // Allow user to skip
+    if (name.toLowerCase() === 'skip' || name.toLowerCase() === 'skip this') {
+        setDefaultNameAndContinue();
+        return;
+    }
+
+    if (!isValidName(name)) {
+        if (chatbotState.nameAttempts >= chatbotState.maxNameAttempts) {
+            setDefaultNameAndContinue();
+            return;
+        }
+
+        const errorMessages = [
+            `I'd love to address you properly! Please enter your real name using only letters (at least 2 characters). For example: <strong>Ahmad Khan</strong> or <strong>Sarah</strong>.
+            
+<p style="margin-top:8px; font-size:13px; opacity:0.8;">You can also type <strong>Skip</strong> if you'd prefer not to share your name.</p>`,
+
+            `That still doesn't look like a valid name. Please use only alphabets, no numbers or special characters. Examples: <strong>Ali</strong>, <strong>Maria</strong>, <strong>John Smith</strong>.
+            
+<p style="margin-top:8px; font-size:13px; opacity:0.8;">Type <strong>Skip</strong> to continue without sharing your name.</p>`,
+
+            `I need a proper name to personalize your experience. Please type your first name or full name using alphabets only. This is your last attempt before I assign a default name.
+            
+<p style="margin-top:8px; font-size:13px; opacity:0.8;">Or simply type <strong>Skip</strong>.</p>`
+        ];
+
+        addBotMessage(errorMessages[Math.min(chatbotState.nameAttempts - 1, errorMessages.length - 1)]);
+        
+        // Show skip button for convenience
+        showSuggestedButtons(["Skip"]);
+        return;
+    }
+
+    // Valid name entered
+    chatbotState.userName = formatName(name);
+    chatbotState.currentStep = 'menu';
+
+    addBotMessage(`Welcome, ${chatbotState.userName}! 😊 I'm your dedicated Student Care Assistant for the Champions Mentorship Program. Whether you need program details, want to book a consultation, or have questions about enrollment, I'm here to help you every step of the way.`);
+
+    setTimeout(showTrustFactors, 2000);
+}
+
+function setDefaultNameAndContinue() {
+    chatbotState.userName = 'Valued Student';
+    chatbotState.currentStep = 'menu';
+    addBotMessage(`No worries at all! I'll address you as <strong>Valued Student</strong> for now. 😊 You can share your name anytime during our conversation. Let me tell you about our Champions Mentorship Program!`);
+    clearSuggestedButtons();
+    setTimeout(showTrustFactors, 2000);
+}
 
 // ChatBot Ended
 
