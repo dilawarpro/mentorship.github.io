@@ -121,7 +121,7 @@ setInterval(() => {
 // })();
 
 // ChatBot Started
-// Simple Modern Chatbot - Mentorship By Dilawar
+// Enhanced Modern Chatbot - Mentorship By Dilawar
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const chatbotTrigger = document.getElementById('chatbotTrigger');
@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
     const suggestedButtons = document.getElementById('suggestedButtons');
+    const chatNotification = document.querySelector('.chat-notification');
 
     // State
     let state = {
@@ -141,160 +142,257 @@ document.addEventListener('DOMContentLoaded', function() {
         phone: '',
         date: '',
         time: '',
-        booked: false
+        booked: false,
+        jokeCount: 0,
+        quoteCount: 0,
+        lastJokeIndex: -1,
+        lastQuoteIndex: -1,
+        chatOpened: false
     };
 
-    // ==================== PROMOTIONAL JOKES ====================
+    // ==================== FUNNY PROMOTIONAL JOKES ====================
     const jokes = [
         // HTML/CSS/JS Web Development Jokes
-        "Why did the HTML element break up with the CSS? Because it felt too boxed in by all those margins! 📦 Learn proper layouts at Mentorship By Dilawar!",
+        "Why did the HTML element go to therapy? It had too many unresolved parent issues! 😂 Don't let YOUR career have issues - join Mentorship By Dilawar TODAY! 🔥",
         
-        "CSS is like a relationship: When it works, it's beautiful. When it doesn't, you question your entire existence! 💔 Master CSS at Mentorship By Dilawar!",
+        "CSS be like: 'Center a div? Sure! That'll be 3 hours and 47 Stack Overflow tabs!' 🤯 We teach you in 5 minutes at Mentorship By Dilawar! Limited seats! ⏰",
         
-        "Why was the div sad? Because it had no class! 😢 Give YOUR career some class with Mentorship By Dilawar!",
+        "JavaScript developers never die... they just become undefined! 💀😂 Don't let your career become undefined - enroll NOW! 🚨",
         
-        "A website without CSS is like a person without clothes. Technically functional, but nobody wants to see that! 👔 Learn styling at Mentorship By Dilawar!",
+        "My CSS is like my love life - I try to be flexible, but always end up in a weird position! 🤣 Get your career in the RIGHT position - join this week! 💪",
         
-        "Why do web developers prefer dark mode? Because light attracts too many bugs! 🐛 Debug like a pro at Mentorship By Dilawar!",
+        "A web developer's last words: 'It works on my machine!' ⚰️😂 Make it work EVERYWHERE - enroll before next batch fills! 🎯",
         
-        "JavaScript: 'undefined is not a function.' Me: 'But it was working 5 minutes ago!' 😭 Master JS at Mentorship By Dilawar!",
+        "Why do programmers hate nature? Too many bugs and no console.log! 🐛🌲 Debug your career at Mentorship By Dilawar! Act NOW! ⚡",
         
-        "Why did the JavaScript developer wear glasses? Because he couldn't C# ... wait, he doesn't need to! JS is enough! 👓 Learn JS at Mentorship By Dilawar!",
+        "CSS Flexbox: 'I can align anything!' Also Flexbox: *puts footer in outer space* 🚀😂 Learn REAL layouts - doors closing Friday! 🚪",
         
-        "HTML, CSS, and JavaScript walk into a bar. The bartender says: 'Sorry, we don't serve your type here.' HTML replies: 'But I give everything structure!' 🍺 Build structured sites at Mentorship By Dilawar!",
+        "How do you comfort a JavaScript bug? You console it! 🖥️😄 Console your career worries - join Mentorship By Dilawar! Discount ending! 💸",
         
-        "Why do CSS developers never get lost? Because they always know their position: absolute, relative, or fixed! 📍 Master positioning at Mentorship By Dilawar!",
+        "Why was the div sad? No content and zero padding! 😢 Fill YOUR life with skills - register TODAY! 📝",
         
-        "My CSS skills are so good, I can center a div... on the first try! 🎯 (Okay, maybe second try) Learn the tricks at Mentorship By Dilawar!",
+        "My code doesn't have bugs, it has surprise features that charge extra! 🎁💰 Learn REAL coding at Mentorship By Dilawar! 🎟️",
         
-        "Why did the website go to therapy? Too many broken links and commitment issues with its backend! 🔗 Build solid sites at Mentorship By Dilawar!",
+        "Why did the responsive website go to couples therapy? Couldn't handle the breakpoints! 💔📱 Master ALL screen sizes - enroll NOW! 🗓️",
         
-        "JavaScript developer's favorite song? 'Let it Go... of the undefined variables!' 🎵 Write clean code at Mentorship By Dilawar!",
+        "CSS Grid walks into a bar. Bartender: 'You look organized!' Grid: 'Working on my columns!' 🍺😂 Organize YOUR future - last 10 seats! 🪑",
         
-        "Why did the HTML tag feel lonely? Because it was never properly closed! </lonely> 😢 Learn proper syntax at Mentorship By Dilawar!",
+        "I told my computer I needed a break. Now it won't stop sending vacation ads! 🏖️💻 Take a break from confusion - join this batch! ✨",
         
-        "CSS Flexbox walks into a bar and says: 'Let me align everyone here!' The bar immediately becomes perfectly organized. 🍸 Flex your skills at Mentorship By Dilawar!",
+        "Why do CSS developers make bad friends? They want you to stay in your own box! 📦😅 Break out - transform your career TODAY! 🎁",
         
-        "Why don't web developers ever get cold? Because they always leave their Windows open and use lots of Java... Script! ☕ Master JS at Mentorship By Dilawar!",
+        "JavaScript's 'this' keyword changes personality based on who it's with! 🎭 Be consistent - Mentorship By Dilawar shows the way! 🛤️",
         
-        "My code doesn't have bugs. It just develops random features! 🐞 Learn debugging at Mentorship By Dilawar!",
+        "How many developers to change a lightbulb? None, that's hardware! 💡😂 SOFTWARE your success - only 5 spots left! 🔢",
         
-        "Why did the responsive website break up with the desktop? It needed more space! 📱 Master responsive design at Mentorship By Dilawar!",
+        "My website is like my diet - great until someone inspects it! 🔍🍕 Build inspection-proof sites - join before price increase! 📈",
         
-        "CSS Grid and Flexbox had a baby. It was perfectly aligned and responsive! 👶 Learn modern layouts at Mentorship By Dilawar!",
+        "Why did the HTML form break up with submit button? Too much pressure! 😅💔 Handle pressure like a pro - bonus modules FREE! 🎁",
         
-        "What's a web developer's favorite snack? Cookies! But they always have to accept them first. 🍪 Master web development at Mentorship By Dilawar!",
+        "CSS: Where 'float' makes things sink and 'clear' makes things messier! 🌊😂 Clear path to success - enrollment ends soon! ⏰",
         
-        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢 Express yourself at Mentorship By Dilawar!",
+        "Why did the website need therapy? Broken links and trust issues! 🔗 Build solid sites at Mentorship By Dilawar! 🏆",
 
         // Freelancing Jokes
-        "Client: 'Can you make the logo bigger?' Me: 'Which one of the 47 versions?' 😅 Master client management at Mentorship By Dilawar!",
+        "Client: 'Make it pop!' Me: *adds glitter* Client: 'No, more... poppier?' 🎉😂 Understand clients at Mentorship By Dilawar! Special pricing! 💰",
         
-        "Freelancer's math: 1 hour of actual work = 3 hours of emails explaining that 1 hour of work! 📧 Work smarter at Mentorship By Dilawar!",
+        "Freelancer's favorite horror movie: 'The Scope That Kept Creeping!' 👻 Escape the horror - learn boundaries! Limited offer! 🎃",
         
-        "Client: 'It's a simple 5-minute job.' Translation: Minimum 5 days with 50 revisions! ⏰ Learn to estimate projects at Mentorship By Dilawar!",
+        "Client: 'Budget is $50 but I want Amazon quality!' Me: 'My patience is Dollar Store!' 💸😂 Attract HIGH-PAYING clients - spots filling! 🚀",
         
-        "Client: 'We don't have a budget, but think of the exposure!' Me: 'People die from exposure.' 🏔️ Learn to charge your worth at Mentorship By Dilawar!",
+        "Why do freelancers make terrible comedians? Their jokes need revisions! 🔄😅 No revisions for success - enroll by Sunday! 📅",
         
-        "Why don't freelancers ever get lost? They always follow the money trail! 💸 Find YOUR money trail at Mentorship By Dilawar!",
+        "Client: 'Make it more... you know... better?' Ah yes, BETTER - the famous design term! 🎨😂 Speak client language - join NOW! 🌅",
         
-        "Freelancer's favorite exercise? Running from scope creep! 🏃 Learn project management at Mentorship By Dilawar!",
+        "Freelancer's prayer: 'Lord, give me patience... and a client who knows what they want!' 🙏😂 Get GOOD clients - last chance this month! 📆",
         
-        "Client: 'Can we hop on a quick call?' *3 hours later* Still on the 'quick' call. 📞 Manage time better at Mentorship By Dilawar!",
+        "Why did the freelancer bring a ladder? Client said take it to next level! 🪜😂 ACTUALLY level up - only 7 seats left! 7️⃣",
         
-        "The freelancer's diet: Coffee, ramen, and revision requests. ☕🍜 Upgrade your career at Mentorship By Dilawar!",
+        "Client: 'We love it! Just a few small changes...' *sends 47-page document* 📜😱 Avoid nightmares - enroll TODAY! 🎁",
         
-        "Client: 'I'll know what I want when I see it.' Me: 'I'll know my price when I see the revisions.' 💰 Set boundaries at Mentorship By Dilawar!",
+        "Why don't freelancers win at poker? They show their hand then revise it 5 times! 🃏😂 Win at freelancing - join NOW! ♠️",
         
-        "Why did the freelancer bring a ladder to the meeting? To reach those impossibly high client expectations! 🪜 Exceed expectations at Mentorship By Dilawar!",
+        "Freelancer diet: Ramen + Coffee + Broken Dreams (season with client tears) 🍜☕😂 Upgrade to STEAK earnings! 🥩",
         
-        "Freelancing tip: 'ASAP' means 'Anytime Soon After Payment.' 💵 Get paid right at Mentorship By Dilawar!",
+        "Client asked for 'simple' website. 6 months, 200 revisions, 3 existential crises later... 😭😂 Build sites FAST! Flash sale! ⚡",
         
-        "Client: 'Make it pop!' Me: *adds confetti animation* 'Like this?' 🎉 Understand clients at Mentorship By Dilawar!",
+        "Why did freelancer go broke? Worked for 'exposure' and caught a cold! 🤧💀 Get PAID - Rs. 50,000+/month awaits! 📈",
         
-        "A freelancer's nightmare: 'My nephew knows Canva, can he help?' 😱 Prove your value at Mentorship By Dilawar!",
+        "Client: 'Make it viral!' Me: 'Sir, this is a plumbing website.' 🚽🦠 Learn REAL marketing! Spots disappearing! 💨",
         
-        "Why do freelancers make great detectives? They're experts at chasing invoices! 🔍 Master invoicing at Mentorship By Dilawar!",
+        "Freelancer math: Quote $500 → Settle at $200 → Do $800 worth of work 🧮😂 Price like a PRO! 💵",
         
-        "Client: 'Can you do it for free? It'll be great for your portfolio!' My portfolio: *crying in unpaid work* 😭 Build a PAID portfolio at Mentorship By Dilawar!",
+        "Why are freelancers great at yoga? Years of bending backwards for clients! 🧘😂 Stand TALL with proper skills! 🏷️",
         
-        "Freelancer's version of 'I love you': 'The deposit has been received.' 💕 Build client relationships at Mentorship By Dilawar!",
-        
-        "Why did the freelancer go to the beach? To work remotely... and still answer client emails! 🏖️ Live the freelance dream at Mentorship By Dilawar!",
-        
-        "Client feedback: 'It's great, but can you change everything?' 🔄 Handle feedback like a pro at Mentorship By Dilawar!",
+        "Client ghosted harder than my ex! At least ex didn't owe me money! 👻💔 Never get ghosted - join TODAY! 👻",
 
         // Digital Marketing & SEO Jokes
-        "Why did the SEO expert cross the road? To get more traffic! 🚗 Drive REAL traffic at Mentorship By Dilawar!",
+        "Why did SEO expert cross the road? To get more traffic! 🚗 Drive REAL traffic at Mentorship By Dilawar! 🎯",
         
-        "An SEO expert walks into a bar, pub, tavern, inn, nightclub, lounge, drinks, alcohol, beer, wine... 🍺 Master keywords at Mentorship By Dilawar!",
+        "SEO expert at party: Stands in corner optimizing position for visibility! 🎉📍 Be the LIFE of the party - only 3 spots! 3️⃣",
         
-        "SEO tip: The best place to hide a body? Page 2 of Google. Nobody looks there! 💀 Rank on PAGE 1 at Mentorship By Dilawar!",
+        "Google algorithm: 'Surprise! Everything you knew is wrong now!' 🎊😱 Stay AHEAD - join before algorithm changes! 🔄",
         
-        "Why did Google break up with SEO? Too many mixed signals and algorithm changes! 💔 Stay updated at Mentorship By Dilawar!",
+        "Why did marketer get dumped? Too focused on conversion, forgot relationship! 💔📊 Balance EVERYTHING! 💕",
         
-        "Marketing rule #1: If it's not on social media, did it even happen? 📱 Dominate social media at Mentorship By Dilawar!",
+        "Social media manager's alarm: *ding* *ding* Sleep? What's that! 🔔😴 Automate and SLEEP! Night owl discount! 🦉",
         
-        "Why did the marketer break up with the calendar? Too many dates, not enough conversions! 📅 Master conversions at Mentorship By Dilawar!",
+        "Why did email go to spam? Came on too strong with exclamation marks!!! 📧😂 Write emails that CONVERT! ✍️",
         
-        "Why are marketers great at relationships? They know all about engagement! 💍 Boost engagement at Mentorship By Dilawar!",
+        "Marketer's Tinder: 'Looking for high engagement, low bounce rate!' 💕📈 Find YOUR perfect career! 💘",
         
-        "What's a digital marketer's blood type? B2B positive! 🩸 Learn B2B & B2C at Mentorship By Dilawar!",
+        "Why did Facebook ad cry? Nobody clicked, everybody scrolled! 😢👆 Create CLICKABLE content! 🖱️",
         
-        "Email marketer's nightmare: 'Your message was marked as spam.' 📧 Master email marketing at Mentorship By Dilawar!",
+        "Best place to hide a body? Page 2 of Google! 💀🔍 Get on PAGE 1 - enroll before competitor does! 🏆",
         
-        "Why did the Facebook ad feel lonely? Low engagement and reach! 😢 Boost your reach at Mentorship By Dilawar!",
+        "Why did landing page fail? Promised moon, delivered flashlight! 🌙🔦 Deliver RESULTS! 🚀",
         
-        "Social media manager's alarm: *ding* Another notification! Sleep? What's that? 🔔 Work smarter at Mentorship By Dilawar!",
+        "Content is king, but distribution is queen who runs everything! 👑👸 Rule the kingdom! 🐦",
         
-        "Why did the landing page go to therapy? Too many bounce issues! 🏀 Reduce bounce rates at Mentorship By Dilawar!",
+        "Why are marketers bad at relationships? A/B test their partner's patience! 🧪💔 Test YOUR career path! 🔬",
         
-        "A marketer's favorite movie? 'The Conversion Rate!' 🎬 Optimize everything at Mentorship By Dilawar!",
+        "Google Analytics at 3 AM: 'Someone's on your site!' Me: 'Probably me crying over bounce rates!' 😭📊 Fix YOUR metrics! 🌙",
         
-        "Why don't SEO experts ever get lonely? They have lots of backlinks! 🔗 Build backlinks at Mentorship By Dilawar!",
+        "Why did influencer fail? Engagement faker than lifestyle photos! 📸🤥 Build REAL influence! ✨",
         
-        "What did the PPC ad say to the organic result? 'I paid to be here, what's your excuse?' 💵 Master both at Mentorship By Dilawar!",
+        "Marketer's lullaby: 'Hush little baby... mama's optimizing this landing page!' 🎵👶 Optimize YOUR future! 🌃",
         
-        "Content is king, but distribution is queen. And she wears the pants! 👑 Master content strategy at Mentorship By Dilawar!",
-        
-        "Why was the Google Analytics dashboard depressed? All it saw was high bounce rates! 📉 Fix your metrics at Mentorship By Dilawar!",
-        
-        "Marketer pickup line: 'Are you a conversion? Because you just completed my goal!' 😏 Hit YOUR goals at Mentorship By Dilawar!",
-        
-        "Why did the influencer refuse to go outside? Their engagement was higher indoors! 📲 Grow your influence at Mentorship By Dilawar!",
-        
-        "What's a marketer's favorite drink? Traffic jam! 🚗 Get unstuck at Mentorship By Dilawar!",
+        "PPC budget: Money goes brrrrr... and it's gone! 💸🖨️ Spend SMART at Mentorship By Dilawar! 💰",
 
-        // Motivational Career Jokes
-        "In 2024, 'I don't know websites' is not an excuse. It's a choice! 🖥️ Choose success at Mentorship By Dilawar!",
+        // Career & Motivation Jokes
+        "Boss: '5 year plan?' Me: 'Working remotely from a beach!' Boss: 'Not a plan!' Me: 'Watch me!' 🏖️😎 MAKE IT HAPPEN! 🌴",
         
-        "Some people dream of success. Others wake up and join Mentorship By Dilawar! ⏰🚀",
+        "Old career plan: Work 40 years, retire. New plan: Learn skills, retire at 40! 🎯😂 NEW plan at Mentorship By Dilawar! ✊",
         
-        "Why did the student become successful? They stopped watching tutorials and started DOING! 🎬➡️💻 Take action at Mentorship By Dilawar!",
+        "Why did employee bring blanket? Told to cover for someone! 😴🛏️ Cover YOUR own success - be your own boss! 👔",
         
-        "The best time to learn web development was 5 years ago. The second best? RIGHT NOW at Mentorship By Dilawar! ⏰",
+        "IT: 'Turn it off and on again?' Me to career: *quits job, starts freelancing* 🔄😂 Restart YOUR career! 🖥️",
         
-        "They laughed when I said I'd work from home. They stopped laughing when they saw my income! 😎💰 Start earning at Mentorship By Dilawar!",
+        "My laptop and I: We both freeze under pressure! 🥶💻 Perform under ANY pressure! ❄️",
         
-        "Why invest in crypto when you can invest in YOURSELF? 📈 Best ROI ever at Mentorship By Dilawar!",
+        "Why did spreadsheet go to therapy? Too many cells, not enough freedom! 📊😢 Break FREE from cubicle! 🔓",
         
-        "404: Excuses Not Found. Time to join Mentorship By Dilawar! 🚫",
+        "Office job: Work 9-5, commute 2 hours, survive. Freelancing: Pajamas, fridge commute, THRIVE! 🏠💪 Start THRIVING! 🚀",
         
-        "Loading success... 99% complete. Just need to join Mentorship By Dilawar! ⏳✅",
+        "Told boss I need raise - 3 companies after me! Which ones? Gas, Electric, Water! 💡💧😂 Earn REAL raises! 💸"
+    ];
+
+    // ==================== INSPIRATIONAL QUOTES ====================
+    const quotes = [
+        // Success & Ambition
+        "💭 <em>\"The only way to do great work is to love what you do.\"</em>\n— Steve Jobs\n\n🔥 Love earning online? Mentorship By Dilawar teaches you HOW! Only 5 spots left - claim yours NOW! ⏰",
         
-        "What's the difference between a job and a career? A mentor! 🎯 Get yours at Mentorship By Dilawar!",
+        "💭 <em>\"Success is not final, failure is not fatal: it is the courage to continue that counts.\"</em>\n— Winston Churchill\n\n💪 Start YOUR success journey! Enrollment closing in 48 hours! ⚡",
         
-        "Boss: 'Where do you see yourself in 5 years?' Me: 'Working remotely from anywhere I want!' 🌴 Make it happen at Mentorship By Dilawar!",
+        "💭 <em>\"The future belongs to those who learn more skills and combine them in creative ways.\"</em>\n— Robert Greene\n\n🎯 15+ skills await at Mentorship By Dilawar! Join before the weekend! 🚀",
         
-        "Money talks. Mine used to say 'Goodbye!' Now it says 'Hello!' Thanks to Mentorship By Dilawar! 👋💰",
+        "💭 <em>\"Don't watch the clock; do what it does. Keep going.\"</em>\n— Sam Levenson\n\n⏰ Keep going towards success! Limited seats, unlimited potential! 🎟️",
         
-        "Why do successful freelancers smile a lot? Because their bank account smiles back! 😄💵 Start smiling at Mentorship By Dilawar!"
+        "💭 <em>\"The best investment you can make is in yourself.\"</em>\n— Warren Buffett\n\n💰 Rs. 25,000 investment → Rs. 500,000+/year returns! Invest TODAY! 📈",
+        
+        "💭 <em>\"Your time is limited. Don't waste it living someone else's life.\"</em>\n— Steve Jobs\n\n⏳ Build YOUR OWN dreams! Time-sensitive offer ending! 🔥",
+        
+        "💭 <em>\"The only limit to our realization of tomorrow is our doubts of today.\"</em>\n— Franklin D. Roosevelt\n\n🚫 No more doubts! 7-day money-back guarantee - ACT NOW! 🛡️",
+        
+        "💭 <em>\"It does not matter how slowly you go as long as you do not stop.\"</em>\n— Confucius\n\n🐢 Start slow, finish STRONG! Spots limited - start TODAY! 🎯",
+        
+        "💭 <em>\"Believe you can and you're halfway there.\"</em>\n— Theodore Roosevelt\n\n✨ We believe in YOU! Join the winning team! 🏆",
+        
+        "💭 <em>\"The secret of getting ahead is getting started.\"</em>\n— Mark Twain\n\n🚀 STOP planning, START doing! 3 days left for discount! 3️⃣",
+
+        // Hustle & Grind
+        "💭 <em>\"Work like there is someone working 24 hours a day to take it away from you.\"</em>\n— Mark Cuban\n\n💪 Outwork the competition! Secure your spot NOW! 🔒",
+        
+        "💭 <em>\"Dreams don't work unless you do.\"</em>\n— John C. Maxwell\n\n😴💼 Stop dreaming, start DOING! Next batch Monday! 📅",
+        
+        "💭 <em>\"The harder you work, the greater you'll feel when you achieve it.\"</em>\n\n🎉 Achieve GREATNESS! Rs. 100,000+/month awaits! Enroll by midnight! 🌙",
+        
+        "💭 <em>\"Success usually comes to those who are too busy to be looking for it.\"</em>\n— Henry David Thoreau\n\n🏃 Get BUSY learning! Registration closing soon! ⏰",
+        
+        "💭 <em>\"Don't be afraid to give up the good to go for the great.\"</em>\n— John D. Rockefeller\n\n🌟 Good job? Go for GREAT career! Level up NOW! 📈",
+        
+        "💭 <em>\"I find that the harder I work, the more luck I seem to have.\"</em>\n— Thomas Jefferson\n\n🍀 Create YOUR luck! Enroll while lucky! 🎰",
+        
+        "💭 <em>\"The only place where success comes before work is in the dictionary.\"</em>\n\n📖 Put in the WORK! Action required - ACT NOW! ⚡",
+
+        // Mindset & Motivation
+        "💭 <em>\"Whether you think you can or you think you can't, you're right.\"</em>\n— Henry Ford\n\n🧠 Think you CAN! Join the winners! 🏆",
+        
+        "💭 <em>\"The mind is everything. What you think, you become.\"</em>\n— Buddha\n\n🧘 Think SUCCESS! Mind + Skills = Unstoppable! 💎",
+        
+        "💭 <em>\"Your limitation—it's only your imagination.\"</em>\n\n🌈 Imagine $1000+/month from anywhere! Make it REAL! 🎬",
+        
+        "💭 <em>\"The only impossible journey is the one you never begin.\"</em>\n— Tony Robbins\n\n🛤️ BEGIN today! Journey starts NOW! 👣",
+        
+        "💭 <em>\"Don't wait. The time will never be just right.\"</em>\n— Napoleon Hill\n\n⏰ RIGHT time is NOW! Doors closing Friday! 🚪",
+        
+        "💭 <em>\"Everything you've ever wanted is on the other side of fear.\"</em>\n— George Addair\n\n😨➡️😎 7-day guarantee removes ALL fear! 🦁",
+
+        // Financial Freedom
+        "💭 <em>\"Rich people have small TVs and big libraries, poor people have small libraries and big TVs.\"</em>\n— Zig Ziglar\n\n📚 Build your LIBRARY of skills! Netflix can wait! 📺➡️💰",
+        
+        "💭 <em>\"If you don't find a way to make money while you sleep, you will work until you die.\"</em>\n— Warren Buffett\n\n💤💰 Learn passive income! Sleep well, earn better! 😴",
+        
+        "💭 <em>\"The goal isn't more money. The goal is living life on your terms.\"</em>\n— Chris Brogan\n\n🎯 YOUR terms, YOUR life! Design your freedom! 🎨",
+        
+        "💭 <em>\"Money is a terrible master but an excellent servant.\"</em>\n— P.T. Barnum\n\n👔 Make money work FOR you! Be the master! 🎭",
+        
+        "💭 <em>\"It's not about how much you make, but how much you keep.\"</em>\n— Robert Kiyosaki\n\n💵 Learn to KEEP and GROW! Enroll TODAY! 📈",
+
+        // Taking Action
+        "💭 <em>\"The best time to plant a tree was 20 years ago. The second best time is now.\"</em>\n— Chinese Proverb\n\n🌳 Plant YOUR success tree NOW! Limited stock! 🌱",
+        
+        "💭 <em>\"Action is the foundational key to all success.\"</em>\n— Pablo Picasso\n\n🔑 Take ACTION! Your key awaits! 🚪",
+        
+        "💭 <em>\"You don't have to be great to start, but you have to start to be great.\"</em>\n— Zig Ziglar\n\n🌟 START now! Greatness is calling! 📞",
+        
+        "💭 <em>\"A year from now you will wish you had started today.\"</em>\n— Karen Lamb\n\n📅 Future you is BEGGING you! START TODAY! 🔮",
+        
+        "💭 <em>\"Stop being afraid of what could go wrong and start being excited about what could go right.\"</em>\n\n😨➡️😊 What could go RIGHT: Rs. 500,000/year! 🎉",
+        
+        "💭 <em>\"Twenty years from now you will be more disappointed by the things you didn't do.\"</em>\n— Mark Twain\n\n😢 No regrets! Enroll TODAY! 📈",
+
+        // Perseverance
+        "💭 <em>\"It's not whether you get knocked down, it's whether you get up.\"</em>\n— Vince Lombardi\n\n🥊 GET UP! We help you RISE! 💪",
+        
+        "💭 <em>\"Fall seven times, stand up eight.\"</em>\n— Japanese Proverb\n\n🎌 Keep standing! Lifetime support - never fall alone! 🤝",
+        
+        "💭 <em>\"Success is walking from failure to failure with no loss of enthusiasm.\"</em>\n— Winston Churchill\n\n🚶 Keep walking! Limited offer! 🔦",
+        
+        "💭 <em>\"The difference between a stumbling block and a stepping stone is how you use them.\"</em>\n\n🪨➡️🪜 Turn blocks into steps! Enroll NOW! 📶",
+
+        // Self-Belief
+        "💭 <em>\"You are never too old to set another goal or to dream a new dream.\"</em>\n— C.S. Lewis\n\n🎯 NEW dream starts TODAY! 18 or 58, success awaits! 🌈",
+        
+        "💭 <em>\"The way to get started is to quit talking and begin doing.\"</em>\n— Walt Disney\n\n🗣️➡️💪 Quit talking, START doing! ENROLL! 🎬",
+        
+        "💭 <em>\"Don't let yesterday take up too much of today.\"</em>\n— Will Rogers\n\n⏮️➡️⏩ Focus on TODAY! Gift yourself success! 🎁",
+        
+        "💭 <em>\"You miss 100% of the shots you don't take.\"</em>\n— Wayne Gretzky\n\n🏒 TAKE THE SHOT! Miss this? Miss success! 🥅"
     ];
 
     // ==================== UTILITY FUNCTIONS ====================
     
     function getRandomJoke() {
-        return jokes[Math.floor(Math.random() * jokes.length)];
+        let index;
+        do {
+            index = Math.floor(Math.random() * jokes.length);
+        } while (index === state.lastJokeIndex && jokes.length > 1);
+        
+        state.lastJokeIndex = index;
+        state.jokeCount++;
+        return jokes[index];
+    }
+
+    function getRandomQuote() {
+        let index;
+        do {
+            index = Math.floor(Math.random() * quotes.length);
+        } while (index === state.lastQuoteIndex && quotes.length > 1);
+        
+        state.lastQuoteIndex = index;
+        state.quoteCount++;
+        return quotes[index];
     }
 
     function isValidEmail(email) {
@@ -316,9 +414,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getGreeting() {
         const hour = new Date().getHours();
-        if (hour < 12) return 'Good morning';
-        if (hour < 17) return 'Good afternoon';
-        return 'Good evening';
+        
+        if (hour >= 5 && hour < 12) {
+            return { greeting: '☀️ Good morning', period: 'morning' };
+        } else if (hour >= 12 && hour < 17) {
+            return { greeting: '🌤️ Good afternoon', period: 'afternoon' };
+        } else if (hour >= 17 && hour < 21) {
+            return { greeting: '🌅 Good evening', period: 'evening' };
+        } else {
+            return { greeting: '🌙 Hello, night owl', period: 'night' };
+        }
+    }
+
+    function getTimeContext() {
+        const hour = new Date().getHours();
+        
+        if (hour >= 5 && hour < 9) {
+            return "🐦 Early bird catches success! Perfect time to start your journey!";
+        } else if (hour >= 9 && hour < 12) {
+            return "☕ Morning momentum! Best time for life-changing decisions!";
+        } else if (hour >= 12 && hour < 14) {
+            return "🍽️ Lunch break learning? Smart! Future you will thank you!";
+        } else if (hour >= 14 && hour < 17) {
+            return "💪 Afternoon ambition! While others nap, winners plan success!";
+        } else if (hour >= 17 && hour < 20) {
+            return "🌆 Evening excellence! Time to build something for YOURSELF!";
+        } else if (hour >= 20 && hour < 23) {
+            return "🌙 Night hustle! The world sleeps while winners work!";
+        } else {
+            return "🦉 Midnight motivation! Your dedication will pay off BIG!";
+        }
+    }
+
+    function getDayContext() {
+        const day = new Date().getDay();
+        const days = [
+            "🌟 Sunday! Successful people don't stop learning!",
+            "💪 Monday Motivation! New week, new opportunities!",
+            "🔥 Tuesday Hustle! Keep momentum going!",
+            "⚡ Wednesday Warrior! Halfway to your goals!",
+            "🚀 Thursday Thunder! Finish the week STRONG!",
+            "🎉 TGIF! Success doesn't take weekends off!",
+            "💎 Saturday Grind! Winners work while others party!"
+        ];
+        return days[day];
     }
 
     // ==================== INTENT DETECTION ====================
@@ -327,29 +466,44 @@ document.addEventListener('DOMContentLoaded', function() {
         const m = msg.toLowerCase().trim();
         
         const patterns = {
-            greeting: /^(hi|hello|hey|howdy|sup|assalam|salam)\b/,
-            program: /program|course|detail|about|overview|what.?is|mentor/,
-            fees: /fee|cost|price|how.?much|pricing|kitna|charge/,
+            greeting: /^(hi|hello|hey|howdy|sup|assalam|salam|yo|hola|good\s?(morning|afternoon|evening|night))\b/,
+            program: /program|course|detail|about|overview|what.?is|mentor|package/,
+            fees: /fee|cost|price|how.?much|pricing|kitna|charge|budget/,
             curriculum: /curriculum|module|skill|learn|teach|topic|syllabus/,
-            career: /career|job|earn|income|salary|work|freelanc|remote/,
-            booking: /book|appointment|schedule|consult|call|meet/,
+            career: /career|job|earn|income|salary|work|freelanc|remote|money/,
+            booking: /book|appointment|schedule|consult|call|meet|session/,
             registration: /register|enroll|join|sign.?up|start|admission/,
             payment: /pay|bank|transfer|method|easypaisa|jazzcash/,
-            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha|comic|fun|😄/,
+            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha|😄|another.?joke|more.?joke/,
+            quote: /quote|inspir|motivat|wisdom|💭|🌟|encourage|another.?quote|more.?quote/,
             help: /help|support|what.?can|how.?do|\?$/,
-            thanks: /thank|thanks|thx|shukriya/,
-            bye: /bye|goodbye|see.?you|later|allah.?hafiz/,
-            yes: /^(yes|yeah|yep|sure|ok|confirm|haan|ji)\b/,
+            thanks: /thank|thanks|thx|shukriya|great|awesome/,
+            bye: /bye|goodbye|see.?you|later|exit|quit/,
+            yes: /^(yes|yeah|yep|sure|ok|okay|confirm|haan|ji)\b/,
             no: /^(no|nah|nope|cancel|stop|nahi)\b/,
             menu: /menu|back|option|home|main/,
-            duration: /duration|how.?long|time|month|week|kitna.?waqt/,
-            location: /location|where|online|offline|city/
+            duration: /duration|how.?long|time|month|week/,
+            location: /location|where|online|offline/,
+            guarantee: /guarantee|refund|money.?back|risk/,
+            success: /success|stories|testimonial|result|proof/
         };
 
         for (const [intent, pattern] of Object.entries(patterns)) {
             if (pattern.test(m)) return intent;
         }
         return 'unknown';
+    }
+
+    // ==================== NOTIFICATION HANDLING ====================
+    
+    function hideNotification() {
+        if (chatNotification) {
+            chatNotification.style.display = 'none';
+            chatNotification.classList.remove('pulse', 'blink', 'active');
+        }
+        document.querySelectorAll('.notification-badge, .chat-badge, .unread-indicator').forEach(el => {
+            el.style.display = 'none';
+        });
     }
 
     // ==================== CHATBOT CONTROLS ====================
@@ -360,8 +514,9 @@ document.addEventListener('DOMContentLoaded', function() {
     sendBtn.addEventListener('click', handleInput);
     userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleInput(); });
 
-    // Auto-open after 10 seconds
-    setTimeout(openChat, 10000);
+    setTimeout(() => {
+        if (!state.chatOpened) openChat();
+    }, 8000);
 
     function toggleChat() {
         chatbotContainer.classList.contains('active') ? closeChat() : openChat();
@@ -370,14 +525,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function openChat() {
         chatbotContainer.classList.add('active');
         chatbotTrigger.style.display = 'none';
+        state.chatOpened = true;
+        hideNotification();
         
         if (state.history.length === 0) {
             setTimeout(() => {
-                addBot(`${getGreeting()}! 👋 Welcome to Mentorship By Dilawar!
+                const timeInfo = getGreeting();
+                addBot(`${timeInfo.greeting}! 👋
 
-I'm here to help you explore our program, answer questions, and share some fun jokes! 😄
+Welcome to <strong>Mentorship By Dilawar</strong>!
 
-What would you like to know?`);
+${getTimeContext()}
+
+I can help you with:
+🎯 Program details & curriculum
+💰 Fees & payment options  
+💼 Career opportunities
+📅 Book FREE consultation
+😄 Fun jokes to brighten your day
+💭 Motivational quotes to inspire you
+
+What would you like to explore?`);
                 showMainMenu();
             }, 500);
         }
@@ -386,6 +554,7 @@ What would you like to know?`);
     function closeChat() {
         chatbotContainer.classList.remove('active');
         chatbotTrigger.style.display = 'block';
+        hideNotification();
     }
 
     // ==================== MESSAGE HANDLING ====================
@@ -398,10 +567,12 @@ What would you like to know?`);
         userInput.value = '';
         showTyping();
 
+        const delay = Math.min(600 + msg.length * 15, 1500);
+
         setTimeout(() => {
             removeTyping();
             processMessage(msg);
-        }, 800);
+        }, delay);
     }
 
     function processMessage(msg) {
@@ -424,22 +595,38 @@ What would you like to know?`);
         const intent = detectIntent(msg);
         const m = msg.toLowerCase();
 
-        // Button text matching
+        // Button text matching - CLEAR MAPPING
         if (m.includes('program') || m.includes('detail')) { showProgram(); return; }
         if (m.includes('fee') || m.includes('price')) { showFees(); return; }
-        if (m.includes('curriculum') || m.includes('skill') || m.includes('module')) { showCurriculum(); return; }
+        if (m.includes('curriculum') || m.includes('skill')) { showCurriculum(); return; }
         if (m.includes('career') || m.includes('job') || m.includes('earn')) { showCareer(); return; }
-        if (m.includes('book') || m.includes('appointment') || m.includes('consult')) { startBooking(); return; }
-        if (m.includes('register') || m.includes('enroll') || m.includes('join now')) { showRegistration(); return; }
+        if (m.includes('book') || m.includes('consult')) { startBooking(); return; }
+        if (m.includes('register') || m.includes('enroll')) { showRegistration(); return; }
         if (m.includes('payment')) { showPayment(); return; }
-        if (m.includes('joke') || m.includes('funny') || m.includes('😄') || m.includes('another')) { tellJoke(); return; }
         if (m.includes('duration') || m.includes('how long')) { showDuration(); return; }
-        if (m.includes('location') || m.includes('where') || m.includes('online')) { showLocation(); return; }
+        if (m.includes('guarantee') || m.includes('refund')) { showGuarantee(); return; }
+        if (m.includes('success') || m.includes('stories')) { showSuccess(); return; }
         if (m.includes('menu') || m.includes('back') || m.includes('home')) { addBot("Here's what I can help with:"); showMainMenu(); return; }
+        
+        // JOKE BUTTON - Multiple variations
+        if (m.includes('joke') || m.includes('funny') || m.includes('laugh') || m.includes('😄') || m.includes('😂')) { 
+            tellJoke(); 
+            return; 
+        }
+        
+        // QUOTE/MOTIVATION BUTTON - Multiple variations
+        if (m.includes('quote') || m.includes('motiv') || m.includes('inspir') || m.includes('💭') || m.includes('wisdom')) { 
+            tellQuote(); 
+            return; 
+        }
 
-        // Intent-based handling
+        // Intent-based fallback
         const actions = {
-            greeting: () => { addBot("Hello! 😊 Great to have you here! How can I help you today?"); showMainMenu(); },
+            greeting: () => { 
+                const timeInfo = getGreeting();
+                addBot(`${timeInfo.greeting}! 😊\n\n${getDayContext()}\n\nHow can I help you?`); 
+                showMainMenu(); 
+            },
             program: showProgram,
             fees: showFees,
             curriculum: showCurriculum,
@@ -448,10 +635,12 @@ What would you like to know?`);
             registration: showRegistration,
             payment: showPayment,
             joke: tellJoke,
+            quote: tellQuote,
             duration: showDuration,
-            location: showLocation,
+            guarantee: showGuarantee,
+            success: showSuccess,
             help: showHelp,
-            thanks: () => { addBot("You're welcome! 😊 Anything else?"); showMainMenu(); },
+            thanks: handleThanks,
             bye: handleBye,
             menu: () => { addBot("Here you go:"); showMainMenu(); }
         };
@@ -459,7 +648,7 @@ What would you like to know?`);
         if (actions[intent]) {
             actions[intent]();
         } else {
-            addBot("I'd love to help! Choose from the options below, or ask about our program, fees, or request a joke! 😄");
+            addBot("I'd love to help! Choose from these options:");
             showMainMenu();
         }
     }
@@ -468,211 +657,325 @@ What would you like to know?`);
     
     function tellJoke() {
         const joke = getRandomJoke();
-        addBot(`😄 Here's one for you:\n\n${joke}`);
+        
+        const intros = [
+            "😂 <strong>JOKE TIME!</strong>\n\n",
+            "🤣 <strong>Ready to laugh?</strong>\n\n",
+            "😆 <strong>Here's a good one!</strong>\n\n",
+            "🎭 <strong>Comedy hour!</strong>\n\n",
+            "😄 <strong>LOL incoming!</strong>\n\n"
+        ];
+        
+        addBot(`${intros[Math.floor(Math.random() * intros.length)]}${joke}`);
         
         setTimeout(() => {
-            showButtons([
-                "😂 Another Joke!",
-                "📋 Program Details",
-                "💰 View Fees",
-                "📅 Book Consultation",
-                "⬅️ Back to Menu"
-            ]);
-        }, 1000);
+            if (state.jokeCount >= 3 && state.jokeCount % 3 === 0) {
+                addBot(`🎉 ${state.jokeCount} jokes and counting! Ready to turn laughs into a CAREER? Spots LIMITED! 🔥`);
+            }
+            showJokeQuoteButtons();
+        }, 1200);
+    }
+
+    // ==================== QUOTE/MOTIVATION HANDLING ====================
+    
+    function tellQuote() {
+        const quote = getRandomQuote();
+        
+        const intros = [
+            "✨ <strong>DAILY INSPIRATION</strong>\n\n",
+            "🌟 <strong>WISDOM FOR YOU</strong>\n\n",
+            "💎 <strong>WORDS TO LIVE BY</strong>\n\n",
+            "🔥 <strong>MOTIVATION BOOST</strong>\n\n",
+            "💪 <strong>POWER THOUGHT</strong>\n\n"
+        ];
+        
+        addBot(`${intros[Math.floor(Math.random() * intros.length)]}${quote}`);
+        
+        setTimeout(() => {
+            if (state.quoteCount >= 3 && state.quoteCount % 3 === 0) {
+                addBot(`💎 ${state.quoteCount} quotes of wisdom! Still just reading? Time for ACTION! Join NOW! ⏰`);
+            }
+            showJokeQuoteButtons();
+        }, 1200);
+    }
+
+    // Show buttons after joke or quote
+    function showJokeQuoteButtons() {
+        showButtons([
+            "😂 Another Joke!",
+            "💭 Motivational Quote",
+            "📋 Program Details",
+            "💰 View Fees",
+            "📅 Book FREE Consultation",
+            "⬅️ Back to Menu"
+        ]);
     }
 
     // ==================== CONTENT FUNCTIONS ====================
     
     function showProgram() {
-        addBot(`<strong>🏆 Mentorship By Dilawar</strong>
-
-Transform your career with personalized 1-on-1 mentorship!
+        addBot(`<strong>🏆 MENTORSHIP BY DILAWAR</strong>
+<em>Transform Your Career in Under 2 Months!</em>
 
 <strong>What You Get:</strong>
-• 🎯 Personal mentorship sessions
-• 📚 15+ in-demand digital skills
-• 💼 Job placement guarantee
-• 🌐 Lifetime free web hosting
-• 🛒 Zero e-commerce platform fees
-• 🎁 3 bonus courses included
-• 🤝 Lifetime mentor support
+✅ Personal 1-on-1 mentorship
+✅ 15+ in-demand digital skills
+✅ 💼 Job placement GUARANTEE
+✅ 🌐 Lifetime FREE web hosting
+✅ 🛒 Zero e-commerce fees
+✅ 🎁 3 bonus courses FREE
+✅ 🤝 Lifetime mentor support
+✅ 📜 Completion certificate
 
-Complete in under 2 months with flexible scheduling!
+<strong>⏰ Duration:</strong> Under 2 months
+<strong>📍 Format:</strong> 100% Online
+<strong>🕐 Schedule:</strong> YOU choose!
 
-<em>Trusted by thousands of students worldwide.</em>`);
+🔥 <strong>SPOTS ARE LIMITED!</strong>`);
         
-        showButtons(["💰 View Fees", "📚 Curriculum", "💼 Career Options", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📚 Curriculum", "💼 Career Options", "🛡️ Guarantee", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showFees() {
-        addBot(`<strong>💰 Fee Structure</strong>
+        addBot(`<strong>💰 FEE STRUCTURE</strong>
 
-• <strong>Registration:</strong> Rs. 5,000
-• <strong>Full Program:</strong> Rs. 35,000
-• <strong>Discounted Price:</strong> Rs. 25,000 ✨
+• Registration: <strong>Rs. 5,000</strong>
+• Full Program: Rs. 35,000
+• 💥 <strong>DISCOUNTED: Rs. 25,000</strong>
 
-<strong>What's Included (Worth Rs. 200,000+):</strong>
-✅ Lifetime free hosting (Rs. 18,000/yr value)
-✅ No e-commerce fees (Rs. 85,000/yr value)
-✅ 3 bonus courses (Rs. 30,000 value)
+<strong>Included (Worth Rs. 200,000+):</strong>
+✅ Lifetime hosting (Rs. 18,000/yr)
+✅ No platform fees (Rs. 85,000/yr)
+✅ 3 bonus courses (Rs. 30,000)
 ✅ Job placement guarantee
 ✅ Lifetime mentor support
 
-<strong>🛡️ 7-Day Money-Back Guarantee!</strong>
+🛡️ <strong>7-DAY MONEY-BACK GUARANTEE!</strong>
 
-Start with just Rs. 5,000 - Risk Free!`);
+⚠️ Discount ending soon!`);
         
-        showButtons(["💳 Payment Methods", "📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💳 Payment Methods", "📝 How to Register", "🛡️ Guarantee", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showCurriculum() {
-        addBot(`<strong>📚 Skills You'll Master</strong>
+        addBot(`<strong>📚 COMPLETE CURRICULUM</strong>
 
-1. 🌐 Web Development (HTML, CSS, JS)
-2. 🛒 E-Commerce Store Building
-3. 🔍 SEO (Search Engine Optimization)
-4. 📱 Social Media Marketing
-5. 📣 Digital Advertising (Facebook/Google Ads)
-6. 💼 Freelancing Mastery
-7. ✍️ Content & Copywriting
-8. 🎥 YouTube Automation
-9. 🔗 Domain Flipping
-10. 📊 Project Management
+<strong>🌐 Web Development:</strong>
+1. HTML5 & Semantic Markup
+2. CSS3, Flexbox & Grid
+3. JavaScript & DOM
+4. Responsive Design
 
-...plus 5 more income skills!
+<strong>📣 Digital Marketing:</strong>
+5. SEO Mastery
+6. Facebook & Google Ads
+7. Social Media Marketing
+8. Content & Copywriting
 
-<em>All with hands-on real-world projects!</em>`);
+<strong>💼 Freelancing:</strong>
+9. Upwork/Fiverr Mastery
+10. E-Commerce Stores
+11. YouTube Automation
+12. Domain Flipping
+13. Project Management
+14. Client Handling
+15. Pricing & Proposals
+
+🎁 <strong>BONUS:</strong> 3 Advanced courses!
+
+⚠️ Next batch starting SOON!`);
         
-        showButtons(["💰 View Fees", "💼 Career Options", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "💼 Career Options", "⏱️ Duration", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showCareer() {
-        addBot(`<strong>💼 Career & Earning Potential</strong>
+        addBot(`<strong>💼 CAREER & EARNINGS</strong>
 
 <strong>Career Paths:</strong>
-• 🏢 Remote job placement (guaranteed!)
-• 💻 Freelancing (Upwork, Fiverr)
-• 🛍️ Your own e-commerce store
-• 📱 Social media management
-• 🔍 SEO consulting
-• 🎥 YouTube income
-• 🏗️ Start your own agency
+🏢 Remote job (GUARANTEED!)
+💻 Freelancing (Upwork, Fiverr)
+🛍️ E-commerce business
+📱 Social media manager
+🔍 SEO consultant
+🎥 YouTube income
+🏗️ Digital agency owner
 
-<strong>Earning Potential:</strong>
+<strong>💵 REALISTIC EARNINGS:</strong>
 📊 Month 1: Rs. 15,000 - 30,000
 📊 Month 3: Rs. 50,000 - 100,000
 📊 Month 6: Rs. 100,000 - 300,000
 📊 Year 1: Rs. 200,000 - 500,000+
 
-<em>Real numbers from real graduates!</em>`);
+🌍 <strong>WORK FROM ANYWHERE!</strong>
+
+🔥 Why wait? Your competition isn't!`);
         
-        showButtons(["💰 View Fees", "📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📝 How to Register", "🎓 Success Stories", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showRegistration() {
-        addBot(`<strong>📝 How to Join</strong>
+        addBot(`<strong>📝 HOW TO JOIN</strong>
 
-<strong>3 Simple Steps:</strong>
+<strong>Step 1️⃣</strong> - Register your details
+<strong>Step 2️⃣</strong> - Pay Rs. 5,000
+<strong>Step 3️⃣</strong> - Start learning!
 
-1️⃣ <strong>Register</strong>
-   Share your details with us
-
-2️⃣ <strong>Pay Rs. 5,000</strong>
-   Start risk-free with registration fee
-
-3️⃣ <strong>Begin Learning!</strong>
-   Start your 1-on-1 sessions
-
-<strong>Your Safety Net:</strong>
+<strong>🛡️ Your Safety Net:</strong>
 ✅ 7-day money-back guarantee
-✅ Pay remaining in installments
+✅ Pay in installments
 ✅ Flexible scheduling
-✅ Start earning while learning!
+✅ Earn while learning!
+
+⚠️ Only 5 spots left!
 
 <em>The only risk is NOT starting!</em>`);
         
-        showButtons(["💳 Payment Methods", "📅 Book Consultation", "💰 View Fees", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💳 Payment Methods", "📅 Book FREE Consultation", "💰 View Fees", "🛡️ Guarantee", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showPayment() {
-        addBot(`<strong>💳 Payment Methods</strong>
+        addBot(`<strong>💳 PAYMENT METHODS</strong>
 
-<strong>Bank Transfer:</strong>
-🏦 Bank: United Bank Limited (UBL)
-📄 IBAN: PK66UNIL0109000285863354
-🔢 Account: 0443285863354
+<strong>🏦 Bank Transfer:</strong>
+Bank: UBL
+IBAN: PK66UNIL0109000285863354
+Account: 0443285863354
 
-<strong>Mobile Wallet:</strong>
-📱 EasyPaisa / JazzCash: 03104212713
+<strong>📱 Mobile Wallet:</strong>
+EasyPaisa/JazzCash: 03104212713
 
-<strong>How to Pay:</strong>
-1. Transfer the amount
-2. Screenshot the receipt
-3. Send via WhatsApp: +92 331 4041010
-4. Get instant confirmation!
+<strong>Steps:</strong>
+1. Transfer amount
+2. Screenshot receipt
+3. WhatsApp: +92 331 4041010
+4. Instant confirmation! ✅
 
-<em>International students: Contact us for PayPal/Wise options.</em>`);
+🌍 International: PayPal/Wise available!`);
         
-        showButtons(["📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["📝 How to Register", "📅 Book FREE Consultation", "🛡️ Guarantee", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showDuration() {
-        addBot(`<strong>⏱️ Program Duration</strong>
+        addBot(`<strong>⏱️ PROGRAM DURATION</strong>
 
-• <strong>Total Duration:</strong> Less than 2 months
-• <strong>Format:</strong> 1-on-1 live sessions
-• <strong>Schedule:</strong> YOU choose days & times
-• <strong>Session Length:</strong> 1-2 hours each
-• <strong>Pace:</strong> Adapts to YOUR speed
+• <strong>Total:</strong> Less than 2 months
+• <strong>Format:</strong> Live 1-on-1 sessions
+• <strong>Schedule:</strong> YOU choose!
+• <strong>Session:</strong> 1-2 hours each
 
 <strong>Options:</strong>
-🚀 Fast Track: 4-6 weeks (daily sessions)
-🐢 Relaxed: Up to 3 months (fewer sessions)
+🚀 Fast Track: 4-6 weeks
+🐢 Relaxed: Up to 3 months
 
-<em>Your schedule, your pace!</em>`);
+<strong>After Completion:</strong>
+✅ Lifetime access
+✅ Lifetime support
+✅ Free updates
+
+🔥 Start TODAY!`);
         
-        showButtons(["💰 View Fees", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📚 Curriculum", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
-    function showLocation() {
-        addBot(`<strong>🌍 100% Online Program</strong>
+    function showGuarantee() {
+        addBot(`<strong>🛡️ OUR GUARANTEES</strong>
 
-Learn from ANYWHERE in the world!
+<strong>1. 💰 7-Day Money-Back</strong>
+Not satisfied? FULL refund!
 
-• 🏠 Study from home
-• 🌐 Students from 15+ countries
-• 📹 Live video sessions
-• ⏰ Your timezone, your schedule
-• 💻 Just need computer + internet
+<strong>2. 💼 Job Placement</strong>
+We GUARANTEE placement!
 
-<em>Your home is your classroom!</em>`);
+<strong>3. 🤝 Lifetime Support</strong>
+Mentor stays FOREVER!
+
+<strong>4. 🎯 Try First</strong>
+Rs. 5,000 → Attend → Decide!
+
+🔒 <strong>100% PROTECTED!</strong>
+
+⚠️ What's YOUR excuse now?`);
         
-        showButtons(["📋 Program Details", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📝 How to Register", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
+    }
+
+    function showSuccess() {
+        addBot(`<strong>🎓 SUCCESS STORIES</strong>
+
+<strong>📊 Track Record:</strong>
+✅ 3,000+ students
+✅ 15+ countries
+✅ 85% earn in 30 days
+✅ 4.9/5 rating
+✅ 100% placement
+
+<strong>💬 Testimonials:</strong>
+
+<em>"Rs. 75,000/month from ZERO!"</em>
+— Ahmed, Lahore
+
+<em>"Best investment ever!"</em>
+— Sarah, Dubai
+
+<em>"Quit 9-5, now my own boss!"</em>
+— Usman, Karachi
+
+🏆 <strong>YOU could be next!</strong>`);
+        
+        showButtons(["💰 View Fees", "📝 How to Register", "📅 Book FREE Consultation", "😄 Tell a Joke", "💭 Motivational Quote", "⬅️ Menu"]);
     }
 
     function showHelp() {
-        addBot(`<strong>🤝 How Can I Help?</strong>
+        addBot(`<strong>🤝 HOW CAN I HELP?</strong>
 
-I can tell you about:
+📋 <strong>Program</strong> - Overview
+💰 <strong>Fees</strong> - Pricing
+📚 <strong>Curriculum</strong> - Skills
+💼 <strong>Career</strong> - Earnings
+📝 <strong>Registration</strong> - Join
+💳 <strong>Payment</strong> - Methods
+🛡️ <strong>Guarantee</strong> - Risk-free
+📅 <strong>Booking</strong> - Consultation
 
-📋 <strong>Program</strong> - What's included
-💰 <strong>Fees</strong> - Pricing & value
-📚 <strong>Curriculum</strong> - Skills you'll learn
-💼 <strong>Career</strong> - Earning potential
-📝 <strong>Registration</strong> - How to join
-📅 <strong>Booking</strong> - Free consultation
-😄 <strong>Jokes</strong> - Fun tech humor!
+<strong>Fun stuff:</strong>
+😄 <strong>Jokes</strong> - Tech humor!
+💭 <strong>Quotes</strong> - Motivation!`);
+        showMainMenu();
+    }
 
-Just ask or tap a button below!`);
+    function handleThanks() {
+        const responses = [
+            "You're welcome! 😊 Anything else?",
+            "My pleasure! 🌟 Ready to join?",
+            "Anytime! 😄 Let's get you enrolled!",
+            "Glad to help! 🎯 Spots are LIMITED!"
+        ];
+        addBot(responses[Math.floor(Math.random() * responses.length)]);
         showMainMenu();
     }
 
     function handleBye() {
-        addBot(`Goodbye! 👋 
+        const hour = new Date().getHours();
+        let timeMsg = "";
+        
+        if (hour >= 21 || hour < 5) {
+            timeMsg = "Sweet dreams! 🌙";
+        } else if (hour < 12) {
+            timeMsg = "Have a great day! ☀️";
+        } else if (hour < 17) {
+            timeMsg = "Enjoy your afternoon! 🌤️";
+        } else {
+            timeMsg = "Have a wonderful evening! 🌅";
+        }
 
-Remember: The best investment is in YOURSELF!
+        addBot(`Goodbye! 👋
 
-Come back anytime. Your future awaits at Mentorship By Dilawar! 🚀`);
+${timeMsg}
+
+💭 <em>"A year from now, you'll wish you had started today!"</em>
+
+🔥 Don't let this opportunity slip!
+Mentorship By Dilawar awaits! 🚀`);
         clearButtons();
     }
 
@@ -680,78 +983,73 @@ Come back anytime. Your future awaits at Mentorship By Dilawar! 🚀`);
     
     function startBooking() {
         if (state.booked) {
-            addBot(`🎉 You've already booked a consultation!
+            addBot(`🎉 Already booked!
 
-📅 Date: ${state.date}
-⏰ Time: ${state.time}
+📅 ${state.date} at ${state.time}
 
-We'll contact you on WhatsApp. Need to reschedule? Message us at +92 331 4041010`);
+WhatsApp: +92 331 4041010`);
             showMainMenu();
             return;
         }
 
         state.step = 'email';
-        addBot(`Great choice! 🎯 
+        addBot(`🎯 <strong>GREAT DECISION!</strong>
 
-Let's schedule your FREE consultation.
+Let's schedule your <strong>FREE consultation</strong>!
 
-What's your email address?`);
+⏰ Spots filling FAST!
+
+<strong>What's your email?</strong>`);
         clearButtons();
     }
 
     function handleEmail(email) {
-        if (detectIntent(email) === 'no' || email.toLowerCase().includes('cancel')) {
+        if (email.toLowerCase().includes('cancel')) {
             cancelBooking();
             return;
         }
 
         if (!isValidEmail(email)) {
-            addBot("Please enter a valid email address.\n\nExample: yourname@gmail.com");
+            addBot("⚠️ Enter valid email.\n\nExample: name@gmail.com");
             return;
         }
         
         state.email = email;
         state.step = 'phone';
-        addBot(`Got it! ✅
-
-Now, your WhatsApp number with country code:
-
-Example: +923001234567`);
+        addBot(`✅ Got it!\n\n<strong>WhatsApp number?</strong>\n\nExample: +923001234567`);
     }
 
     function handlePhone(phone) {
-        if (detectIntent(phone) === 'no' || phone.toLowerCase().includes('cancel')) {
+        if (phone.toLowerCase().includes('cancel')) {
             cancelBooking();
             return;
         }
 
         if (!isValidPhone(phone)) {
-            addBot("Please enter a valid phone number (10-15 digits).\n\nExample: +923001234567");
+            addBot("⚠️ Enter valid phone (10-15 digits).\n\nExample: +923001234567");
             return;
         }
         
         state.phone = phone;
         state.step = 'date';
-        addBot("Excellent! 📅 Select your preferred date:");
+        addBot("📅 <strong>Select date:</strong>");
         showButtons(generateDates(5));
     }
 
     function handleDate(date) {
-        if (detectIntent(date) === 'no' || date.toLowerCase().includes('cancel')) {
+        if (date.toLowerCase().includes('cancel')) {
             cancelBooking();
             return;
         }
 
         state.date = date;
         state.step = 'time';
-        addBot(`📅 ${date} - Perfect!
-
-Select your preferred time:`);
-        showButtons(["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM", "5:00 PM"]);
+        addBot(`📅 ${date}\n\n<strong>Select time:</strong>`);
+        showButtons(["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM", "5:00 PM", "7:00 PM"]);
     }
 
     function handleTime(time) {
-        if (detectIntent(time) === 'no' || time.toLowerCase().includes('cancel')) {
+        if (time.toLowerCase().includes('cancel')) {
             cancelBooking();
             return;
         }
@@ -759,17 +1057,16 @@ Select your preferred time:`);
         state.time = time;
         state.step = 'confirm';
         
-        addBot(`<strong>📋 Booking Summary</strong>
+        addBot(`<strong>📋 BOOKING SUMMARY</strong>
 
-📧 <strong>Email:</strong> ${state.email}
-📱 <strong>WhatsApp:</strong> ${state.phone}
-📅 <strong>Date:</strong> ${state.date}
-⏰ <strong>Time:</strong> ${state.time}
-🎯 <strong>Type:</strong> Free Consultation
+📧 ${state.email}
+📱 ${state.phone}
+📅 ${state.date}
+⏰ ${state.time}
 
-<strong>Confirm this booking?</strong>`);
+<strong>Confirm?</strong>`);
         
-        showButtons(["✅ Confirm Booking", "❌ Cancel"]);
+        showButtons(["✅ CONFIRM", "✏️ Edit", "❌ Cancel"]);
     }
 
     function handleConfirm(msg) {
@@ -779,39 +1076,40 @@ Select your preferred time:`);
             state.booked = true;
             state.step = 'menu';
             
-            addBot(`🎉 <strong>Booking Confirmed!</strong>
+            addBot(`🎉 <strong>CONFIRMED!</strong>
 
 📅 ${state.date} at ${state.time}
 
-<strong>What's Next:</strong>
-1. You'll receive WhatsApp confirmation
-2. Our team will call at scheduled time
-3. Get all your questions answered!
+<strong>Next:</strong>
+1️⃣ WhatsApp confirmation
+2️⃣ Team calls you
+3️⃣ Questions answered!
 
-We're excited to help you start your journey! 🚀`);
+🔥 First step to SUCCESS! 🚀`);
 
-            // WhatsApp confirmation button
             setTimeout(() => {
                 const btnDiv = document.createElement('div');
-                btnDiv.innerHTML = `
-                    <button onclick="confirmOnWhatsApp()" style="background: #25D366; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; margin: 10px 0; display: flex; align-items: center; gap: 8px;">
-                        📱 Confirm on WhatsApp
-                    </button>
-                `;
+                btnDiv.innerHTML = `<button onclick="confirmOnWhatsApp()" style="background:#25D366;color:white;border:none;padding:12px 24px;border-radius:25px;cursor:pointer;font-size:14px;font-weight:600;margin:10px 0;">📱 Confirm on WhatsApp</button>`;
                 chatbotMessages.appendChild(btnDiv);
                 scrollToBottom();
             }, 500);
             
             setTimeout(() => {
-                addBot("Anything else? Or want a joke while you wait? 😄");
-                showMainMenu();
-            }, 2000);
+                addBot("Want a joke or motivation while you wait? 😄💭");
+                showButtons(["😄 Tell a Joke", "💭 Motivational Quote", "📋 Program Details", "⬅️ Menu"]);
+            }, 2500);
             
-        } else if (m.includes('cancel') || m.includes('no') || m.includes('❌')) {
+        } else if (m.includes('edit') || m.includes('✏️')) {
+            state.step = 'email';
+            state.email = '';
+            state.phone = '';
+            addBot("Let's restart.\n\n<strong>Email?</strong>");
+            clearButtons();
+            
+        } else if (m.includes('cancel') || m.includes('❌')) {
             cancelBooking();
         } else {
-            addBot("Please confirm or cancel your booking:");
-            showButtons(["✅ Confirm Booking", "❌ Cancel"]);
+            showButtons(["✅ CONFIRM", "✏️ Edit", "❌ Cancel"]);
         }
     }
 
@@ -822,7 +1120,7 @@ We're excited to help you start your journey! 🚀`);
         state.date = '';
         state.time = '';
         
-        addBot("No problem! Booking cancelled. 👍\n\nLet me know when you're ready!");
+        addBot(`Cancelled! 👍\n\n🔥 Book when ready - spots LIMITED!`);
         showMainMenu();
     }
 
@@ -837,9 +1135,10 @@ We're excited to help you start your journey! 🚀`);
             "💼 Career & Earnings",
             "📝 How to Register",
             "💳 Payment Methods",
-            "⏱️ Duration",
-            "📅 Book Consultation",
-            "😄 Tell Me a Joke"
+            "🛡️ Guarantee",
+            "📅 Book FREE Consultation",
+            "😄 Tell Me a Joke",
+            "💭 Motivational Quote"
         ]);
     }
 
@@ -897,17 +1196,18 @@ We're excited to help you start your journey! 🚀`);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    // ==================== WHATSAPP CONFIRMATION ====================
+    // ==================== WHATSAPP ====================
     window.confirmOnWhatsApp = function() {
         const message = encodeURIComponent(
-`*Consultation Booking | Mentorship By Dilawar*
+`*📅 CONSULTATION BOOKING*
+*Mentorship By Dilawar*
 
 📧 Email: ${state.email}
 📱 WhatsApp: ${state.phone}
 📅 Date: ${state.date}
 ⏰ Time: ${state.time}
 
-I would like to confirm this consultation. Thank you!`
+✅ I confirm this booking!`
         );
         window.open(`https://wa.me/923314041010?text=${message}`, '_blank');
     };
