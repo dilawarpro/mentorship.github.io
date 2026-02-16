@@ -77,48 +77,6 @@
       }
     }
     
-    /* .rainbow {
-      position: relative;
-      z-index: 0;
-      width: 220px;
-      height: 220px;
-      margin-bottom: 45px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    } */
-    
-    /* Rainbow Animation */
-    /* .rainbow::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-      background-repeat: no-repeat; 
-      background-size: 80% 50%, 80% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      animation: rotate 2s linear infinite;
-    } */
-    
-    /* Image */
-    /* .rainbow::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background-image: url("dilawarmentorship.jpg");
-      background-size: cover;
-      border-radius: 50%;
-    } */
         .rating-icon {
           color: #fbb300; 
           font-size: 24px; 
@@ -1097,7 +1055,363 @@
 
     <!-- Dicount started -->
     <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Perloader started -->
+ <!-- Add this at the beginning of your <body> tag -->
+<div class="preloader" id="preloader">
+    <div class="preloader-container">
+        <div class="spinner-ring"></div>
+        <div class="preloader-image-wrapper">
+            <img src="mentorship.jpg" alt="Loading..." class="preloader-image">
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="loading-text">
+            <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
+        </div>
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Preloader */
+    /* ============================================
+           PRELOADER STYLES
+           ============================================ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Preloader Overlay */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); */
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Preloader Container */
+        .preloader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Image Wrapper with Animations */
+        .preloader-image-wrapper {
+            position: relative;
+            padding: 15px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Animated Border Ring */
+        .preloader-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 23px;
+                background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientBorder 3s ease infinite;
+        }
+
+        /* Glow Effect */
+        .preloader-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 30px;
+                background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+            background-size: 400% 400%;
+            z-index: -2;
+            filter: blur(20px);
+            opacity: 0.5;
+            animation: gradientBorder 3s ease infinite;
+        }
+
+        /* Preloader Image */
+        .preloader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Loading Progress Bar */
+        .progress-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+                background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: progressAnimation 2s ease-in-out forwards, shimmer 1.5s infinite;
+        }
+
+        /* Loading Text */
+        .loading-text {
+            color:black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .loading-text span {
+            display: inline-block;
+            animation: bounce 1.4s ease-in-out infinite;
+        }
+
+        .loading-text span:nth-child(1) { animation-delay: 0s; }
+        .loading-text span:nth-child(2) { animation-delay: 0.1s; }
+        .loading-text span:nth-child(3) { animation-delay: 0.2s; }
+        .loading-text span:nth-child(4) { animation-delay: 0.3s; }
+        .loading-text span:nth-child(5) { animation-delay: 0.4s; }
+        .loading-text span:nth-child(6) { animation-delay: 0.5s; }
+        .loading-text span:nth-child(7) { animation-delay: 0.6s; }
+
+        /* Animated Dots */
+        .loading-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #4B32A1 0%, #9B308E 40%, #E63E36 75%, #F58220 100%) !important;
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes gradientBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes progressAnimation {
+            0% {
+                width: 0%;
+            }
+            50% {
+                width: 70%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .preloader-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .spinner-ring {
+                width: 170px;
+                height: 170px;
+            }
+
+            .progress-container {
+                width: 160px;
+            }
+
+            .loading-text {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .preloader-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .spinner-ring {
+                width: 150px;
+                height: 150px;
+            }
+
+            .progress-container {
+                width: 140px;
+            }
+
+            .preloader-container {
+                gap: 20px;
+            }
+        }
+        /* Ended Preloader CSS */
+</style>
+          <script>
+        // Preloader Script
+        (function() {
+            const preloader = document.getElementById('preloader');
+            const progressBar = document.getElementById('progressBar');
+            
+            // Simulate loading progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                progressBar.style.width = progress + '%';
+                
+                if (progress === 100) {
+                    clearInterval(progressInterval);
+                }
+            }, 200);
+
+            // Hide preloader when page is fully loaded
+            window.addEventListener('load', function() {
+                // Ensure minimum display time for smooth UX
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                    
+                    setTimeout(() => {
+                        preloader.classList.add('fade-out');
+                        
+                        // Remove preloader from DOM after animation
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                        }, 600);
+                    }, 300);
+                }, 1000); // Minimum 1 second display
+            });
+
+            // Fallback: Hide preloader after 5 seconds max
+            setTimeout(() => {
+                if (!preloader.classList.contains('fade-out')) {
+                    preloader.classList.add('fade-out');
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 600);
+                }
+            }, 5000);
+        })();
+    </script>
+<!-- Preloader ended -->
+
 
 
     <!-- Discount started -->
