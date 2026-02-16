@@ -1,4 +1,4 @@
-mentorship.jpgconst CACHE_VERSION = 'v8'; // <-- Always increment on update
+const CACHE_VERSION = 'v8'; // <-- Always increment on update
 const STATIC_CACHE = `static-cache-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-cache-${CACHE_VERSION}`;
 
@@ -8,7 +8,7 @@ const CORE_ASSETS = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/dilawarmentorship.jpg",
+  "/mentorship.jpg",
   "/manifest.json"
 ];
 
@@ -121,8 +121,8 @@ self.addEventListener("push", event => {
   const title = data.title || "New Notification";
   const options = {
     body: data.body || "You have a new message.",
-    icon: data.icon || "/dilawarmentorship.jpg",
-    badge: data.badge || "/dilawarmentorship.jpg",
+    icon: data.icon || "/mentorship.jpg",
+    badge: data.badge || "/mentorship.jpg",
     data: data.url || "/",
     vibrate: [100, 50, 100],
     requireInteraction: true
