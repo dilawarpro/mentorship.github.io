@@ -146,107 +146,149 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ==================== PROMOTIONAL JOKES ====================
     const jokes = [
-        // Programming Jokes
-        "Why do programmers prefer dark mode? Because light attracts bugs! 🐛 Speaking of bugs... at Mentorship By Dilawar, we teach you to squash them like a pro! 💪",
+        // HTML/CSS/JS Web Development Jokes
+        "Why did the HTML element break up with the CSS? Because it felt too boxed in by all those margins! 📦 Learn proper layouts at Mentorship By Dilawar!",
         
-        "A SQL query walks into a bar, approaches two tables and asks 'Can I join you?' 🍺 Want to master SQL and databases? Join Mentorship By Dilawar today!",
+        "CSS is like a relationship: When it works, it's beautiful. When it doesn't, you question your entire existence! 💔 Master CSS at Mentorship By Dilawar!",
         
-        "Why do Java developers wear glasses? Because they can't C#! 👓 Learn ALL programming languages with Mentorship By Dilawar!",
+        "Why was the div sad? Because it had no class! 😢 Give YOUR career some class with Mentorship By Dilawar!",
         
-        "99 little bugs in the code, 99 little bugs... Take one down, patch it around... 127 little bugs in the code! 😅 Tired of this? Learn proper debugging at Mentorship By Dilawar!",
+        "A website without CSS is like a person without clothes. Technically functional, but nobody wants to see that! 👔 Learn styling at Mentorship By Dilawar!",
         
-        "'It works on my machine!' - Every developer ever. 🖥️ Learn to deploy properly with Mentorship By Dilawar!",
+        "Why do web developers prefer dark mode? Because light attracts too many bugs! 🐛 Debug like a pro at Mentorship By Dilawar!",
         
-        "Why did the developer go broke? Because he used up all his cache! 💰 Don't go broke - learn to EARN with Mentorship By Dilawar!",
+        "JavaScript: 'undefined is not a function.' Me: 'But it was working 5 minutes ago!' 😭 Master JS at Mentorship By Dilawar!",
         
+        "Why did the JavaScript developer wear glasses? Because he couldn't C# ... wait, he doesn't need to! JS is enough! 👓 Learn JS at Mentorship By Dilawar!",
+        
+        "HTML, CSS, and JavaScript walk into a bar. The bartender says: 'Sorry, we don't serve your type here.' HTML replies: 'But I give everything structure!' 🍺 Build structured sites at Mentorship By Dilawar!",
+        
+        "Why do CSS developers never get lost? Because they always know their position: absolute, relative, or fixed! 📍 Master positioning at Mentorship By Dilawar!",
+        
+        "My CSS skills are so good, I can center a div... on the first try! 🎯 (Okay, maybe second try) Learn the tricks at Mentorship By Dilawar!",
+        
+        "Why did the website go to therapy? Too many broken links and commitment issues with its backend! 🔗 Build solid sites at Mentorship By Dilawar!",
+        
+        "JavaScript developer's favorite song? 'Let it Go... of the undefined variables!' 🎵 Write clean code at Mentorship By Dilawar!",
+        
+        "Why did the HTML tag feel lonely? Because it was never properly closed! </lonely> 😢 Learn proper syntax at Mentorship By Dilawar!",
+        
+        "CSS Flexbox walks into a bar and says: 'Let me align everyone here!' The bar immediately becomes perfectly organized. 🍸 Flex your skills at Mentorship By Dilawar!",
+        
+        "Why don't web developers ever get cold? Because they always leave their Windows open and use lots of Java... Script! ☕ Master JS at Mentorship By Dilawar!",
+        
+        "My code doesn't have bugs. It just develops random features! 🐞 Learn debugging at Mentorship By Dilawar!",
+        
+        "Why did the responsive website break up with the desktop? It needed more space! 📱 Master responsive design at Mentorship By Dilawar!",
+        
+        "CSS Grid and Flexbox had a baby. It was perfectly aligned and responsive! 👶 Learn modern layouts at Mentorship By Dilawar!",
+        
+        "What's a web developer's favorite snack? Cookies! But they always have to accept them first. 🍪 Master web development at Mentorship By Dilawar!",
+        
+        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢 Express yourself at Mentorship By Dilawar!",
+
         // Freelancing Jokes
-        "Client: 'Can you make the logo bigger?' Designer: 'Which one? There are 47 versions now.' 😅 Learn client management at Mentorship By Dilawar!",
+        "Client: 'Can you make the logo bigger?' Me: 'Which one of the 47 versions?' 😅 Master client management at Mentorship By Dilawar!",
         
-        "Freelancer's equation: 1 hour of work = 3 hours of emails explaining the work. 📧 Master client communication with Mentorship By Dilawar!",
+        "Freelancer's math: 1 hour of actual work = 3 hours of emails explaining that 1 hour of work! 📧 Work smarter at Mentorship By Dilawar!",
         
-        "Client: 'It's a simple 5-minute job.' Translation: 5 days minimum. ⏰ Learn to estimate projects properly at Mentorship By Dilawar!",
+        "Client: 'It's a simple 5-minute job.' Translation: Minimum 5 days with 50 revisions! ⏰ Learn to estimate projects at Mentorship By Dilawar!",
         
-        "Client: 'We don't have budget, but think of the exposure!' Me: 'People die from exposure.' 🏔️ Learn to charge what you're worth with Mentorship By Dilawar!",
+        "Client: 'We don't have a budget, but think of the exposure!' Me: 'People die from exposure.' 🏔️ Learn to charge your worth at Mentorship By Dilawar!",
         
-        "Why don't freelancers ever get lost? They always follow the money trail! 💸 Find YOUR money trail with Mentorship By Dilawar!",
+        "Why don't freelancers ever get lost? They always follow the money trail! 💸 Find YOUR money trail at Mentorship By Dilawar!",
         
-        "Freelancer's favorite exercise? Running from scope creep! 🏃 Learn project boundaries at Mentorship By Dilawar!",
+        "Freelancer's favorite exercise? Running from scope creep! 🏃 Learn project management at Mentorship By Dilawar!",
         
-        // SEO Jokes
-        "Why did the SEO expert cross the road? To get more traffic! 🚗 Want REAL traffic? Learn SEO at Mentorship By Dilawar!",
+        "Client: 'Can we hop on a quick call?' *3 hours later* Still on the 'quick' call. 📞 Manage time better at Mentorship By Dilawar!",
         
-        "An SEO expert walks into a bar, pub, tavern, inn, nightclub, drinks, alcohol, beer, wine... 🍺 Master keyword research at Mentorship By Dilawar!",
+        "The freelancer's diet: Coffee, ramen, and revision requests. ☕🍜 Upgrade your career at Mentorship By Dilawar!",
         
-        "SEO tip: Hide a body on page 2 of Google. Nobody looks there! 💀 Learn to rank on PAGE 1 with Mentorship By Dilawar!",
+        "Client: 'I'll know what I want when I see it.' Me: 'I'll know my price when I see the revisions.' 💰 Set boundaries at Mentorship By Dilawar!",
         
-        "Why did Google break up with SEO? Too many mixed signals! 💔 Get clear SEO strategies at Mentorship By Dilawar!",
+        "Why did the freelancer bring a ladder to the meeting? To reach those impossibly high client expectations! 🪜 Exceed expectations at Mentorship By Dilawar!",
         
-        "What's an SEO expert's favorite movie? 'The Page Ranker'! 🎬 Become a ranking expert with Mentorship By Dilawar!",
+        "Freelancing tip: 'ASAP' means 'Anytime Soon After Payment.' 💵 Get paid right at Mentorship By Dilawar!",
         
-        // Digital Marketing Jokes
+        "Client: 'Make it pop!' Me: *adds confetti animation* 'Like this?' 🎉 Understand clients at Mentorship By Dilawar!",
+        
+        "A freelancer's nightmare: 'My nephew knows Canva, can he help?' 😱 Prove your value at Mentorship By Dilawar!",
+        
+        "Why do freelancers make great detectives? They're experts at chasing invoices! 🔍 Master invoicing at Mentorship By Dilawar!",
+        
+        "Client: 'Can you do it for free? It'll be great for your portfolio!' My portfolio: *crying in unpaid work* 😭 Build a PAID portfolio at Mentorship By Dilawar!",
+        
+        "Freelancer's version of 'I love you': 'The deposit has been received.' 💕 Build client relationships at Mentorship By Dilawar!",
+        
+        "Why did the freelancer go to the beach? To work remotely... and still answer client emails! 🏖️ Live the freelance dream at Mentorship By Dilawar!",
+        
+        "Client feedback: 'It's great, but can you change everything?' 🔄 Handle feedback like a pro at Mentorship By Dilawar!",
+
+        // Digital Marketing & SEO Jokes
+        "Why did the SEO expert cross the road? To get more traffic! 🚗 Drive REAL traffic at Mentorship By Dilawar!",
+        
+        "An SEO expert walks into a bar, pub, tavern, inn, nightclub, lounge, drinks, alcohol, beer, wine... 🍺 Master keywords at Mentorship By Dilawar!",
+        
+        "SEO tip: The best place to hide a body? Page 2 of Google. Nobody looks there! 💀 Rank on PAGE 1 at Mentorship By Dilawar!",
+        
+        "Why did Google break up with SEO? Too many mixed signals and algorithm changes! 💔 Stay updated at Mentorship By Dilawar!",
+        
+        "Marketing rule #1: If it's not on social media, did it even happen? 📱 Dominate social media at Mentorship By Dilawar!",
+        
         "Why did the marketer break up with the calendar? Too many dates, not enough conversions! 📅 Master conversions at Mentorship By Dilawar!",
         
-        "Marketing rule #1: If it's not on social media, did it even happen? 📱 Dominate social media with Mentorship By Dilawar!",
+        "Why are marketers great at relationships? They know all about engagement! 💍 Boost engagement at Mentorship By Dilawar!",
         
-        "Why are marketers great at relationships? They know all about engagement! 💍 Boost YOUR engagement with Mentorship By Dilawar!",
+        "What's a digital marketer's blood type? B2B positive! 🩸 Learn B2B & B2C at Mentorship By Dilawar!",
         
-        "What's a marketer's blood type? B2B positive! 🩸 Learn B2B AND B2C marketing at Mentorship By Dilawar!",
+        "Email marketer's nightmare: 'Your message was marked as spam.' 📧 Master email marketing at Mentorship By Dilawar!",
         
-        "Email marketer's nightmare: 'Your message was sent to spam.' 📧 Master email marketing at Mentorship By Dilawar!",
+        "Why did the Facebook ad feel lonely? Low engagement and reach! 😢 Boost your reach at Mentorship By Dilawar!",
         
-        "Why did the ad feel lonely? Low click-through rate! 😢 Skyrocket your CTR with Mentorship By Dilawar!",
+        "Social media manager's alarm: *ding* Another notification! Sleep? What's that? 🔔 Work smarter at Mentorship By Dilawar!",
         
-        // Web Development Jokes
-        "CSS is like a relationship: When it works, it's beautiful. When it doesn't, you question everything! 💔 Master CSS at Mentorship By Dilawar!",
+        "Why did the landing page go to therapy? Too many bounce issues! 🏀 Reduce bounce rates at Mentorship By Dilawar!",
         
-        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢 Learn full-stack at Mentorship By Dilawar!",
+        "A marketer's favorite movie? 'The Conversion Rate!' 🎬 Optimize everything at Mentorship By Dilawar!",
         
-        "A programmer's wife says 'Get bread, if they have eggs, get 12.' He returns with 12 loaves. 🍞 Learn logical thinking at Mentorship By Dilawar!",
+        "Why don't SEO experts ever get lonely? They have lots of backlinks! 🔗 Build backlinks at Mentorship By Dilawar!",
         
-        "Why did the website go to therapy? Too many broken links! 🔗 Build perfect websites with Mentorship By Dilawar!",
+        "What did the PPC ad say to the organic result? 'I paid to be here, what's your excuse?' 💵 Master both at Mentorship By Dilawar!",
         
-        "What's a web developer's favorite tea? URL Grey! 🍵 Brew success with Mentorship By Dilawar!",
+        "Content is king, but distribution is queen. And she wears the pants! 👑 Master content strategy at Mentorship By Dilawar!",
         
-        // E-commerce Jokes
-        "Why did the shopping cart feel empty? Zero conversions! 🛒 Boost sales with Mentorship By Dilawar!",
+        "Why was the Google Analytics dashboard depressed? All it saw was high bounce rates! 📉 Fix your metrics at Mentorship By Dilawar!",
         
-        "E-commerce tip: Money doesn't grow on trees, but it grows in online stores! 🌳💰 Build yours at Mentorship By Dilawar!",
+        "Marketer pickup line: 'Are you a conversion? Because you just completed my goal!' 😏 Hit YOUR goals at Mentorship By Dilawar!",
         
-        "Why was the online store stressed? Cart abandonment issues! 😰 Solve this at Mentorship By Dilawar!",
+        "Why did the influencer refuse to go outside? Their engagement was higher indoors! 📲 Grow your influence at Mentorship By Dilawar!",
         
-        // Career & Money Jokes
-        "Why did the employee bring a ladder to work? To reach new heights! 🪜 Climb YOUR career ladder with Mentorship By Dilawar!",
-        
-        "Boss: 'Where do you see yourself in 5 years?' Me: 'Working remotely from a beach!' 🏖️ Make it reality with Mentorship By Dilawar!",
-        
-        "Money talks. Mine says 'Goodbye!' every month. 👋💸 Learn to make money STAY with Mentorship By Dilawar!",
-        
-        "Why don't YouTubers ever go hungry? Because they're always getting their daily bread from ads! 🍞📺 Start earning from YouTube with Mentorship By Dilawar!",
-        
-        "What did the zero say to the eight? Nice belt! 0️⃣8️⃣ Add zeros to YOUR income with Mentorship By Dilawar!",
-        
-        "Why did the domain name go to school? To increase its value! 📚 Learn domain flipping at Mentorship By Dilawar!",
-        
-        // Motivational Tech Jokes
-        "In 2024, 'I don't know computers' is not an excuse. It's a choice! 🖥️ Choose success with Mentorship By Dilawar!",
+        "What's a marketer's favorite drink? Traffic jam! 🚗 Get unstuck at Mentorship By Dilawar!",
+
+        // Motivational Career Jokes
+        "In 2024, 'I don't know websites' is not an excuse. It's a choice! 🖥️ Choose success at Mentorship By Dilawar!",
         
         "Some people dream of success. Others wake up and join Mentorship By Dilawar! ⏰🚀",
         
-        "Why did the student become successful? Because they stopped watching and started DOING! 🎬➡️💻 Take action with Mentorship By Dilawar!",
+        "Why did the student become successful? They stopped watching tutorials and started DOING! 🎬➡️💻 Take action at Mentorship By Dilawar!",
         
-        "The best time to start learning was yesterday. The second best? RIGHT NOW with Mentorship By Dilawar! ⏰",
+        "The best time to learn web development was 5 years ago. The second best? RIGHT NOW at Mentorship By Dilawar! ⏰",
         
-        "Why do successful freelancers never get bored? Because they turned their passion into profit! 🔥 Do the same at Mentorship By Dilawar!",
-        
-        "What's the difference between a job and a career? A mentor! 🎯 Get yours at Mentorship By Dilawar!",
-        
-        "They laughed when I said I'd work from home. They stopped laughing when I showed them my income! 😎💰 Join Mentorship By Dilawar!",
+        "They laughed when I said I'd work from home. They stopped laughing when they saw my income! 😎💰 Start earning at Mentorship By Dilawar!",
         
         "Why invest in crypto when you can invest in YOURSELF? 📈 Best ROI ever at Mentorship By Dilawar!",
         
         "404: Excuses Not Found. Time to join Mentorship By Dilawar! 🚫",
         
-        "Loading success... 99% complete. Just need to join Mentorship By Dilawar! ⏳✅"
+        "Loading success... 99% complete. Just need to join Mentorship By Dilawar! ⏳✅",
+        
+        "What's the difference between a job and a career? A mentor! 🎯 Get yours at Mentorship By Dilawar!",
+        
+        "Boss: 'Where do you see yourself in 5 years?' Me: 'Working remotely from anywhere I want!' 🌴 Make it happen at Mentorship By Dilawar!",
+        
+        "Money talks. Mine used to say 'Goodbye!' Now it says 'Hello!' Thanks to Mentorship By Dilawar! 👋💰",
+        
+        "Why do successful freelancers smile a lot? Because their bank account smiles back! 😄💵 Start smiling at Mentorship By Dilawar!"
     ];
 
     // ==================== UTILITY FUNCTIONS ====================
@@ -293,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
             booking: /book|appointment|schedule|consult|call|meet/,
             registration: /register|enroll|join|sign.?up|start|admission/,
             payment: /pay|bank|transfer|method|easypaisa|jazzcash/,
-            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha|comic|fun/,
+            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha|comic|fun|😄/,
             help: /help|support|what.?can|how.?do|\?$/,
             thanks: /thank|thanks|thx|shukriya/,
             bye: /bye|goodbye|see.?you|later|allah.?hafiz/,
@@ -333,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 addBot(`${getGreeting()}! 👋 Welcome to Mentorship By Dilawar!
 
-I'm here to help you explore our program, answer questions, and even share some fun jokes! 😄
+I'm here to help you explore our program, answer questions, and share some fun jokes! 😄
 
 What would you like to know?`);
                 showMainMenu();
@@ -390,7 +432,7 @@ What would you like to know?`);
         if (m.includes('book') || m.includes('appointment') || m.includes('consult')) { startBooking(); return; }
         if (m.includes('register') || m.includes('enroll') || m.includes('join now')) { showRegistration(); return; }
         if (m.includes('payment')) { showPayment(); return; }
-        if (m.includes('joke') || m.includes('funny') || m.includes('😄')) { tellJoke(); return; }
+        if (m.includes('joke') || m.includes('funny') || m.includes('😄') || m.includes('another')) { tellJoke(); return; }
         if (m.includes('duration') || m.includes('how long')) { showDuration(); return; }
         if (m.includes('location') || m.includes('where') || m.includes('online')) { showLocation(); return; }
         if (m.includes('menu') || m.includes('back') || m.includes('home')) { addBot("Here's what I can help with:"); showMainMenu(); return; }
@@ -417,7 +459,7 @@ What would you like to know?`);
         if (actions[intent]) {
             actions[intent]();
         } else {
-            addBot("I'd love to help! Please choose from the options below, or ask about our program, fees, or even request a joke! 😄");
+            addBot("I'd love to help! Choose from the options below, or ask about our program, fees, or request a joke! 😄");
             showMainMenu();
         }
     }
@@ -486,18 +528,18 @@ Start with just Rs. 5,000 - Risk Free!`);
     function showCurriculum() {
         addBot(`<strong>📚 Skills You'll Master</strong>
 
-1. 🌐 Web Development
-2. 🛒 E-Commerce
+1. 🌐 Web Development (HTML, CSS, JS)
+2. 🛒 E-Commerce Store Building
 3. 🔍 SEO (Search Engine Optimization)
 4. 📱 Social Media Marketing
-5. 📣 Digital Advertising
+5. 📣 Digital Advertising (Facebook/Google Ads)
 6. 💼 Freelancing Mastery
 7. ✍️ Content & Copywriting
 8. 🎥 YouTube Automation
 9. 🔗 Domain Flipping
 10. 📊 Project Management
 
-...plus 5 more skills!
+...plus 5 more income skills!
 
 <em>All with hands-on real-world projects!</em>`);
         
@@ -704,7 +746,7 @@ Example: +923001234567`);
         state.step = 'time';
         addBot(`📅 ${date} - Perfect!
 
-Now select your preferred time:`);
+Select your preferred time:`);
         showButtons(["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM", "5:00 PM"]);
     }
 
@@ -743,25 +785,25 @@ Now select your preferred time:`);
 
 <strong>What's Next:</strong>
 1. You'll receive WhatsApp confirmation
-2. Our team will call you at scheduled time
+2. Our team will call at scheduled time
 3. Get all your questions answered!
 
 We're excited to help you start your journey! 🚀`);
 
-            // Show WhatsApp confirmation button
+            // WhatsApp confirmation button
             setTimeout(() => {
-                const summaryDiv = document.createElement('div');
-                summaryDiv.innerHTML = `
-                    <button onclick="confirmOnWhatsApp()" style="background: #25D366; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; margin: 10px 0;">
-                        <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
+                const btnDiv = document.createElement('div');
+                btnDiv.innerHTML = `
+                    <button onclick="confirmOnWhatsApp()" style="background: #25D366; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; margin: 10px 0; display: flex; align-items: center; gap: 8px;">
+                        📱 Confirm on WhatsApp
                     </button>
                 `;
-                chatbotMessages.appendChild(summaryDiv);
+                chatbotMessages.appendChild(btnDiv);
                 scrollToBottom();
             }, 500);
             
             setTimeout(() => {
-                addBot("Anything else I can help with? Or want to hear a joke while you wait? 😄");
+                addBot("Anything else? Or want a joke while you wait? 😄");
                 showMainMenu();
             }, 2000);
             
@@ -780,7 +822,7 @@ We're excited to help you start your journey! 🚀`);
         state.date = '';
         state.time = '';
         
-        addBot("No problem! Booking cancelled. 👍\n\nLet me know when you're ready, or feel free to explore more!");
+        addBot("No problem! Booking cancelled. 👍\n\nLet me know when you're ready!");
         showMainMenu();
     }
 
