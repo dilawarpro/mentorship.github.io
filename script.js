@@ -120,7 +120,8 @@ setInterval(() => {
 // executeSecureFunction();
 // })();
 
-// Simple Modern Chatbot
+// ChatBot Started
+// Simple Modern Chatbot - Mentorship By Dilawar
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const chatbotTrigger = document.getElementById('chatbotTrigger');
@@ -143,87 +144,115 @@ document.addEventListener('DOMContentLoaded', function() {
         booked: false
     };
 
-    // ==================== JOKES DATABASE ====================
-    const jokes = {
-        programming: [
-            "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
-            "A SQL query walks into a bar, walks up to two tables and asks... 'Can I join you?' 🍺",
-            "Why do Java developers wear glasses? Because they can't C# 👓",
-            "There are only 10 types of people in the world: those who understand binary and those who don't.",
-            "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢",
-            "A programmer's wife says: 'Go to the store and get a loaf of bread. If they have eggs, get a dozen.' He returns with 12 loaves of bread. 🍞",
-            "Why do programmers hate nature? It has too many bugs! 🌲🐛",
-            "What's a programmer's favorite hangout place? Foo Bar! 🍸",
-            "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
-            "Why did the developer go broke? Because he used up all his cache! 💰"
-        ],
-        freelancing: [
-            "Client: 'Can you make the logo bigger?' Me: 'Which one? There are 47 now.' 😅",
-            "Freelancer math: 1 hour of work = 3 hours of emails explaining the work 📧",
-            "Client: 'It's a simple job, should take 5 minutes.' Translation: 5 hours minimum. ⏰",
-            "Why did the freelancer bring a ladder to work? To reach those high expectations! 🪜",
-            "Freelancing tip: 'ASAP' means 'Anytime Soon After Payment' 💵",
-            "Client: 'Can we hop on a quick call?' *3 hours later* 📞",
-            "The freelancer's diet: Coffee and revisions. ☕",
-            "Why don't freelancers ever get lost? They always follow the money trail! 💸",
-            "Client: 'We don't have a budget, but think of the exposure!' Me: 'People die from exposure.' 🏔️",
-            "Freelancer's favorite exercise? Running from scope creep! 🏃"
-        ],
-        seo: [
-            "Why did the SEO expert cross the road? To get hit by traffic! 🚗",
-            "SEO experts do it on the first page. 📄",
-            "Why are SEO experts great at parties? They know how to rank up the conversation! 🎉",
-            "What's an SEO expert's favorite drink? Ginger Ale-gorithm! 🥤",
-            "SEO tip: If your content is bad, just add more keywords... said no one ever. 🙅",
-            "Why did Google break up with SEO? Too many mixed signals! 💔",
-            "An SEO expert walks into a bar, pub, tavern, inn, drinks, alcohol, beer... 🍺",
-            "Why don't SEO experts ever get lonely? They have lots of backlinks! 🔗",
-            "What did the SEO say to the content writer? 'You complete me... with keywords.' ❤️",
-            "SEO is like a box of chocolates: mostly nuts trying to game the algorithm. 🍫"
-        ],
-        marketing: [
-            "Why did the marketer break up with the calendar? Too many dates, not enough quality time! 📅",
-            "Marketing rule #1: If it's not on social media, did it even happen? 📱",
-            "Why are marketers great at relationships? They know all about engagement! 💍",
-            "A marketer's favorite movie? The Conversion! 🎬",
-            "Why did the email go to therapy? It had too many issues with spam! 📧",
-            "Marketer walks into a bar... A/B tests which pickup line works better. 🧪",
-            "Why are marketers always calm? They've mastered the art of the soft sell! 😌",
-            "What's a marketer's blood type? B2B or B2C! 🩸",
-            "Why did the ad go to school? To improve its click-through rate! 📚",
-            "Marketing meeting: 'Let's synergize our bandwidth to leverage core competencies.' Translation: Let's do stuff. 🤷"
-        ],
-        tech: [
-            "Why did the computer go to the doctor? Because it had a virus! 🦠",
-            "There's no place like 127.0.0.1 🏠",
-            "I would tell you a UDP joke, but you might not get it. 📡",
-            "Why was the computer cold? It left its Windows open! 🪟",
-            "What do you call 8 hobbits? A hobbyte! 🧙",
-            "Why did the PowerPoint presentation cross the road? To get to the other slide! 📊",
-            "A byte walks into a bar looking miserable. Bartender asks 'What's wrong?' Byte replies: 'Parity error.' 'Ah,' says the bartender, 'thought you looked a bit off.' 🍺",
-            "Why do programmers always mix up Halloween and Christmas? Because Oct 31 = Dec 25! 🎃🎄",
-            "What's a computer's least favorite food? Spam! 🥫",
-            "Why did the developer quit his job? Because he didn't get arrays! 📊"
-        ],
-        general: [
-            "Why don't scientists trust atoms? Because they make up everything! ⚛️",
-            "I told my wife she was drawing her eyebrows too high. She looked surprised. 😲",
-            "Why don't eggs tell jokes? They'd crack each other up! 🥚",
-            "What do you call a fake noodle? An impasta! 🍝",
-            "Why did the scarecrow win an award? He was outstanding in his field! 🌾",
-            "I'm reading a book about anti-gravity. It's impossible to put down! 📖",
-            "What do you call a bear with no teeth? A gummy bear! 🐻",
-            "Why don't skeletons fight each other? They don't have the guts! 💀",
-            "What do you call a lazy kangaroo? A pouch potato! 🦘",
-            "I used to hate facial hair, but then it grew on me. 🧔"
-        ]
-    };
+    // ==================== PROMOTIONAL JOKES ====================
+    const jokes = [
+        // Programming Jokes
+        "Why do programmers prefer dark mode? Because light attracts bugs! 🐛 Speaking of bugs... at Mentorship By Dilawar, we teach you to squash them like a pro! 💪",
+        
+        "A SQL query walks into a bar, approaches two tables and asks 'Can I join you?' 🍺 Want to master SQL and databases? Join Mentorship By Dilawar today!",
+        
+        "Why do Java developers wear glasses? Because they can't C#! 👓 Learn ALL programming languages with Mentorship By Dilawar!",
+        
+        "99 little bugs in the code, 99 little bugs... Take one down, patch it around... 127 little bugs in the code! 😅 Tired of this? Learn proper debugging at Mentorship By Dilawar!",
+        
+        "'It works on my machine!' - Every developer ever. 🖥️ Learn to deploy properly with Mentorship By Dilawar!",
+        
+        "Why did the developer go broke? Because he used up all his cache! 💰 Don't go broke - learn to EARN with Mentorship By Dilawar!",
+        
+        // Freelancing Jokes
+        "Client: 'Can you make the logo bigger?' Designer: 'Which one? There are 47 versions now.' 😅 Learn client management at Mentorship By Dilawar!",
+        
+        "Freelancer's equation: 1 hour of work = 3 hours of emails explaining the work. 📧 Master client communication with Mentorship By Dilawar!",
+        
+        "Client: 'It's a simple 5-minute job.' Translation: 5 days minimum. ⏰ Learn to estimate projects properly at Mentorship By Dilawar!",
+        
+        "Client: 'We don't have budget, but think of the exposure!' Me: 'People die from exposure.' 🏔️ Learn to charge what you're worth with Mentorship By Dilawar!",
+        
+        "Why don't freelancers ever get lost? They always follow the money trail! 💸 Find YOUR money trail with Mentorship By Dilawar!",
+        
+        "Freelancer's favorite exercise? Running from scope creep! 🏃 Learn project boundaries at Mentorship By Dilawar!",
+        
+        // SEO Jokes
+        "Why did the SEO expert cross the road? To get more traffic! 🚗 Want REAL traffic? Learn SEO at Mentorship By Dilawar!",
+        
+        "An SEO expert walks into a bar, pub, tavern, inn, nightclub, drinks, alcohol, beer, wine... 🍺 Master keyword research at Mentorship By Dilawar!",
+        
+        "SEO tip: Hide a body on page 2 of Google. Nobody looks there! 💀 Learn to rank on PAGE 1 with Mentorship By Dilawar!",
+        
+        "Why did Google break up with SEO? Too many mixed signals! 💔 Get clear SEO strategies at Mentorship By Dilawar!",
+        
+        "What's an SEO expert's favorite movie? 'The Page Ranker'! 🎬 Become a ranking expert with Mentorship By Dilawar!",
+        
+        // Digital Marketing Jokes
+        "Why did the marketer break up with the calendar? Too many dates, not enough conversions! 📅 Master conversions at Mentorship By Dilawar!",
+        
+        "Marketing rule #1: If it's not on social media, did it even happen? 📱 Dominate social media with Mentorship By Dilawar!",
+        
+        "Why are marketers great at relationships? They know all about engagement! 💍 Boost YOUR engagement with Mentorship By Dilawar!",
+        
+        "What's a marketer's blood type? B2B positive! 🩸 Learn B2B AND B2C marketing at Mentorship By Dilawar!",
+        
+        "Email marketer's nightmare: 'Your message was sent to spam.' 📧 Master email marketing at Mentorship By Dilawar!",
+        
+        "Why did the ad feel lonely? Low click-through rate! 😢 Skyrocket your CTR with Mentorship By Dilawar!",
+        
+        // Web Development Jokes
+        "CSS is like a relationship: When it works, it's beautiful. When it doesn't, you question everything! 💔 Master CSS at Mentorship By Dilawar!",
+        
+        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself! 😢 Learn full-stack at Mentorship By Dilawar!",
+        
+        "A programmer's wife says 'Get bread, if they have eggs, get 12.' He returns with 12 loaves. 🍞 Learn logical thinking at Mentorship By Dilawar!",
+        
+        "Why did the website go to therapy? Too many broken links! 🔗 Build perfect websites with Mentorship By Dilawar!",
+        
+        "What's a web developer's favorite tea? URL Grey! 🍵 Brew success with Mentorship By Dilawar!",
+        
+        // E-commerce Jokes
+        "Why did the shopping cart feel empty? Zero conversions! 🛒 Boost sales with Mentorship By Dilawar!",
+        
+        "E-commerce tip: Money doesn't grow on trees, but it grows in online stores! 🌳💰 Build yours at Mentorship By Dilawar!",
+        
+        "Why was the online store stressed? Cart abandonment issues! 😰 Solve this at Mentorship By Dilawar!",
+        
+        // Career & Money Jokes
+        "Why did the employee bring a ladder to work? To reach new heights! 🪜 Climb YOUR career ladder with Mentorship By Dilawar!",
+        
+        "Boss: 'Where do you see yourself in 5 years?' Me: 'Working remotely from a beach!' 🏖️ Make it reality with Mentorship By Dilawar!",
+        
+        "Money talks. Mine says 'Goodbye!' every month. 👋💸 Learn to make money STAY with Mentorship By Dilawar!",
+        
+        "Why don't YouTubers ever go hungry? Because they're always getting their daily bread from ads! 🍞📺 Start earning from YouTube with Mentorship By Dilawar!",
+        
+        "What did the zero say to the eight? Nice belt! 0️⃣8️⃣ Add zeros to YOUR income with Mentorship By Dilawar!",
+        
+        "Why did the domain name go to school? To increase its value! 📚 Learn domain flipping at Mentorship By Dilawar!",
+        
+        // Motivational Tech Jokes
+        "In 2024, 'I don't know computers' is not an excuse. It's a choice! 🖥️ Choose success with Mentorship By Dilawar!",
+        
+        "Some people dream of success. Others wake up and join Mentorship By Dilawar! ⏰🚀",
+        
+        "Why did the student become successful? Because they stopped watching and started DOING! 🎬➡️💻 Take action with Mentorship By Dilawar!",
+        
+        "The best time to start learning was yesterday. The second best? RIGHT NOW with Mentorship By Dilawar! ⏰",
+        
+        "Why do successful freelancers never get bored? Because they turned their passion into profit! 🔥 Do the same at Mentorship By Dilawar!",
+        
+        "What's the difference between a job and a career? A mentor! 🎯 Get yours at Mentorship By Dilawar!",
+        
+        "They laughed when I said I'd work from home. They stopped laughing when I showed them my income! 😎💰 Join Mentorship By Dilawar!",
+        
+        "Why invest in crypto when you can invest in YOURSELF? 📈 Best ROI ever at Mentorship By Dilawar!",
+        
+        "404: Excuses Not Found. Time to join Mentorship By Dilawar! 🚫",
+        
+        "Loading success... 99% complete. Just need to join Mentorship By Dilawar! ⏳✅"
+    ];
 
     // ==================== UTILITY FUNCTIONS ====================
     
-    function getRandomJoke(category) {
-        const jokeList = jokes[category] || jokes.general;
-        return jokeList[Math.floor(Math.random() * jokeList.length)];
+    function getRandomJoke() {
+        return jokes[Math.floor(Math.random() * jokes.length)];
     }
 
     function isValidEmail(email) {
@@ -256,26 +285,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const m = msg.toLowerCase().trim();
         
         const patterns = {
-            greeting: /^(hi|hello|hey|howdy|sup)\b/,
-            program: /program|course|detail|about|overview|what.?is/,
-            fees: /fee|cost|price|how.?much|pricing/,
-            curriculum: /curriculum|module|skill|learn|teach|topic/,
-            career: /career|job|earn|income|salary|work|freelanc/,
-            booking: /book|appointment|schedule|consult|call/,
-            registration: /register|enroll|join|sign.?up|start/,
-            payment: /pay|bank|transfer|method/,
-            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha/,
-            joke_programming: /programming.?joke|code.?joke|developer.?joke|coder.?joke/,
-            joke_freelancing: /freelanc.?joke|client.?joke/,
-            joke_seo: /seo.?joke|google.?joke|search.?joke/,
-            joke_marketing: /marketing.?joke|ads?.?joke|advertis.?joke/,
-            joke_tech: /tech.?joke|computer.?joke|it.?joke/,
-            help: /help|support|what.?can|how.?do/,
-            thanks: /thank|thanks|thx/,
-            bye: /bye|goodbye|see.?you|later/,
-            yes: /^(yes|yeah|yep|sure|ok|confirm)\b/,
-            no: /^(no|nah|nope|cancel|stop)\b/,
-            menu: /menu|back|option|home/
+            greeting: /^(hi|hello|hey|howdy|sup|assalam|salam)\b/,
+            program: /program|course|detail|about|overview|what.?is|mentor/,
+            fees: /fee|cost|price|how.?much|pricing|kitna|charge/,
+            curriculum: /curriculum|module|skill|learn|teach|topic|syllabus/,
+            career: /career|job|earn|income|salary|work|freelanc|remote/,
+            booking: /book|appointment|schedule|consult|call|meet/,
+            registration: /register|enroll|join|sign.?up|start|admission/,
+            payment: /pay|bank|transfer|method|easypaisa|jazzcash/,
+            joke: /joke|funny|laugh|humor|😂|🤣|lol|haha|comic|fun/,
+            help: /help|support|what.?can|how.?do|\?$/,
+            thanks: /thank|thanks|thx|shukriya/,
+            bye: /bye|goodbye|see.?you|later|allah.?hafiz/,
+            yes: /^(yes|yeah|yep|sure|ok|confirm|haan|ji)\b/,
+            no: /^(no|nah|nope|cancel|stop|nahi)\b/,
+            menu: /menu|back|option|home|main/,
+            duration: /duration|how.?long|time|month|week|kitna.?waqt/,
+            location: /location|where|online|offline|city/
         };
 
         for (const [intent, pattern] of Object.entries(patterns)) {
@@ -305,9 +331,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (state.history.length === 0) {
             setTimeout(() => {
-                addBot(`${getGreeting()}! 👋 Welcome! I'm here to help you explore our mentorship program, answer questions, or just share some tech jokes! 😄
+                addBot(`${getGreeting()}! 👋 Welcome to Mentorship By Dilawar!
 
-What would you like to do?`);
+I'm here to help you explore our program, answer questions, and even share some fun jokes! 😄
+
+What would you like to know?`);
                 showMainMenu();
             }, 500);
         }
@@ -335,8 +363,7 @@ What would you like to do?`);
     }
 
     function processMessage(msg) {
-        const handlers = {
-            greeting: () => state.step === 'menu' ? handleGreeting() : handleByStep(msg),
+        const stepHandlers = {
             email: () => handleEmail(msg),
             phone: () => handlePhone(msg),
             date: () => handleDate(msg),
@@ -344,28 +371,33 @@ What would you like to do?`);
             confirm: () => handleConfirm(msg)
         };
 
-        if (handlers[state.step]) {
-            handlers[state.step]();
+        if (stepHandlers[state.step]) {
+            stepHandlers[state.step]();
         } else {
             handleMenuChoice(msg);
         }
-    }
-
-    function handleByStep(msg) {
-        handleMenuChoice(msg);
-    }
-
-    function handleGreeting() {
-        addBot("Hello! 😊 Great to have you here. How can I help you today?");
-        showMainMenu();
     }
 
     function handleMenuChoice(msg) {
         const intent = detectIntent(msg);
         const m = msg.toLowerCase();
 
+        // Button text matching
+        if (m.includes('program') || m.includes('detail')) { showProgram(); return; }
+        if (m.includes('fee') || m.includes('price')) { showFees(); return; }
+        if (m.includes('curriculum') || m.includes('skill') || m.includes('module')) { showCurriculum(); return; }
+        if (m.includes('career') || m.includes('job') || m.includes('earn')) { showCareer(); return; }
+        if (m.includes('book') || m.includes('appointment') || m.includes('consult')) { startBooking(); return; }
+        if (m.includes('register') || m.includes('enroll') || m.includes('join now')) { showRegistration(); return; }
+        if (m.includes('payment')) { showPayment(); return; }
+        if (m.includes('joke') || m.includes('funny') || m.includes('😄')) { tellJoke(); return; }
+        if (m.includes('duration') || m.includes('how long')) { showDuration(); return; }
+        if (m.includes('location') || m.includes('where') || m.includes('online')) { showLocation(); return; }
+        if (m.includes('menu') || m.includes('back') || m.includes('home')) { addBot("Here's what I can help with:"); showMainMenu(); return; }
+
+        // Intent-based handling
         const actions = {
-            greeting: handleGreeting,
+            greeting: () => { addBot("Hello! 😊 Great to have you here! How can I help you today?"); showMainMenu(); },
             program: showProgram,
             fees: showFees,
             curriculum: showCurriculum,
@@ -373,288 +405,383 @@ What would you like to do?`);
             booking: startBooking,
             registration: showRegistration,
             payment: showPayment,
-            joke: showJokeMenu,
-            joke_programming: () => tellJoke('programming'),
-            joke_freelancing: () => tellJoke('freelancing'),
-            joke_seo: () => tellJoke('seo'),
-            joke_marketing: () => tellJoke('marketing'),
-            joke_tech: () => tellJoke('tech'),
+            joke: tellJoke,
+            duration: showDuration,
+            location: showLocation,
             help: showHelp,
-            thanks: () => { addBot("You're welcome! 😊 Anything else I can help with?"); showMainMenu(); },
-            bye: () => addBot("Goodbye! 👋 Come back anytime. Good luck with your journey! 🚀"),
-            menu: () => { addBot("Here's what I can help with:"); showMainMenu(); }
+            thanks: () => { addBot("You're welcome! 😊 Anything else?"); showMainMenu(); },
+            bye: handleBye,
+            menu: () => { addBot("Here you go:"); showMainMenu(); }
         };
-
-        // Check button text matches
-        if (m.includes('program')) { showProgram(); return; }
-        if (m.includes('fee') || m.includes('pricing')) { showFees(); return; }
-        if (m.includes('curriculum') || m.includes('skill')) { showCurriculum(); return; }
-        if (m.includes('career') || m.includes('job')) { showCareer(); return; }
-        if (m.includes('book') || m.includes('appointment')) { startBooking(); return; }
-        if (m.includes('registration') || m.includes('enroll')) { showRegistration(); return; }
-        if (m.includes('payment')) { showPayment(); return; }
-        if (m.includes('joke')) { showJokeMenu(); return; }
-        if (m.includes('programming joke')) { tellJoke('programming'); return; }
-        if (m.includes('freelancing joke')) { tellJoke('freelancing'); return; }
-        if (m.includes('seo joke')) { tellJoke('seo'); return; }
-        if (m.includes('marketing joke')) { tellJoke('marketing'); return; }
-        if (m.includes('tech joke')) { tellJoke('tech'); return; }
-        if (m.includes('random joke')) { tellJoke('general'); return; }
-        if (m.includes('menu') || m.includes('back')) { addBot("Here you go:"); showMainMenu(); return; }
 
         if (actions[intent]) {
             actions[intent]();
         } else {
-            addBot("I'm not sure about that. Try selecting from the menu below or ask about our program, fees, or jokes! 😄");
+            addBot("I'd love to help! Please choose from the options below, or ask about our program, fees, or even request a joke! 😄");
             showMainMenu();
         }
     }
 
     // ==================== JOKE HANDLING ====================
     
-    function showJokeMenu() {
-        addBot(`😄 I've got jokes! Pick a category:
-
-🖥️ **Programming** - Developer humor
-💼 **Freelancing** - Client struggles
-🔍 **SEO** - Search engine laughs
-📣 **Marketing** - Ad world fun
-💻 **Tech** - General tech humor
-🎲 **Random** - Surprise me!`);
-        
-        showButtons([
-            "🖥️ Programming Joke",
-            "💼 Freelancing Joke", 
-            "🔍 SEO Joke",
-            "📣 Marketing Joke",
-            "💻 Tech Joke",
-            "🎲 Random Joke",
-            "⬅️ Back to Menu"
-        ]);
-    }
-
-    function tellJoke(category) {
-        const joke = getRandomJoke(category);
-        addBot(joke);
+    function tellJoke() {
+        const joke = getRandomJoke();
+        addBot(`😄 Here's one for you:\n\n${joke}`);
         
         setTimeout(() => {
-            addBot("Want another one? 😄");
             showButtons([
-                "🖥️ Programming Joke",
-                "💼 Freelancing Joke",
-                "🔍 SEO Joke", 
-                "📣 Marketing Joke",
-                "💻 Tech Joke",
-                "🎲 Random Joke",
+                "😂 Another Joke!",
+                "📋 Program Details",
+                "💰 View Fees",
+                "📅 Book Consultation",
                 "⬅️ Back to Menu"
             ]);
-        }, 1500);
+        }, 1000);
     }
 
     // ==================== CONTENT FUNCTIONS ====================
     
     function showProgram() {
-        addBot(`<strong>🏆 Mentorship Program</strong>
+        addBot(`<strong>🏆 Mentorship By Dilawar</strong>
 
-A complete program to build your digital career:
+Transform your career with personalized 1-on-1 mentorship!
 
-• 🎯 1-on-1 personalized sessions
+<strong>What You Get:</strong>
+• 🎯 Personal mentorship sessions
 • 📚 15+ in-demand digital skills
 • 💼 Job placement guarantee
 • 🌐 Lifetime free web hosting
-• 🤝 Ongoing mentor support
-• 🔧 Real-world projects
+• 🛒 Zero e-commerce platform fees
+• 🎁 3 bonus courses included
+• 🤝 Lifetime mentor support
 
-Complete in under 2 months with flexible scheduling!`);
+Complete in under 2 months with flexible scheduling!
+
+<em>Trusted by thousands of students worldwide.</em>`);
         
-        showButtons(["💰 View Fees", "📚 Curriculum", "💼 Career Options", "📅 Book Consultation", "😄 Tell Me a Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📚 Curriculum", "💼 Career Options", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showFees() {
         addBot(`<strong>💰 Fee Structure</strong>
 
-• Registration: Rs. 5,000
-• Full Program: Rs. 35,000
-• **Discounted: Rs. 25,000** (one-time)
+• <strong>Registration:</strong> Rs. 5,000
+• <strong>Full Program:</strong> Rs. 35,000
+• <strong>Discounted Price:</strong> Rs. 25,000 ✨
 
-<strong>Includes:</strong>
-✅ Lifetime free hosting
-✅ 3 bonus courses
-✅ Job placement support
-✅ 7-day money-back guarantee
+<strong>What's Included (Worth Rs. 200,000+):</strong>
+✅ Lifetime free hosting (Rs. 18,000/yr value)
+✅ No e-commerce fees (Rs. 85,000/yr value)
+✅ 3 bonus courses (Rs. 30,000 value)
+✅ Job placement guarantee
+✅ Lifetime mentor support
 
-Start with just Rs. 5,000!`);
+<strong>🛡️ 7-Day Money-Back Guarantee!</strong>
+
+Start with just Rs. 5,000 - Risk Free!`);
         
-        showButtons(["💳 Payment Methods", "📝 Registration", "📅 Book Consultation", "😄 Tell Me a Joke", "⬅️ Menu"]);
+        showButtons(["💳 Payment Methods", "📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showCurriculum() {
-        addBot(`<strong>📚 What You'll Learn</strong>
+        addBot(`<strong>📚 Skills You'll Master</strong>
 
-1. Web Development
-2. E-Commerce
-3. SEO
-4. Social Media Marketing
-5. Digital Advertising
-6. Freelancing
-7. Content Creation
-8. YouTube Automation
-9. Domain Flipping
-10. Project Management
+1. 🌐 Web Development
+2. 🛒 E-Commerce
+3. 🔍 SEO (Search Engine Optimization)
+4. 📱 Social Media Marketing
+5. 📣 Digital Advertising
+6. 💼 Freelancing Mastery
+7. ✍️ Content & Copywriting
+8. 🎥 YouTube Automation
+9. 🔗 Domain Flipping
+10. 📊 Project Management
 
-...and 5 more skills!
+...plus 5 more skills!
 
-All with hands-on projects.`);
+<em>All with hands-on real-world projects!</em>`);
         
-        showButtons(["💰 View Fees", "💼 Career Options", "📅 Book Consultation", "😄 Programming Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "💼 Career Options", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showCareer() {
-        addBot(`<strong>💼 Career Opportunities</strong>
+        addBot(`<strong>💼 Career & Earning Potential</strong>
 
-After completion:
-• Remote job placement
-• Freelancing on Upwork/Fiverr
-• Start your own agency
-• E-commerce business
-• YouTube income
-• SEO consulting
+<strong>Career Paths:</strong>
+• 🏢 Remote job placement (guaranteed!)
+• 💻 Freelancing (Upwork, Fiverr)
+• 🛍️ Your own e-commerce store
+• 📱 Social media management
+• 🔍 SEO consulting
+• 🎥 YouTube income
+• 🏗️ Start your own agency
 
 <strong>Earning Potential:</strong>
-📊 Month 1: Rs. 15,000-30,000
-📊 Month 3: Rs. 50,000-100,000
-📊 Month 6: Rs. 100,000-300,000`);
+📊 Month 1: Rs. 15,000 - 30,000
+📊 Month 3: Rs. 50,000 - 100,000
+📊 Month 6: Rs. 100,000 - 300,000
+📊 Year 1: Rs. 200,000 - 500,000+
+
+<em>Real numbers from real graduates!</em>`);
         
-        showButtons(["💰 View Fees", "📝 Registration", "📅 Book Consultation", "😄 Freelancing Joke", "⬅️ Menu"]);
+        showButtons(["💰 View Fees", "📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showRegistration() {
-        addBot(`<strong>📝 How to Enroll</strong>
+        addBot(`<strong>📝 How to Join</strong>
 
-1. **Register** - Share your details
-2. **Pay Rs. 5,000** - Start risk-free
-3. **Begin Learning** - 1-on-1 sessions
+<strong>3 Simple Steps:</strong>
 
+1️⃣ <strong>Register</strong>
+   Share your details with us
+
+2️⃣ <strong>Pay Rs. 5,000</strong>
+   Start risk-free with registration fee
+
+3️⃣ <strong>Begin Learning!</strong>
+   Start your 1-on-1 sessions
+
+<strong>Your Safety Net:</strong>
 ✅ 7-day money-back guarantee
+✅ Pay remaining in installments
 ✅ Flexible scheduling
-✅ Start immediately
+✅ Start earning while learning!
 
-Ready to begin?`);
+<em>The only risk is NOT starting!</em>`);
         
-        showButtons(["💳 Payment Methods", "📅 Book Consultation", "😄 Tell Me a Joke", "⬅️ Menu"]);
+        showButtons(["💳 Payment Methods", "📅 Book Consultation", "💰 View Fees", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showPayment() {
         addBot(`<strong>💳 Payment Methods</strong>
 
-**Bank Transfer:**
-• Bank: UBL
-• IBAN: PK66UNIL0109000285863354
+<strong>Bank Transfer:</strong>
+🏦 Bank: United Bank Limited (UBL)
+📄 IBAN: PK66UNIL0109000285863354
+🔢 Account: 0443285863354
 
-**Mobile Wallet:**
-• EasyPaisa/JazzCash: 03104212713
+<strong>Mobile Wallet:</strong>
+📱 EasyPaisa / JazzCash: 03104212713
 
-Send screenshot via WhatsApp after payment.`);
+<strong>How to Pay:</strong>
+1. Transfer the amount
+2. Screenshot the receipt
+3. Send via WhatsApp: +92 331 4041010
+4. Get instant confirmation!
+
+<em>International students: Contact us for PayPal/Wise options.</em>`);
         
-        showButtons(["📝 Registration", "📅 Book Consultation", "😄 Tell Me a Joke", "⬅️ Menu"]);
+        showButtons(["📝 How to Register", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+    }
+
+    function showDuration() {
+        addBot(`<strong>⏱️ Program Duration</strong>
+
+• <strong>Total Duration:</strong> Less than 2 months
+• <strong>Format:</strong> 1-on-1 live sessions
+• <strong>Schedule:</strong> YOU choose days & times
+• <strong>Session Length:</strong> 1-2 hours each
+• <strong>Pace:</strong> Adapts to YOUR speed
+
+<strong>Options:</strong>
+🚀 Fast Track: 4-6 weeks (daily sessions)
+🐢 Relaxed: Up to 3 months (fewer sessions)
+
+<em>Your schedule, your pace!</em>`);
+        
+        showButtons(["💰 View Fees", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
+    }
+
+    function showLocation() {
+        addBot(`<strong>🌍 100% Online Program</strong>
+
+Learn from ANYWHERE in the world!
+
+• 🏠 Study from home
+• 🌐 Students from 15+ countries
+• 📹 Live video sessions
+• ⏰ Your timezone, your schedule
+• 💻 Just need computer + internet
+
+<em>Your home is your classroom!</em>`);
+        
+        showButtons(["📋 Program Details", "📅 Book Consultation", "😄 Tell a Joke", "⬅️ Menu"]);
     }
 
     function showHelp() {
-        addBot(`I can help you with:
+        addBot(`<strong>🤝 How Can I Help?</strong>
 
-📋 **Program** - What's included
-💰 **Fees** - Pricing info
-📚 **Curriculum** - Skills taught
-💼 **Career** - Job opportunities
-📅 **Booking** - Schedule consultation
-😄 **Jokes** - Tech humor!
+I can tell you about:
 
-Just ask or tap a button below.`);
+📋 <strong>Program</strong> - What's included
+💰 <strong>Fees</strong> - Pricing & value
+📚 <strong>Curriculum</strong> - Skills you'll learn
+💼 <strong>Career</strong> - Earning potential
+📝 <strong>Registration</strong> - How to join
+📅 <strong>Booking</strong> - Free consultation
+😄 <strong>Jokes</strong> - Fun tech humor!
+
+Just ask or tap a button below!`);
         showMainMenu();
+    }
+
+    function handleBye() {
+        addBot(`Goodbye! 👋 
+
+Remember: The best investment is in YOURSELF!
+
+Come back anytime. Your future awaits at Mentorship By Dilawar! 🚀`);
+        clearButtons();
     }
 
     // ==================== BOOKING FLOW ====================
     
     function startBooking() {
         if (state.booked) {
-            addBot(`You've already booked for ${state.date} at ${state.time}! 🎉
+            addBot(`🎉 You've already booked a consultation!
 
-Need to reschedule? Contact us on WhatsApp.`);
+📅 Date: ${state.date}
+⏰ Time: ${state.time}
+
+We'll contact you on WhatsApp. Need to reschedule? Message us at +92 331 4041010`);
             showMainMenu();
             return;
         }
 
         state.step = 'email';
-        addBot("Great! Let's book your free consultation. 📅\n\nWhat's your email address?");
+        addBot(`Great choice! 🎯 
+
+Let's schedule your FREE consultation.
+
+What's your email address?`);
         clearButtons();
     }
 
     function handleEmail(email) {
-        if (!isValidEmail(email)) {
-            addBot("Please enter a valid email (e.g., name@gmail.com)");
+        if (detectIntent(email) === 'no' || email.toLowerCase().includes('cancel')) {
+            cancelBooking();
             return;
         }
+
+        if (!isValidEmail(email)) {
+            addBot("Please enter a valid email address.\n\nExample: yourname@gmail.com");
+            return;
+        }
+        
         state.email = email;
         state.step = 'phone';
-        addBot("Got it! Now your WhatsApp number with country code (e.g., +923001234567):");
+        addBot(`Got it! ✅
+
+Now, your WhatsApp number with country code:
+
+Example: +923001234567`);
     }
 
     function handlePhone(phone) {
-        if (!isValidPhone(phone)) {
-            addBot("Please enter a valid phone number (10-15 digits)");
+        if (detectIntent(phone) === 'no' || phone.toLowerCase().includes('cancel')) {
+            cancelBooking();
             return;
         }
+
+        if (!isValidPhone(phone)) {
+            addBot("Please enter a valid phone number (10-15 digits).\n\nExample: +923001234567");
+            return;
+        }
+        
         state.phone = phone;
         state.step = 'date';
-        addBot("Select your preferred date:");
+        addBot("Excellent! 📅 Select your preferred date:");
         showButtons(generateDates(5));
     }
 
     function handleDate(date) {
+        if (detectIntent(date) === 'no' || date.toLowerCase().includes('cancel')) {
+            cancelBooking();
+            return;
+        }
+
         state.date = date;
         state.step = 'time';
-        addBot(`${date} - great choice! Select a time:`);
-        showButtons(["9:00 AM", "11:00 AM", "2:00 PM", "4:00 PM", "6:00 PM"]);
+        addBot(`📅 ${date} - Perfect!
+
+Now select your preferred time:`);
+        showButtons(["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM", "5:00 PM"]);
     }
 
     function handleTime(time) {
+        if (detectIntent(time) === 'no' || time.toLowerCase().includes('cancel')) {
+            cancelBooking();
+            return;
+        }
+
         state.time = time;
         state.step = 'confirm';
+        
         addBot(`<strong>📋 Booking Summary</strong>
 
-📧 Email: ${state.email}
-📱 WhatsApp: ${state.phone}
-📅 Date: ${state.date}
-⏰ Time: ${state.time}
+📧 <strong>Email:</strong> ${state.email}
+📱 <strong>WhatsApp:</strong> ${state.phone}
+📅 <strong>Date:</strong> ${state.date}
+⏰ <strong>Time:</strong> ${state.time}
+🎯 <strong>Type:</strong> Free Consultation
 
-Confirm this booking?`);
-        showButtons(["✅ Confirm", "❌ Cancel"]);
+<strong>Confirm this booking?</strong>`);
+        
+        showButtons(["✅ Confirm Booking", "❌ Cancel"]);
     }
 
     function handleConfirm(msg) {
         const m = msg.toLowerCase();
         
-        if (m.includes('confirm') || m.includes('yes')) {
+        if (m.includes('confirm') || m.includes('yes') || m.includes('✅')) {
             state.booked = true;
             state.step = 'menu';
             
-            addBot(`🎉 **Booking Confirmed!**
+            addBot(`🎉 <strong>Booking Confirmed!</strong>
 
 📅 ${state.date} at ${state.time}
 
-You'll receive a WhatsApp confirmation shortly.
+<strong>What's Next:</strong>
+1. You'll receive WhatsApp confirmation
+2. Our team will call you at scheduled time
+3. Get all your questions answered!
 
-See you soon! 🚀`);
+We're excited to help you start your journey! 🚀`);
+
+            // Show WhatsApp confirmation button
+            setTimeout(() => {
+                const summaryDiv = document.createElement('div');
+                summaryDiv.innerHTML = `
+                    <button onclick="confirmOnWhatsApp()" style="background: #25D366; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; margin: 10px 0;">
+                        <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
+                    </button>
+                `;
+                chatbotMessages.appendChild(summaryDiv);
+                scrollToBottom();
+            }, 500);
             
             setTimeout(() => {
                 addBot("Anything else I can help with? Or want to hear a joke while you wait? 😄");
                 showMainMenu();
             }, 2000);
+            
+        } else if (m.includes('cancel') || m.includes('no') || m.includes('❌')) {
+            cancelBooking();
         } else {
-            state.step = 'menu';
-            addBot("No problem! Booking cancelled. Let me know when you're ready.");
-            showMainMenu();
+            addBot("Please confirm or cancel your booking:");
+            showButtons(["✅ Confirm Booking", "❌ Cancel"]);
         }
+    }
+
+    function cancelBooking() {
+        state.step = 'menu';
+        state.email = '';
+        state.phone = '';
+        state.date = '';
+        state.time = '';
+        
+        addBot("No problem! Booking cancelled. 👍\n\nLet me know when you're ready, or feel free to explore more!");
+        showMainMenu();
     }
 
     // ==================== UI FUNCTIONS ====================
@@ -665,9 +792,10 @@ See you soon! 🚀`);
             "📋 Program Details",
             "💰 Fees & Pricing",
             "📚 Curriculum",
-            "💼 Career Options",
-            "📝 Registration",
+            "💼 Career & Earnings",
+            "📝 How to Register",
             "💳 Payment Methods",
+            "⏱️ Duration",
             "📅 Book Consultation",
             "😄 Tell Me a Joke"
         ]);
@@ -726,6 +854,21 @@ See you soon! 🚀`);
     function scrollToBottom() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
+
+    // ==================== WHATSAPP CONFIRMATION ====================
+    window.confirmOnWhatsApp = function() {
+        const message = encodeURIComponent(
+`*Consultation Booking | Mentorship By Dilawar*
+
+📧 Email: ${state.email}
+📱 WhatsApp: ${state.phone}
+📅 Date: ${state.date}
+⏰ Time: ${state.time}
+
+I would like to confirm this consultation. Thank you!`
+        );
+        window.open(`https://wa.me/923314041010?text=${message}`, '_blank');
+    };
 });
 
 
