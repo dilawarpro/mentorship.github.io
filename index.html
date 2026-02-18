@@ -1199,8 +1199,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center p-4 pt-0">
-            <div class="badge-elite mb-2">LIMITED-TIME DISCOUNT</div>
-            <h4 class="fw-bold mb-2">Claim Your Discount</h4>
+            <div class="badge-elite mb-2">LIMITED-TIME SCHOLORSHIP</div>
+            <h4 class="fw-bold mb-2">Want a Discount? Apply for Scholorship</h4>
             <p class="text-muted small mb-3">Fill details below to continue</p>
             <p id="modalMessage" class="text-muted"> Enter your details and allow location access to check your eligibility. </p>
             <input id="name" class="form-control mb-2" placeholder="Enter your name">
@@ -1330,15 +1330,14 @@
         const userStatus = document.getElementById("userStatus").value;
         const timeline = document.getElementById("timeline").value;
         document.getElementById("modalMessage").innerHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-																						<b>${discount.toLocaleString()}</b> discount for students living in 
-																						<b>${area.toUpperCase()}</b>.`;
+																						<b>${discount.toLocaleString()}</b> scholorship for <b>${area.toUpperCase()}</b> students.`;
         document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
         const whatsappNumber = "923314041010";
         const msg = `Hi! My name is ${name}.
         Email: ${email}
         Current Status: ${userStatus}
         Joining Timeline: ${timeline}
-        I claimed a Rs ${discount} mentorship discount for ${area}.
+        I claimed a Rs ${discount} scholorship for Mentorship By Dilawar.
         I want to claim it.`;
         const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
         const btn = document.getElementById("whatsappBtn");
@@ -1378,21 +1377,6 @@
          alt="Mentorship By Dilawar Logo" 
          class="img-fluid navbar-logo">
 </a>
-<style>
-.navbar-logo {
-    height: 55px;   /* Increased from 45px */
-    width: auto;
-    object-fit: contain;
-}
-
-/* Responsive adjustment for small screens */
-@media (max-width: 576px) {
-    .navbar-logo {
-        height: 42px;
-    }
-}
-
-</style>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -1773,31 +1757,47 @@
 
       /* Ended Preloader CSS */
       /* Navbar logo styles (responsive and crisp) */
-      .navbar-brand .navbar-logo {
-        width: 160px;
-        max-width: 40vw;
-        height: auto;
-        display: inline-block;
-        object-fit: contain;
-        border-radius: 26px;
-        padding: 6px;
-        /* background: rgba(255,255,255,0.03);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.12); */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-      }
+     .navbar-brand .navbar-logo {
+    width: 200px;              /* Increased size */
+    max-width: 50vw;           /* Allows more responsive scaling */
+    height: auto;
+    display: inline-block;
+    object-fit: contain;
+    border-radius: 0;          /* Remove rounding for cleaner look */
+    padding: 0;                /* Remove padding so logo appears larger */
+    
+    image-rendering: -webkit-optimize-contrast; /* Sharper rendering */
+    image-rendering: crisp-edges;
+    
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);  /* Prevents blur on some browsers */
+}
 
-      @media (max-width: 992px) {
-        .navbar-brand .navbar-logo { width: 140px; max-width: 35vw; }
-      }
+/* Large tablets */
+@media (max-width: 992px) {
+    .navbar-brand .navbar-logo { 
+        width: 170px; 
+        max-width: 45vw; 
+    }
+}
 
-      @media (max-width: 768px) {
-        .navbar-brand .navbar-logo { width: 120px; max-width: 45vw; }
-      }
+/* Tablets */
+@media (max-width: 768px) {
+    .navbar-brand .navbar-logo { 
+        width: 150px; 
+        max-width: 55vw; 
+    }
+}
 
-      @media (max-width: 480px) {
-        .navbar-brand .navbar-logo { width: 96px; max-width: 55vw; padding: 4px; }
-      }
+/* Mobile */
+@media (max-width: 480px) {
+    .navbar-brand .navbar-logo { 
+        width: 120px; 
+        max-width: 65vw; 
+    }
+}
+
     </style>
     <script>
       // Preloader Script
