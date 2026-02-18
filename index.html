@@ -1376,8 +1376,9 @@
       <a class="navbar-brand" href="https://mentorship.dilawarpro.com" style="color: white;
         padding: 5px;
         background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-        border-radius: 30px;">Mentorship By Dilawar
-        <!-- <img src="your-logo.png" alt="Logo" class="navbar-logo"> -->
+        border-radius: 30px;">
+        <img src="navbar-logo.jpg" alt="Mentorship By Dilawar" class="navbar-logo">
+        <span class="visually-hidden">Mentorship By Dilawar</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -1757,6 +1758,32 @@
       }
 
       /* Ended Preloader CSS */
+      /* Navbar logo styles (responsive and crisp) */
+      .navbar-brand .navbar-logo {
+        width: 160px;
+        max-width: 40vw;
+        height: auto;
+        display: inline-block;
+        object-fit: contain;
+        border-radius: 26px;
+        padding: 6px;
+        background: rgba(255,255,255,0.03);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+
+      @media (max-width: 992px) {
+        .navbar-brand .navbar-logo { width: 140px; max-width: 35vw; }
+      }
+
+      @media (max-width: 768px) {
+        .navbar-brand .navbar-logo { width: 120px; max-width: 45vw; }
+      }
+
+      @media (max-width: 480px) {
+        .navbar-brand .navbar-logo { width: 96px; max-width: 55vw; padding: 4px; }
+      }
     </style>
     <script>
       // Preloader Script
