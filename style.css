@@ -142,7 +142,7 @@
     z-index: 101; /* make sure footer stays above body content when scrolling */
 }
 .close-btn {
-    color: #dc3545;
+    color: black;
     /* float: right; */
     font-size: 28px;
     font-weight: bold;
