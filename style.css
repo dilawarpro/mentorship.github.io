@@ -81,7 +81,8 @@
     text-decoration: none;
     cursor: pointer;
 }
-.modal {
+/* custom modal (not bootstrap) should use a distinct class to avoid clashing with bootstrap's built-in modal styles */
+.custom-modal {
     display: none;
     position: fixed;
     z-index: 10000;
@@ -136,6 +137,9 @@
     padding: 10px;
     background-color: #f9f9f9;
     text-align: right;
+    position: sticky;
+    bottom: 0;
+    z-index: 101; /* make sure footer stays above body content when scrolling */
 }
 .close-btn {
     color: #dc3545;
