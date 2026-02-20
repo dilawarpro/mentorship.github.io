@@ -1932,7 +1932,7 @@
           }));
         </script>
         <div class="text-center mt-3">
-          <a href="#" class="btn btn-sm btn-success">Get a free marketing & web dev starter checklist</a>
+          <a href="#" id="checklistLink" class="btn btn-sm btn-success">Get a free marketing & web dev starter checklist</a>
         </div>
         <!-- ---- Stats ---- -->
         <div class="row g-3 justify-content-center">
@@ -3968,6 +3968,16 @@
         document.addEventListener('mouseout', function(e) {
           if (e.clientY < 10) showExitModal();
         });
+        // open checklist modal
+        const checklistLinkEl = document.getElementById('checklistLink');
+        if (checklistLinkEl) {
+          checklistLinkEl.onclick = function(e) {
+            e.preventDefault();
+            const m = document.getElementById('checklistModal');
+            if (m) m.style.display = 'flex';
+          };
+        }
+
         // trap back button on mobile
         history.pushState(null, null, location.href);
         window.addEventListener('popstate', function(event) {
@@ -3984,6 +3994,8 @@
             technicalModal.style.display = 'none';
           } else if (event.target == specialMentorshipModal) {
             specialMentorshipModal.style.display = 'none';
+          } else if (event.target == checklistModal) {
+            checklistModal.style.display = 'none';
           }
           // intentionally do not close exitIntentModal when clicking outside
         }
@@ -4029,6 +4041,31 @@
         }
       </script>
 
+      <!-- Checklist modal -->
+      <div id="checklistModal" class="modal">
+        <div class="modal-content" style="max-width:500px;">
+          <div class="modal-header">
+            <span class="close-btn" onclick="closeModal('checklistModal')">&times;</span>
+            <h2>Starter Checklist</h2>
+          </div>
+          <div class="modal-body" style="padding:20px;text-align:left;">
+            <p>Here’s a handy checklist you can use right away:</p>
+            <ul style="line-height:1.6;">
+              <li>Choose a niche or service you want to offer.</li>
+              <li>Register a domain name that matches your brand.</li>
+              <li>Set up hosting and install a simple website (HTML/CSS or WordPress).</li>
+              <li>Install Google Analytics and Search Console.</li>
+              <li>Create a basic homepage, about page, and contact form.</li>
+              <li>Set up a free email account and link it to the contact form.</li>
+              <li>Write three blog posts optimized for SEO.</li>
+              <li>Design a social media profile (Facebook/Instagram/LinkedIn).</li>
+              <li>Run a small Facebook or Google ad to drive visitors.</li>
+              <li>Gather testimonials or sample work to display.</li>
+            </ul>
+            <p>Use this list to start building your first project today!</p>
+          </div>
+        </div>
+      </div>
       <!-- Exit intent modal -->
       <div id="exitIntentModal" class="modal">
         <div class="modal-content">
