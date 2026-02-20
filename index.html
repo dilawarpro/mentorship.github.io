@@ -3932,6 +3932,8 @@
         const offPageModal = document.getElementById('offPageModal');
         const technicalModal = document.getElementById('technicalModal');
         const specialMentorshipModal = document.getElementById('specialMentorship');
+        // exit intent modal element will be looked up when needed (defined later in DOM)
+        let exitIntentModal = document.getElementById('exitIntentModal');
         // Get link elements
         const onPageLink = document.getElementById('onPageLink');
         const offPageLink = document.getElementById('offPageLink');
@@ -3954,7 +3956,25 @@
         function closeModal(modalId) {
           document.getElementById(modalId).style.display = 'none';
         }
-        // Close modals when clicking outside
+        // Exit-intent detection
+        let exitModalShown = false;
+        function showExitModal() {
+          if (!exitModalShown) {
+            exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
+            if (exitIntentModal) exitIntentModal.style.display = 'block';
+            exitModalShown = true;
+          }
+        }
+        document.addEventListener('mouseout', function(e) {
+          if (e.clientY < 10) showExitModal();
+        });
+        // trap back button on mobile
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', function(event) {
+          showExitModal();
+          history.pushState(null, null, location.href);
+        });
+        // Close modals when clicking outside (exit modal stays open)
         window.onclick = function(event) {
           if (event.target == onPageModal) {
             onPageModal.style.display = 'none';
@@ -3965,6 +3985,7 @@
           } else if (event.target == specialMentorshipModal) {
             specialMentorshipModal.style.display = 'none';
           }
+          // intentionally do not close exitIntentModal when clicking outside
         }
       </script>
       <script>
@@ -4007,5 +4028,20 @@
           });
         }
       </script>
+
+      <!-- Exit intent modal -->
+      <div id="exitIntentModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close-btn" onclick="closeModal('exitIntentModal')">&times;</span>
+            <h2>Wait! Before You Leave…</h2>
+          </div>
+          <div class="modal-body">
+            <p>You're just one step away from a free 15‑minute strategy call with me. Let’s map out your first project together!</p>
+            <a href="https://api.whatsapp.com/send?phone=923314041010&text=Hi%2C%20I%20would%20love%20a%20free%2015-minute%20strategy%20call." class="btn btn-primary">Claim Your Free Call</a>
+          </div>
+        </div>
+      </div>
+
   </body>
 </html>
