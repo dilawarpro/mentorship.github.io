@@ -1901,6 +1901,39 @@
             </div>
         </div>
         </a>
+        <!-- real outcomes list -->
+        <div class="container mt-4 text-start">
+          <h2 class="mentor-heading" style="font-size:1.8rem;">Real results you'll get</h2>
+          <ul class="mentor-sub" style="max-width:720px; margin:auto;">
+            <li>Launch your first client website within 30 days and bill PKR 15,000+.</li>
+            <li>Run a live ad campaign that brings paying visitors in week two.</li>
+            <li>Build and deploy a responsive web project to show in your portfolio.</li>
+            <li>Land a remote job or freelance gig paying $300‑800+ per month.</li>
+            <li>Set up an e‑commerce store and make your first sale in under 60 minutes.</li>
+          </ul>
+          <p class="mentor-sub" style="max-width:720px;margin:auto;">(Yes, even I struggled with my first 7‑page site — here’s what finally made it work. Spoiler: it wasn’t the code, it was the process.)</p>
+        </div>
+        <!-- quick goal quiz -->
+        <div class="container text-center mt-4">
+          <h3 class="mentor-heading" style="font-size:1.6rem;">What’s your goal?</h3>
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-outline-primary goal-btn" data-goal="remote">Remote job</button>
+            <button class="btn btn-outline-secondary goal-btn" data-goal="freelance">Freelance gig</button>
+          </div>
+          <p id="goalMessage" class="mentor-sub mt-3" style="display:none;"></p>
+        </div>
+        <script>
+          document.querySelectorAll('.goal-btn').forEach(btn=>btn.addEventListener('click',()=>{
+            const msg = btn.dataset.goal==='remote'
+              ? 'Thousands of students now earn $300‑800 per month from remote marketing & development roles.'
+              : 'Many learners replaced their salary within 60 days by landing freelance clients.';
+            const e=document.getElementById('goalMessage');
+            e.textContent=msg; e.style.display='block';
+          }));
+        </script>
+        <div class="text-center mt-3">
+          <a href="#" class="btn btn-sm btn-success">Get a free marketing & web dev starter checklist</a>
+        </div>
         <!-- ---- Stats ---- -->
         <div class="row g-3 justify-content-center">
           <div class="col-6 col-lg-2">
@@ -2004,6 +2037,8 @@
               <i class="bi bi-cart-fill"></i> E-Commerce Marketing </span>
             <span class="skill-chip">
               <i class="bi bi-geo-alt-fill"></i> Local SEO & GMB </span>
+            <span class="skill-chip">
+              <i class="bi bi-box2-fill"></i> Project-based learning </span>
           </div>
         </div>
         <!-- ---- Student Success Marquee ---- -->
@@ -2337,6 +2372,60 @@
             </div>
           </div>
         </div>
+        <!-- === Frequently Asked Questions === -->
+        <section class="faq-section container mt-5 mb-5">
+          <h2 class="mentor-heading text-center">Frequently Asked Questions</h2>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="false" aria-controls="collapseFaqOne">
+                  Do I need any prior coding or marketing experience?
+                </button>
+              </h2>
+              <div id="collapseFaqOne" class="accordion-collapse collapse" aria-labelledby="faqOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Not at all. We start from scratch, building a simple site on day one and running a small ad campaign by day three. You only need curiosity and a laptop.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false" aria-controls="collapseFaqTwo">
+                  How much time should I set aside each week?
+                </button>
+              </h2>
+              <div id="collapseFaqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Most students spend 5–7 hours per week and finish all modules in about 30–45 days. Because you get lifetime access, you can revisit any lesson anytime.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false" aria-controls="collapseFaqThree">
+                  Are live sessions recorded? What if I miss one?
+                </button>
+              </h2>
+              <div id="collapseFaqThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Every live call is recorded and added to your account immediately. You can watch them at your own pace and follow along with the projects on mobile, PC or tablet.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFour" aria-expanded="false" aria-controls="collapseFaqFour">
+                  What kind of results can I expect if I follow the mentorship fully?
+                </button>
+              </h2>
+              <div id="collapseFaqFour" class="accordion-collapse collapse" aria-labelledby="faqFour" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Students have gone from zero to earning their first ₹15k website, $300‑800/month remote jobs, or 10× business growth within 3–6 months. The exact outcome depends on your effort, but you’ll always leave with a live project and marketable skills.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <!-- ---- Bottom CTA ---- -->
         <div class="cta-bottom">
           <div class="cta-pattern"></div>
