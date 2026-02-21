@@ -3845,252 +3845,155 @@
               });
             }); // Added SA
         </script>
-        <script>
-            // ===================== SERVICE MODALS =====================
-              const onPageModal = document.getElementById('onPageModal');
-              const offPageModal = document.getElementById('offPageModal');
-              const technicalModal = document.getElementById('technicalModal');
-              const specialMentorshipModal = document.getElementById('specialMentorship');
-              const onPageLink = document.getElementById('onPageLink');
-              const offPageLink = document.getElementById('offPageLink');
-              const technicalLink = document.getElementById('technicalLink');
-              const specialMentorshipLink = document.getElementById('specialMentorshipLink');
-            
-              onPageLink.onclick = function () { onPageModal.style.display = 'block'; }
-              offPageLink.onclick = function () { offPageModal.style.display = 'block'; }
-              technicalLink.onclick = function () { technicalModal.style.display = 'block'; }
-              specialMentorshipLink.onclick = function () { specialMentorshipModal.style.display = 'block'; }
-            
-              function closeModal(modalId) {
-                document.getElementById(modalId).style.display = 'none';
-              }
-            
-              // Checklist modal
-              const checklistLinkEl = document.getElementById('checklistLink');
-              if (checklistLinkEl) {
-                checklistLinkEl.onclick = function (e) {
-                  e.preventDefault();
-                  const m = document.getElementById('checklistModal');
-                  if (m) m.style.display = 'flex';
-                };
-              }
-            
-              // Close service modals when clicking outside
-              window.onclick = function (event) {
-                if (event.target == onPageModal) onPageModal.style.display = 'none';
-                else if (event.target == offPageModal) offPageModal.style.display = 'none';
-                else if (event.target == technicalModal) technicalModal.style.display = 'none';
-                else if (event.target == specialMentorshipModal) specialMentorshipModal.style.display = 'none';
-                else if (event.target == document.getElementById('checklistModal')) document.getElementById('checklistModal').style.display = 'none';
-                // intentionally do not close exitIntentModal or discountModal when clicking outside
-              }
-            
-              // ===================== EXIT-INTENT (Strategy Call) MODAL =====================
-              // Shows EVERY TIME the user tries to leave (no "shown once" flag)
-              let exitIntentModal = document.getElementById('exitIntentModal');
-            
-              function showExitModal() {
-                exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
-                if (exitIntentModal) exitIntentModal.style.display = 'block';
-              }
-            
-              // Detect exit intent via visibilitychange (tab switch / minimize) & back button
-              document.addEventListener('visibilitychange', function () {
-                if (document.visibilityState === 'hidden') {
-                  showExitModal();
-                }
-              });
-            
-              // Detect beforeunload (closing tab / navigating away)
-              window.addEventListener('beforeunload', function () {
-                showExitModal();
-              });
-            
-              // Trap back button on mobile
-              history.pushState(null, null, location.href);
-              window.addEventListener('popstate', function () {
-                showExitModal();
-                history.pushState(null, null, location.href);
-              });
-            
-              // ===================== DISCOUNT MODAL + CONFETTI =====================
-              function showDiscountModal() {
-                if (localStorage.getItem('discountClaimed')) return;
-                const modalEl = document.getElementById('discountModal');
-                if (!modalEl) return;
-                if (modalEl.classList.contains('show')) return;
-                localStorage.setItem('discountClaimed', true);
-                const modal = new bootstrap.Modal(modalEl);
-                modal.show();
-              }
-            
-              // Show discount modal + confetti on page load
-              window.addEventListener("load", function () {
-                // Show discount modal once
-                if (!localStorage.getItem("discountClaimed")) {
-                  showDiscountModal();
-                }
-            
-                // Fire confetti
-                const count = 200,
-                  defaults = {
-                    origin: { y: 0.7 },
-                    zIndex: 99999,
-                  };
-            
-                function fire(particleRatio, opts) {
-                  confetti(Object.assign({}, defaults, opts, {
-                    particleCount: Math.floor(count * particleRatio),
-                  }));
-                }
-            
-                fire(0.25, { spread: 26, startVelocity: 55 });
-                fire(0.2, { spread: 60 });
-                fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-                fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-                fire(0.1, { spread: 120, startVelocity: 45 });
-              });
-            
-              // Mark as claimed when discount modal is hidden
-              const discountModalEl = document.getElementById('discountModal');
-              if (discountModalEl) {
-                discountModalEl.addEventListener('hidden.bs.modal', function () {
-                  localStorage.setItem('discountClaimed', true);
-                });
-              }
-            
-              // ===================== URGENCY ENGINE =====================
-              function startUrgency() {
-                document.getElementById("urgency").style.display = "block";
-                let time = 480;
-                const el = document.getElementById("countdown");
-                const timer = setInterval(() => {
-                  let m = Math.floor(time / 60);
-                  let s = time % 60;
-                  if (s < 10) s = "0" + s;
-                  el.innerText = `${m}:${s}`;
-                  time--;
-                  if (time < 0) {
-                    clearInterval(timer);
-                    el.innerText = "Expired";
-                  }
-                }, 1000);
-                let spots = Math.floor(Math.random() * 4) + 4;
-                const spotsEl = document.getElementById("spots");
-                spotsEl.innerText = `Only ${spots} spots left`;
-                setInterval(() => {
-                  if (spots > 1) {
-                    spots--;
-                    spotsEl.innerText = `Only ${spots} spots left`;
-                  }
-                }, 30000);
-              }
-            
-              // ===================== DISCOUNT GENERATOR =====================
-              function generateDiscount() {
-                const discounts = [5000];
-                return discounts[Math.floor(Math.random() * discounts.length)];
-              }
-            
-              // ===================== FORM SUBMIT =====================
-              function unlockOffer() {
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const userStatus = document.getElementById("userStatus").value;
-                const timeline = document.getElementById("timeline").value;
-                if (!name || !email || !userStatus || !timeline) {
-                  document.getElementById("formStatus").innerText = "Please fill all fields.";
-                  return;
-                }
-                document.getElementById("formStatus").innerText = "Checking eligibility...";
-                if (location.protocol === "https:" && navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(successGPS, function () {
-                    // Location denied or failed → show offer WITHOUT area
-                    revealOffer(null);
-                  }, {
-                    enableHighAccuracy: true,
-                    timeout: 15000
-                  });
-                } else {
-                  detectViaIP();
-                }
-              }
-            
-              // GPS SUCCESS
-              async function successGPS(position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                try {
-                  const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
-                  const data = await res.json();
-                  const addr = data.address;
-                  let area = addr.suburb || addr.city || addr.state || null;
-                  revealOffer(area);
-                } catch {
-                  detectViaIP();
-                }
-              }
-            
-              // IP FALLBACK
-              async function detectViaIP() {
-                try {
-                  const res = await fetch("https://ipwho.is/");
-                  const data = await res.json();
-                  let area = data.city || data.region || null;
-                  revealOffer(area);
-                } catch {
-                  revealOffer(null);
-                }
-              }
-            
-              // ===================== FINAL OFFER =====================
-              function revealOffer(area) {
-                const discount = generateDiscount();
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const userStatus = document.getElementById("userStatus").value;
-                const timeline = document.getElementById("timeline").value;
-            
-                // Build modal message — only include area if detected
-                let modalHTML = '';
-                if (area) {
-                  modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-                    <b>${discount.toLocaleString()}</b> scholarship for <b>${area.toUpperCase()}</b> students.`;
-                } else {
-                  modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-                    <b>${discount.toLocaleString()}</b> scholarship for you.`;
-                }
-                document.getElementById("modalMessage").innerHTML = modalHTML;
-                document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
-            
-                // Build WhatsApp message — only include area if detected
-                const whatsappNumber = "923314041010";
-                let msg = `Hi! My name is ${name}.
-            Email: ${email}
-            Current Status: ${userStatus}
-            Joining Timeline: ${timeline}`;
-            
-                if (area) {
-                  msg += `\nArea: ${area}`;
-                }
-            
-                msg += `\nI claimed a Rs ${discount} scholarship for Mentorship By Dilawar.
-            I want to claim it.`;
-            
-                const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-                const btn = document.getElementById("whatsappBtn");
-                btn.href = waLink;
-                btn.style.display = "block";
-            
-                btn.onclick = () => {
-                  localStorage.setItem("discountClaimed", true);
-                  const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
-                  if (modal) modal.hide();
-                };
-            
-                startUrgency();
-              }
-        </script>
+ <script>
+  let detectedArea = null; // store area only if detected
+
+  function showDiscountModal() {
+    const modalEl = document.getElementById('discountModal');
+    if (!modalEl) return;
+
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    // Trigger confetti AFTER modal opens
+    setTimeout(() => {
+      launchConfetti();
+    }, 500);
+  }
+
+  // ALWAYS show discount modal first on load
+  window.addEventListener("load", function() {
+    showDiscountModal();
+  });
+
+  // ---------------------------
+  // LOCATION DETECTION
+  // ---------------------------
+
+  function unlockOffer() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const userStatus = document.getElementById("userStatus").value;
+    const timeline = document.getElementById("timeline").value;
+
+    if (!name || !email || !userStatus || !timeline) {
+      document.getElementById("formStatus").innerText = "Please fill all fields.";
+      return;
+    }
+
+    document.getElementById("formStatus").innerText = "Checking eligibility...";
+
+    if (location.protocol === "https:" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successGPS, detectViaIP, {
+        enableHighAccuracy: true,
+        timeout: 10000
+      });
+    } else {
+      detectViaIP();
+    }
+  }
+
+  async function successGPS(position) {
+    try {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+      const data = await res.json();
+      const addr = data.address;
+
+      detectedArea = addr.city || addr.state || addr.suburb || null;
+
+      revealOffer();
+    } catch {
+      revealOffer();
+    }
+  }
+
+  async function detectViaIP() {
+    try {
+      const res = await fetch("https://ipwho.is/");
+      const data = await res.json();
+      detectedArea = data.city || data.region || null;
+    } catch {
+      detectedArea = null;
+    }
+
+    revealOffer();
+  }
+
+  // ---------------------------
+  // FINAL OFFER
+  // ---------------------------
+
+  function generateDiscount() {
+    return 5000;
+  }
+
+  function revealOffer() {
+    const discount = generateDiscount();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const userStatus = document.getElementById("userStatus").value;
+    const timeline = document.getElementById("timeline").value;
+
+    let areaText = "";
+    if (detectedArea) {
+      areaText = ` for <b>${detectedArea.toUpperCase()}</b> students`;
+    }
+
+    document.getElementById("modalMessage").innerHTML =
+      `Congratulations! 🎉 You unlocked Rs <b>${discount.toLocaleString()}</b> scholarship${areaText}.`;
+
+    document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
+
+    const whatsappNumber = "923314041010";
+
+    let msg =
+      `Hi! My name is ${name}.
+Email: ${email}
+Current Status: ${userStatus}
+Joining Timeline: ${timeline}
+I claimed a Rs ${discount} scholarship.`;
+
+    if (detectedArea) {
+      msg += `\nMy area: ${detectedArea}`;
+    }
+
+    msg += `\nI want to claim it.`;
+
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = waLink;
+    btn.style.display = "block";
+  }
+
+  // ---------------------------
+  // CONFETTI
+  // ---------------------------
+
+  function launchConfetti() {
+    const count = 200;
+    const defaults = {
+      origin: { y: 0.7 },
+      zIndex: 99999
+    };
+
+    function fire(particleRatio, opts) {
+      confetti(Object.assign({}, defaults, opts, {
+        particleCount: Math.floor(count * particleRatio)
+      }));
+    }
+
+    fire(0.25, { spread: 26, startVelocity: 55 });
+    fire(0.2, { spread: 60 });
+    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+    fire(0.1, { spread: 120, startVelocity: 45 });
+  }
+</script>
         <script>
             let deferredPrompt;
             // Listen for the `beforeinstallprompt` event
