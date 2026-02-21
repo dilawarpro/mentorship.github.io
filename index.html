@@ -1282,145 +1282,7 @@
     </div>
     <!-- BOOTSTRAP JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
-    <script>
-      // Helper to show the discount modal (once per user)
-      function showDiscountModal() {
-        if (localStorage.getItem('discountClaimed')) return;
-        const modalEl = document.getElementById('discountModal');
-        if (modalEl && modalEl.classList.contains('show')) return;
-        localStorage.setItem('discountClaimed', true);
-        const modal = new bootstrap.Modal(modalEl);
-        modal.show();
-      }
-
-      // AUTO SHOW MODAL ONCE
-      window.addEventListener("load", function() {
-        if (!localStorage.getItem("discountClaimed")) {
-          showDiscountModal();
-        }
-      });
-
-      // EXIT‑INTENT: show the modal only if not claimed AND not already visible
-      document.addEventListener('mouseout', function(evt) {
-        if (evt.clientY < 0 && !localStorage.getItem("discountClaimed")) {
-          showDiscountModal();
-        }
-      });
-
-      // make sure any hide event also marks as claimed
-      const discountModalEl = document.getElementById('discountModal');
-      if (discountModalEl) {
-        discountModalEl.addEventListener('hidden.bs.modal', function () {
-          localStorage.setItem('discountClaimed', true);
-        });
-      }
-
-      // URGENCY ENGINE
-      function startUrgency() {
-        document.getElementById("urgency").style.display = "block";
-        let time = 480;
-        const el = document.getElementById("countdown");
-        const timer = setInterval(() => {
-          let m = Math.floor(time / 60);
-          let s = time % 60;
-          if (s < 10) s = "0" + s;
-          el.innerText = `${m}:${s}`;
-          time--;
-          if (time < 0) {
-            clearInterval(timer);
-            el.innerText = "Expired";
-          }
-        }, 1000);
-        let spots = Math.floor(Math.random() * 4) + 4;
-        const spotsEl = document.getElementById("spots");
-        spotsEl.innerText = `Only ${spots} spots left in your area`;
-        setInterval(() => {
-          if (spots > 1) {
-            spots--;
-            spotsEl.innerText = `Only ${spots} spots left in your area`;
-          }
-        }, 30000);
-      }
-      // DISCOUNT GENERATOR
-      function generateDiscount() {
-        const discounts = [5000];
-        return discounts[Math.floor(Math.random() * discounts.length)];
-      }
-      // FORM SUBMIT
-      function unlockOffer() {
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const userStatus = document.getElementById("userStatus").value;
-        const timeline = document.getElementById("timeline").value;
-        if (!name || !email || !userStatus || !timeline) {
-          document.getElementById("formStatus").innerText = "Please fill all fields.";
-          return;
-        }
-        document.getElementById("formStatus").innerText = "Checking eligibility...";
-        if (location.protocol === "https:" && navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(successGPS, detectViaIP, {
-            enableHighAccuracy: true,
-            timeout: 15000
-          });
-        } else {
-          detectViaIP();
-        }
-      }
-      // GPS SUCCESS
-      async function successGPS(position) {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        try {
-          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
-          const data = await res.json();
-          const addr = data.address;
-          let area = addr.suburb || addr.city || addr.state || "your area";
-          revealOffer(area);
-        } catch {
-          detectViaIP();
-        }
-      }
-      // IP FALLBACK
-      async function detectViaIP() {
-        try {
-          const res = await fetch("https://ipwho.is/");
-          const data = await res.json();
-          let area = data.city || data.region || "your area";
-          revealOffer(area);
-        } catch {
-          revealOffer("your area");
-        }
-      }
-      // FINAL OFFER
-      function revealOffer(area) {
-        const discount = generateDiscount();
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const userStatus = document.getElementById("userStatus").value;
-        const timeline = document.getElementById("timeline").value;
-        document.getElementById("modalMessage").innerHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-																						<b>${discount.toLocaleString()}</b> scholorship for <b>${area.toUpperCase()}</b> students.`;
-        document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
-        const whatsappNumber = "923314041010";
-        const msg = `Hi! My name is ${name}.
-        Email: ${email}
-        Current Status: ${userStatus}
-        Joining Timeline: ${timeline}
-        I claimed a Rs ${discount} scholorship for Mentorship By Dilawar.
-        I want to claim it.`;
-        const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-        const btn = document.getElementById("whatsappBtn");
-        btn.href = waLink;
-        btn.style.display = "block";
-        // Close modal and set localStorage flag when user clicks WhatsApp button
-        btn.onclick = () => {
-          localStorage.setItem("discountClaimed", true);
-          const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
-          if (modal) modal.hide();
-        };
-        startUrgency();
-      }
-    </script>
+   
     <!-- Discounted Eneded -->
     <nav class="navbar navbar-expand-lg navbar-light" style="border: 2px solid white;
   background-color: rgba(255, 255, 255, 0.1);
@@ -4055,6 +3917,145 @@
           // intentionally do not close exitIntentModal when clicking outside
         }
       </script>
+       <script>
+      // Helper to show the discount modal (once per user)
+      function showDiscountModal() {
+        if (localStorage.getItem('discountClaimed')) return;
+        const modalEl = document.getElementById('discountModal');
+        if (modalEl && modalEl.classList.contains('show')) return;
+        localStorage.setItem('discountClaimed', true);
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+      }
+
+      // AUTO SHOW MODAL ONCE
+      window.addEventListener("load", function() {
+        if (!localStorage.getItem("discountClaimed")) {
+          showDiscountModal();
+        }
+      });
+
+      // EXIT‑INTENT: show the modal only if not claimed AND not already visible
+      document.addEventListener('mouseout', function(evt) {
+        if (evt.clientY < 0 && !localStorage.getItem("discountClaimed")) {
+          showDiscountModal();
+        }
+      });
+
+      // make sure any hide event also marks as claimed
+      const discountModalEl = document.getElementById('discountModal');
+      if (discountModalEl) {
+        discountModalEl.addEventListener('hidden.bs.modal', function () {
+          localStorage.setItem('discountClaimed', true);
+        });
+      }
+
+      // URGENCY ENGINE
+      function startUrgency() {
+        document.getElementById("urgency").style.display = "block";
+        let time = 480;
+        const el = document.getElementById("countdown");
+        const timer = setInterval(() => {
+          let m = Math.floor(time / 60);
+          let s = time % 60;
+          if (s < 10) s = "0" + s;
+          el.innerText = `${m}:${s}`;
+          time--;
+          if (time < 0) {
+            clearInterval(timer);
+            el.innerText = "Expired";
+          }
+        }, 1000);
+        let spots = Math.floor(Math.random() * 4) + 4;
+        const spotsEl = document.getElementById("spots");
+        spotsEl.innerText = `Only ${spots} spots left in your area`;
+        setInterval(() => {
+          if (spots > 1) {
+            spots--;
+            spotsEl.innerText = `Only ${spots} spots left in your area`;
+          }
+        }, 30000);
+      }
+      // DISCOUNT GENERATOR
+      function generateDiscount() {
+        const discounts = [5000];
+        return discounts[Math.floor(Math.random() * discounts.length)];
+      }
+      // FORM SUBMIT
+      function unlockOffer() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const userStatus = document.getElementById("userStatus").value;
+        const timeline = document.getElementById("timeline").value;
+        if (!name || !email || !userStatus || !timeline) {
+          document.getElementById("formStatus").innerText = "Please fill all fields.";
+          return;
+        }
+        document.getElementById("formStatus").innerText = "Checking eligibility...";
+        if (location.protocol === "https:" && navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successGPS, detectViaIP, {
+            enableHighAccuracy: true,
+            timeout: 15000
+          });
+        } else {
+          detectViaIP();
+        }
+      }
+      // GPS SUCCESS
+      async function successGPS(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+          const data = await res.json();
+          const addr = data.address;
+          let area = addr.suburb || addr.city || addr.state || "your area";
+          revealOffer(area);
+        } catch {
+          detectViaIP();
+        }
+      }
+      // IP FALLBACK
+      async function detectViaIP() {
+        try {
+          const res = await fetch("https://ipwho.is/");
+          const data = await res.json();
+          let area = data.city || data.region || "your area";
+          revealOffer(area);
+        } catch {
+          revealOffer("your area");
+        }
+      }
+      // FINAL OFFER
+      function revealOffer(area) {
+        const discount = generateDiscount();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const userStatus = document.getElementById("userStatus").value;
+        const timeline = document.getElementById("timeline").value;
+        document.getElementById("modalMessage").innerHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
+																						<b>${discount.toLocaleString()}</b> scholorship for <b>${area.toUpperCase()}</b> students.`;
+        document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
+        const whatsappNumber = "923314041010";
+        const msg = `Hi! My name is ${name}.
+        Email: ${email}
+        Current Status: ${userStatus}
+        Joining Timeline: ${timeline}
+        I claimed a Rs ${discount} scholorship for Mentorship By Dilawar.
+        I want to claim it.`;
+        const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+        const btn = document.getElementById("whatsappBtn");
+        btn.href = waLink;
+        btn.style.display = "block";
+        // Close modal and set localStorage flag when user clicks WhatsApp button
+        btn.onclick = () => {
+          localStorage.setItem("discountClaimed", true);
+          const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
+          if (modal) modal.hide();
+        };
+        startUrgency();
+      }
+    </script>
       <script>
         let deferredPrompt;
         // Listen for the `beforeinstallprompt` event
