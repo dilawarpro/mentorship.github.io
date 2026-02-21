@@ -699,6 +699,7 @@
         color: #fff;
         max-width: 680px;
         transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
       }
 
       .champion-card img {
@@ -2011,55 +2012,24 @@
         </script>
           <!-- ---- Student Success Marquee ---- -->
         <!-- simple champion highlight -->
- <div class="mt-2" style="margin-top:20px; font-family: Arial, sans-serif;">
-  
-  <h2 style="text-align:center;">Meet Recent Champion</h2>
-
-  <div style="
-      position: relative;
-      width: 320px;
-      margin: 20px auto;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-  ">
-    
-    <!-- Ribbon -->
-    <div style="
-        position: absolute;
-        top: 20px;
-        right: -35px;
-        background: #ff0066;
-        color: #fff;
-        padding: 8px 40px;
-        transform: rotate(45deg);
-        font-weight: bold;
-        font-size: 14px;
-    ">
-      🏆 Champion
-    </div>
-
-    <!-- Image -->
-    <img 
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiWSE8mzrqnArVecceXUvHHbZ7_b9DFOMQg&s" 
-      alt="Hamza"
-      style="width:100%; display:block;"
-    >
-
-    <!-- Info -->
-    <div style="padding:15px;">
-      <h3 style="margin:0 0 10px 0;">Hamza</h3>
-      <p style="margin:0; font-size:14px; line-height:1.5;">
-        He joined Mentorship By Dilawar 2 months ago and made 
-        <strong>PKR 130,000</strong> by launching 3 business websites, 
-        and he is consistently growing.
-      </p>
-    </div>
-
-  </div>
-
-</div>
+  <div class="mt-2">
+          <h2 class="text-center">Meet Recent Champion</h2>
+          <div class="champion-card mt-3 mx-auto">
+            <div class="ribbon" style="  position: absolute;
+    top: 25px;
+    right: -40px;
+    background: #ff0066;
+    color: #fff;
+    padding: 8px 40px;
+    transform: rotate(45deg);
+    font-weight: bold;">🏆 Champion</div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiWSE8mzrqnArVecceXUvHHbZ7_b9DFOMQg&s" alt="Hamza">
+            <div class="champion-info">
+              <h3>Hamza</h3>
+              <p>He joined Mentorship By Dilawar 2 months ago and made <strong>PKR 130,000</strong> by launching 3 business websites, and he is consistently growing.</p>
+            </div>
+          </div>
+        </div>
         <!-- <div class="text-center mt-3">
           <a href="#" id="checklistLink" class="btn btn-sm btn-success">Get a free marketing & web dev starter checklist</a>
         </div> -->
