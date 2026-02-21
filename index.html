@@ -700,16 +700,32 @@
       }
 
       /* Champion card style */
+      /* Champion card style */
       .champion-card {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 20px;
-        padding: 20px;
+        padding: 25px 30px;
         border-radius: 18px;
+        background: #fff;
+        color: #333;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        max-width: 700px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+      }
+
+      .champion-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: linear-gradient(135deg, #0d6efd, #00d2ff);
-        color: white;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        flex-wrap: wrap;
+        opacity: 0.1;
+        z-index: 1;
       }
 
       .champion-card img {
@@ -717,22 +733,51 @@
         height: 100px;
         border-radius: 50%;
         object-fit: cover;
-        border: 3px solid white;
+        border: 4px solid #fff;
         flex-shrink: 0;
+        z-index: 2;
       }
 
       .champion-card .champion-info {
         max-width: 600px;
+        z-index: 2;
       }
 
       .champion-card .champion-info h3 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         margin: 0;
       }
 
       .champion-card .champion-info p {
         font-size: 1rem;
         margin: 5px 0 0;
+      }
+
+      .champion-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+      }
+
+      .champion-card .ribbon {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ffdd57;
+        color: #333;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transform: rotate(15deg);
+        z-index: 3;
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .champion-card {
+        animation: fadeInUp 0.8s ease-out;
       }
 
       /* =============================
@@ -1280,13 +1325,20 @@
         }
       });
 
-      // EXIT‑INTENT: show the modal every time the mouse leaves the viewport at the top
+      // EXIT‑INTENT: show the modal when mouse leaves viewport if not claimed yet
       document.addEventListener('mouseout', function(evt) {
-        // if the cursor moves out of the viewport towards the browser chrome
-        if (evt.clientY < 0) {
+        if (evt.clientY < 0 && !localStorage.getItem("discountClaimed")) {
           showDiscountModal();
         }
       });
+
+      // mark modal as claimed when it is closed by any means
+      const discountModalEl = document.getElementById('discountModal');
+      if (discountModalEl) {
+        discountModalEl.addEventListener('hidden.bs.modal', function () {
+          localStorage.setItem('discountClaimed', true);
+        });
+      }
 
       // URGENCY ENGINE
       function startUrgency() {
@@ -2098,6 +2150,7 @@
         <div class="container mt-5">
           <h2 class="text-center">Recent Champion</h2>
           <div class="champion-card mt-3 mx-auto">
+            <div class="ribbon">🏆 Champion</div>
             <img src="https://via.placeholder.com/100?text=Hamza" alt="Hamza">
             <div class="champion-info">
               <h3>Meet Hamza</h3>
