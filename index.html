@@ -3846,144 +3846,228 @@
             }); // Added SA
         </script>
  <script>
-  let detectedArea = null; // store area only if detected
+  // ===================== SERVICE MODALS =====================
+  const onPageModal = document.getElementById('onPageModal');
+  const offPageModal = document.getElementById('offPageModal');
+  const technicalModal = document.getElementById('technicalModal');
+  const specialMentorshipModal = document.getElementById('specialMentorship');
+  const onPageLink = document.getElementById('onPageLink');
+  const offPageLink = document.getElementById('offPageLink');
+  const technicalLink = document.getElementById('technicalLink');
+  const specialMentorshipLink = document.getElementById('specialMentorshipLink');
+
+  onPageLink.onclick = function () { onPageModal.style.display = 'block'; }
+  offPageLink.onclick = function () { offPageModal.style.display = 'block'; }
+  technicalLink.onclick = function () { technicalModal.style.display = 'block'; }
+  specialMentorshipLink.onclick = function () { specialMentorshipModal.style.display = 'block'; }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+  }
+
+  // Checklist modal
+  const checklistLinkEl = document.getElementById('checklistLink');
+  if (checklistLinkEl) {
+    checklistLinkEl.onclick = function (e) {
+      e.preventDefault();
+      const m = document.getElementById('checklistModal');
+      if (m) m.style.display = 'flex';
+    };
+  }
+
+  // Close service modals when clicking outside
+  window.onclick = function (event) {
+    if (event.target == onPageModal) onPageModal.style.display = 'none';
+    else if (event.target == offPageModal) offPageModal.style.display = 'none';
+    else if (event.target == technicalModal) technicalModal.style.display = 'none';
+    else if (event.target == specialMentorshipModal) specialMentorshipModal.style.display = 'none';
+    else if (event.target == document.getElementById('checklistModal')) {
+      document.getElementById('checklistModal').style.display = 'none';
+    }
+  }
+
+  // ===================== NAVIGATION TYPE DETECTION =====================
+  // Distinguish refresh from actual exit/leave
+  function isPageRefresh() {
+    if (performance && performance.getEntriesByType) {
+      const navEntries = performance.getEntriesByType('navigation');
+      if (navEntries.length > 0) {
+        return navEntries[0].type === 'reload';
+      }
+    }
+    // Fallback for older browsers
+    if (performance && performance.navigation) {
+      return performance.navigation.type === 1;
+    }
+    return false;
+  }
+
+  // ===================== SESSION MANAGEMENT =====================
+  // Track if user is actively on the page (not just refreshing)
+  const SESSION_KEY = 'mbd_active_session';
+  const EXIT_MODAL_COOLDOWN_KEY = 'mbd_exit_cooldown';
+
+  // Mark session as active
+  function startSession() {
+    sessionStorage.setItem(SESSION_KEY, Date.now().toString());
+  }
+
+  // Check how long user has been on the page
+  function getSessionDuration() {
+    const start = sessionStorage.getItem(SESSION_KEY);
+    if (!start) return 0;
+    return Date.now() - parseInt(start);
+  }
+
+  startSession();
+
+  // ===================== EXIT-INTENT (Strategy Call) MODAL =====================
+  let exitIntentModal = document.getElementById('exitIntentModal');
+  let exitModalCurrentlyOpen = false;
+
+  function showExitModal() {
+    exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
+    if (!exitIntentModal) return;
+
+    // Don't show if already open
+    if (exitModalCurrentlyOpen) return;
+
+    // Don't show if user has been on page less than 5 seconds (likely a refresh)
+    if (getSessionDuration() < 5000) return;
+
+    // Don't show during page refresh
+    if (isPageRefresh()) return;
+
+    exitIntentModal.style.display = 'block';
+    exitModalCurrentlyOpen = true;
+  }
+
+  function closeExitModal() {
+    if (exitIntentModal) {
+      exitIntentModal.style.display = 'none';
+      exitModalCurrentlyOpen = false;
+    }
+  }
+
+  // --- Exit Intent Triggers (NO mouse events) ---
+
+  // 1. Visibility change: user switches tab, minimizes, or switches app
+  //    We add a delay to avoid false positives from quick alt-tabs
+  let visibilityTimer = null;
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      // Wait 300ms to confirm it's not a quick switch
+      visibilityTimer = setTimeout(function () {
+        showExitModal();
+      }, 300);
+    } else {
+      // User came back quickly, cancel the trigger
+      if (visibilityTimer) {
+        clearTimeout(visibilityTimer);
+        visibilityTimer = null;
+      }
+    }
+  });
+
+  // 2. Back button trap (mobile)
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function () {
+    showExitModal();
+    history.pushState(null, null, location.href);
+  });
+
+  // 3. Mobile: detect scroll up rapidly to address bar (intent to leave)
+  let lastScrollY = window.scrollY;
+  let rapidScrollUpCount = 0;
+  let scrollCheckTimer = null;
+
+  window.addEventListener('scroll', function () {
+    const currentY = window.scrollY;
+    const diff = lastScrollY - currentY;
+
+    // User scrolled up rapidly more than 100px
+    if (diff > 100 && currentY < 50) {
+      rapidScrollUpCount++;
+      if (rapidScrollUpCount >= 2) {
+        showExitModal();
+        rapidScrollUpCount = 0;
+      }
+    }
+
+    if (currentY > lastScrollY) {
+      rapidScrollUpCount = 0; // reset if scrolling down
+    }
+
+    lastScrollY = currentY;
+  }, { passive: true });
+
+  // 4. Idle detection: if user is idle for 60 seconds, they might be leaving
+  let idleTimer = null;
+  let idleTriggered = false;
+  const IDLE_TIMEOUT = 60000; // 60 seconds
+
+  function resetIdleTimer() {
+    if (idleTriggered) return;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function () {
+      idleTriggered = true;
+      showExitModal();
+    }, IDLE_TIMEOUT);
+  }
+
+  ['touchstart', 'touchmove', 'scroll', 'keydown', 'click'].forEach(function (evt) {
+    document.addEventListener(evt, resetIdleTimer, { passive: true });
+  });
+  resetIdleTimer();
+
+  // ===================== DISCOUNT MODAL + CONFETTI =====================
+  const DISCOUNT_KEY = 'discountClaimed';
+  const DISCOUNT_SHOWN_THIS_SESSION = 'discountShownSession';
 
   function showDiscountModal() {
+    // Don't show if already claimed
+    if (localStorage.getItem(DISCOUNT_KEY) === 'true') return;
+
     const modalEl = document.getElementById('discountModal');
     if (!modalEl) return;
 
-    const modal = new bootstrap.Modal(modalEl);
-    modal.show();
+    // Don't show if already visible
+    if (modalEl.classList.contains('show')) return;
 
-    // Trigger confetti AFTER modal opens
-    setTimeout(() => {
-      launchConfetti();
-    }, 500);
+    // Mark as shown this session (but NOT claimed yet)
+    sessionStorage.setItem(DISCOUNT_SHOWN_THIS_SESSION, 'true');
+
+    const modal = new bootstrap.Modal(modalEl, {
+      backdrop: 'static',  // Prevent closing by clicking outside
+      keyboard: false       // Prevent closing with Escape key
+    });
+    modal.show();
   }
 
-  // ALWAYS show discount modal first on load
-  window.addEventListener("load", function() {
-    showDiscountModal();
+  // Show discount modal + confetti on page load
+  window.addEventListener("load", function () {
+    // Small delay to ensure DOM is fully ready
+    setTimeout(function () {
+      if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
+        showDiscountModal();
+        fireConfetti();
+      }
+    }, 800);
   });
 
-  // ---------------------------
-  // LOCATION DETECTION
-  // ---------------------------
+  // Confetti function
+  function fireConfetti() {
+    if (typeof confetti === 'undefined') return;
 
-  function unlockOffer() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const userStatus = document.getElementById("userStatus").value;
-    const timeline = document.getElementById("timeline").value;
-
-    if (!name || !email || !userStatus || !timeline) {
-      document.getElementById("formStatus").innerText = "Please fill all fields.";
-      return;
-    }
-
-    document.getElementById("formStatus").innerText = "Checking eligibility...";
-
-    if (location.protocol === "https:" && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successGPS, detectViaIP, {
-        enableHighAccuracy: true,
-        timeout: 10000
-      });
-    } else {
-      detectViaIP();
-    }
-  }
-
-  async function successGPS(position) {
-    try {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-
-      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
-      const data = await res.json();
-      const addr = data.address;
-
-      detectedArea = addr.city || addr.state || addr.suburb || null;
-
-      revealOffer();
-    } catch {
-      revealOffer();
-    }
-  }
-
-  async function detectViaIP() {
-    try {
-      const res = await fetch("https://ipwho.is/");
-      const data = await res.json();
-      detectedArea = data.city || data.region || null;
-    } catch {
-      detectedArea = null;
-    }
-
-    revealOffer();
-  }
-
-  // ---------------------------
-  // FINAL OFFER
-  // ---------------------------
-
-  function generateDiscount() {
-    return 5000;
-  }
-
-  function revealOffer() {
-    const discount = generateDiscount();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const userStatus = document.getElementById("userStatus").value;
-    const timeline = document.getElementById("timeline").value;
-
-    let areaText = "";
-    if (detectedArea) {
-      areaText = ` for <b>${detectedArea.toUpperCase()}</b> students`;
-    }
-
-    document.getElementById("modalMessage").innerHTML =
-      `Congratulations! 🎉 You unlocked Rs <b>${discount.toLocaleString()}</b> scholarship${areaText}.`;
-
-    document.getElementById("formStatus").innerText = "Eligibility confirmed ✅";
-
-    const whatsappNumber = "923314041010";
-
-    let msg =
-      `Hi! My name is ${name}.
-Email: ${email}
-Current Status: ${userStatus}
-Joining Timeline: ${timeline}
-I claimed a Rs ${discount} scholarship.`;
-
-    if (detectedArea) {
-      msg += `\nMy area: ${detectedArea}`;
-    }
-
-    msg += `\nI want to claim it.`;
-
-    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-
-    const btn = document.getElementById("whatsappBtn");
-    btn.href = waLink;
-    btn.style.display = "block";
-  }
-
-  // ---------------------------
-  // CONFETTI
-  // ---------------------------
-
-  function launchConfetti() {
     const count = 200;
     const defaults = {
       origin: { y: 0.7 },
-      zIndex: 99999
+      zIndex: 99999,
     };
 
     function fire(particleRatio, opts) {
       confetti(Object.assign({}, defaults, opts, {
-        particleCount: Math.floor(count * particleRatio)
+        particleCount: Math.floor(count * particleRatio),
       }));
     }
 
@@ -3992,6 +4076,222 @@ I claimed a Rs ${discount} scholarship.`;
     fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
     fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
     fire(0.1, { spread: 120, startVelocity: 45 });
+
+    // Second wave after 1.5s for more impact
+    setTimeout(function () {
+      fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
+      fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
+    }, 1500);
+  }
+
+  // When discount modal is hidden (closed via X button or programmatically)
+  const discountModalEl = document.getElementById('discountModal');
+  if (discountModalEl) {
+    discountModalEl.addEventListener('hidden.bs.modal', function () {
+      // Only mark as claimed if user has actually submitted the form
+      // This allows the modal to reappear if they close without submitting
+      if (!localStorage.getItem('discountFormSubmitted')) {
+        // User closed without submitting — allow it to show again next visit
+        // but not in this same session
+        sessionStorage.setItem(DISCOUNT_SHOWN_THIS_SESSION, 'true');
+      }
+    });
+  }
+
+  // ===================== URGENCY ENGINE =====================
+  let urgencyStarted = false;
+
+  function startUrgency() {
+    if (urgencyStarted) return;
+    urgencyStarted = true;
+
+    const urgencyEl = document.getElementById("urgency");
+    if (urgencyEl) urgencyEl.style.display = "block";
+
+    // Countdown timer
+    let time = 480;
+    const el = document.getElementById("countdown");
+    if (el) {
+      const timer = setInterval(() => {
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+        if (s < 10) s = "0" + s;
+        el.innerText = `${m}:${s}`;
+        time--;
+        if (time < 0) {
+          clearInterval(timer);
+          el.innerText = "Expired";
+        }
+      }, 1000);
+    }
+
+    // Spots counter
+    let spots = Math.floor(Math.random() * 4) + 4;
+    const spotsEl = document.getElementById("spots");
+    if (spotsEl) {
+      spotsEl.innerText = `Only ${spots} spots left`;
+      setInterval(() => {
+        if (spots > 1) {
+          spots--;
+          spotsEl.innerText = `Only ${spots} spot${spots > 1 ? 's' : ''} left`;
+        }
+      }, 30000);
+    }
+  }
+
+  // ===================== DISCOUNT GENERATOR =====================
+  function generateDiscount() {
+    const discounts = [5000];
+    return discounts[Math.floor(Math.random() * discounts.length)];
+  }
+
+  // ===================== FORM SUBMIT =====================
+  let detectedArea = null; // Store detected area globally
+
+  function unlockOffer() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const userStatus = document.getElementById("userStatus").value;
+    const timeline = document.getElementById("timeline").value;
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !userStatus || !timeline) {
+      document.getElementById("formStatus").innerText = "⚠️ Please fill all fields.";
+      document.getElementById("formStatus").style.color = "#ff4444";
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      document.getElementById("formStatus").innerText = "⚠️ Please enter a valid email.";
+      document.getElementById("formStatus").style.color = "#ff4444";
+      return;
+    }
+
+    document.getElementById("formStatus").innerText = "⏳ Checking eligibility...";
+    document.getElementById("formStatus").style.color = "#ffc107";
+
+    // Try to detect location
+    if (location.protocol === "https:" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        successGPS,
+        function () {
+          // GPS failed, try IP
+          detectViaIP();
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000
+        }
+      );
+    } else {
+      detectViaIP();
+    }
+  }
+
+  // GPS SUCCESS
+  async function successGPS(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,
+        { signal: AbortSignal.timeout(8000) }
+      );
+      const data = await res.json();
+      const addr = data.address;
+      detectedArea = addr.suburb || addr.city || addr.state || null;
+      revealOffer();
+    } catch {
+      detectViaIP();
+    }
+  }
+
+  // IP FALLBACK
+  async function detectViaIP() {
+    try {
+      const res = await fetch("https://ipwho.is/", {
+        signal: AbortSignal.timeout(6000)
+      });
+      const data = await res.json();
+      if (data.success !== false) {
+        detectedArea = data.city || data.region || null;
+      } else {
+        detectedArea = null;
+      }
+      revealOffer();
+    } catch {
+      detectedArea = null;
+      revealOffer();
+    }
+  }
+
+  // ===================== FINAL OFFER =====================
+  function revealOffer() {
+    const discount = generateDiscount();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const userStatus = document.getElementById("userStatus").value;
+    const timeline = document.getElementById("timeline").value;
+
+    // Build modal message — only include area if detected
+    let modalHTML = '';
+    if (detectedArea && detectedArea.length > 0) {
+      modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
+        <b>${discount.toLocaleString()}</b> scholarship for <b>${detectedArea.toUpperCase()}</b> students.`;
+    } else {
+      modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
+        <b>${discount.toLocaleString()}</b> scholarship for you.`;
+    }
+
+    document.getElementById("modalMessage").innerHTML = modalHTML;
+    document.getElementById("formStatus").innerText = "✅ Eligibility confirmed!";
+    document.getElementById("formStatus").style.color = "#00e676";
+
+    // Fire confetti again on successful submission
+    fireConfetti();
+
+    // Mark form as submitted
+    localStorage.setItem('discountFormSubmitted', 'true');
+
+    // Build WhatsApp message — only include area if detected
+    const whatsappNumber = "923314041010";
+    let msgParts = [
+      `Hi! My name is ${name}.`,
+      `Email: ${email}`,
+      `Current Status: ${userStatus}`,
+      `Joining Timeline: ${timeline}`
+    ];
+
+    if (detectedArea && detectedArea.length > 0) {
+      msgParts.push(`Area: ${detectedArea}`);
+    }
+
+    msgParts.push(
+      `I claimed a Rs ${discount.toLocaleString()} scholarship for Mentorship By Dilawar.`,
+      `I want to claim it.`
+    );
+
+    const msg = msgParts.join('\n');
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+    const btn = document.getElementById("whatsappBtn");
+    if (btn) {
+      btn.href = waLink;
+      btn.style.display = "block";
+
+      btn.onclick = function () {
+        // Mark discount as fully claimed
+        localStorage.setItem(DISCOUNT_KEY, 'true');
+        localStorage.setItem('discountFormSubmitted', 'true');
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
+        if (modal) modal.hide();
+      };
+    }
+
+    startUrgency();
   }
 </script>
         <script>
