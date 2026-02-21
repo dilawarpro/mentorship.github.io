@@ -699,6 +699,42 @@
         color: var(--gray-light);
       }
 
+      /* Champion card style */
+      .champion-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #0d6efd, #00d2ff);
+        color: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        flex-wrap: wrap;
+      }
+
+      .champion-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        flex-shrink: 0;
+      }
+
+      .champion-card .champion-info {
+        max-width: 600px;
+      }
+
+      .champion-card .champion-info h3 {
+        font-size: 1.4rem;
+        margin: 0;
+      }
+
+      .champion-card .champion-info p {
+        font-size: 1rem;
+        margin: 5px 0 0;
+      }
+
       /* =============================
            TESTIMONIALS
         ============================= */
@@ -2058,6 +2094,17 @@
           </div>
         </div>
         <!-- ---- Student Success Marquee ---- -->
+        <!-- Highlight recent champion -->
+        <div class="container mt-5">
+          <h2 class="text-center">Recent Champion</h2>
+          <div class="champion-card mt-3 mx-auto">
+            <img src="https://via.placeholder.com/100?text=Hamza" alt="Hamza">
+            <div class="champion-info">
+              <h3>Meet Hamza</h3>
+              <p>He joined Mentorship By Dilawar 2 months ago and made <strong>PKR 130,000</strong> by launching 3 business websites, and he is consistently growing.</p>
+            </div>
+          </div>
+        </div>
         <div class="text-center">
           <p class="marquee-label">Student success stories</p>
         </div>
