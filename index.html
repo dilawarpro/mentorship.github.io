@@ -3929,54 +3929,17 @@
     }
   }
 
-  // ===================== SESSION MANAGEMENT =====================
-  const SESSION_START_KEY = 'mbd_session_start';
-  const MIN_TIME_BEFORE_EXIT = 5000;
-
-  function startSession() {
-    if (!sessionStorage.getItem(SESSION_START_KEY)) {
-      sessionStorage.setItem(SESSION_START_KEY, Date.now().toString());
-    }
-  }
-
-  function getSessionDuration() {
-    const start = sessionStorage.getItem(SESSION_START_KEY);
-    if (!start) return 0;
-    return Date.now() - parseInt(start);
-  }
-
-  function isPageRefresh() {
-    try {
-      const navEntries = performance.getEntriesByType('navigation');
-      if (navEntries.length > 0) return navEntries[0].type === 'reload';
-    } catch (e) {}
-    try {
-      if (performance.navigation) return performance.navigation.type === 1;
-    } catch (e) {}
-    return false;
-  }
-
-  startSession();
-
   // ===================== EXIT-INTENT (Strategy Call) MODAL =====================
-  // This modal should ONLY appear when the user is truly trying to LEAVE/CLOSE
-  // the page — NOT when switching tabs or minimizing.
-  //
-  // Without mouse events, the only reliable "exiting" signals are:
-  //   1. beforeunload  → user closing tab, typing new URL, clicking a link away
-  //   2. popstate      → user pressing back button
-  //
-  // visibilitychange / blur / focus are NOT used because they fire on tab switch.
+  // ONLY triggers on back button / browser navigation
+  // Does NOT trigger on: tab switch, minimize, refresh, internal links, external links
 
   let exitIntentModal = document.getElementById('exitIntentModal');
   let exitModalCurrentlyOpen = false;
-  let userIsActuallyLeaving = false;
 
   function showExitModal() {
     exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
     if (!exitIntentModal) return;
     if (exitModalCurrentlyOpen) return;
-    if (getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
 
     exitIntentModal.style.display = 'block';
     exitModalCurrentlyOpen = true;
@@ -3986,73 +3949,17 @@
     if (exitIntentModal) {
       exitIntentModal.style.display = 'none';
       exitModalCurrentlyOpen = false;
-      userIsActuallyLeaving = false;
     }
   }
 
-  // ---- TRIGGER #1: beforeunload ----
-  // This fires ONLY when user is navigating away, closing tab, or closing browser.
-  // It does NOT fire on tab switch or minimize.
-  // We CANNOT show a custom modal during beforeunload directly,
-  // but we CAN prevent the navigation and show our modal instead.
-  window.addEventListener('beforeunload', function (e) {
-    if (getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
-    if (isPageRefresh()) return;
+  // ONLY trigger: Back button / browser navigation
+  // Push a fake history state so pressing back doesn't leave the page
+  history.pushState({ exitGuard: true }, '', location.href);
 
-    // Flag that user is leaving
-    userIsActuallyLeaving = true;
-
-    // Show the browser's native "Are you sure?" dialog
-    // This keeps the user on the page, then we show our modal
-    e.preventDefault();
-    e.returnValue = '';
-  });
-
-  // When the page regains focus after beforeunload was cancelled,
-  // the user chose to STAY — now show our strategy call modal
-  window.addEventListener('focus', function () {
-    if (userIsActuallyLeaving) {
-      userIsActuallyLeaving = false;
-      // Small delay to let the browser settle
-      setTimeout(function () {
-        showExitModal();
-      }, 300);
-    }
-  });
-
-  // ---- TRIGGER #2: Back button (Mobile + Desktop) ----
-  history.pushState(null, null, location.href);
-  window.addEventListener('popstate', function () {
-    if (getSessionDuration() >= MIN_TIME_BEFORE_EXIT) {
-      showExitModal();
-    }
-    history.pushState(null, null, location.href);
-  });
-
-  // ---- TRIGGER #3: External link interception ----
-  // Catch clicks on links that would navigate away from the page
-  document.addEventListener('click', function (e) {
-    const link = e.target.closest('a');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    // Skip WhatsApp links, anchors, javascript:, and same-page links
-    if (href.startsWith('#') ||
-        href.startsWith('javascript:') ||
-        href.includes('wa.me') ||
-        href.includes('whatsapp.com')) return;
-
-    // Check if link navigates away from current page
-    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
-    const isNewTab = link.target === '_blank';
-
-    // Only intercept links that would leave this page (not new tabs)
-    if (isExternal && !isNewTab && getSessionDuration() >= MIN_TIME_BEFORE_EXIT) {
-      e.preventDefault();
-      showExitModal();
-    }
+  window.addEventListener('popstate', function (e) {
+    // Show modal and re-push state to keep trapping
+    showExitModal();
+    history.pushState({ exitGuard: true }, '', location.href);
   });
 
   // ===================== DISCOUNT MODAL + CONFETTI =====================
@@ -4277,7 +4184,7 @@
 
     startUrgency();
   }
-</script>   
+</script>  
 
 <script>
             let deferredPrompt;
