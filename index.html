@@ -1919,7 +1919,7 @@
           <h3 class="mentor-heading" style="font-size:1.6rem;">What’s your goal?</h3>
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-outline-primary goal-btn" data-goal="remote">Remote job</button>
-            <button class="btn btn-outline-secondary goal-btn" data-goal="freelance">Freelance gig</button>
+            <button class="btn btn-outline-secondary goal-btn" data-goal="freelance">Agency</button>
           </div>
           <p id="goalMessage" class="mentor-sub mt-3" style="display:none;"></p>
         </div>
@@ -1927,7 +1927,7 @@
           document.querySelectorAll('.goal-btn').forEach(btn=>btn.addEventListener('click',()=>{
             const msg = btn.dataset.goal==='remote'
               ? 'Thousands of students now earn $300‑800 per month from remote marketing & development roles.'
-              : 'Many learners replaced their salary within 60 days by landing freelance clients.';
+              : 'Many learners earned 6-figure income within 60 days by launching own digital marketing agency.';
             const e=document.getElementById('goalMessage');
             e.textContent=msg; e.style.display='block';
           }));
