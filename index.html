@@ -682,59 +682,6 @@
             text-align: right;
           }
     
-          /* simplified champion highlight card */
-          .champion-card {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 18px 24px;
-            border-radius: 16px;
-            background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%);
-            color: #fff;
-            max-width: 680px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-          }
-    
-          .champion-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid rgba(255,255,255,0.8);
-            object-fit: cover;
-          }
-    
-          .champion-card .champion-info h3 {
-            margin: 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-          }
-    
-          .champion-card .champion-info p {
-            margin: 4px 0 0;
-            font-size: 0.95rem;
-          }
-    
-          .champion-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-          }
-    
-          .champion-card .ribbon {
-    
-            position: absolute;
-        top: -8px;
-        right: -8px;
-        background: #ffdd57;
-        color: #333;
-        padding: 4px 12px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        transform: rotate(15deg);
-        z-index: 3;
-          }
-    
           .student-card .sc-result .result-num {
             font-size: 0.82rem;
             font-weight: 700;
@@ -1869,25 +1816,62 @@
                   }));
             </script>
             <!-- ---- Student Success Marquee ---- -->
-            <!-- simple champion highlight -->
-            <div class="mt-2">
-                <h2 class="text-center">Meet Recent Champion</h2>
-                <div class="champion-card mt-3 mx-auto mb-4">
-                    <div class="ribbon" style="  position: absolute;
-    top: 25px;
-    right: -40px;
-    background: #ff0066;
-    color: #fff;
-    padding: 8px 40px;
-    transform: rotate(45deg);
-    font-weight: bold;">🏆 Champion</div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiWSE8mzrqnArVecceXUvHHbZ7_b9DFOMQg&s" alt="Hamza">
-                    <div class="champion-info">
-                        <h3>Hamza</h3>
-                        <p>He joined Mentorship By Dilawar 2 months ago and made <strong>PKR 130,000</strong> by launching 3 business websites, and he is consistently growing.</p>
-                    </div>
-                </div>
-            </div>
+           <!-- ===== CHAMPION SECTION ===== -->
+<div class="mt-2">
+  <h2 class="text-center" style="font-family:'Poppins',sans-serif; font-weight:800;">Meet Recent Champion</h2>
+
+  <div class="champion-card mt-3 mx-auto mb-3">
+
+    <!-- Ribbon -->
+    <div class="ribbon">🏆 Champion</div>
+
+    <!-- Left: Profile -->
+    <div class="champion-profile">
+      <div class="champion-img-container">
+
+        <!-- Crown -->
+        <div class="champion-crown">👑</div>
+
+        <!-- Star bursts -->
+        <div class="star-burst"></div>
+
+        <!-- Sparkle particles -->
+        <div class="sparkle-container">
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+        </div>
+
+        <!-- Image -->
+        <div class="champion-img-wrap">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiWSE8mzrqnArVecceXUvHHbZ7_b9DFOMQg&s" alt="Hamza - Champion">
+        </div>
+
+      </div>
+      <div class="champion-profile-name">Hamza</div>
+    </div>
+
+    <!-- Right: Story -->
+    <div class="champion-info">
+      <p>He joined <strong>Mentorship By Dilawar</strong> 2 months ago and made <strong>PKR 130,000</strong> by launching 3 business websites, and he is consistently growing.</p>
+    </div>
+
+  </div>
+
+  <!-- CTA Button -->
+  <div class="champion-cta-wrapper mx-auto mb-4">
+    <a href="#" class="champion-cta-btn">
+      🚀 Be the Next Champion & Get Featured Here
+      <span class="cta-arrow">→</span>
+    </a>
+  </div>
+</div>
+
             <!-- <div class="text-center mt-3">
           <a href="#" id="checklistLink" class="btn btn-sm btn-success">Get a free marketing & web dev starter checklist</a>
         </div> -->
@@ -3888,7 +3872,7 @@
 
   // ===================== SESSION MANAGEMENT =====================
   const SESSION_START_KEY = 'mbd_session_start';
-  const MIN_TIME_BEFORE_EXIT = 3000; // 3 seconds minimum before showing exit modal
+  const MIN_TIME_BEFORE_EXIT = 3000;
 
   function startSession() {
     if (!sessionStorage.getItem(SESSION_START_KEY)) {
@@ -3923,46 +3907,32 @@
     exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
     if (!exitIntentModal) return;
     if (exitModalCurrentlyOpen) return;
-
-    // Don't show on page refresh or if user just arrived
     if (isPageRefresh() && getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
     if (getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
 
     exitIntentModal.style.display = 'block';
     exitModalCurrentlyOpen = true;
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
   }
 
   function closeExitModal() {
     if (exitIntentModal) {
       exitIntentModal.style.display = 'none';
       exitModalCurrentlyOpen = false;
-      document.body.style.overflow = ''; // Restore scroll
+      // Reset all exit triggers so they can fire again
+      userLeftPage = false;
+      userLeftTimestamp = 0;
     }
   }
 
-  // ---- EXIT INTENT TRIGGER #1: Mouse leaves viewport (Desktop) ----
-  document.addEventListener('mouseleave', function (e) {
-    // Mouse left the document area (top, sides, etc.)
-    showExitModal();
-  });
-
-  // ---- EXIT INTENT TRIGGER #2: Mouse moves to top of page (Desktop fallback) ----
-  document.addEventListener('mousemove', function (e) {
-    if (e.clientY <= 5) {
-      showExitModal();
-    }
-  });
-
-  // ---- EXIT INTENT TRIGGER #3: Back button trap (Mobile + Desktop) ----
+  // ---- TRIGGER #1: Back button trap (Mobile + Desktop) ----
   history.pushState(null, null, location.href);
   window.addEventListener('popstate', function () {
     showExitModal();
     history.pushState(null, null, location.href);
   });
 
-  // ---- EXIT INTENT TRIGGER #4: Tab switch / App switch (Mobile + Desktop) ----
-  // Show modal when user RETURNS after switching away
+  // ---- TRIGGER #2: Tab switch / App switch ----
+  // Show modal when user RETURNS after being away
   let userLeftPage = false;
   let userLeftTimestamp = 0;
 
@@ -3971,61 +3941,33 @@
       userLeftPage = true;
       userLeftTimestamp = Date.now();
     } else if (document.visibilityState === 'visible' && userLeftPage) {
-      // User came back — show modal if they were gone for at least 2 seconds
       const goneFor = Date.now() - userLeftTimestamp;
-      if (goneFor >= 2000) {
+      if (goneFor >= 1500) {
         showExitModal();
       }
       userLeftPage = false;
+      userLeftTimestamp = 0;
     }
   });
 
-  // ---- EXIT INTENT TRIGGER #5: Window blur (clicking outside browser) ----
-  let blurTimer = null;
+  // ---- TRIGGER #3: Window blur/focus (clicking outside browser) ----
+  let blurTimestamp = 0;
+
   window.addEventListener('blur', function () {
-    blurTimer = setTimeout(function () {
-      // Only trigger if they've been away for 3+ seconds (checked when they return)
-    }, 100);
+    blurTimestamp = Date.now();
   });
 
   window.addEventListener('focus', function () {
-    if (blurTimer) {
-      clearTimeout(blurTimer);
-      blurTimer = null;
-    }
-    // If exit modal isn't open yet and user had left, show it
-    if (userLeftPage && getSessionDuration() > MIN_TIME_BEFORE_EXIT) {
-      showExitModal();
-      userLeftPage = false;
+    if (blurTimestamp > 0) {
+      const awayFor = Date.now() - blurTimestamp;
+      if (awayFor >= 1500 && getSessionDuration() > MIN_TIME_BEFORE_EXIT) {
+        showExitModal();
+      }
+      blurTimestamp = 0;
     }
   });
 
-  // ---- EXIT INTENT TRIGGER #6: Rapid scroll to top (Mobile) ----
-  let lastScrollY = window.scrollY;
-  let rapidScrollCount = 0;
-
-  window.addEventListener('scroll', function () {
-    const currentY = window.scrollY;
-    const scrollDiff = lastScrollY - currentY;
-
-    // User scrolled up fast and is near the top
-    if (scrollDiff > 80 && currentY <= 30) {
-      rapidScrollCount++;
-      if (rapidScrollCount >= 2) {
-        showExitModal();
-        rapidScrollCount = 0;
-      }
-    }
-
-    // Reset counter if scrolling down
-    if (currentY > lastScrollY) {
-      rapidScrollCount = 0;
-    }
-
-    lastScrollY = currentY;
-  }, { passive: true });
-
-  // ---- EXIT INTENT TRIGGER #7: Idle detection (60 seconds) ----
+  // ---- TRIGGER #4: Idle detection (60 seconds) ----
   let idleTimer = null;
   const IDLE_TIMEOUT = 60000;
 
@@ -4036,32 +3978,10 @@
     }, IDLE_TIMEOUT);
   }
 
-  ['touchstart', 'touchmove', 'scroll', 'keydown', 'click', 'mousemove'].forEach(function (evt) {
+  ['touchstart', 'touchmove', 'scroll', 'keydown', 'click'].forEach(function (evt) {
     document.addEventListener(evt, resetIdleTimer, { passive: true });
   });
   resetIdleTimer();
-
-  // ---- EXIT INTENT TRIGGER #8: Link click detection ----
-  // Show exit modal when user clicks external links
-  document.addEventListener('click', function (e) {
-    const link = e.target.closest('a');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    // Check if it's an external link or navigation away
-    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
-    const isDownload = link.hasAttribute('download');
-
-    if (isExternal && !isDownload && !href.includes('wa.me')) {
-      e.preventDefault();
-      showExitModal();
-
-      // Store the URL so we can redirect after modal interaction
-      exitIntentModal.dataset.pendingUrl = href;
-    }
-  });
 
   // ===================== DISCOUNT MODAL + CONFETTI =====================
   const DISCOUNT_KEY = 'discountClaimed';
@@ -4080,7 +4000,6 @@
     modal.show();
   }
 
-  // Show discount modal + confetti on page load
   window.addEventListener("load", function () {
     setTimeout(function () {
       if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
@@ -4090,15 +4009,11 @@
     }, 800);
   });
 
-  // Confetti function
   function fireConfetti() {
     if (typeof confetti === 'undefined') return;
 
     const count = 200;
-    const defaults = {
-      origin: { y: 0.7 },
-      zIndex: 99999,
-    };
+    const defaults = { origin: { y: 0.7 }, zIndex: 99999 };
 
     function fire(particleRatio, opts) {
       confetti(Object.assign({}, defaults, opts, {
@@ -4112,18 +4027,15 @@
     fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
     fire(0.1, { spread: 120, startVelocity: 45 });
 
-    // Second wave from sides
     setTimeout(function () {
       fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
       fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
     }, 1500);
   }
 
-  // When discount modal is closed
   const discountModalEl = document.getElementById('discountModal');
   if (discountModalEl) {
     discountModalEl.addEventListener('hidden.bs.modal', function () {
-      // If form was NOT submitted, don't mark as claimed (allow next visit)
       if (!localStorage.getItem('discountFormSubmitted')) {
         sessionStorage.setItem('discountShownThisSession', 'true');
       }
@@ -4293,8 +4205,7 @@
 
     startUrgency();
   }
-</script>
-        <script>
+</script>        <script>
             let deferredPrompt;
             // Listen for the `beforeinstallprompt` event
             window.addEventListener('beforeinstallprompt', (e) => {
