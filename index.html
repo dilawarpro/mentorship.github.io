@@ -3845,7 +3845,7 @@
               });
             }); // Added SA
         </script>
- <script>
+<script>
   // ===================== SERVICE MODALS =====================
   const onPageModal = document.getElementById('onPageModal');
   const offPageModal = document.getElementById('offPageModal');
@@ -3886,37 +3886,31 @@
     }
   }
 
-  // ===================== NAVIGATION TYPE DETECTION =====================
-  // Distinguish refresh from actual exit/leave
-  function isPageRefresh() {
-    if (performance && performance.getEntriesByType) {
-      const navEntries = performance.getEntriesByType('navigation');
-      if (navEntries.length > 0) {
-        return navEntries[0].type === 'reload';
-      }
-    }
-    // Fallback for older browsers
-    if (performance && performance.navigation) {
-      return performance.navigation.type === 1;
-    }
-    return false;
-  }
-
   // ===================== SESSION MANAGEMENT =====================
-  // Track if user is actively on the page (not just refreshing)
-  const SESSION_KEY = 'mbd_active_session';
-  const EXIT_MODAL_COOLDOWN_KEY = 'mbd_exit_cooldown';
+  const SESSION_START_KEY = 'mbd_session_start';
+  const MIN_TIME_BEFORE_EXIT = 3000; // 3 seconds minimum before showing exit modal
 
-  // Mark session as active
   function startSession() {
-    sessionStorage.setItem(SESSION_KEY, Date.now().toString());
+    if (!sessionStorage.getItem(SESSION_START_KEY)) {
+      sessionStorage.setItem(SESSION_START_KEY, Date.now().toString());
+    }
   }
 
-  // Check how long user has been on the page
   function getSessionDuration() {
-    const start = sessionStorage.getItem(SESSION_KEY);
+    const start = sessionStorage.getItem(SESSION_START_KEY);
     if (!start) return 0;
     return Date.now() - parseInt(start);
+  }
+
+  function isPageRefresh() {
+    try {
+      const navEntries = performance.getEntriesByType('navigation');
+      if (navEntries.length > 0) return navEntries[0].type === 'reload';
+    } catch (e) {}
+    try {
+      if (performance.navigation) return performance.navigation.type === 1;
+    } catch (e) {}
+    return false;
   }
 
   startSession();
@@ -3928,125 +3922,166 @@
   function showExitModal() {
     exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
     if (!exitIntentModal) return;
-
-    // Don't show if already open
     if (exitModalCurrentlyOpen) return;
 
-    // Don't show if user has been on page less than 5 seconds (likely a refresh)
-    if (getSessionDuration() < 5000) return;
-
-    // Don't show during page refresh
-    if (isPageRefresh()) return;
+    // Don't show on page refresh or if user just arrived
+    if (isPageRefresh() && getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
+    if (getSessionDuration() < MIN_TIME_BEFORE_EXIT) return;
 
     exitIntentModal.style.display = 'block';
     exitModalCurrentlyOpen = true;
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
   }
 
   function closeExitModal() {
     if (exitIntentModal) {
       exitIntentModal.style.display = 'none';
       exitModalCurrentlyOpen = false;
+      document.body.style.overflow = ''; // Restore scroll
     }
   }
 
-  // --- Exit Intent Triggers (NO mouse events) ---
+  // ---- EXIT INTENT TRIGGER #1: Mouse leaves viewport (Desktop) ----
+  document.addEventListener('mouseleave', function (e) {
+    // Mouse left the document area (top, sides, etc.)
+    showExitModal();
+  });
 
-  // 1. Visibility change: user switches tab, minimizes, or switches app
-  //    We add a delay to avoid false positives from quick alt-tabs
-  let visibilityTimer = null;
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden') {
-      // Wait 300ms to confirm it's not a quick switch
-      visibilityTimer = setTimeout(function () {
-        showExitModal();
-      }, 300);
-    } else {
-      // User came back quickly, cancel the trigger
-      if (visibilityTimer) {
-        clearTimeout(visibilityTimer);
-        visibilityTimer = null;
-      }
+  // ---- EXIT INTENT TRIGGER #2: Mouse moves to top of page (Desktop fallback) ----
+  document.addEventListener('mousemove', function (e) {
+    if (e.clientY <= 5) {
+      showExitModal();
     }
   });
 
-  // 2. Back button trap (mobile)
+  // ---- EXIT INTENT TRIGGER #3: Back button trap (Mobile + Desktop) ----
   history.pushState(null, null, location.href);
   window.addEventListener('popstate', function () {
     showExitModal();
     history.pushState(null, null, location.href);
   });
 
-  // 3. Mobile: detect scroll up rapidly to address bar (intent to leave)
+  // ---- EXIT INTENT TRIGGER #4: Tab switch / App switch (Mobile + Desktop) ----
+  // Show modal when user RETURNS after switching away
+  let userLeftPage = false;
+  let userLeftTimestamp = 0;
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      userLeftPage = true;
+      userLeftTimestamp = Date.now();
+    } else if (document.visibilityState === 'visible' && userLeftPage) {
+      // User came back — show modal if they were gone for at least 2 seconds
+      const goneFor = Date.now() - userLeftTimestamp;
+      if (goneFor >= 2000) {
+        showExitModal();
+      }
+      userLeftPage = false;
+    }
+  });
+
+  // ---- EXIT INTENT TRIGGER #5: Window blur (clicking outside browser) ----
+  let blurTimer = null;
+  window.addEventListener('blur', function () {
+    blurTimer = setTimeout(function () {
+      // Only trigger if they've been away for 3+ seconds (checked when they return)
+    }, 100);
+  });
+
+  window.addEventListener('focus', function () {
+    if (blurTimer) {
+      clearTimeout(blurTimer);
+      blurTimer = null;
+    }
+    // If exit modal isn't open yet and user had left, show it
+    if (userLeftPage && getSessionDuration() > MIN_TIME_BEFORE_EXIT) {
+      showExitModal();
+      userLeftPage = false;
+    }
+  });
+
+  // ---- EXIT INTENT TRIGGER #6: Rapid scroll to top (Mobile) ----
   let lastScrollY = window.scrollY;
-  let rapidScrollUpCount = 0;
-  let scrollCheckTimer = null;
+  let rapidScrollCount = 0;
 
   window.addEventListener('scroll', function () {
     const currentY = window.scrollY;
-    const diff = lastScrollY - currentY;
+    const scrollDiff = lastScrollY - currentY;
 
-    // User scrolled up rapidly more than 100px
-    if (diff > 100 && currentY < 50) {
-      rapidScrollUpCount++;
-      if (rapidScrollUpCount >= 2) {
+    // User scrolled up fast and is near the top
+    if (scrollDiff > 80 && currentY <= 30) {
+      rapidScrollCount++;
+      if (rapidScrollCount >= 2) {
         showExitModal();
-        rapidScrollUpCount = 0;
+        rapidScrollCount = 0;
       }
     }
 
+    // Reset counter if scrolling down
     if (currentY > lastScrollY) {
-      rapidScrollUpCount = 0; // reset if scrolling down
+      rapidScrollCount = 0;
     }
 
     lastScrollY = currentY;
   }, { passive: true });
 
-  // 4. Idle detection: if user is idle for 60 seconds, they might be leaving
+  // ---- EXIT INTENT TRIGGER #7: Idle detection (60 seconds) ----
   let idleTimer = null;
-  let idleTriggered = false;
-  const IDLE_TIMEOUT = 60000; // 60 seconds
+  const IDLE_TIMEOUT = 60000;
 
   function resetIdleTimer() {
-    if (idleTriggered) return;
     clearTimeout(idleTimer);
     idleTimer = setTimeout(function () {
-      idleTriggered = true;
       showExitModal();
     }, IDLE_TIMEOUT);
   }
 
-  ['touchstart', 'touchmove', 'scroll', 'keydown', 'click'].forEach(function (evt) {
+  ['touchstart', 'touchmove', 'scroll', 'keydown', 'click', 'mousemove'].forEach(function (evt) {
     document.addEventListener(evt, resetIdleTimer, { passive: true });
   });
   resetIdleTimer();
 
+  // ---- EXIT INTENT TRIGGER #8: Link click detection ----
+  // Show exit modal when user clicks external links
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // Check if it's an external link or navigation away
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    const isDownload = link.hasAttribute('download');
+
+    if (isExternal && !isDownload && !href.includes('wa.me')) {
+      e.preventDefault();
+      showExitModal();
+
+      // Store the URL so we can redirect after modal interaction
+      exitIntentModal.dataset.pendingUrl = href;
+    }
+  });
+
   // ===================== DISCOUNT MODAL + CONFETTI =====================
   const DISCOUNT_KEY = 'discountClaimed';
-  const DISCOUNT_SHOWN_THIS_SESSION = 'discountShownSession';
 
   function showDiscountModal() {
-    // Don't show if already claimed
     if (localStorage.getItem(DISCOUNT_KEY) === 'true') return;
 
     const modalEl = document.getElementById('discountModal');
     if (!modalEl) return;
-
-    // Don't show if already visible
     if (modalEl.classList.contains('show')) return;
 
-    // Mark as shown this session (but NOT claimed yet)
-    sessionStorage.setItem(DISCOUNT_SHOWN_THIS_SESSION, 'true');
-
     const modal = new bootstrap.Modal(modalEl, {
-      backdrop: 'static',  // Prevent closing by clicking outside
-      keyboard: false       // Prevent closing with Escape key
+      backdrop: 'static',
+      keyboard: false
     });
     modal.show();
   }
 
   // Show discount modal + confetti on page load
   window.addEventListener("load", function () {
-    // Small delay to ensure DOM is fully ready
     setTimeout(function () {
       if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
         showDiscountModal();
@@ -4077,23 +4112,20 @@
     fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
     fire(0.1, { spread: 120, startVelocity: 45 });
 
-    // Second wave after 1.5s for more impact
+    // Second wave from sides
     setTimeout(function () {
       fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
       fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
     }, 1500);
   }
 
-  // When discount modal is hidden (closed via X button or programmatically)
+  // When discount modal is closed
   const discountModalEl = document.getElementById('discountModal');
   if (discountModalEl) {
     discountModalEl.addEventListener('hidden.bs.modal', function () {
-      // Only mark as claimed if user has actually submitted the form
-      // This allows the modal to reappear if they close without submitting
+      // If form was NOT submitted, don't mark as claimed (allow next visit)
       if (!localStorage.getItem('discountFormSubmitted')) {
-        // User closed without submitting — allow it to show again next visit
-        // but not in this same session
-        sessionStorage.setItem(DISCOUNT_SHOWN_THIS_SESSION, 'true');
+        sessionStorage.setItem('discountShownThisSession', 'true');
       }
     });
   }
@@ -4108,7 +4140,6 @@
     const urgencyEl = document.getElementById("urgency");
     if (urgencyEl) urgencyEl.style.display = "block";
 
-    // Countdown timer
     let time = 480;
     const el = document.getElementById("countdown");
     if (el) {
@@ -4125,7 +4156,6 @@
       }, 1000);
     }
 
-    // Spots counter
     let spots = Math.floor(Math.random() * 4) + 4;
     const spotsEl = document.getElementById("spots");
     if (spotsEl) {
@@ -4141,20 +4171,17 @@
 
   // ===================== DISCOUNT GENERATOR =====================
   function generateDiscount() {
-    const discounts = [5000];
-    return discounts[Math.floor(Math.random() * discounts.length)];
+    return 5000;
   }
 
   // ===================== FORM SUBMIT =====================
-  let detectedArea = null; // Store detected area globally
+  let detectedArea = null;
 
   function unlockOffer() {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const userStatus = document.getElementById("userStatus").value;
     const timeline = document.getElementById("timeline").value;
-
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!name || !email || !userStatus || !timeline) {
@@ -4172,31 +4199,21 @@
     document.getElementById("formStatus").innerText = "⏳ Checking eligibility...";
     document.getElementById("formStatus").style.color = "#ffc107";
 
-    // Try to detect location
     if (location.protocol === "https:" && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         successGPS,
-        function () {
-          // GPS failed, try IP
-          detectViaIP();
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 10000
-        }
+        function () { detectViaIP(); },
+        { enableHighAccuracy: true, timeout: 10000 }
       );
     } else {
       detectViaIP();
     }
   }
 
-  // GPS SUCCESS
   async function successGPS(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
     try {
       const res = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,
+        `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`,
         { signal: AbortSignal.timeout(8000) }
       );
       const data = await res.json();
@@ -4208,18 +4225,11 @@
     }
   }
 
-  // IP FALLBACK
   async function detectViaIP() {
     try {
-      const res = await fetch("https://ipwho.is/", {
-        signal: AbortSignal.timeout(6000)
-      });
+      const res = await fetch("https://ipwho.is/", { signal: AbortSignal.timeout(6000) });
       const data = await res.json();
-      if (data.success !== false) {
-        detectedArea = data.city || data.region || null;
-      } else {
-        detectedArea = null;
-      }
+      detectedArea = (data.success !== false) ? (data.city || data.region || null) : null;
       revealOffer();
     } catch {
       detectedArea = null;
@@ -4235,9 +4245,8 @@
     const userStatus = document.getElementById("userStatus").value;
     const timeline = document.getElementById("timeline").value;
 
-    // Build modal message — only include area if detected
     let modalHTML = '';
-    if (detectedArea && detectedArea.length > 0) {
+    if (detectedArea) {
       modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
         <b>${discount.toLocaleString()}</b> scholarship for <b>${detectedArea.toUpperCase()}</b> students.`;
     } else {
@@ -4249,13 +4258,9 @@
     document.getElementById("formStatus").innerText = "✅ Eligibility confirmed!";
     document.getElementById("formStatus").style.color = "#00e676";
 
-    // Fire confetti again on successful submission
     fireConfetti();
-
-    // Mark form as submitted
     localStorage.setItem('discountFormSubmitted', 'true');
 
-    // Build WhatsApp message — only include area if detected
     const whatsappNumber = "923314041010";
     let msgParts = [
       `Hi! My name is ${name}.`,
@@ -4264,7 +4269,7 @@
       `Joining Timeline: ${timeline}`
     ];
 
-    if (detectedArea && detectedArea.length > 0) {
+    if (detectedArea) {
       msgParts.push(`Area: ${detectedArea}`);
     }
 
@@ -4273,19 +4278,14 @@
       `I want to claim it.`
     );
 
-    const msg = msgParts.join('\n');
-    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msgParts.join('\n'))}`;
     const btn = document.getElementById("whatsappBtn");
+
     if (btn) {
       btn.href = waLink;
       btn.style.display = "block";
-
       btn.onclick = function () {
-        // Mark discount as fully claimed
         localStorage.setItem(DISCOUNT_KEY, 'true');
-        localStorage.setItem('discountFormSubmitted', 'true');
-
         const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
         if (modal) modal.hide();
       };
