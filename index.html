@@ -716,6 +716,7 @@
         overflow: hidden;
       }
 
+      /* gradient overlay layer */
       .champion-card::before {
         content: '';
         position: absolute;
@@ -726,6 +727,21 @@
         background: linear-gradient(135deg, #0d6efd, #00d2ff);
         opacity: 0.1;
         z-index: 1;
+      }
+
+      /* parallax background image */
+      .champion-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('icons/mentor-projects.webp') center/cover no-repeat;
+        transform: translateY(var(--parallax,0));
+        transition: transform 0.1s linear;
+        z-index: 0;
+        opacity: 0.15;
       }
 
       .champion-card img {
@@ -751,6 +767,11 @@
       .champion-card .champion-info p {
         font-size: 1rem;
         margin: 5px 0 0;
+      }
+
+      .champion-card .champion-stats p {
+        margin: 3px 0;
+        font-size: 0.9rem;
       }
 
       .champion-card:hover {
@@ -1445,6 +1466,16 @@
         };
         startUrgency();
       }
+
+      // parallax scroll effect for the champion card background
+      window.addEventListener('scroll', function() {
+        const card = document.querySelector('.champion-card');
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          const offset = rect.top * 0.2; // slower movement
+          card.style.setProperty('--parallax', offset + 'px');
+        }
+      });
     </script>
     <!-- Discounted Eneded -->
     <nav class="navbar navbar-expand-lg navbar-light" style="border: 2px solid white;
@@ -2155,10 +2186,17 @@
             <div class="champion-info">
               <h3>Meet Hamza</h3>
               <p>He joined Mentorship By Dilawar 2 months ago and made <strong>PKR 130,000</strong> by launching 3 business websites, and he is consistently growing.</p>
+              <div class="champion-stats mt-2">
+                <p>📅 Joined: <strong>2 months ago</strong></p>
+                <p>🛠️ Launched: <strong>3 business websites</strong></p>
+                <p>💸 Revenue: <strong>PKR 130,000</strong></p>
+                <p>📈 Growth: <em>Consistently increasing</em></p>
+              </div>
+              <a href="#" class="btn btn-primary btn-sm mt-3">See His Full Story</a>
             </div>
           </div>
         </div>
-        <div class="text-center">
+        <div class="text-center mt-2">
           <p class="marquee-label">Student success stories</p>
         </div>
         <!-- Row 1 - Scroll Left -->
