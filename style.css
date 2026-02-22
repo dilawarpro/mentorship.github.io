@@ -1548,7 +1548,7 @@ audio{
   .champion-cta-sub .pulse-dot {
     width: 7px;
     height: 7px;
-    background: #00ddff;
+    background: #ff0000;
     border-radius: 50%;
     display: inline-block;
     animation: dotPulse 1.5s ease-in-out infinite;
