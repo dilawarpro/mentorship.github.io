@@ -1179,12 +1179,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Discount started -->
     <!-- MODAL HTML -->
-    <div class="modal fade" id="discountModal" tabindex="-1">
+    <!-- <div class="modal fade" id="discountModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg">
-                <!-- Header with Cancel (X) -->
+           
                 <div class="modal-header border-0">
-                    <!-- <h5 class="modal-title fw-bold">Special Offer</h5> -->
+                   
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center p-4 pt-0">
@@ -1212,7 +1212,6 @@
                         <option>Just Exploring</option>
                     </select>
                     <button onclick="unlockOffer()" class="btn btn-success w-100 mb-2"> Reveal My Discount 🎉 </button>
-                    <!-- NEW: I don't want discount button -->
                     <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal"> I Don’t Want Discount </button>
                     <div id="urgency" class="mt-3" style="display:none;">
                         <div class="countdown" id="countdown"></div>
@@ -1224,7 +1223,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- BOOTSTRAP JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
     <!-- Discounted Eneded -->
@@ -3983,7 +3982,7 @@
         </script>
         <script src="script.js"></script>
         <!-- Location permission -->
-        <script>
+        <!-- <script>
             window.onload = function() {
               navigator.geolocation.getCurrentPosition(function(position) {
                 console.log("Permission granted");
@@ -3993,7 +3992,7 @@
                 console.log("Permission denied or error");
               });
             };
-        </script>
+        </script> -->
         <!-- Location permission -->
         <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
@@ -4085,63 +4084,63 @@
   });
 
   // ===================== DISCOUNT MODAL + CONFETTI =====================
-  const DISCOUNT_KEY = 'discountClaimed';
+  // const DISCOUNT_KEY = 'discountClaimed';
 
-  function showDiscountModal() {
-    if (localStorage.getItem(DISCOUNT_KEY) === 'true') return;
+  // function showDiscountModal() {
+  //   if (localStorage.getItem(DISCOUNT_KEY) === 'true') return;
 
-    const modalEl = document.getElementById('discountModal');
-    if (!modalEl) return;
-    if (modalEl.classList.contains('show')) return;
+  //   const modalEl = document.getElementById('discountModal');
+  //   if (!modalEl) return;
+  //   if (modalEl.classList.contains('show')) return;
 
-    const modal = new bootstrap.Modal(modalEl, {
-      backdrop: 'static',
-      keyboard: false
-    });
-    modal.show();
-  }
+  //   const modal = new bootstrap.Modal(modalEl, {
+  //     backdrop: 'static',
+  //     keyboard: false
+  //   });
+  //   modal.show();
+  // }
 
-  window.addEventListener("load", function () {
-    setTimeout(function () {
-      if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
-        showDiscountModal();
-        fireConfetti();
-      }
-    }, 800);
-  });
+  // window.addEventListener("load", function () {
+  //   setTimeout(function () {
+  //     if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
+  //       showDiscountModal();
+  //       fireConfetti();
+  //     }
+  //   }, 800);
+  // });
 
-  function fireConfetti() {
-    if (typeof confetti === 'undefined') return;
+  // function fireConfetti() {
+  //   if (typeof confetti === 'undefined') return;
 
-    const count = 200;
-    const defaults = { origin: { y: 0.7 }, zIndex: 99999 };
+  //   const count = 200;
+  //   const defaults = { origin: { y: 0.7 }, zIndex: 99999 };
 
-    function fire(particleRatio, opts) {
-      confetti(Object.assign({}, defaults, opts, {
-        particleCount: Math.floor(count * particleRatio),
-      }));
-    }
+  //   function fire(particleRatio, opts) {
+  //     confetti(Object.assign({}, defaults, opts, {
+  //       particleCount: Math.floor(count * particleRatio),
+  //     }));
+  //   }
 
-    fire(0.25, { spread: 26, startVelocity: 55 });
-    fire(0.2, { spread: 60 });
-    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-    fire(0.1, { spread: 120, startVelocity: 45 });
+  //   fire(0.25, { spread: 26, startVelocity: 55 });
+  //   fire(0.2, { spread: 60 });
+  //   fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+  //   fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+  //   fire(0.1, { spread: 120, startVelocity: 45 });
 
-    setTimeout(function () {
-      fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
-      fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
-    }, 1500);
-  }
+  //   setTimeout(function () {
+  //     fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
+  //     fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
+  //   }, 1500);
+  // }
 
-  const discountModalEl = document.getElementById('discountModal');
-  if (discountModalEl) {
-    discountModalEl.addEventListener('hidden.bs.modal', function () {
-      if (!localStorage.getItem('discountFormSubmitted')) {
-        sessionStorage.setItem('discountShownThisSession', 'true');
-      }
-    });
-  }
+  // const discountModalEl = document.getElementById('discountModal');
+  // if (discountModalEl) {
+  //   discountModalEl.addEventListener('hidden.bs.modal', function () {
+  //     if (!localStorage.getItem('discountFormSubmitted')) {
+  //       sessionStorage.setItem('discountShownThisSession', 'true');
+  //     }
+  //   });
+  // }
 
   // ===================== URGENCY ENGINE =====================
   let urgencyStarted = false;
@@ -4251,61 +4250,61 @@
   }
 
   // ===================== FINAL OFFER =====================
-  function revealOffer() {
-    const discount = generateDiscount();
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const userStatus = document.getElementById("userStatus").value;
-    const timeline = document.getElementById("timeline").value;
+  // function revealOffer() {
+  //   const discount = generateDiscount();
+  //   const name = document.getElementById("name").value.trim();
+  //   const email = document.getElementById("email").value.trim();
+  //   const userStatus = document.getElementById("userStatus").value;
+  //   const timeline = document.getElementById("timeline").value;
 
-    let modalHTML = '';
-    if (detectedArea) {
-      modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-        <b>${discount.toLocaleString()}</b> scholarship for <b>${detectedArea.toUpperCase()}</b> students.`;
-    } else {
-      modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
-        <b>${discount.toLocaleString()}</b> scholarship for you.`;
-    }
+  //   let modalHTML = '';
+  //   if (detectedArea) {
+  //     modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
+  //       <b>${discount.toLocaleString()}</b> scholarship for <b>${detectedArea.toUpperCase()}</b> students.`;
+  //   } else {
+  //     modalHTML = `Congratulations! 🎉 Mentorship By Dilawar is offering Rs. 
+  //       <b>${discount.toLocaleString()}</b> scholarship for you.`;
+  //   }
 
-    document.getElementById("modalMessage").innerHTML = modalHTML;
-    document.getElementById("formStatus").innerText = "✅ Eligibility confirmed!";
-    document.getElementById("formStatus").style.color = "#00e676";
+  //   document.getElementById("modalMessage").innerHTML = modalHTML;
+  //   document.getElementById("formStatus").innerText = "✅ Eligibility confirmed!";
+  //   document.getElementById("formStatus").style.color = "#00e676";
 
-    fireConfetti();
-    localStorage.setItem('discountFormSubmitted', 'true');
+  //   fireConfetti();
+  //   localStorage.setItem('discountFormSubmitted', 'true');
 
-    const whatsappNumber = "923314041010";
-    let msgParts = [
-      `Hi! My name is ${name}.`,
-      `Email: ${email}`,
-      `Current Status: ${userStatus}`,
-      `Joining Timeline: ${timeline}`
-    ];
+  //   const whatsappNumber = "923314041010";
+  //   let msgParts = [
+  //     `Hi! My name is ${name}.`,
+  //     `Email: ${email}`,
+  //     `Current Status: ${userStatus}`,
+  //     `Joining Timeline: ${timeline}`
+  //   ];
 
-    if (detectedArea) {
-      msgParts.push(`Area: ${detectedArea}`);
-    }
+  //   if (detectedArea) {
+  //     msgParts.push(`Area: ${detectedArea}`);
+  //   }
 
-    msgParts.push(
-      `I claimed a Rs ${discount.toLocaleString()} scholarship for Mentorship By Dilawar.`,
-      `I want to claim it.`
-    );
+  //   msgParts.push(
+  //     `I claimed a Rs ${discount.toLocaleString()} scholarship for Mentorship By Dilawar.`,
+  //     `I want to claim it.`
+  //   );
 
-    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msgParts.join('\n'))}`;
-    const btn = document.getElementById("whatsappBtn");
+  //   const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msgParts.join('\n'))}`;
+  //   const btn = document.getElementById("whatsappBtn");
 
-    if (btn) {
-      btn.href = waLink;
-      btn.style.display = "block";
-      btn.onclick = function () {
-        localStorage.setItem(DISCOUNT_KEY, 'true');
-        const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
-        if (modal) modal.hide();
-      };
-    }
+  //   if (btn) {
+  //     btn.href = waLink;
+  //     btn.style.display = "block";
+  //     btn.onclick = function () {
+  //       localStorage.setItem(DISCOUNT_KEY, 'true');
+  //       const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
+  //       if (modal) modal.hide();
+  //     };
+  //   }
 
-    startUrgency();
-  }
+  //   startUrgency();
+  // }
 </script>
 
 <script>
