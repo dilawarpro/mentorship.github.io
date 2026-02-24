@@ -1735,9 +1735,151 @@
                 <div class="mentor-badge">
                   <i class="bi bi-patch-check-fill"></i> Trusted Full-stack AI Digital Marketing, Prompt Engineering and Web Development Training
                 </div>
-                <h1 class="champion-section-title">
-             Make Extra Income Through <span class="grad-text">Full-stack AI Digital Marketing, Prompt Engineering & Web Development.</span>
-          </h1>
+             <h1 class="champion-section-title">
+    Make Extra Income Through
+    <span class="typing-wrapper">
+      <span class="grad-text" id="typing-text"></span><span class="cursor" id="cursor"></span>
+    </span>
+  </h1>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    .champion-section-title {
+      font-size: 2.8rem;
+      color: #ffffff;
+      text-align: center;
+      max-width: 800px;
+      line-height: 1.3;
+      padding: 20px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .grad-text {
+      background: linear-gradient(135deg, #6a11cb, #2575fc, #00d4ff, #7c3aed);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 4s ease infinite;
+    }
+
+    .typing-wrapper {
+      display: inline;
+      position: relative;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 0.7s ease-in-out infinite;
+      border-radius: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Smooth fade transition for text changes */
+    .grad-text {
+      transition: opacity 0.3s ease;
+    }
+
+    .grad-text.fade-out {
+      opacity: 0.3;
+    }
+
+    .grad-text.fade-in {
+      opacity: 1;
+    }
+
+    /* Subtle glow effect */
+    .champion-section-title:hover .grad-text {
+      filter: drop-shadow(0 0 20px rgba(37, 117, 252, 0.3));
+    }
+  </style>
+<script>
+    const phrases = [
+      "Full-stack AI Digital Marketing.",
+      "Prompt Engineering.",
+      "Web Development.",
+      "AI Automation.",
+      "Content Creation."
+    ];
+
+    const typingText = document.getElementById('typing-text');
+    const cursor = document.getElementById('cursor');
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    // Typing speeds
+    const TYPING_SPEED = 80;
+    const DELETING_SPEED = 40;
+    const PAUSE_BEFORE_DELETE = 2000;
+    const PAUSE_BEFORE_TYPE = 500;
+
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+
+      if (!isDeleting) {
+        // Typing
+        typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentPhrase.length) {
+          // Finished typing, pause then start deleting
+          isDeleting = true;
+          setTimeout(type, PAUSE_BEFORE_DELETE);
+          return;
+        }
+
+        // Random slight variation in typing speed for realism
+        const variation = Math.random() * 60 - 30;
+        setTimeout(type, TYPING_SPEED + variation);
+
+      } else {
+        // Deleting
+        typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          // Finished deleting, move to next phrase
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, PAUSE_BEFORE_TYPE);
+          return;
+        }
+
+        setTimeout(type, DELETING_SPEED);
+      }
+    }
+
+    // Start the animation after a brief delay
+    setTimeout(type, 1000);
+  </script>
                 <p class="mentor-sub">Join a friendly community and learn practical, project-based strategies that turn your laptop into money making machine and own online business. Whether you are a student, job holder, freelancer, or aspiring entrepreneur, <strong>Mentorship By Dilawar</strong> gives you
                     a clear path to earning with AI digital marketing, prompt engineering and web development. <i class="bi bi-fire"></i> 5,000+ people already joined.
                     
