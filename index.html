@@ -3853,7 +3853,7 @@
             </ul>
         </footer>
         <!-- Translation Started -->
-        <style>
+        <!-- <style>
             .translate-btn {
               position: fixed;
               bottom: 18%;
@@ -3877,7 +3877,7 @@
               background: #0056b3;
             }
     
-            /* Hide default Google branding bar */
+
             .goog-te-banner-frame.skiptranslate {
               display: none !important;
             }
@@ -3886,7 +3886,6 @@
               top: 0px !important;
             }
     
-            /* Translate Widget Styles */
             #google_translate_element {
               position: fixed;
               top: 53%;
@@ -3901,18 +3900,15 @@
               transform: scale(0.95);
               transition: all 0.3s ease-in-out;
               pointer-events: none;
-              /* prevent interaction when hidden */
+
             }
     
-            /* Show with smooth animation */
             #google_translate_element.show {
               opacity: 1;
               transform: scale(1);
               pointer-events: auto;
-              /* enable interaction when visible */
             }
-    
-            /* Close button inside translate window */
+
             #google_translate_element .close-btn {
               position: absolute;
               top: 0%;
@@ -3929,15 +3925,15 @@
             #google_translate_element .close-btn:hover {
               color: #0d6efd;
             }
-        </style>
-        <!-- Floating Button -->
+        </style> -->
+<!--     
         <button class="translate-btn" onclick="toggleTranslate()">
             <i class="bi bi-translate"></i> Translate </button>
-        <!-- Google Translate Dropdown -->
+
         <div id="google_translate_element">
             <button class="close-btn" onclick="closeTranslate()">×</button>
         </div>
-        <!-- Google Translate Dropdown -->
+
         <div id="google_translate_element"></div>
         <script>
             function googleTranslateElementInit() {
@@ -3954,8 +3950,7 @@
             function closeTranslate() {
               document.getElementById("google_translate_element").classList.remove('show');
             }
-        </script>
-        </script>
+        </script> -->
         <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <!-- Translation Ended -->
         <!-- Bootstrap JS and Font Awesome JS Links (for icons) -->
