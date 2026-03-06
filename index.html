@@ -1296,6 +1296,7 @@
     align-items: center;
     background: linear-gradient(90deg, #06070f 0%, #0c0f22 22%, #101428 50%, #0c0f22 78%, #06070f 100%);
     border-bottom: 1px solid rgba(200,134,42,0.2);
+    top: 10px;
   }
 
   .ann::before {
@@ -1490,6 +1491,14 @@
     flex-shrink: 0;
   }
 </style>
+
+<!-- ANNOUNCEMENT BANNER HTML -->
+<div class="ann" id="annBanner">
+  <canvas id="annCanvas"></canvas>
+  <div class="ann-fade ann-fade--l"></div>
+  <div class="ann-fade ann-fade--r"></div>
+  <div class="ann-track" id="annTrack"></div>
+</div>
 
 <script>
 (function() {
@@ -2055,13 +2064,8 @@
             document.getElementById("progress-bar").style.height = scrollProgress + "%";
           });
     </script>
-<!-- ANNOUNCEMENT BANNER HTML -->
-<div class="ann" id="annBanner">
-  <canvas id="annCanvas"></canvas>
-  <div class="ann-fade ann-fade--l"></div>
-  <div class="ann-fade ann-fade--r"></div>
-  <div class="ann-track" id="annTrack"></div>
-</div>
+    <!--   Ended Progress bar -->
+    <!-- <style></style> -->
     <section class="mentor-trust">
         <!-- Decorative Elements -->
         <div class="deco-grid"></div>
