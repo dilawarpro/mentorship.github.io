@@ -1404,7 +1404,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--ann-dark);
+    background: #ff0000;
     position: relative;
     display: inline-block;
   }
@@ -1536,20 +1536,27 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Configuration - Edit these values to customize your banner
-  const CONFIG = {
+ const CONFIG = {
     badge: 'Announcement',
-    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of real-world experience, struggles & failures before becoming a <span class="hi">successful & profitable digital marketer.</span>`,
+    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of my real-world experience, struggles, failures and learning from multiple mentors before becoming a <span class="hi">successful & profitable digital marketer and help me make money online.</span>`,
     stats: [
-      { icon: '🎯', label: '8+ Yrs Experience' },
-      { icon: '🚀', label: '5000+ Students' },
-      { icon: '💰', label: 'Proven Results' }
+      { icon: '🎯', label: 'Built with 8+ Yrs Experience' },
+      { icon: '🚀', label: '5000+ Students Globally' },
+      { icon: '💰', label: 'Proven Results' },
+      { icon: '❌', label: 'No Full Advance Payment. Pay as you go' }
     ],
+    // Primary CTA
     ctaText: 'Join Now',
     ctaLink: 'https://mentorship.dilawarpro.com/champions-mentorship',
+    // Secondary CTA
+    cta2Text: 'Visit My Agency',
+    cta2Link: 'https://brandliox.dilawarpro.com',
+    // Third CTA
+    cta3Text: 'See My Work',
+    cta3Link: 'https://dilawarpro.com',
     copies: 6,
-    scrollSpeed: 88 // pixels per second
+    scrollSpeed: 75 // slightly slower for more content
   };
-
   // Build marquee items
   const track = document.getElementById('annTrack');
   
