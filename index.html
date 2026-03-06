@@ -1476,6 +1476,44 @@
     white-space: nowrap;
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   }
+  /* Primary CTA - Gold (Join Now) */
+.ann-cta-primary {
+  background: linear-gradient(130deg, var(--ann-gold-pale) 0%, var(--ann-gold-light) 55%, var(--ann-gold) 100%);
+  color: var(--ann-dark);
+  box-shadow: 0 0 16px rgba(200,134,42,0.38), 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.38);
+}
+
+.ann-cta-primary:hover {
+  color: var(--ann-dark);
+  box-shadow: 0 0 28px rgba(200,134,42,0.55), 0 6px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.38);
+}
+
+/* Secondary CTA - White (Visit My Agency) */
+.ann-cta-secondary {
+  background: linear-gradient(130deg, #ffffff 0%, #f0f0f0 55%, #e0e0e0 100%);
+  color: var(--ann-dark);
+  box-shadow: 0 0 16px rgba(255,255,255,0.2), 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.ann-cta-secondary:hover {
+  color: var(--ann-dark);
+  background: linear-gradient(130deg, #ffffff 0%, #ffffff 55%, #f5f5f5 100%);
+  box-shadow: 0 0 28px rgba(255,255,255,0.4), 0 6px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* Tertiary CTA - Outline (See My Work) */
+.ann-cta-tertiary {
+  background: transparent;
+  color: var(--ann-gold-light);
+  border: 1.5px solid var(--ann-gold);
+  box-shadow: 0 0 12px rgba(200,134,42,0.2), 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.ann-cta-tertiary:hover {
+  color: var(--ann-dark);
+  background: linear-gradient(130deg, var(--ann-gold-pale) 0%, var(--ann-gold-light) 55%, var(--ann-gold) 100%);
+  box-shadow: 0 0 28px rgba(200,134,42,0.55), 0 6px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.38);
+}
 
   .ann-cta:hover {
     color: var(--ann-dark);
@@ -1532,18 +1570,17 @@
   <div class="ann-track" id="annTrack"></div>
 </div>
 
-<!-- ANNOUNCEMENT BANNER SCRIPT -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Configuration - Edit these values to customize your banner
- const CONFIG = {
+  const CONFIG = {
     badge: 'Announcement',
-    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of my real-world experience, struggles, failures and learning from multiple mentors before becoming a <span class="hi">successful & profitable digital marketer and help me make money online.</span>`,
+    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of my real-world experience, struggles, failures and learning from multiple mentors before becoming a <span class="hi">successful & profitable digital marketer and helped me make money online.</span>`,
     stats: [
       { icon: '🎯', label: 'Built with 8+ Yrs Experience' },
       { icon: '🚀', label: '5000+ Students Globally' },
       { icon: '💰', label: 'Proven Results' },
-      { icon: '❌', label: 'No Full Advance Payment. Pay as you go' }
+      { icon: '❌', label: 'No Full Payment Upfront — Pay As You Go' }
     ],
     // Primary CTA
     ctaText: 'Join Now',
@@ -1555,8 +1592,9 @@ document.addEventListener('DOMContentLoaded', function() {
     cta3Text: 'See My Work',
     cta3Link: 'https://dilawarpro.com',
     copies: 6,
-    scrollSpeed: 75 // slightly slower for more content
+    scrollSpeed: 75
   };
+
   // Build marquee items
   const track = document.getElementById('annTrack');
   
@@ -1575,8 +1613,22 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="ann-msg">${CONFIG.message}</span>
       <span class="ann-sep"></span>
       ${CONFIG.stats.map(s => `<span class="ann-stat">${s.icon}&nbsp;${s.label}</span><span class="ann-sep"></span>`).join('')}
-      <a class="ann-cta" href="${CONFIG.ctaLink}">
+      <a class="ann-cta ann-cta-primary" href="${CONFIG.ctaLink}">
         ${CONFIG.ctaText}
+        <svg viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="ann-sep"></span>
+      <a class="ann-cta ann-cta-secondary" href="${CONFIG.cta2Link}" target="_blank">
+        ${CONFIG.cta2Text}
+        <svg viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="ann-sep"></span>
+      <a class="ann-cta ann-cta-tertiary" href="${CONFIG.cta3Link}" target="_blank">
+        ${CONFIG.cta3Text}
         <svg viewBox="0 0 12 12" fill="none">
           <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -1599,7 +1651,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Small delay to ensure elements are rendered
   setTimeout(calibrate, 100);
   window.addEventListener('resize', calibrate);
 
@@ -1649,13 +1700,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const px = p.x * W, py = p.y * H;
 
-      // Core dot
       ctx.beginPath();
       ctx.arc(px, py, p.r, 0, Math.PI * 2);
       ctx.fillStyle = p.col + p.a + ')';
       ctx.fill();
 
-      // Soft halo
       const g = ctx.createRadialGradient(px, py, 0, px, py, p.r * 6);
       g.addColorStop(0, p.col + (p.a * 0.35) + ')');
       g.addColorStop(1, p.col + '0)');
