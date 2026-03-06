@@ -1400,39 +1400,47 @@
     box-shadow: 0 0 12px rgba(200,134,42,0.4), 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.35);
   }
 
-  .ann-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ff0000;
-    position: relative;
-    display: inline-block;
-  }
+.ann-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff0000;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+}
 
-  .ann-dot::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(8,9,26,0.4);
-    animation: ann-dot-pulse 2s ease-out infinite;
-  }
+.ann-dot::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 1.5px solid #ff0000;
+  animation: ann-dot-pulse 2s ease-out infinite;
+}
 
-  @keyframes ann-dot-pulse {
-    0% { transform: scale(0.5); opacity: 1; }
-    100% { transform: scale(2.2); opacity: 0; }
+@keyframes ann-dot-pulse {
+  0% { 
+    transform: scale(0.5); 
+    opacity: 1;
+    border-color: #ff0000;
   }
-
+  100% { 
+    transform: scale(2.2); 
+    opacity: 0;
+    border-color: #ff0000;
+  }
+}
   .ann-msg {
     font-size: 13.5px;
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.90);
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
     display: inline;
   }
 
@@ -1454,7 +1462,7 @@
     border-radius: 6px;
     padding: 4px 11px;
     flex-shrink: 0;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
   }
 
   .ann-cta {
@@ -1474,7 +1482,7 @@
     box-shadow: 0 0 16px rgba(200,134,42,0.38), 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.38);
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
   }
   /* Primary CTA - Gold (Join Now) */
 .ann-cta-primary {
@@ -1575,10 +1583,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Configuration - Edit these values to customize your banner
   const CONFIG = {
     badge: 'Announcement',
-    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of my real-world experience, struggles, failures and learning from multiple mentors before becoming a <span class="hi">successful & profitable digital marketer and helped me make money online.</span>`,
+    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of my real-world experience, struggle, failures and learning from multiple mentors before becoming a <span class="hi">successful & profitable digital marketer and helped me make money online.</span>`,
     stats: [
       { icon: '🎯', label: 'Built with 8+ Yrs Experience' },
-      { icon: '🚀', label: '5000+ Students Globally' },
+      { icon: '🚀', label: '5000+ Successful Students Globally' },
       { icon: '💰', label: 'Proven Results' },
       { icon: '❌', label: 'No Full Payment Upfront — Pay As You Go' }
     ],
