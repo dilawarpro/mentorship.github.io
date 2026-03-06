@@ -271,7 +271,7 @@
     
           /* ---- Mentor Badge ---- */
           .mentor-badge {
-            margin-top: -15px !important;
+            margin-top: 10px !important;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -282,7 +282,7 @@
             font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.5px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid rgba(124, 58, 237, 0.12);
             text-transform: uppercase;
           }
@@ -1226,7 +1226,7 @@
     <!-- BOOTSTRAP JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
     <!-- Discounted Eneded -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-header" id="stickyHeader" style="border: 2px solid white;
+    <nav class="navbar navbar-expand-lg navbar-light" style="border: 2px solid white;
   background-color: rgba(255, 255, 255, 0.1);
   min-height: 0px;
   min-width: 0px;
@@ -1272,373 +1272,398 @@
             </ul>
         </div>
     </nav>
+    <br>
+    
+<!-- ANNOUNCEMENT BANNER STYLES -->
+<style>
+  /* Announcement Banner Styles */
+  :root {
+    --ann-gold: #c8862a;
+    --ann-gold-mid: #e2aa55;
+    --ann-gold-light: #f5cc80;
+    --ann-gold-pale: #fdeec8;
+    --ann-dark: #06070f;
+    --ann-dark2: #0c0f20;
+  }
 
-    <style>
-      :root {
-      --gold:       #c8862a;
-      --gold-mid:   #e2aa55;
-      --gold-light: #f5cc80;
-      --gold-pale:  #fdeec8;
-      --dark:       #06070f;
-      --dark2:      #0c0f20;
-    }
+  .ann {
+    position: fixed;
+    height: 50px;
+    overflow: hidden;
+    display: flex !important;
+    align-items: center;
+    background: linear-gradient(90deg, #06070f 0%, #0c0f22 22%, #101428 50%, #0c0f22 78%, #06070f 100%);
+    border-bottom: 1px solid rgba(200,134,42,0.2);
+    width: 100%;
+    z-index: 999;
+    top: 95px;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #eeebe4; -webkit-font-smoothing: antialiased; }
+  .ann::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--ann-gold) 25%, var(--ann-gold-pale) 50%, var(--ann-gold) 75%, transparent 100%);
+    opacity: 0.7;
+  }
 
-    /* ═══════════════════════════════════════════
-       STICKY WRAPPER — navbar + banner together
-    ═══════════════════════════════════════════ */
-    .sticky-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 9999;
-      /* push page content down */
-    }
+  .ann::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 38%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ann-gold-mid) 40%, var(--ann-gold-pale) 50%, var(--ann-gold-mid) 60%, transparent);
+    animation: ann-sweep 5s cubic-bezier(0.4,0,0.2,1) infinite;
+    pointer-events: none;
+  }
 
-    /* ── NAVBAR ── */
-    .site-nav {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 0.85rem 2rem;
-      border-bottom: 1px solid rgba(0,0,0,0.07);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-    }
-    .navbar-brand {
-      font-family: 'Fraunces', serif;
-      font-size: 1.55rem; font-weight: 700;
-      color: #08091a !important; letter-spacing: -0.02em;
-    }
-    .brand-dot { color: var(--gold); }
-    .nav-link {
-      font-size: 0.83rem; font-weight: 400;
-      color: #555 !important; letter-spacing: 0.04em;
-      padding: 0.4rem 0.9rem !important;
-      transition: color 0.2s;
-    }
-    .nav-link:hover { color: #08091a !important; }
-    .nav-apply {
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      background: #08091a; color: #fff !important;
-      border-radius: 7px; padding: 0.48rem 1.3rem !important;
-      box-shadow: 0 3px 14px rgba(8,9,26,0.14);
-      transition: all 0.2s;
-    }
-    .nav-apply:hover { background: #1a1e3a !important; transform: translateY(-1px); box-shadow: 0 7px 20px rgba(8,9,26,0.22); }
+  @keyframes ann-sweep {
+    0% { left: -38%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
 
-    /* ══════════════════════════════════════════════════════
-       ANNOUNCEMENT BANNER
-    ══════════════════════════════════════════════════════ */
+  #annCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ann-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 160px;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .ann-fade--l {
+    left: 0;
+    background: linear-gradient(to right, #06070f 15%, transparent);
+  }
+
+  .ann-fade--r {
+    right: 0;
+    background: linear-gradient(to left, #06070f 15%, transparent);
+  }
+
+  .ann-track {
+    display: flex !important;
+    align-items: center;
+    white-space: nowrap;
+    animation: ann-scroll-rtl 38s linear infinite;
+    will-change: transform;
+    position: relative;
+    z-index: 3;
+    width: max-content;
+  }
+
+  .ann-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes ann-scroll-rtl {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ann-item {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 20px;
+    padding: 0 64px;
+  }
+
+  .ann-badge {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ann-dark);
+    background: linear-gradient(135deg, var(--ann-gold-pale) 0%, var(--ann-gold-light) 50%, var(--ann-gold) 100%);
+    border-radius: 100px;
+    padding: 5px 13px 5px 9px;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(200,134,42,0.4), 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+
+  .ann-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ann-dark);
+    position: relative;
+    display: inline-block;
+  }
+
+  .ann-dot::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(8,9,26,0.4);
+    animation: ann-dot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes ann-dot-pulse {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  .ann-msg {
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.90);
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: inline;
+  }
+
+  .ann-msg .hi {
+    font-weight: 700;
+    color: var(--ann-gold-light);
+    text-shadow: 0 0 18px rgba(200,134,42,0.6), 0 0 6px rgba(200,134,42,0.35);
+  }
+
+  .ann-stat {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.82);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 4px 11px;
+    flex-shrink: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .ann-cta {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ann-dark);
+    background: linear-gradient(130deg, var(--ann-gold-pale) 0%, var(--ann-gold-light) 55%, var(--ann-gold) 100%);
+    border-radius: 6px;
+    padding: 6px 14px;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(200,134,42,0.38), 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.38);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .ann-cta:hover {
+    color: var(--ann-dark);
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 0 28px rgba(200,134,42,0.55), 0 6px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.38);
+    text-decoration: none;
+  }
+
+  .ann-cta svg {
+    width: 10px;
+    height: 10px;
+    transition: transform 0.2s;
+  }
+
+  .ann-cta:hover svg {
+    transform: translateX(2px);
+  }
+
+  .ann-sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(200,134,42,0.22);
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
     .ann {
-      position: relative;
-      height: 50px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(90deg, #06070f 0%, #0c0f22 22%, #101428 50%, #0c0f22 78%, #06070f 100%);
-      border-bottom: 1px solid rgba(200,134,42,0.2);
+      height: 45px;
     }
-
-    /* gold top edge */
-    .ann::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        var(--gold) 25%,
-        var(--gold-pale) 50%,
-        var(--gold) 75%,
-        transparent 100%
-      );
-      opacity: 0.7;
-    }
-
-    /* slow shimmer sweep */
-    .ann::after {
-      content: '';
-      position: absolute; bottom: 0;
-      width: 38%; height: 1px;
-      background: linear-gradient(90deg,
-        transparent, var(--gold-mid) 40%, var(--gold-pale) 50%, var(--gold-mid) 60%, transparent
-      );
-      animation: sweep 5s cubic-bezier(0.4,0,0.2,1) infinite;
-      pointer-events: none;
-    }
-    @keyframes sweep {
-      0%   { left: -38%; opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { left: 100%; opacity: 0; }
-    }
-
-    /* canvas particles */
-    #annCanvas {
-      position: absolute; inset: 0;
-      pointer-events: none; z-index: 1;
-    }
-
-    /* vignette fades */
     .ann-fade {
-      position: absolute; top: 0; bottom: 0;
-      width: 160px; z-index: 4; pointer-events: none;
+      width: 80px;
     }
-    .ann-fade--l { left:  0; background: linear-gradient(to right, #06070f 15%, transparent); }
-    .ann-fade--r { right: 0; background: linear-gradient(to left,  #06070f 15%, transparent); }
-
-    /* scrolling track */
-    .ann-track {
-      display: flex; align-items: center;
-      white-space: nowrap;
-      animation: scroll-rtl 38s linear infinite;
-      will-change: transform;
-      position: relative; z-index: 3;
-    }
-    .ann-track:hover { animation-play-state: paused; }
-    @keyframes scroll-rtl {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* single repeat unit */
     .ann-item {
-      display: inline-flex; align-items: center;
-      gap: 20px; padding: 0 64px;
+      gap: 15px;
+      padding: 0 40px;
     }
-
-    /* ── live badge ── */
-    .ann-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--dark);
-      background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-light) 50%, var(--gold) 100%);
-      border-radius: 100px;
-      padding: 5px 13px 5px 9px;
-      flex-shrink: 0;
-      box-shadow:
-        0 0 12px rgba(200,134,42,0.4),
-        0 2px 6px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.35);
-    }
-    .ann-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--dark);
-      position: relative;
-    }
-    .ann-dot::after {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(8,9,26,0.4);
-      animation: dot-pulse 2s ease-out infinite;
-    }
-    @keyframes dot-pulse {
-      0%   { transform: scale(0.5); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-
-    /* ── MESSAGE — clear, readable ── */
     .ann-msg {
-      font-size: 13.5px;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      line-height: 1;
-      color: rgba(255, 255, 255, 0.90);   /* bright, legible white */
+      font-size: 12px;
     }
-    .ann-msg .hi {
-      font-weight: 700;
-      color: var(--gold-light);
-      text-shadow:
-        0 0 18px rgba(200,134,42,0.6),
-        0 0 6px  rgba(200,134,42,0.35);
-    }
-
-    /* ── stat chips ── */
     .ann-stat {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11.5px; font-weight: 500;
-      color: rgba(255,255,255,0.82);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 6px;
-      padding: 4px 11px;
-      flex-shrink: 0;
+      font-size: 10px;
+      padding: 3px 8px;
     }
+  }
+</style>
 
-    /* ── CTA ── */
-    .ann-cta {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      text-decoration: none;
-      color: var(--dark);
-      background: linear-gradient(130deg, var(--gold-pale) 0%, var(--gold-light) 55%, var(--gold) 100%);
-      border-radius: 6px;
-      padding: 6px 14px;
-      flex-shrink: 0;
-      box-shadow:
-        0 0 16px rgba(200,134,42,0.38),
-        0 3px 10px rgba(0,0,0,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.38);
-      transition: transform 0.2s, box-shadow 0.2s;
-      white-space: nowrap;
-    }
-    .ann-cta:hover {
-      color: var(--dark);
-      transform: translateY(-1px) scale(1.03);
-      box-shadow:
-        0 0 28px rgba(200,134,42,0.55),
-        0 6px 16px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.38);
-    }
-    .ann-cta svg { width: 10px; height: 10px; transition: transform 0.2s; }
-    .ann-cta:hover svg { transform: translateX(2px); }
+<!-- ANNOUNCEMENT BANNER HTML -->
+<div class="ann" id="annBanner">
+  <canvas id="annCanvas"></canvas>
+  <div class="ann-fade ann-fade--l"></div>
+  <div class="ann-fade ann-fade--r"></div>
+  <div class="ann-track" id="annTrack"></div>
+</div>
 
-    /* divider */
-    .ann-sep {
-      width: 1px; height: 18px;
-      background: rgba(200,134,42,0.22);
-      flex-shrink: 0;
-    }
-
-    /* ══════════════════════════════════════════════════════
-       PAGE BODY — offset so content isn't hidden under fixed header
-    ══════════════════════════════════════════════════════ */
-    .page-body {
-      /* JS sets this dynamically to match header height */
-      padding-top: 0;
-    }
-
-    </style>
-    <!-- ANNOUNCEMENT BANNER -->
-    <div class="ann" id="annBanner">
-      <canvas id="annCanvas"></canvas>
-      <div class="ann-fade ann-fade--l"></div>
-      <div class="ann-fade ann-fade--r"></div>
-      <div class="ann-track" id="annTrack"></div>
-    </div>
-
-  </div>
-  <!-- ══════════════════════════════════════════════════════ -->
- <script>
-  (function () {
-
-    /* ── 1. Offset page body so content starts below fixed header ── */
-    function offsetBody () {
-      const h = document.getElementById('stickyHeader').offsetHeight;
-      document.getElementById('pageBody').style.paddingTop = h + 'px';
-    }
-    offsetBody();
-    window.addEventListener('resize', offsetBody);
-
-
-    /* ── 2. Build marquee items ── */
-    const BADGE = 'Announcement';
-    const MSG   = `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of real-world experience, struggles & failures before becoming a <span class="hi">successful &amp; profitable digital marketer.</span>`;
-
-    const STATS = [
+<!-- ANNOUNCEMENT BANNER SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration - Edit these values to customize your banner
+  const CONFIG = {
+    badge: 'Announcement',
+    message: `This isn't just a mentorship — it's the result of <span class="hi">8+ years</span> of real-world experience, struggles & failures before becoming a <span class="hi">successful & profitable digital marketer.</span>`,
+    stats: [
       { icon: '🎯', label: '8+ Yrs Experience' },
-      { icon: '🚀', label: '500+ Students'     },
-      { icon: '💰', label: 'Proven Results'    },
-    ];
+      { icon: '🚀', label: '5000+ Students' },
+      { icon: '💰', label: 'Proven Results' }
+    ],
+    ctaText: 'Join Now',
+    ctaLink: 'https://mentorship.dilawarpro.com/champions-mentorship',
+    copies: 6,
+    scrollSpeed: 88 // pixels per second
+  };
 
-    const track = document.getElementById('annTrack');
-    const COPIES = 6;
+  // Build marquee items
+  const track = document.getElementById('annTrack');
+  
+  if (!track) {
+    console.error('Announcement track not found!');
+    return;
+  }
 
-    function makeItem () {
-      const el = document.createElement('span');
-      el.className = 'ann-item';
-      el.innerHTML =
-        `<span class="ann-badge">
-          <span class="ann-dot"></span>${BADGE}
-        </span>` +
-        `<span class="ann-msg">${MSG}</span>` +
-        `<span class="ann-sep"></span>` +
-        STATS.map(s =>
-          `<span class="ann-stat">${s.icon}&nbsp;${s.label}</span><span class="ann-sep"></span>`
-        ).join('') +
-        `<a class="ann-cta" href="#">
-          Join Now
-          <svg viewBox="0 0 12 12" fill="none">
-            <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>` +
-        `<span class="ann-sep"></span>`;
-      return el;
+  function createItem() {
+    const el = document.createElement('span');
+    el.className = 'ann-item';
+    el.innerHTML = `
+      <span class="ann-badge">
+        <span class="ann-dot"></span>${CONFIG.badge}
+      </span>
+      <span class="ann-msg">${CONFIG.message}</span>
+      <span class="ann-sep"></span>
+      ${CONFIG.stats.map(s => `<span class="ann-stat">${s.icon}&nbsp;${s.label}</span><span class="ann-sep"></span>`).join('')}
+      <a class="ann-cta" href="${CONFIG.ctaLink}">
+        ${CONFIG.ctaText}
+        <svg viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="ann-sep"></span>
+    `;
+    return el;
+  }
+
+  // Create duplicates for seamless loop
+  for (let i = 0; i < CONFIG.copies * 2; i++) {
+    track.appendChild(createItem());
+  }
+
+  // Calibrate animation speed
+  function calibrate() {
+    const half = track.scrollWidth / 2;
+    if (half > 0) {
+      track.style.animationDuration = (half / CONFIG.scrollSpeed).toFixed(1) + 's';
     }
+  }
+  
+  // Small delay to ensure elements are rendered
+  setTimeout(calibrate, 100);
+  window.addEventListener('resize', calibrate);
 
-    for (let i = 0; i < COPIES * 2; i++) track.appendChild(makeItem());
+  // Canvas particles
+  const canvas = document.getElementById('annCanvas');
+  const banner = document.getElementById('annBanner');
+  
+  if (!canvas || !banner) {
+    console.error('Canvas or banner not found!');
+    return;
+  }
+  
+  const ctx = canvas.getContext('2d');
 
-    function calibrate () {
-      const half = track.scrollWidth / 2;
-      track.style.animationDuration = (half / 88).toFixed(1) + 's';
-    }
-    calibrate();
-    window.addEventListener('resize', calibrate);
+  function resizeCanvas() {
+    canvas.width = banner.offsetWidth;
+    canvas.height = banner.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
+  const COLORS = ['rgba(200,134,42,', 'rgba(232,186,107,', 'rgba(253,232,186,'];
+  const particles = Array.from({ length: 26 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.3 + 0.4,
+    a: Math.random() * 0.45 + 0.1,
+    vx: (Math.random() - 0.5) * 0.003,
+    vy: -(Math.random() * 0.003 + 0.001),
+    col: COLORS[Math.floor(Math.random() * COLORS.length)]
+  }));
 
-    /* ── 3. Canvas particles ── */
-    const canvas = document.getElementById('annCanvas');
-    const banner = document.getElementById('annBanner');
-    const ctx    = canvas.getContext('2d');
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const W = canvas.width, H = canvas.height;
 
-    function resizeCanvas () {
-      canvas.width  = banner.offsetWidth;
-      canvas.height = banner.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.a += (Math.random() - 0.5) * 0.01;
+      p.a = Math.max(0.05, Math.min(0.55, p.a));
+      
+      if (p.x < 0) p.x = 1;
+      if (p.x > 1) p.x = 0;
+      if (p.y < 0) p.y = 1;
+      if (p.y > 1) p.y = 0;
 
-    const COLORS = ['rgba(200,134,42,', 'rgba(232,186,107,', 'rgba(253,232,186,'];
-    const particles = Array.from({ length: 26 }, () => ({
-      x:     Math.random(),
-      y:     Math.random(),
-      r:     Math.random() * 1.3 + 0.4,
-      a:     Math.random() * 0.45 + 0.1,
-      vx:    (Math.random() - 0.5) * 0.003,
-      vy:    -(Math.random() * 0.003 + 0.001),
-      col:   COLORS[Math.floor(Math.random() * COLORS.length)],
-    }));
+      const px = p.x * W, py = p.y * H;
 
-    function tick () {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const W = canvas.width, H = canvas.height;
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.col + p.a + ')';
+      ctx.fill();
 
-      particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        p.a += (Math.random() - 0.5) * 0.01;
-        p.a  = Math.max(0.05, Math.min(0.55, p.a));
-        if (p.x < 0) p.x = 1; if (p.x > 1) p.x = 0;
-        if (p.y < 0) p.y = 1; if (p.y > 1) p.y = 0;
+      // Soft halo
+      const g = ctx.createRadialGradient(px, py, 0, px, py, p.r * 6);
+      g.addColorStop(0, p.col + (p.a * 0.35) + ')');
+      g.addColorStop(1, p.col + '0)');
+      ctx.beginPath();
+      ctx.arc(px, py, p.r * 6, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+    });
 
-        const px = p.x * W, py = p.y * H;
-
-        /* core dot */
-        ctx.beginPath();
-        ctx.arc(px, py, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.col + p.a + ')';
-        ctx.fill();
-
-        /* soft halo */
-        const g = ctx.createRadialGradient(px, py, 0, px, py, p.r * 6);
-        g.addColorStop(0, p.col + (p.a * 0.35) + ')');
-        g.addColorStop(1, p.col + '0)');
-        ctx.beginPath();
-        ctx.arc(px, py, p.r * 6, 0, Math.PI * 2);
-        ctx.fillStyle = g;
-        ctx.fill();
-      });
-
-      requestAnimationFrame(tick);
-    }
-    tick();
-
-  })();
-  </script>
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+});
+</script>
+<!-- Announcement ended -->
     <!-- Perloader started -->
     <!-- Add this at the beginning of your <body> tag -->
     <div class="preloader" id="preloader">
