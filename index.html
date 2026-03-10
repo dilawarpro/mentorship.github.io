@@ -4389,7 +4389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </li>
             </ul>
         </footer>
-        <!-- SweetAlert2 CDN -->
+<!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
@@ -4399,7 +4399,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Swal.fire({
             title: '<span class="emoji-circle">🦥</span>',
-            html: "We know you are too lazy to read the complete details. Please read the complete details for better understanding of this mentorship.",
+            html: "We know you might be too lazy to read all the details, but please read them for a better understanding of this mentorship program. We promise it will be worth your time! 😊",
             showCloseButton: true,
             allowOutsideClick: false,
             allowEscapeKey: false,
@@ -4410,10 +4410,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }).then((result) => {
 
+            // When user clicks "Okay, I read"
             if (result.isConfirmed) {
                 localStorage.setItem("mentorshipNoticeRead", "true");
+                // Redirect after confirmation
+                window.location.href = "https://dilawarpro.com";
             }
 
+            // When user closes the popup using "X"
             if (result.dismiss === Swal.DismissReason.close) {
                 localStorage.setItem("mentorshipNoticeRead", "true");
                 window.location.href = "https://dilawarpro.com";
@@ -4451,7 +4455,6 @@ document.addEventListener("DOMContentLoaded", function () {
 /* CTA Button Gradient, no border */
 .cta-button {
     background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
-    /* border: none !important; */
     padding: 10px 20px !important;
     border-radius: 30px !important;
     color: white !important;
