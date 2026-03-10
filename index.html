@@ -4389,6 +4389,76 @@ document.addEventListener('DOMContentLoaded', function() {
                 </li>
             </ul>
         </footer>
+        <!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (!localStorage.getItem("mentorshipNoticeRead")) {
+
+        Swal.fire({
+            title: '<span class="emoji-circle">🦥</span>',
+            html: "We know you are too lazy to read the complete details. Please read the complete details for better understanding of this mentorship.",
+            showCloseButton: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            confirmButtonText: "Okay, I read",
+            customClass: {
+                popup: 'sweetalert-beautiful',
+                confirmButton: 'cta-button'
+            }
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                localStorage.setItem("mentorshipNoticeRead", "true");
+            }
+
+            if (result.dismiss === Swal.DismissReason.close) {
+                localStorage.setItem("mentorshipNoticeRead", "true");
+                window.location.href = "https://dilawarpro.com";
+            }
+
+        });
+    }
+
+});
+</script>
+
+<style>
+.sweetalert-beautiful {
+    border-radius: 18px;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+.swal2-title {
+    margin-bottom: 15px;
+}
+
+/* Circular emoji style */
+.emoji-circle {
+    display: inline-block;
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+/* CTA Button Gradient, no border */
+.cta-button {
+    background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+</style>
         <!-- Translation Started -->
         <!-- <style>
             .translate-btn {
