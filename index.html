@@ -1722,7 +1722,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Announcement ended -->
     <!-- Perloader started -->
     <!-- Add this at the beginning of your <body> tag -->
-    <div class="preloader" id="preloader">
+    <!-- <div class="preloader" id="preloader">
         <div class="preloader-container">
             <div class="spinner-ring"></div>
             <div class="preloader-image-wrapper">
@@ -1746,13 +1746,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="dot"></div>
             </div>
         </div>
-    </div>
-    <style>
-        /* Preloader */
-          /* ============================================
-               PRELOADER STYLES
-               ============================================ */
-          /* Preloader Overlay */
+    </div> -->
+    <!-- <style>
           .preloader {
             position: fixed;
             top: 0;
@@ -2115,8 +2110,8 @@ document.addEventListener('DOMContentLoaded', function() {
             max-width: 65vw; 
         }
     }
-    </style>
-    <script>
+    </style> -->
+    <!-- <script>
         // Preloader Script
           (function() {
             const preloader = document.getElementById('preloader');
@@ -2155,7 +2150,7 @@ document.addEventListener('DOMContentLoaded', function() {
               }
             }, 5000);
           })();
-    </script>
+    </script> -->
     <!-- Preloader ended -->
     <!--   Added Progress bar -->
     <div id="progress-bar"></div>
@@ -4290,7 +4285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
         <!-- Exit intent modal -->
-        <div id="exitIntentModal" class="modal">
+        <!-- <div id="exitIntentModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close-btn" onclick="closeModal('exitIntentModal')">&times;</span>
@@ -4301,7 +4296,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="https://api.whatsapp.com/send?phone=923314041010&text=Hi%2C%20I%20would%20love%20a%20free%2015-minute%20strategy%20call." class="btn btn-primary">Claim Your Free Call</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <a href="appointment"><button class="btn btn-primary" id="animate-btn" style="    background-image: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;">Book a FREE Appointment <i class="fa-solid fa-calendar-day"></i></button></a> -->
         <!-- WhatsApp button container -->
         <div class="whatsapp-container" id="whatsapp-container">
@@ -4662,34 +4657,33 @@ document.addEventListener("DOMContentLoaded", function () {
   // ONLY triggers on back button / browser navigation
   // Does NOT trigger on: tab switch, minimize, refresh, internal links, external links
 
-  let exitIntentModal = document.getElementById('exitIntentModal');
-  let exitModalCurrentlyOpen = false;
+  // let exitIntentModal = document.getElementById('exitIntentModal');
+  // let exitModalCurrentlyOpen = false;
 
-  function showExitModal() {
-    exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
-    if (!exitIntentModal) return;
-    if (exitModalCurrentlyOpen) return;
+  // function showExitModal() {
+  //   exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
+  //   if (!exitIntentModal) return;
+  //   if (exitModalCurrentlyOpen) return;
 
-    exitIntentModal.style.display = 'block';
-    exitModalCurrentlyOpen = true;
-  }
+  //   exitIntentModal.style.display = 'block';
+  //   exitModalCurrentlyOpen = true;
+  // }
 
-  function closeExitModal() {
-    if (exitIntentModal) {
-      exitIntentModal.style.display = 'none';
-      exitModalCurrentlyOpen = false;
-    }
-  }
+  // function closeExitModal() {
+  //   if (exitIntentModal) {
+  //     exitIntentModal.style.display = 'none';
+  //     exitModalCurrentlyOpen = false;
+  //   }
+  // }
 
   // ONLY trigger: Back button / browser navigation
   // Push a fake history state so pressing back doesn't leave the page
-  history.pushState({ exitGuard: true }, '', location.href);
+  // history.pushState({ exitGuard: true }, '', location.href);
 
-  window.addEventListener('popstate', function (e) {
-    // Show modal and re-push state to keep trapping
-    showExitModal();
-    history.pushState({ exitGuard: true }, '', location.href);
-  });
+  // window.addEventListener('popstate', function (e) {
+  //   showExitModal();
+  //   history.pushState({ exitGuard: true }, '', location.href);
+  // });
 
   // ===================== DISCOUNT MODAL + CONFETTI =====================
   // const DISCOUNT_KEY = 'discountClaimed';
