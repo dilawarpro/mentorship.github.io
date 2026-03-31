@@ -36,9 +36,9 @@ function showNotification(programType) {
     let message;
 
     if (programType === "1to1") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfuly joined Mentorship By Dilawar`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Mentorship By Dilawar`;
     } else if (programType === "2months") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfuly joined Mentorship By Dilawar`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Mentorship By Dilawar`;
     } else {
         return; // Exit if invalid programType
     }
