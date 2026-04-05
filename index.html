@@ -4400,36 +4400,24 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (!localStorage.getItem("mentorshipNoticeRead")) {
+    Swal.fire({
+        title: '<span class="emoji-circle">🤝</span><br>Meet Your Trainer',
+        html: "Check the trainer’s portfolio and work. If you see value, join the mentorship. Otherwise, it’s your choice 🙂",
+        showCloseButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        confirmButtonText: '<i class="bi bi-handshake"></i> Meet Your Trainer',
+        customClass: {
+            popup: 'sweetalert-beautiful',
+            confirmButton: 'cta-button'
+        }
+    }).then((result) => {
 
-        Swal.fire({
-            title: '<span class="emoji-circle">🦥</span>',
-            html: "Reading may feel boring, but skipping this content might cost you something important for your career. Take a deep breath, read slowly, and enjoy the content.",
-            showCloseButton: true,
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            confirmButtonText: "OKAY, I PROMISE TO READ",
-            customClass: {
-                popup: 'sweetalert-beautiful',
-                confirmButton: 'cta-button'
-            }
-        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "https://dilawarpro.com";
+        }
 
-            // When user clicks "Okay, I read"
-            if (result.isConfirmed) {
-                localStorage.setItem("mentorshipNoticeRead", "true");
-                // Redirect after confirmation
-                window.location.href = "https://dilawarpro.com";
-            }
-
-            // When user closes the popup using "X"
-            if (result.dismiss === Swal.DismissReason.close) {
-                localStorage.setItem("mentorshipNoticeRead", "true");
-                window.location.href = "https://dilawarpro.com";
-            }
-
-        });
-    }
+    });
 
 });
 </script>
@@ -4445,7 +4433,7 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-bottom: 15px;
 }
 
-/* Circular emoji style */
+/* Circular emoji */
 .emoji-circle {
     display: inline-block;
     font-size: 3rem;
@@ -4457,14 +4445,15 @@ document.addEventListener("DOMContentLoaded", function () {
     text-align: center;
 }
 
-/* CTA Button Gradient, no border */
+/* CTA Button */
 .cta-button {
-    background: linear-gradient(to right, rgb(0, 221, 255) 0%, rgb(255, 0, 212) 100%) !important;
+    background: linear-gradient(to right, rgb(0, 221, 255), rgb(255, 0, 212)) !important;
     padding: 10px 20px !important;
     border-radius: 30px !important;
     color: white !important;
     font-weight: bold;
     font-size: 16px;
+    border: none !important;
 }
 </style>
         <!-- Translation Started -->
