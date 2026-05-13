@@ -3826,6 +3826,341 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </section>
+                    <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  .partners-section {
+    font-family: 'Inter', sans-serif;
+    padding: 90px 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .partners-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .partners-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #6366f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+
+  .partners-badge .badge-dot {
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(90deg, #007bff, #6f42c1);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.6); }
+  }
+
+  .partners-title {
+    font-size: 48px;
+    font-weight: 900;
+    margin: 0 0 16px 0;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #111827;
+  }
+
+  .partners-title .highlight {
+    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .partners-subtitle {
+    font-size: 17px;
+    color: #6b7280;
+    max-width: 500px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .partners-stats {
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 30px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .partners-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    border-radius: 4px;
+    margin: 0 auto 20px;
+  }
+
+  /* Marquee */
+  .marquee-container {
+    position: relative;
+  }
+
+  .marquee-fade-left,
+  .marquee-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .marquee-fade-left {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+  }
+
+  .marquee-fade-right {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scroll-left 28s linear infinite;
+    padding: 16px 0;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Logo Cards */
+  .logo-card {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1.5px solid #f0f0f5;
+    border-radius: 22px;
+    padding: 28px 52px;
+    margin: 0 14px;
+    min-width: 240px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  /* Gradient border on hover using pseudo */
+  .logo-card::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 22px;
+    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+
+  .logo-card .card-inner {
+    position: absolute;
+    inset: 1.5px;
+    background: #ffffff;
+    border-radius: 20px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Shimmer */
+  .logo-card .card-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.85), transparent);
+    transition: left 0.6s ease;
+    border-radius: 20px;
+  }
+
+  .logo-card:hover::before {
+    opacity: 1;
+  }
+
+  .logo-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 24px 60px rgba(111,66,193,0.18), 0 8px 24px rgba(0,123,255,0.12);
+  }
+
+  .logo-card:hover .card-inner::after {
+    left: 150%;
+  }
+
+  .logo-card img {
+    max-height: 85px !important;
+    max-width: 175px !important;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(0.15) opacity(0.8);
+    transition: filter 0.4s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-card:hover img {
+    filter: grayscale(0) opacity(1);
+  }
+
+  @media (max-width: 768px) {
+    .partners-title { font-size: 32px; letter-spacing: -1px; }
+    .partners-subtitle { font-size: 15px; }
+    .partners-stats { gap: 32px; }
+    .stat-number { font-size: 24px; }
+    .logo-card { min-width: 180px; padding: 22px 34px; height: 100px; margin: 0 10px; }
+    .logo-card img { max-height: 46px; max-width: 140px; }
+    .marquee-fade-left, .marquee-fade-right { width: 80px; }
+    .partners-title { font-size: 30px; }
+  }
+</style>
+
+<section class="partners-section">
+
+  <div class="partners-header">
+    <!-- <div class="partners-badge">
+      <span class="badge-dot"></span>
+      Trusted Platforms
+    </div> -->
+    <h2 class="partners-title">Our <span class="highlight">Marketing</span> Partners</h2>
+    <div class="partners-divider"></div>
+    <p class="partners-subtitle">We leverage the world's most powerful advertising platforms to grow your brand and maximize ROI.</p>
+    <div class="partners-stats">
+      <div class="stat-item">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Platforms</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200K+</div>
+        <div class="stat-label">Audience Reach</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Students Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-container">
+    <div class="marquee-fade-left"></div>
+    <div class="marquee-fade-right"></div>
+
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Ads_logo.svg/1920px-Google_Ads_logo.svg.png" alt="Google Ads">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://cdn.prod.website-files.com/6130d26c38bed83cd2d69eed/67c5abd4902fab0a281b08a4_Tik-Tok-ads-Logo.png" alt="TikTok Ads">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://cdnwebsite.databox.com/wp-content/uploads/2022/07/11101456/NEWSLETTER_header_Snapchat.png" alt="Snapchat">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/Adverteren-op-Linkedin-logo-1.png" alt="LinkedIn">
+        </div>
+      </div>
+
+      <!-- Set 2 duplicate -->
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Ads_logo.svg/1920px-Google_Ads_logo.svg.png" alt="Google Ads">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://cdn.prod.website-files.com/6130d26c38bed83cd2d69eed/67c5abd4902fab0a281b08a4_Tik-Tok-ads-Logo.png" alt="TikTok Ads">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://cdnwebsite.databox.com/wp-content/uploads/2022/07/11101456/NEWSLETTER_header_Snapchat.png" alt="Snapchat">
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="card-inner">
+          <img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/Adverteren-op-Linkedin-logo-1.png" alt="LinkedIn">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
         <!-- Sources of income -->
         <div class="container mt-6" id="income-sources">
             <div class="card course-card mb-4">
@@ -4229,341 +4564,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </section>
 
-        <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-
-  .partners-section {
-    font-family: 'Inter', sans-serif;
-    padding: 90px 20px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .partners-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .partners-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(99,102,241,0.08);
-    border: 1px solid rgba(99,102,241,0.25);
-    color: #6366f1;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 9px 22px;
-    border-radius: 50px;
-    margin-bottom: 24px;
-  }
-
-  .partners-badge .badge-dot {
-    width: 7px;
-    height: 7px;
-    background: linear-gradient(90deg, #007bff, #6f42c1);
-    border-radius: 50%;
-    display: inline-block;
-    animation: pulse-dot 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.6); }
-  }
-
-  .partners-title {
-    font-size: 48px;
-    font-weight: 900;
-    margin: 0 0 16px 0;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    color: #111827;
-  }
-
-  .partners-title .highlight {
-    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .partners-subtitle {
-    font-size: 17px;
-    color: #6b7280;
-    max-width: 500px;
-    margin: 0 auto 36px;
-    line-height: 1.75;
-    font-weight: 400;
-  }
-
-  .partners-stats {
-    display: flex;
-    justify-content: center;
-    gap: 56px;
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-number {
-    font-size: 30px;
-    font-weight: 900;
-    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    color: #9ca3af;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  /* Divider */
-  .partners-divider {
-    width: 70px;
-    height: 4px;
-    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
-    border-radius: 4px;
-    margin: 0 auto 20px;
-  }
-
-  /* Marquee */
-  .marquee-container {
-    position: relative;
-  }
-
-  .marquee-fade-left,
-  .marquee-fade-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 200px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .marquee-fade-left {
-    left: 0;
-    background: linear-gradient(to right, #ffffff 0%, transparent 100%);
-  }
-
-  .marquee-fade-right {
-    right: 0;
-    background: linear-gradient(to left, #ffffff 0%, transparent 100%);
-  }
-
-  .marquee-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: scroll-left 28s linear infinite;
-    padding: 16px 0;
-  }
-
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* Logo Cards */
-  .logo-card {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    border: 1.5px solid #f0f0f5;
-    border-radius: 22px;
-    padding: 28px 52px;
-    margin: 0 14px;
-    min-width: 240px;
-    height: 120px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  }
-
-  /* Gradient border on hover using pseudo */
-  .logo-card::before {
-    content: '';
-    position: absolute;
-    inset: -1.5px;
-    border-radius: 22px;
-    background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-  }
-
-  .logo-card .card-inner {
-    position: absolute;
-    inset: 1.5px;
-    background: #ffffff;
-    border-radius: 20px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Shimmer */
-  .logo-card .card-inner::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 55%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.85), transparent);
-    transition: left 0.6s ease;
-    border-radius: 20px;
-  }
-
-  .logo-card:hover::before {
-    opacity: 1;
-  }
-
-  .logo-card:hover {
-    transform: translateY(-8px) scale(1.04);
-    box-shadow: 0 24px 60px rgba(111,66,193,0.18), 0 8px 24px rgba(0,123,255,0.12);
-  }
-
-  .logo-card:hover .card-inner::after {
-    left: 150%;
-  }
-
-  .logo-card img {
-    max-height: 85px !important;
-    max-width: 175px !important;
-    width: auto;
-    object-fit: contain;
-    filter: grayscale(0.15) opacity(0.8);
-    transition: filter 0.4s ease;
-    position: relative;
-    z-index: 2;
-  }
-
-  .logo-card:hover img {
-    filter: grayscale(0) opacity(1);
-  }
-
-  @media (max-width: 768px) {
-    .partners-title { font-size: 32px; letter-spacing: -1px; }
-    .partners-subtitle { font-size: 15px; }
-    .partners-stats { gap: 32px; }
-    .stat-number { font-size: 24px; }
-    .logo-card { min-width: 180px; padding: 22px 34px; height: 100px; margin: 0 10px; }
-    .logo-card img { max-height: 46px; max-width: 140px; }
-    .marquee-fade-left, .marquee-fade-right { width: 80px; }
-    .partners-title { font-size: 30px; }
-  }
-</style>
-
-<section class="partners-section">
-
-  <div class="partners-header">
-    <!-- <div class="partners-badge">
-      <span class="badge-dot"></span>
-      Trusted Platforms
-    </div> -->
-    <h2 class="partners-title">Our <span class="highlight">Marketing</span> Partners</h2>
-    <div class="partners-divider"></div>
-    <p class="partners-subtitle">We leverage the world's most powerful advertising platforms to grow your brand and maximize ROI.</p>
-    <div class="partners-stats">
-      <div class="stat-item">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Platforms</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">200K+</div>
-        <div class="stat-label">Audience Reach</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">98%</div>
-        <div class="stat-label">Students Satisfaction</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="marquee-container">
-    <div class="marquee-fade-left"></div>
-    <div class="marquee-fade-right"></div>
-
-    <div class="marquee-track">
-      <!-- Set 1 -->
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Ads_logo.svg/1920px-Google_Ads_logo.svg.png" alt="Google Ads">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://cdn.prod.website-files.com/6130d26c38bed83cd2d69eed/67c5abd4902fab0a281b08a4_Tik-Tok-ads-Logo.png" alt="TikTok Ads">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://cdnwebsite.databox.com/wp-content/uploads/2022/07/11101456/NEWSLETTER_header_Snapchat.png" alt="Snapchat">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/Adverteren-op-Linkedin-logo-1.png" alt="LinkedIn">
-        </div>
-      </div>
-
-      <!-- Set 2 duplicate -->
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Ads_logo.svg/1920px-Google_Ads_logo.svg.png" alt="Google Ads">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" alt="Meta">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://cdn.prod.website-files.com/6130d26c38bed83cd2d69eed/67c5abd4902fab0a281b08a4_Tik-Tok-ads-Logo.png" alt="TikTok Ads">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://cdnwebsite.databox.com/wp-content/uploads/2022/07/11101456/NEWSLETTER_header_Snapchat.png" alt="Snapchat">
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="card-inner">
-          <img src="https://blog.waalaxy.com/wp-content/uploads/2021/01/Adverteren-op-Linkedin-logo-1.png" alt="LinkedIn">
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
 
         <!-- ADDED STRATEGY CALL AND CHECKLIST -->
         <!-- Checklist modal -->
