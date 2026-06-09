@@ -36,9 +36,9 @@ function showNotification(programType) {
     let message;
 
     if (programType === "1to1") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined earnifiers`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Earnifiers`;
     } else if (programType === "2months") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined earnifiers`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Earnifiers`;
     } else {
         return; // Exit if invalid programType
     }
