@@ -44,8 +44,8 @@
   }
     /* Navbar logo styles (responsive and crisp) */
         .navbar-brand .earnifiers-nav {
-        width: 90px;              /* Increased size */
-        max-width: 50vw;           /* Allows more responsive scaling */
+        width: 50px !important;              /* Increased size */
+        max-width: 50px;           /* Allows more responsive scaling */
         height: auto;
         display: inline-block;
         object-fit: contain;
@@ -63,7 +63,7 @@
     /* Large tablets */
     @media (max-width: 992px) {
         .navbar-brand .earnifiers-nav { 
-            width: 170px; 
+            width: 50px; 
             max-width: 45vw; 
         }
     }
@@ -71,7 +71,7 @@
     /* Tablets */
     @media (max-width: 768px) {
         .navbar-brand .earnifiers-nav { 
-            width: 150px; 
+            width: 50px; 
             max-width: 55vw; 
         }
     }
@@ -79,7 +79,7 @@
     /* Mobile */
     @media (max-width: 480px) {
         .navbar-brand .earnifiers-nav { 
-            width: 80px; 
+            width: 50px; 
             max-width: 65vw; 
         }
     }
