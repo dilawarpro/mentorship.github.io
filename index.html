@@ -2135,174 +2135,811 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="mentor-badge">
                   <i class="bi bi-patch-check-fill"></i>#1 Trusted AI Digital Marketing Training & Mentorship Program.
                 </div>
-             <h1 class="champion-section-title">
-    Make Extra Income From <br>
-    <span class="typing-wrapper">
-      <span class="grad-text" id="typing-text"></span><span class="cursor" id="cursor"></span>
-    </span>
-  </h1>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+            <!-- ============================================================
+     EARNIFIRES - HERO SECTION (Spacing Fixed)
+     ============================================================ -->
 
-    .champion-section-title {
-      /* font-size: 2.8rem; */
-      color: #ffffff;
-      text-align: center;
-      /* max-width: 800px;
-      line-height: 1.3;
-      padding: 20px; */
-      animation: fadeInUp 1s ease forwards;
+<style>
+    /* --- Scoped CSS Variables --- */
+    .earnifires-hero {
+        --ef-gradient: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+        --ef-text-dark: #1e293b;
+        --ef-text-light: #64748b;
+        --ef-card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        font-family: 'Poppins', sans-serif;
     }
 
-    .grad-text {
-      background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 4s ease infinite;
+    /* --- Hero Section Layout --- */
+    .earnifires-hero .hero-section {
+        padding: 80px 0 60px 0; /* ✅ Reduced bottom padding — calculator handles its own space */
+        background: radial-gradient(circle at top left, #f0f4ff, #ffffff);
+        position: relative;
+        z-index: 1;
+        overflow: visible;
     }
 
-    .typing-wrapper {
-      display: inline;
-      position: relative;
+    /* --- Hero Badge --- */
+    .earnifires-hero .hero-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(111, 66, 193, 0.1);
+        color: #6f42c1;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        border: 1px solid rgba(111, 66, 193, 0.2);
     }
 
-    .cursor {
-      display: inline-block;
-      width: 3px;
-      height: 1em;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      margin-left: 4px;
-      vertical-align: text-bottom;
-      animation: blink 0.7s ease-in-out infinite;
-      border-radius: 2px;
+    /* --- Hero Title --- */
+    .earnifires-hero .hero-title {
+        font-weight: 800;
+        font-size: 3.5rem;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        color: var(--ef-text-dark);
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    .earnifires-hero .hero-title span {
+        background: var(--ef-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* --- Hero Subtitle --- */
+    .earnifires-hero .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--ef-text-light);
+        margin-bottom: 35px;
+        max-width: 500px;
+        line-height: 1.6;
     }
 
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* --- Feature List --- */
+    .earnifires-hero .ef-feature-list {
+        margin-bottom: 30px;
     }
 
-    /* Smooth fade transition for text changes */
-    .grad-text {
-      transition: opacity 0.3s ease;
+    .earnifires-hero .ef-feature-list li {
+        margin-bottom: 12px;
+        font-size: 1rem;
+        color: var(--ef-text-dark);
     }
 
-    .grad-text.fade-out {
-      opacity: 0.3;
+    .earnifires-hero .ef-feature-list i {
+        color: #10b981;
+        margin-right: 12px;
+        font-size: 1.1rem;
     }
 
-    .grad-text.fade-in {
-      opacity: 1;
+    /* --- CTA Button --- */
+    .earnifires-hero .btn-ef-custom {
+        background: var(--ef-gradient);
+        border: none;
+        color: white;
+        padding: 16px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(111, 66, 193, 0.4);
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 10px; /* ✅ breathing room below button */
     }
 
-    /* Subtle glow effect */
-    .champion-section-title:hover .grad-text {
-      filter: drop-shadow(0 0 20px rgba(37, 117, 252, 0.3));
+    .earnifires-hero .btn-ef-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(111, 66, 193, 0.5);
+        color: white;
     }
-  </style>
+
+    /* --- Social Proof Avatars --- */
+    .earnifires-hero .ef-student-proof {
+        margin-top: 28px; /* ✅ consistent gap after button */
+        display: flex;
+        align-items: center;
+    }
+
+    .earnifires-hero .ef-avatar-stack {
+        display: flex;
+        margin-right: 15px;
+    }
+
+    .earnifires-hero .ef-avatar-stack img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 3px solid white;
+        margin-left: -15px;
+        object-fit: cover;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+        position: relative;
+    }
+
+    .earnifires-hero .ef-avatar-stack img:hover {
+        transform: translateY(-5px);
+        z-index: 5;
+    }
+
+    .earnifires-hero .ef-avatar-stack img:first-child { margin-left: 0; z-index: 1; }
+    .earnifires-hero .ef-avatar-stack img:nth-child(2) { z-index: 2; }
+    .earnifires-hero .ef-avatar-stack img:nth-child(3) { z-index: 3; }
+    .earnifires-hero .ef-avatar-stack img:nth-child(4) { z-index: 4; }
+
+    .earnifires-hero .ef-proof-text h6 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--ef-text-dark);
+    }
+
+    .earnifires-hero .ef-proof-text p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--ef-text-light);
+    }
+
+    /* --- Hero Image --- */
+    .earnifires-hero .ef-hero-image-container {
+        position: relative;
+        margin-bottom: 20px; /* ✅ gap between image and story cards */
+    }
+
+    .earnifires-hero .ef-hero-main-img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transform: rotate(-2deg);
+        transition: transform 0.5s ease;
+        border: 5px solid white;
+        display: block; /* ✅ removes phantom inline gap */
+    }
+
+    .earnifires-hero .ef-hero-main-img:hover {
+        transform: rotate(0deg);
+    }
+
+    /* --- Floating Badge --- */
+    .earnifires-hero .ef-floating-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -10px; /* ✅ pulled in from edge to avoid overflow */
+        background: white;
+        padding: 15px 20px;
+        border-radius: 15px;
+        box-shadow: var(--ef-card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 2;
+        animation: efFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes efFloat {
+        0%   { transform: translateY(0px); }
+        50%  { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .earnifires-hero .ef-badge-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        background: var(--ef-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .earnifires-hero .ef-badge-text h6 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--ef-text-dark);
+    }
+
+    .earnifires-hero .ef-badge-text span {
+        font-size: 0.75rem;
+        color: var(--ef-text-light);
+    }
+
+    /* --- Success Story Cards --- */
+    .earnifires-hero .ef-success-stories {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 25px 5px 10px 5px; /* ✅ top padding clears the floating badge overlap */
+        margin-top: 0;
+        scrollbar-width: none;
+    }
+
+    .earnifires-hero .ef-success-stories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .earnifires-hero .ef-story-card {
+        background: white;
+        padding: 10px 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        min-width: 145px;
+        border: 1px solid #f1f1f1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .earnifires-hero .ef-story-img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .earnifires-hero .ef-story-info .ef-name {
+        font-size: 0.8rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: var(--ef-text-dark);
+    }
+
+    .earnifires-hero .ef-story-info .ef-earn {
+        font-size: 0.7rem;
+        color: #10b981;
+        font-weight: 700;
+    }
+
+    /* ============================================================
+       CALCULATOR WRAPPER — KEY FIX
+       ✅ Removed negative margin-top that caused overlap.
+       ✅ Now sits naturally below hero content with clean spacing.
+       ============================================================ */
+    .earnifires-hero .ef-calculator-wrapper {
+        margin-top: 50px;   /* ✅ positive gap — no more overlap */
+        margin-bottom: 60px; /* ✅ space below calculator */
+        position: relative;
+        z-index: 10;
+    }
+
+    .earnifires-hero .ef-calculator-card {
+        background: white;
+        border-radius: 24px;
+        padding: 35px 30px 30px 30px; /* ✅ extra top padding — room for gradient bar */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e8edf2;
+        position: relative;
+        overflow: hidden;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .earnifires-hero .ef-calculator-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--ef-gradient);
+    }
+
+    /* --- Calculator Header --- */
+    .earnifires-hero .ef-calc-header {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .earnifires-hero .ef-calc-header h5 {
+        font-weight: 700;
+        color: var(--ef-text-dark);
+        margin-bottom: 6px;
+        font-size: 1.2rem;
+    }
+
+    .earnifires-hero .ef-calc-header span {
+        font-size: 0.85rem;
+        color: var(--ef-text-light);
+    }
+
+    /* --- Calculator Labels --- */
+    .earnifires-hero .ef-custom-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--ef-text-dark);
+        margin-bottom: 10px;
+    }
+
+    /* --- Range Sliders --- */
+    .earnifires-hero input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        cursor: pointer;
+        display: block; /* ✅ prevents inline spacing issues */
+    }
+
+    .earnifires-hero input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #6f42c1;
+        cursor: pointer;
+        margin-top: -7px;
+        box-shadow: 0 2px 6px rgba(111, 66, 193, 0.4);
+        border: 2px solid white;
+    }
+
+    .earnifires-hero input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 6px;
+        cursor: pointer;
+        background: #e2e8f0;
+        border-radius: 3px;
+    }
+
+    .earnifires-hero input[type="range"]::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #6f42c1;
+        cursor: pointer;
+        border: 2px solid white;
+        box-shadow: 0 2px 6px rgba(111, 66, 193, 0.4);
+    }
+
+    .earnifires-hero input[type="range"]::-moz-range-track {
+        height: 6px;
+        background: #e2e8f0;
+        border-radius: 3px;
+    }
+
+    /* --- Experience Badges --- */
+    .earnifires-hero .ef-exp-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        white-space: nowrap; /* ✅ badge text never wraps */
+    }
+
+    .earnifires-hero .ef-exp-beginner     { background: #dbeafe; color: #1e40af; }
+    .earnifires-hero .ef-exp-intermediate { background: #fef3c7; color: #92400e; }
+    .earnifires-hero .ef-exp-expert       { background: #d1fae5; color: #065f46; }
+
+    /* --- Results Box --- */
+    .earnifires-hero .ef-result-container {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 20px 25px; /* ✅ more horizontal breathing room */
+        margin-top: 20px;   /* ✅ clear gap above results */
+        border: 1px dashed #cbd5e1;
+    }
+
+    .earnifires-hero .ef-result-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+        color: var(--ef-text-light);
+    }
+
+    .earnifires-hero .ef-total-income-row {
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .earnifires-hero .ef-total-label {
+        font-weight: 700;
+        color: var(--ef-text-dark);
+        font-size: 1rem;
+    }
+
+    .earnifires-hero .ef-total-amount {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: var(--ef-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+    }
+
+    /* ============================================================
+       RESPONSIVE FIXES
+       ============================================================ */
+
+    /* Tablet (992px and below) */
+    @media (max-width: 991px) {
+        .earnifires-hero .hero-section {
+            padding: 50px 0 40px 0;
+        }
+
+        .earnifires-hero .hero-title {
+            font-size: 2.4rem;
+        }
+
+        .earnifires-hero .ef-hero-main-img {
+            transform: rotate(0deg); /* ✅ no tilt on tablet — avoids clipping */
+        }
+
+        .earnifires-hero .ef-floating-badge {
+            display: none; /* ✅ hides badge that overlaps on tablet */
+        }
+
+        /* ✅ Story cards: adequate top padding since floating badge is hidden */
+        .earnifires-hero .ef-success-stories {
+            padding-top: 15px;
+        }
+
+        .earnifires-hero .ef-calculator-wrapper {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* ✅ Left column: remove bottom margin gap on tablet */
+        .earnifires-hero .col-lg-6.mb-5 {
+            margin-bottom: 30px !important;
+        }
+    }
+
+    /* Mobile (768px and below) */
+    @media (max-width: 767px) {
+        .earnifires-hero .hero-section {
+            padding: 40px 0 30px 0;
+        }
+
+        .earnifires-hero .hero-title {
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+
+        .earnifires-hero .hero-subtitle {
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .earnifires-hero .btn-ef-custom {
+            padding: 14px 28px;
+            font-size: 1rem;
+            width: 100%;         /* ✅ full-width button on mobile */
+            text-align: center;
+        }
+
+        .earnifires-hero .ef-student-proof {
+            margin-top: 22px;
+        }
+
+        .earnifires-hero .ef-calculator-wrapper {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .earnifires-hero .ef-calculator-card {
+            padding: 28px 18px 22px 18px;
+        }
+
+        .earnifires-hero .ef-total-amount {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Small Mobile (480px and below) */
+    @media (max-width: 480px) {
+        .earnifires-hero .hero-title {
+            font-size: 1.75rem;
+        }
+
+        .earnifires-hero .ef-result-container {
+            padding: 16px;
+        }
+
+        .earnifires-hero .ef-total-amount {
+            font-size: 1.3rem;
+        }
+
+        .earnifires-hero .ef-story-card {
+            min-width: 130px;
+            padding: 8px 12px;
+        }
+    }
+</style>
+
+
+<!-- ======================== HERO HTML ========================== -->
+<div class="earnifires-hero">
+    <section class="hero-section">
+        <div class="container">
+
+            <!-- ── Row 1: Content (Left) | Image (Right) ── -->
+            <div class="row align-items-center mb-0"> <!-- ✅ mb-0: let calculator wrapper control spacing -->
+
+                <!-- LEFT: Text Content -->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+
+                    <div class="hero-badge">
+                        <i class="fas fa-star me-2"></i> #1 Digital Mentoring Platform
+                    </div>
+
+                    <h1 class="hero-title">
+                        Learn. Implement. <br>
+                        <span>Earn from Anywhere.</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Stop dreaming about financial freedom. Master high-income skills
+                        with 1-on-1 mentorship and start earning in dollars or rupees from home.
+                    </p>
+
+                    <ul class="list-unstyled ef-feature-list">
+                        <li><i class="fas fa-check-circle"></i> Personalized 1-on-1 Coaching Sessions</li>
+                        <li><i class="fas fa-check-circle"></i> Real-world Project Implementation</li>
+                        <li><i class="fas fa-check-circle"></i> International Client Acquisition Support</li>
+                    </ul>
+
+                    <a href="#consultation" class="btn-ef-custom">
+                        Book Free Consultation <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+
+                    <!-- Social Proof -->
+                    <div class="ef-student-proof">
+                        <div class="ef-avatar-stack">
+                            <img src="https://picsum.photos/seed/ali/100/100"    alt="Ali">
+                            <img src="https://picsum.photos/seed/fatima/100/100" alt="Fatima">
+                            <img src="https://picsum.photos/seed/ahmed/100/100"  alt="Ahmed">
+                            <img src="https://picsum.photos/seed/ayesha/100/100" alt="Ayesha">
+                        </div>
+                        <div class="ef-proof-text">
+                            <h6>5,000+ Students</h6>
+                            <p>Already learning &amp; earning</p>
+                        </div>
+                    </div>
+
+                </div><!-- /LEFT -->
+
+                <!-- RIGHT: Hero Image + Story Cards -->
+                <div class="col-lg-6">
+
+                    <!-- Hero Image with Floating Badge -->
+                    <div class="ef-hero-image-container">
+                        <img
+                            src="https://picsum.photos/seed/workplace2/600/450"
+                            alt="Student Learning"
+                            class="ef-hero-main-img"
+                        >
+                        <!-- Floating Badge — hidden on tablet/mobile via CSS -->
+                        <div class="ef-floating-badge">
+                            <div class="ef-badge-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="ef-badge-text">
+                                <h6>High Demand Skills</h6>
+                                <span>100% Job Placement Focus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Story Cards -->
+                    <!-- ✅ padding-top: 25px clears the floating badge (bottom: -20px) -->
+                    <div class="ef-success-stories">
+                        <div class="ef-story-card">
+                            <img src="https://picsum.photos/seed/ali2/50/50"    alt="Ali Khan"  class="ef-story-img">
+                            <div class="ef-story-info">
+                                <div class="ef-name">Ali Khan</div>
+                                <div class="ef-earn">$1,500/mo</div>
+                            </div>
+                        </div>
+                        <div class="ef-story-card">
+                            <img src="https://picsum.photos/seed/fatima2/50/50" alt="Fatima Z." class="ef-story-img">
+                            <div class="ef-story-info">
+                                <div class="ef-name">Fatima Z.</div>
+                                <div class="ef-earn">₨ 350k/mo</div>
+                            </div>
+                        </div>
+                        <div class="ef-story-card">
+                            <img src="https://picsum.photos/seed/ahmed2/50/50"  alt="Ahmed R."  class="ef-story-img">
+                            <div class="ef-story-info">
+                                <div class="ef-name">Ahmed R.</div>
+                                <div class="ef-earn">$2,000/mo</div>
+                            </div>
+                        </div>
+                        <div class="ef-story-card">
+                            <img src="https://picsum.photos/seed/ayesha2/50/50" alt="Ayesha S." class="ef-story-img">
+                            <div class="ef-story-info">
+                                <div class="ef-name">Ayesha S.</div>
+                                <div class="ef-earn">₨ 420k/mo</div>
+                            </div>
+                        </div>
+                    </div><!-- /ef-success-stories -->
+
+                </div><!-- /RIGHT -->
+
+            </div><!-- /Row 1 -->
+
+
+            <!-- ── Row 2: Freelance Income Calculator ── -->
+            <div class="ef-calculator-wrapper">
+                <div class="ef-calculator-card">
+
+                    <div class="ef-calc-header">
+                        <h5><i class="fas fa-calculator me-2 text-primary"></i>Freelance Income Calculator</h5>
+                        <span>Estimate your monthly earning potential</span>
+                    </div>
+
+                    <!-- Currency & Expertise -->
+                    <div class="row mb-4">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="form-label ef-custom-label">Currency</label>
+                            <select class="form-select form-select-sm bg-light" id="ef-currencySelect">
+                                <option value="pkr" selected>PKR (₨)</option>
+                                <option value="usd">USD ($)</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label ef-custom-label">Expertise</label>
+                            <select class="form-select form-select-sm bg-light" id="ef-roleSelect">
+                                <option value="marketer">Digital Marketer</option>
+                                <option value="developer">Web Developer</option>
+                                <option value="seo">SEO Expert</option>
+                                <option value="ads">Ads Expert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Experience Slider -->
+                    <div class="mb-4">
+                        <label class="form-label ef-custom-label">
+                            <span>Experience Level</span>
+                            <span id="ef-expDisplay" class="ef-exp-badge ef-exp-beginner">Beginner</span>
+                        </label>
+                        <input
+                            type="range"
+                            id="ef-expRange"
+                            min="0" max="5" value="0" step="0.5"
+                            aria-label="Experience Level"
+                        >
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">Fresher</small>
+                            <small class="text-muted">5+ Years</small>
+                        </div>
+                    </div>
+
+                    <!-- Hours / Week Slider -->
+                    <div class="mb-3">
+                        <label class="form-label ef-custom-label">
+                            <span>Hours / Week</span>
+                            <span id="ef-hoursValue">20 hrs</span>
+                        </label>
+                        <input
+                            type="range"
+                            id="ef-hoursRange"
+                            min="5" max="60" value="20" step="5"
+                            aria-label="Hours per Week"
+                        >
+                    </div>
+
+                    <!-- Results -->
+                    <div class="ef-result-container">
+                        <div class="ef-result-row">
+                            <span>Hourly Rate</span>
+                            <span id="ef-hourlyRate">₨2,500/hr</span>
+                        </div>
+                        <div class="ef-result-row">
+                            <span>Weekly Hours</span>
+                            <span id="ef-weeklyHoursCalc">20 hrs</span>
+                        </div>
+                        <div class="ef-total-income-row">
+                            <span class="ef-total-label">Est. Monthly Income</span>
+                            <span class="ef-total-amount" id="ef-monthlyIncome">₨200,000</span>
+                        </div>
+                    </div>
+
+                </div><!-- /ef-calculator-card -->
+            </div><!-- /ef-calculator-wrapper -->
+
+        </div><!-- /container -->
+    </section>
+</div><!-- /earnifires-hero -->
+<!-- ======================== END HERO HTML ====================== -->
+
+
+<!-- ======================== HERO SCRIPT ======================== -->
 <script>
-    const phrases = [
-      "AI Digital Marketing.",
-      "Prompt Engineering.",
-      "Web Development.",
-      "AI Automation.",
-    ];
+(function () {
+    'use strict';
 
-    const typingText = document.getElementById('typing-text');
-    const cursor = document.getElementById('cursor');
+    const efCurrencySelect  = document.getElementById('ef-currencySelect');
+    const efRoleSelect      = document.getElementById('ef-roleSelect');
+    const efExpRange        = document.getElementById('ef-expRange');
+    const efHoursRange      = document.getElementById('ef-hoursRange');
+    const efExpDisplay      = document.getElementById('ef-expDisplay');
+    const efHoursValue      = document.getElementById('ef-hoursValue');
+    const efHourlyRate      = document.getElementById('ef-hourlyRate');
+    const efWeeklyHoursCalc = document.getElementById('ef-weeklyHoursCalc');
+    const efMonthlyIncome   = document.getElementById('ef-monthlyIncome');
 
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    // Typing speeds
-    const TYPING_SPEED = 80;
-    const DELETING_SPEED = 40;
-    const PAUSE_BEFORE_DELETE = 2000;
-    const PAUSE_BEFORE_TYPE = 500;
-
-    function type() {
-      const currentPhrase = phrases[phraseIndex];
-
-      if (!isDeleting) {
-        // Typing
-        typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-
-        if (charIndex === currentPhrase.length) {
-          // Finished typing, pause then start deleting
-          isDeleting = true;
-          setTimeout(type, PAUSE_BEFORE_DELETE);
-          return;
+    const rateData = {
+        usd: {
+            symbol: '$',
+            baseRates: { marketer: 20, developer: 35, seo: 25, ads: 40 },
+            expMultiplier: 5
+        },
+        pkr: {
+            symbol: '₨',
+            baseRates: { marketer: 2500, developer: 4500, seo: 3000, ads: 5500 },
+            expMultiplier: 500
         }
+    };
 
-        // Random slight variation in typing speed for realism
-        const variation = Math.random() * 60 - 30;
-        setTimeout(type, TYPING_SPEED + variation);
-
-      } else {
-        // Deleting
-        typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-
-        if (charIndex === 0) {
-          // Finished deleting, move to next phrase
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          setTimeout(type, PAUSE_BEFORE_TYPE);
-          return;
+    function animateValue(el, from, to, duration, symbol) {
+        let startTs = null;
+        function step(ts) {
+            if (!startTs) startTs = ts;
+            const progress = Math.min((ts - startTs) / duration, 1);
+            el.textContent = symbol + Math.floor(progress * (to - from) + from).toLocaleString('en-US');
+            if (progress < 1) requestAnimationFrame(step);
         }
-
-        setTimeout(type, DELETING_SPEED);
-      }
+        requestAnimationFrame(step);
     }
 
-    // Start the animation after a brief delay
-    setTimeout(type, 1000);
-  </script>
-                <p class="mentor-sub">No job? tired of your university, college, or current job? Join <strong>Earnifiers</strong>, trusted by over 5.2K students globally, and learn the exact step-by-step strategies to become a Profitable <strong>Full-stack AI Digital Marketing, Prompt Engineering, and Web Development Expert</strong> from the comfort of your home. Turn your laptop into a money-making machine and build your own digital career today.
-                </p>
-                 <!-- <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/43d3f94d1c8341448505866040efc77d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div> -->
-                 <center><h3 style="background: #007BFC;
-    width: fit-content;
-    color: white;
-    padding: 4px;
-    border-radius: 10px;
-    margin-top: 20px;">
-            <i class="bi bi-person-add"></i> Requirements
-          </h3></center>
-                <span class="requirements" style="color: #64748b;">
-            <i class="bi bi-laptop"></i> Laptop or PC <br>
-            <i class="bi bi-wifi"></i> WiFi or Internet Connection <br>
-            <i class="bi bi-person-exclamation"></i> Who Join: Students (Above matric), Graduates, Job Holders, Unemployed, Freelancers, Housewives, Business Owners, and people who stucked in tech career. </span>
-                <div class="container-fluid p-0 m-2">
-                    <img src="mentoring.webp" class="img-fluid w-100" alt="Website Banner">
-                </div>
-                <h2 class="champion-section-title"> Learn from <span class="grad-text">Industry Expert Trainer</span> with <span class="underline-accent">Seedhi Baat No Bakwaas</span> (No Fluff) Strategy. </h2>
-                   <p class="mentor-sub">Our mentorship will guide you step-by-step through real campaigns and live websites using simple and easy language. No fluff or wasting time on things that do not work, just proven strategies and pure knowledge. Join TODAY with a <a href="https://api.whatsapp.com/send?phone=923314041010&text=Hi, I'd like to get started with a free strategy call! Please guide me to join.">FREE Strategy Call</a>.</p>
-   
-                <h2 class="champion-section-title"> From <span class="underline-accent">8 Years of Struggle</span> to a <span class="grad-text">Profitable Online Career</span>
-          </h2>
-                <p class="mentor-sub">In this mentorship, I'll reveal my 8 years of experience in building agencies, launching websites, and scaling campaigns in multiple countries. I've spent years in mistakes so you can skip the mistakes and start earning sooner with my proven strategies.</p>
+    function updateExpBadge(years) {
+        efExpDisplay.className = 'ef-exp-badge';
+        if (years < 1) {
+            efExpDisplay.textContent = 'Beginner';
+            efExpDisplay.classList.add('ef-exp-beginner');
+        } else if (years < 3) {
+            efExpDisplay.textContent = 'Intermediate';
+            efExpDisplay.classList.add('ef-exp-intermediate');
+        } else {
+            efExpDisplay.textContent = 'Expert';
+            efExpDisplay.classList.add('ef-exp-expert');
+        }
+    }
+
+    function calculate() {
+        const currencyKey = efCurrencySelect.value;
+        const role        = efRoleSelect.value;
+        const years       = parseFloat(efExpRange.value);
+        const hours       = parseInt(efHoursRange.value, 10);
+        const data        = rateData[currencyKey];
+        const { symbol, baseRates, expMultiplier } = data;
+
+        efHoursValue.textContent      = hours + ' hrs';
+        efWeeklyHoursCalc.textContent = hours + ' hrs';
+        updateExpBadge(years);
+
+        const hourlyRate   = baseRates[role] + years * expMultiplier;
+        const monthlyTotal = hourlyRate * hours * 4;
+
+        efHourlyRate.textContent = symbol + hourlyRate.toLocaleString('en-US') + '/hr';
+
+        const prevVal = parseInt(efMonthlyIncome.textContent.replace(/[^\d]/g, ''), 10) || 0;
+        animateValue(efMonthlyIncome, prevVal, monthlyTotal, 500, symbol);
+    }
+
+    efCurrencySelect.addEventListener('change', calculate);
+    efRoleSelect.addEventListener('change', calculate);
+    efExpRange.addEventListener('input', calculate);
+    efHoursRange.addEventListener('input', calculate);
+
+    calculate();
+}());
+</script>
+<!-- ===================== END HERO SCRIPT ======================= -->
                 <h2 class="champion-section-title"> Trusted by <span class="grad-text">5,200+ Students</span> to Build <span class="underline-accent">Real Careers</span> in Tech Industry.
           </h2>
                 <p class="mentor-sub">Join the 5.2k+ learners worldwide who have gone from zero experience to earning clients, freelance gigs, or salaried roles by mastering Full-stack AI Digital Marketing, Prompt Engineering and Web Development from anywhere to make your first 1M+ PKR in 6 months as a solo full-stack digital marketing expert. </p>
