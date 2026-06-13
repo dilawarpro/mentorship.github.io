@@ -3550,118 +3550,7 @@ document.addEventListener('DOMContentLoaded', function() {
             50%       { box-shadow: 0 4px 28px rgba(245,158,11,0.7); }
         }
 
-        /* ═══════════════════════════════════════════
-           INCOME COUNTER STRIP
-        ═══════════════════════════════════════════ */
-        .income-strip {
-            max-width: 1200px;
-            margin: 44px auto 0;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
 
-        .income-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 26px 20px;
-            text-align: center;
-            border: 1.5px solid #e0e7ff;
-            box-shadow: 0 4px 18px rgba(99,102,241,0.07);
-            transition: all 0.35s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-        }
-
-        .income-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: var(--ic-gradient);
-        }
-
-        .income-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--ic-gradient);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .income-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(99,102,241,0.13);
-            border-color: transparent;
-        }
-
-        .income-card:hover::after {
-            opacity: 0.04;
-        }
-
-        .income-card > * { position: relative; z-index: 1; }
-
-        .ic-emoji {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 10px;
-            animation: emojiWiggle 3s ease-in-out infinite;
-        }
-
-        @keyframes emojiWiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25%       { transform: rotate(-8deg); }
-            75%       { transform: rotate(8deg); }
-        }
-
-        .ic-amount {
-            font-size: 1.55rem;
-            font-weight: 900;
-            color: #1e1b4b;
-            line-height: 1;
-            margin-bottom: 4px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .ic-amount .pkr-label {
-            font-size: 0.78rem;
-            font-weight: 800;
-            background: var(--ic-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .ic-label {
-            font-size: 0.73rem;
-            color: #9ca3af;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .ic-sub {
-            margin-top: 8px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: #15803d;
-            background: #f0fdf4;
-            padding: 3px 10px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        /* Animated counter */
-        .count-up {
-            display: inline;
-        }
-
-        /* ═══════════════════════════════════════════
-           TESTIMONIAL / SOCIAL PROOF STRIP
-        ═══════════════════════════════════════════ */
         .proof-strip {
             max-width: 1200px;
             margin: 32px auto 0;
@@ -4143,12 +4032,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <h2 class="outcomes-title">
-            <span class="title-pre">After Completing the</span>
-            <span class="grad-text">Earnifiers Mentorship Program</span><br>
-            You Will Become:
-        </h2>
-
         <p class="outcomes-subtitle">
             Stop trading time for money. Start building <strong>real digital skills</strong> that
             generate <strong>PKR 1,00,000+/month</strong> — right here in Pakistan.
@@ -4204,12 +4087,11 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         FILTER TABS
-    ══════════════════════════════════ -->
-    <!-- ══════════════════════════════════
-         CARDS GRID
-    ══════════════════════════════════ -->
+  <h2 class="outcomes-title">
+            <span class="title-pre">After Completing the</span>
+            <span class="grad-text">Earnifiers Mentorship Program</span><br>
+            You Will Become:
+        </h2>
     <div class="outcomes-grid">
 
         <!-- ① Senior Developer — FEATURED -->
@@ -4452,7 +4334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="outcome-card c-ai reveal delay-5" data-category="tech future">
             <div class="card-top-bar"></div>
             <div class="card-body">
-                <div class="card-watermark">07+</div>
+                <div class="card-watermark">07</div>
                 <div class="card-head">
                     <div class="card-icon">
                         <i class="bi bi-robot"></i>
@@ -4487,55 +4369,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </div><!-- /grid -->
 
-    <!-- ══════════════════════════════════
-         INCOME COUNTER STRIP
-    ══════════════════════════════════ -->
-    <div class="income-strip">
-
-        <div class="income-card reveal delay-1"
-             style="--ic-gradient: linear-gradient(135deg,#6366f1,#8b5cf6);">
-            <span class="ic-emoji">💻</span>
-            <div class="ic-amount">
-                <span class="pkr-label" style="--ic-gradient:linear-gradient(135deg,#6366f1,#8b5cf6);">PKR </span>
-                <span class="count-up" data-target="160000">0</span>
-            </div>
-            <div class="ic-label">Developer Monthly<br>Potential</div>
-            <span class="ic-sub">4 websites/month</span>
-        </div>
-
-        <div class="income-card reveal delay-2"
-             style="--ic-gradient: linear-gradient(135deg,#10b981,#059669);">
-            <span class="ic-emoji">🔍</span>
-            <div class="ic-amount">
-                <span class="pkr-label" style="--ic-gradient:linear-gradient(135deg,#10b981,#059669);">PKR </span>
-                <span class="count-up" data-target="50000">0</span>+
-            </div>
-            <div class="ic-label">SEO Consultant<br>Per Month</div>
-            <span class="ic-sub">per client retainer</span>
-        </div>
-
-        <div class="income-card reveal delay-3"
-             style="--ic-gradient: linear-gradient(135deg,#f97316,#ef4444);">
-            <span class="ic-emoji">🛒</span>
-            <div class="ic-amount">
-                <span class="pkr-label" style="--ic-gradient:linear-gradient(135deg,#f97316,#ef4444);">PKR </span>
-                <span class="count-up" data-target="103000">0</span>+
-            </div>
-            <div class="ic-label">Total Saved on<br>Platform Fees</div>
-            <span class="ic-sub">per year</span>
-        </div>
-
-        <div class="income-card reveal delay-4"
-             style="--ic-gradient: linear-gradient(135deg,#8b5cf6,#ec4899);">
-            <span class="ic-emoji">🚀</span>
-            <div class="ic-amount">
-                <span class="count-up" data-target="7">0</span>+
-            </div>
-            <div class="ic-label">Income Streams<br>Unlocked</div>
-            <span class="ic-sub">one program · all skills</span>
-        </div>
-
-    </div>
+   
 
     <!-- ══════════════════════════════════
          SOCIAL PROOF STRIP
@@ -4610,7 +4444,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <h3 class="cta-title">
                     One Program.<br>
-                    <span class="cta-accent">Seven High-Income Skills.</span><br>
+                    <span class="cta-accent">Seven+ High-Income Skills.</span><br>
                     Infinite Possibilities.
                 </h3>
                 <p class="cta-desc">
