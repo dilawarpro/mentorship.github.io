@@ -1744,7 +1744,7 @@ background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
         ═══════════════════════════════════════════ */
         .outcomes-section {
             padding: 20px 20px 20px;
-            /* background: linear-gradient(160deg, #f0f4ff 0%, #faf5ff 45%, #fff5f8 100%); */
+           background: white !important;
             position: relative;
             overflow: hidden;
         }
