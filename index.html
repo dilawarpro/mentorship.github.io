@@ -4862,16 +4862,20 @@
 ══════════════════════════════════ -->
             <script>
                 /* ── 1. Scroll Reveal ── */
-                const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(e => {
-                        if (e.isIntersecting) {
-                            e.target.classList.add('visible');
-                            revealObserver.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.12 });
-                revealEls.forEach(el => revealObserver.observe(el));
+              /* ── 1. Scroll Reveal (Fixed for Mobile) ── */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            revealObserver.unobserve(e.target);
+        }
+    });
+}, { 
+    // Use a very low threshold so tall sections trigger immediately on mobile
+    threshold: 0.01 
+}); 
+revealEls.forEach(el => revealObserver.observe(el));
             
                 /* ── 2. Count-Up Animation ── */
                 function animateCount(el) {
