@@ -105,7 +105,14 @@
 }
   .choice{
     margin: -10px auto 10px auto;
-    background-image: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    background-image: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
     color: white;
     padding: 5px;
     border-radius: 100%;
@@ -211,7 +218,14 @@
 }
 .toastify {
   position: fixed;
- background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+ background: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
   bottom: 20px;
   left: 5%;
   right: 5%;
@@ -392,7 +406,14 @@ audio{
 
 /* Main Styles */
 :root {
-  --primary-gradient: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+  --primary-gradient: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
   --primary-color-light: rgb(0, 221, 255);
   --primary-color-dark: rgb(255, 0, 212);
   --text-color: #333;
@@ -945,7 +966,14 @@ audio{
   color: white; /* Ensures text is visible on the gradient background */
   /* text-transform: uppercase; */
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for a more modern look */
- background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+ background: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
   transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
   cursor: pointer; /* Ensures the button looks clickable */
 }
@@ -981,7 +1009,14 @@ audio{
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 6px;
-background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+background: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1003,7 +1038,14 @@ background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
     gap: 26px;
     padding: 28px 32px;
     border-radius: 20px;
-    background-image: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    background-image: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
     background-size: 200% 200%;
     animation: cardGradientShift 6s ease infinite;
     color: #fff;
@@ -1503,7 +1545,14 @@ background: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
     font-size: 0.95rem;
     font-weight: 700;
     color: #fff;
-    background-image: linear-gradient(90deg, #007bff, #6f42c1, #e83e8c, #ff3b30, #ff8c00);
+    background-image: linear-gradient(
+    90deg,
+    #066BF3 0%,
+    #312DDE 35%,
+    #8D1CDA 65%,
+    #DD089F 85%,
+    #F20B8A 100%
+);
     background-size: 200% 200%;
     animation: ctaGradient 4s ease infinite;
     border: none;
