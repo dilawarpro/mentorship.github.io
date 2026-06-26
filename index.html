@@ -2937,14 +2937,350 @@
                         calculate();
                     }());
                 </script>
-                <!-- ===================== END HERO SCRIPT ======================= -->
-                <h2 class="champion-section-title"> Trusted by <span class="grad-text">5,000+ Students</span> to Build <span class="underline-accent">Real Careers</span> in Tech Industry.
-          </h2>
-                <p class="mentor-sub">Join the 5k+ learners worldwide who have gone from zero experience to earning clients, freelance gigs, or salaried roles by mastering Full-stack AI Digital Marketing, Prompt Engineering and Web Development from anywhere to make your first
-                    1M+ PKR in 6 months as a solo full-stack digital marketing expert. </p>
-                <div class="container-fluid p-0 m-2">
-                    <img src="banner.jpg" class="img-fluid w-100" alt="Website Banner">
+               <!-- ================= READINESS QUIZ ================= -->
+    <section class="section-pad" id="quiz">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7 text-center mb-5">
+            <span class="eyebrow reveal"><span class="dot"></span>Quick Assessment</span>
+            <h2 class="section-title reveal reveal-delay-1 mb-3">Not Sure Where to Start? Let's Find Out.</h2>
+            <p class="section-sub reveal reveal-delay-2 mx-auto">Answer three quick questions and we'll recommend the
+              perfect starting path for your digital career.</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="quiz-card reveal reveal-delay-2" id="quizCard">
+              <div class="quiz-progress-track">
+                <div class="quiz-progress-fill" id="quizProgress"></div>
+              </div>
+
+              <!-- Step 1 -->
+              <div class="quiz-step active" data-step="1">
+                <div class="quiz-question">What's your current skill level?</div>
+                <div class="quiz-sub">Be honest — there's no wrong answer.</div>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-q="1" data-v="beginner"><i class="bi bi-emoji-neutral"></i>Complete
+                    beginner</button>
+                  <button class="quiz-option" data-q="1" data-v="basic"><i class="bi bi-lightbulb"></i>I know the
+                    basics</button>
+                  <button class="quiz-option" data-q="1" data-v="intermediate"><i class="bi bi-tools"></i>Intermediate
+                    level</button>
+                  <button class="quiz-option" data-q="1" data-v="advanced"><i class="bi bi-rocket-takeoff"></i>Advanced,
+                    need refinement</button>
                 </div>
+                <div class="quiz-nav"><span class="quiz-back-link hidden-link"><i class="bi bi-arrow-left"></i>
+                    Back</span><span></span></div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="quiz-step" data-step="2">
+                <div class="quiz-question">What's your primary goal?</div>
+                <div class="quiz-sub">Pick the one that excites you most.</div>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-q="2" data-v="freelance"><i class="bi bi-currency-dollar"></i>Start
+                    freelancing</button>
+                  <button class="quiz-option" data-q="2" data-v="job"><i class="bi bi-briefcase"></i>Get a good
+                    job</button>
+                  <button class="quiz-option" data-q="2" data-v="business"><i class="bi bi-building"></i>Start my own
+                    agency</button>
+                  <button class="quiz-option" data-q="2" data-v="passive"><i class="bi bi-graph-up"></i>Build passive
+                    income</button>
+                </div>
+                <div class="quiz-nav"><span class="quiz-back-link" data-back><i class="bi bi-arrow-left"></i>
+                    Back</span><span></span></div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="quiz-step" data-step="3">
+                <div class="quiz-question">How soon do you want to start?</div>
+                <div class="quiz-sub">This helps us find the right batch for you.</div>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-q="3" data-v="asap"><i
+                      class="bi bi-lightning"></i>Immediately</button>
+                  <button class="quiz-option" data-q="3" data-v="week"><i class="bi bi-calendar3"></i>Within a
+                    week</button>
+                  <button class="quiz-option" data-q="3" data-v="month"><i class="bi bi-calendar-range"></i>This
+                    month</button>
+                </div>
+                <div class="quiz-nav"><span class="quiz-back-link" data-back><i class="bi bi-arrow-left"></i>
+                    Back</span><span></span></div>
+              </div>
+
+              <!-- Result -->
+              <div class="quiz-step" data-step="4">
+                <div class="quiz-result">
+                  <div class="result-icon"><i class="bi bi-check2"></i></div>
+                  <h3 id="quizResultTitle">You're a great fit for our program!</h3>
+                  <p id="quizResultText">Based on your answers, we recommend starting with our comprehensive mentorship
+                    program. Let's connect and plan your learning journey.</p>
+                  <a href="https://wa.me/923314041010?text=Hi%20I%20took%20the%20quiz%20and%20want%20to%20enroll"
+                    target="_blank" class="btn-pill btn-coral-pill" id="quizCta">
+                    Enroll Now — Let's Talk
+                    <span class="icon-circle" style="background:rgba(255,255,255,.25);"><i
+                        class="bi bi-arrow-right"></i></span>
+                  </a>
+                  <div class="mt-3"><span class="quiz-back-link" id="quizRestart"
+                      style="justify-content:center;display:inline-flex;"><i class="bi bi-arrow-counterclockwise"></i>
+                      Start over</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <style>
+         /* ---------- Readiness Quiz ---------- */
+    .quiz-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(20, 30, 40, .1);
+      border: 1px solid #edf0f2;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width:768px) {
+      .quiz-card {
+        padding: 24px;
+      }
+    }
+
+    .quiz-progress-track {
+      height: 6px;
+      background: var(--bg-soft);
+      border-radius: 50px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--grad-coral);
+      border-radius: 50px;
+      width: 33%;
+      transition: width .5s var(--ease);
+    }
+
+    .quiz-step {
+      display: none;
+    }
+
+    .quiz-step.active {
+      display: block;
+      animation: quizFade .4s var(--ease);
+    }
+
+    @keyframes quizFade {
+      from {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .quiz-question {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .quiz-sub {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 22px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width:480px) {
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-option {
+      border: 1.5px solid #e7eaee;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      background: #fff;
+      text-align: left;
+      transition: .2s;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--teal);
+      background: rgba(108, 58, 237, .05);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--teal);
+      background: rgba(108, 58, 237, .08);
+      box-shadow: 0 0 0 3px rgba(108, 58, 237, .12);
+    }
+
+    .quiz-option .bi {
+      font-size: 1.3rem;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .quiz-result {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .quiz-result .result-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--grad-coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 0 auto 18px;
+    }
+
+    .quiz-result h3 {
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .quiz-result p {
+      color: var(--muted);
+      max-width: 380px;
+      margin: 0 auto 22px;
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .quiz-back-link {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quiz-back-link:hover {
+      color: var(--ink);
+    }
+
+    .quiz-back-link.hidden-link {
+      visibility: hidden;
+    }
+
+    </style>
+    <script>
+         // ---- Readiness Quiz state machine ----
+    (function () {
+      const card = document.getElementById('quizCard');
+      if (!card) return;
+      const steps = [...card.querySelectorAll('.quiz-step')];
+      const progress = document.getElementById('quizProgress');
+      const answers = {};
+      let stepIndex = 0;
+
+      function goToStep(i) {
+        steps[stepIndex].classList.remove('active');
+        stepIndex = i;
+        steps[stepIndex].classList.add('active');
+        progress.style.width = Math.min(100, ((stepIndex) / 3) * 100 + 8) + '%';
+      }
+
+      card.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const q = opt.dataset.q;
+          const v = opt.dataset.v;
+          const group = card.querySelectorAll(`.quiz-option[data-q="${q}"]`);
+          group.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          answers[q] = v;
+          setTimeout(() => {
+            if (stepIndex < 2) {
+              goToStep(stepIndex + 1);
+            } else {
+              renderQuizResult();
+              goToStep(3);
+            }
+          }, 220);
+        });
+      });
+
+      card.querySelectorAll('[data-back]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (stepIndex > 0) goToStep(stepIndex - 1);
+        });
+      });
+
+      document.getElementById('quizRestart').addEventListener('click', () => {
+        card.querySelectorAll('.quiz-option.selected').forEach(o => o.classList.remove('selected'));
+        goToStep(0);
+      });
+
+      function renderQuizResult() {
+        const title = document.getElementById('quizResultTitle');
+        const text = document.getElementById('quizResultText');
+        const cta = document.getElementById('quizCta');
+        const goal = answers['2'];
+        const level = answers['1'];
+
+        const copy = {
+          freelance: {
+            t: "You're ready to start freelancing!",
+            d: "Our program covers Upwork, Fiverr & client acquisition strategies. " + (level === 'beginner' ? "We'll start from scratch — no worries!" : "Your existing skills will accelerate your progress.") + " Most students land their first client within 30 days."
+          },
+          job: {
+            t: "A high-paying digital job is within reach!",
+            d: "Companies are hiring digital marketers and web developers like crazy. Our program gives you the portfolio and skills that employers want — not just theory."
+          },
+          business: {
+            t: "Building your agency — great ambition!",
+            d: "We've helped 25+ students launch their own agencies. You'll learn client acquisition, service delivery, and how to scale — the complete playbook."
+          },
+          passive: {
+            t: "Passive income? Let's build your system.",
+            d: "From YouTube automation to affiliate marketing, our program covers multiple passive income streams. " + (level === 'advanced' ? "Your advanced skills will help you move fast." : "We'll guide you step-by-step to build sustainable income.")
+          }
+        };
+        const result = copy[goal] || copy.freelance;
+        title.textContent = result.t;
+        text.textContent = result.d;
+
+        const urgency = answers['3'];
+        const ctaText = urgency === 'asap' ? "I'm Ready — Enroll Now" : "Let's Start — Enroll Now";
+        cta.innerHTML = ctaText + ' <span class="icon-circle" style="background:rgba(255,255,255,.25);"><i class="bi bi-arrow-right"></i></span>';
+      }
+    })();
+
+    </script>
                 <!-- Mentor Intro Pill -->
                 <center>
                     <h2 class="champion-section-title"><i class="bi bi-person-circle"></i> Meet <span class="grad-text">Your Instructor</span></h2>
