@@ -2638,7 +2638,7 @@
                     /* Mobile (768px and below) */
                     @media (max-width: 767px) {
                         .earnifires-hero .hero-section {
-                            padding: 0px 0 30px 0;
+                            padding: 0px 0px 0px 0px;
                         }
                 
                         .earnifires-hero .hero-title {
@@ -3032,6 +3032,20 @@
       </div>
     </section>
     <style>
+        :root {
+      --teal: #6C3AED;
+      --teal-light: #A78BFA;
+      --teal-dark: #5B21B6;
+      --coral: #F20B8A;
+      --coral-dark: #DD089F;
+      --ink: #0E141B;
+      --muted: #6B7280;
+      --bg-soft: #F6F5FF;
+      --grad: linear-gradient(135deg, #066BF3 0%, #8D1CDA 50%, #F20B8A 100%);
+      --grad-coral: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
+      --ease: cubic-bezier(.16, .84, .32, 1);
+    }
+
          /* ---------- Readiness Quiz ---------- */
     .quiz-card {
       background: #fff;
@@ -3041,6 +3055,7 @@
       padding: 36px;
       position: relative;
       overflow: hidden;
+      margin-bottom: 20px;
     }
 
     @media (max-width:768px) {
