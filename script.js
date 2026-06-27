@@ -516,7 +516,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(() => {
         if (!state.chatOpened) openChat();
-    }, 8000);
+    });
 
     function toggleChat() {
         chatbotContainer.classList.contains('active') ? closeChat() : openChat();
