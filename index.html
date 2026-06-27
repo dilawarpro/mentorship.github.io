@@ -6352,98 +6352,92 @@ revealEls.forEach(el => revealObserver.observe(el));
     })();
   </script>
 
-<!-- ====================================================
-     SEO MODALS
-==================================================== -->
- 
-<!-- On-Page -->
-<div class="seo-modal-overlay" id="modal-onpage">
-  <div class="seo-modal-box">
-    <div class="seo-modal-head">
-      <div class="seo-modal-head-left">
-        <div class="seo-modal-icon">📄</div>
-        <div class="seo-modal-head-text">
-          <h3>On-Page SEO</h3>
-          <p>Topics covered in this module</p>
+  <!-- ===== SEO MODALS ===== -->
+
+  <!-- On-Page SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-onpage" onclick="closeSeoModal(event, 'onpage')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">🔵</div>
+          <div>
+            <h3>On-Page SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
         </div>
+        <div class="seo-modal-close" onclick="closeModal('onpage')">✕</div>
       </div>
-      <div class="seo-modal-close" onclick="seoClose('onpage'); event.stopPropagation();">✕</div>
-    </div>
-    <div class="seo-modal-body">
-      <div class="seo-modal-label">What you'll learn</div>
-      <div class="seo-topic-grid">
-        <div class="seo-topic-item"><span class="seo-topic-num">1</span>Content Quality</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">2</span>Image Optimization</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">3</span>Keyword Research</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">4</span>HTML Tags</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">5</span>Responsive Design</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">6</span>Internal & External Links</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">7</span>Meta Data</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">8</span>URL Structure</div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Content Quality</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Image Optimization</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Keyword Research</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>HTML Tags</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Responsive Design</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Internal & External Links</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Meta Data</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>URL Structure</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
- 
-<!-- Off-Page -->
-<div class="seo-modal-overlay" id="modal-offpage">
-  <div class="seo-modal-box">
-    <div class="seo-modal-head">
-      <div class="seo-modal-head-left">
-        <div class="seo-modal-icon">🔗</div>
-        <div class="seo-modal-head-text">
-          <h3>Off-Page SEO</h3>
-          <p>Topics covered in this module</p>
+
+  <!-- Off-Page SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-offpage" onclick="closeSeoModal(event, 'offpage')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">🟣</div>
+          <div>
+            <h3>Off-Page SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
         </div>
+        <div class="seo-modal-close" onclick="closeModal('offpage')">✕</div>
       </div>
-      <div class="seo-modal-close" onclick="seoClose('offpage'); event.stopPropagation();">✕</div>
-    </div>
-    <div class="seo-modal-body">
-      <div class="seo-modal-label">What you'll learn</div>
-      <div class="seo-topic-grid">
-        <div class="seo-topic-item"><span class="seo-topic-num">1</span>Backlinks</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">2</span>Guest Posting</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">3</span>Social Promotions</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">4</span>Business Listings</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">5</span>Podcasts</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">6</span>Reviews & Ratings</div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Backlinks</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Guest Posting</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Promotions</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Business Listings</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Podcasts</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Reviews & Ratings</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
- 
-<!-- Technical -->
-<div class="seo-modal-overlay" id="modal-technical">
-  <div class="seo-modal-box">
-    <div class="seo-modal-head">
-      <div class="seo-modal-head-left">
-        <div class="seo-modal-icon">⚙️</div>
-        <div class="seo-modal-head-text">
-          <h3>Technical SEO</h3>
-          <p>Topics covered in this module</p>
+
+  <!-- Technical SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-technical" onclick="closeSeoModal(event, 'technical')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">⚙️</div>
+          <div>
+            <h3>Technical SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
         </div>
+        <div class="seo-modal-close" onclick="closeModal('technical')">✕</div>
       </div>
-      <div class="seo-modal-close" onclick="seoClose('technical'); event.stopPropagation();">✕</div>
-    </div>
-    <div class="seo-modal-body">
-      <div class="seo-modal-label">What you'll learn</div>
-      <div class="seo-topic-grid">
-        <div class="seo-topic-item"><span class="seo-topic-num">1</span>Website Speed</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">2</span>404 Pages</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">3</span>Broken Links (Fix)</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">4</span>Google Search Console</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">5</span>Google Analytics</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">6</span>Structured Data</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">7</span>Canonicalization</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">8</span>XML Sitemap</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">9</span>SSL & HTTPS</div>
-        <div class="seo-topic-item"><span class="seo-topic-num">10</span>Social Sharing</div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Website Speed</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>404 Pages</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Broken Links (Fix)</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Search Console</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Analytics</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Structured Data</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Canonicalization</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>XML Sitemap</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>SSL & HTTPS</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Sharing</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
- 
- 
+
 <!-- ====================================================
      SCRIPTS
 ==================================================== -->
@@ -6510,7 +6504,6 @@ revealEls.forEach(el => revealObserver.observe(el));
     if (e.key === 'Escape') seoClose();
   });
 </script>
- 
         <!-- Project -->
         <div class="container mt-6">
             <div class="row justify-content-center">
