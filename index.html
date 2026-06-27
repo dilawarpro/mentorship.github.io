@@ -7779,6 +7779,70 @@ revealEls.forEach(el => revealObserver.observe(el));
             </div>
         </div>
 
+        <style>
+          #specialMentorship.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); /* Dim background */
+    justify-content: center;
+    align-items: center;
+}
+
+#specialMentorship .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+        </style>
+        <script>
+          function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(id) {
+    // 1. Try closing by direct ID (Special Mentorship)
+    const el = document.getElementById(id);
+    if (el) {
+        el.style.display = 'none';
+        el.classList.remove('open');
+    }
+
+    // 2. Try closing with 'modal-' prefix (SEO Modals)
+    const seoEl = document.getElementById('modal-' + id);
+    if (seoEl) {
+        seoEl.classList.remove('open');
+    }
+
+    // Restore scrolling if no other modals are open
+    const openModals = document.querySelectorAll('.modal[style*="flex"], .modal[style*="block"], .seo-modal-overlay.open');
+    if (openModals.length === 0) {
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal when clicking outside of the content
+window.onclick = function(event) {
+    const specialModal = document.getElementById('specialMentorship');
+    if (event.target == specialModal) {
+        closeModal('specialMentorship');
+    }
+};
+        </script>
+
         <!-- Important Note -->
         <div style="text-align:center; margin:20px 5px;">
             <small class="text-muted">
