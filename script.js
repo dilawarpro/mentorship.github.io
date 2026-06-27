@@ -514,9 +514,9 @@ document.addEventListener('DOMContentLoaded', function() {
     sendBtn.addEventListener('click', handleInput);
     userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleInput(); });
 
-    setTimeout(() => {
-        if (!state.chatOpened) openChat();
-    });
+    // setTimeout(() => {
+    //     if (!state.chatOpened) openChat();
+    // }, 8000);
 
     function toggleChat() {
         chatbotContainer.classList.contains('active') ? closeChat() : openChat();
