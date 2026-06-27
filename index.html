@@ -78,6 +78,37 @@
           gtag('config', 'G-019FF0PCS3');
     </script>
     <style>
+        
+        /* 1. Reset the entire layout to the edges */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden;
+}
+
+/* 2. Set the main container to 100% width minus 10px (5px each side) */
+.container.mt-0 {
+    width: auto !important;
+    max-width: calc(100% - 10px) !important; 
+    margin: 0 5px !important; /* This creates the exact 5px margin */
+    padding: 0 !important;
+}
+
+/* 3. Force the internal grid to STOP centering and fill the width */
+.container.mt-0 .row.justify-content-center {
+    display: block !important; /* Removes flexbox centering gaps */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 4. Force the column to be 100% wide instead of restricted to 8 columns */
+.container.mt-0 .col-md-8 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding: 0 !important;
+}
         .fa-3x {
             font-size: 3em;
             color: #0d6efd;
@@ -6293,8 +6324,6 @@ revealEls.forEach(el => revealObserver.observe(el));
             </div>
           </div>
         </div>
-
-      </div>
       <!-- End Timeline -->
 
   
