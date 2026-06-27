@@ -6444,8 +6444,7 @@ revealEls.forEach(el => revealObserver.observe(el));
       document.body.style.overflow = 'hidden';
     }
     function closeModal(id) {
-      document.getElementById('modal-' + id).classList.remove('open');
-      document.body.style.overflow = '';
+     window.closeModal = (id) => { document.getElementById('modal-' + id).classList.remove('open'); document.body.style.overflow = ''; };
     }
     function closeSeoModal(e, id) {
       if (e.target === document.getElementById('modal-' + id)) closeModal(id);
