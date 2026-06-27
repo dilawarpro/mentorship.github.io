@@ -3356,25 +3356,137 @@ html, body {
 
     </script>
                 <!-- Mentor Intro Pill -->
-                <center>
-                    <h2 class="champion-section-title"><i class="bi bi-person-circle"></i> Meet <span class="grad-text">Your Instructor</span></h2>
-                    <a href="https://dilawarpro.com">
-                        <div class="mentor-intro">
-                            <div class="mentor-avatar">DP</div>
-                            <div class="mentor-info text-start">
-                                <div class="m-name">Dilawar Pro <i class="bi bi-patch-check-fill"></i></div>
-                                <div class="m-title">Senior Digital Marketing Expert</div>
-                            </div>
-                            <div class="verified-badge">
-                                <i class="bi bi-patch-check-fill"></i> Verified Mentor
-                            </div>
-                            <div class="verified-badge">
-                                <i class="bi bi-award"></i> Branding Expert
-                            </div>
-                        </div>
-            </div>
-            </a>
-            </center>
+              <style>
+.mc-wrap { max-width: 560px; margin: 1.5rem auto; }
+.mc-label { font-size: 11px; font-weight: 600; color: #999; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .75rem; display:flex; align-items:center; gap:5px; }
+.mc {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.mc::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #066BF3, #312DDE, #8D1CDA, #DD089F, #F20B8A);
+}
+.mc-header { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem; }
+.mc-avatar-wrap { position: relative; flex-shrink: 0; }
+.mc-avatar-ring {
+  width: 86px; height: 86px; border-radius: 50%; padding: 3px;
+  background: linear-gradient(180deg, #066BF3 0%, #312DDE 25%, #8D1CDA 55%, #DD089F 80%, #F20B8A 100%);
+}
+.mc-avatar {
+  width: 100%; height: 100%; border-radius: 50%;
+  object-fit: cover; display: block; border: 2.5px solid #fff;
+}
+.mc-verified-dot {
+  position: absolute; bottom: 3px; right: 3px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, #312DDE, #DD089F);
+  border: 2.5px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 11px;
+}
+.mc-name { font-size: 19px; font-weight: 700; color: #111; margin: 0 0 3px; display: flex; align-items: center; gap: 6px; }
+.mc-check {
+  background: linear-gradient(135deg, #312DDE, #F20B8A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 17px;
+}
+.mc-title { font-size: 13px; color: #666; margin: 0 0 10px; }
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.b1 { background: #ede8fd; color: #312DDE; border: 1px solid #c4b8f9; }
+.b2 { background: #fce8f5; color: #9c0d6b; border: 1px solid #f4b0d8; }
+.b3 { background: #e8effe; color: #0555c4; border: 1px solid #b3c9fc; }
+.mc-divider { border: none; border-top: 1px solid rgba(0,0,0,0.08); margin: 1.1rem 0; }
+.mc-bio { font-size: 14px; color: #555; line-height: 1.7; margin: 0 0 1.1rem; }
+.mc-bio strong { color: #111; font-weight: 600; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.25rem; }
+.stat-box { background: #f8f8f8; border: 1px solid rgba(0,0,0,0.07); border-radius: 10px; padding: .65rem .5rem; text-align: center; }
+.stat-num {
+  font-size: 19px; font-weight: 700; display: block;
+  background: linear-gradient(135deg, #066BF3, #8D1CDA, #F20B8A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stat-label { font-size: 11px; color: #999; margin-top: 2px; display: block; }
+.cta-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: .75rem 1.25rem;
+  background: linear-gradient(90deg, #066BF3, #312DDE, #8D1CDA, #DD089F, #F20B8A);
+  color: #fff; border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  text-decoration: none; transition: opacity .15s;
+}
+.cta-btn:hover { opacity: .85; color: #fff; }
+</style>
+
+<center>
+  <h2 class="champion-section-title">
+    <i class="bi bi-person-circle"></i> Meet <span class="grad-text">Your Instructor</span>
+  </h2>
+  <div class="mc-wrap">
+    <div class="mc-label">
+      <i class="bi bi-star-fill" style="font-size:10px;"></i> Meet your instructor
+    </div>
+    <div class="mc">
+      <div class="mc-header">
+        <div class="mc-avatar-wrap">
+          <div class="mc-avatar-ring">
+            <img class="mc-avatar"
+              src="https://media-mct1-2.cdn.whatsapp.net/v/t61.24694-24/662284630_1444532496974071_904457182040513166_n.jpg?ccb=11-4&oh=01_Q5Aa4wGnEk3_wC0BfANYJQmiVzeK2JyJwEteUZCaXzWrA46L2A&oe=6A4CE379&_nc_sid=5e03e0&_nc_cat=101"
+              alt="Dilawar Pro"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#066BF3,#F20B8A);color:#fff;font-size:26px;font-weight:700;\'>DP</div>'"
+            />
+          </div>
+          <div class="mc-verified-dot"><i class="bi bi-check" style="font-size:11px;"></i></div>
+        </div>
+        <div style="flex:1;min-width:0;text-align:left;">
+          <p class="mc-name">
+            Dilawar Pro
+            <i class="bi bi-patch-check-fill mc-check"></i>
+          </p>
+          <p class="mc-title">Senior Digital Marketing Expert &amp; Web Developer</p>
+          <div class="badge-row">
+            <span class="badge b1"><i class="bi bi-patch-check"></i> Verified Mentor</span>
+            <span class="badge b2"><i class="bi bi-award"></i> Branding Expert</span>
+            <span class="badge b3"><i class="bi bi-laptop"></i> AI &amp; Web Dev</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="mc-divider">
+
+      <p class="mc-bio">
+        Dilawar is a Pakistan-based digital entrepreneur with <strong>8+ years</strong> of hands-on experience in AI-driven marketing, web development, and brand building. Founder of <strong>Brandliox</strong> and the Earnifiers mentorship program — he's helped hundreds of students land clients, build real digital skills, and grow income online. What he teaches, he's already done.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-num">8+</span>
+          <span class="stat-label">Years experience</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">5000+</span>
+          <span class="stat-label">Students trained</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">1200+</span>
+          <span class="stat-label">Client projects</span>
+        </div>
+      </div>
+
+      <a href="https://dilawarpro.com" class="cta-btn" target="_blank" rel="noopener">
+        <i class="bi bi-globe2"></i>
+        Visit Portfolio
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</center>
             <!-- real outcomes list -->
 
             <style>
