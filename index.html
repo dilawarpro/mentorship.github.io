@@ -6268,7 +6268,7 @@ revealEls.forEach(el => revealObserver.observe(el));
       </div>
       <!-- End Timeline -->
 
-    </div>
+  
   </section>
 
   <script>
@@ -7504,30 +7504,153 @@ revealEls.forEach(el => revealObserver.observe(el));
                 </div>
             </div>
         </div>
-        <!-- Registration Process -->
-        <div class="container mt-6" id="Register">
-            <div class="card course-card">
-                <h2>
-            <!-- <i class="fa-solid fa-file-pen" style="color: #0d6efd; font-size: 30px;"></i> -->
-            <img src="icons/registration-process.webp" alt="reg-process" width="55px">
-            <span style="margin-left: -10px;">Registration Process</span>
-          </h2>
-                <div class="course">
-                    <!-- <span class="checkmark"><i class="fas fa-check"></i></span>-->
-                    <p>We have a simple and easy 3-step registration process. Please follow the steps below to get registered:</p>
-                    <b class="modules">Step 01:</b> Submit your complete details, including your full name, father's name, email address, city, and WhatsApp number.
-                </div>
-                <div class="course">
-                    <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                    <b class="modules">Step 02:</b> Join without risk! Don't pay full fee in advance. Just pay your registration and start taking classes. If you're not satisfied in the first 7 days, we'll refund your all money.
-                </div>
-                <div class="course">
-                    <!-- <span class="checkmark"><i class="fas fa-check"></i></span> -->
-                    <b class="modules">Step 03:</b> If you're satisfied with the mentorship program, you can pay the remaining fee in installments or one-time only.
-                </div>
-                <!-- <p><strong>Important Note:</strong> You can get a full easy and guaranteed refund within 7 days if not interested.</p> -->
-            </div>
+       <!-- ===== REGISTRATION PROCESS SECTION =====
+     Drop this anywhere in your page.
+     Requires: the yl-* CSS & scroll JS already in your codebase.
+     No new CSS or JS needed.
+============================================ -->
+
+<section class="yl-section" id="Register" style="background: #f8f9ff; padding-top: 80px; padding-bottom: 100px;">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="yl-header">
+      <div class="yl-eyebrow">
+        <span class="yl-eyebrow-dot"></span>
+        How To Join
+        <span class="yl-eyebrow-dot"></span>
+      </div>
+      <h2 class="yl-heading">
+        Registration
+        <span class="yl-gradient-text">Process</span>
+      </h2>
+      <p class="yl-subheading">
+        Simple, risk-free, and beginner-friendly — just 3 steps to get started and start earning.
+      </p>
+    </div>
+
+    <!-- Timeline (reuses same wrapper + scroll JS via shared ylProgress2) -->
+    <div class="yl-timeline-wrapper" id="regWrapper">
+
+      <!-- Vertical line — separate progress bar ID so it animates independently -->
+      <div class="yl-line-track">
+        <div class="yl-line-progress" id="ylProgress2"></div>
+      </div>
+
+      <!-- Step 01 -->
+      <div class="yl-item">
+        <div class="yl-node">
+          <div class="yl-node-ring"></div>
+          <div class="yl-node-core">01</div>
         </div>
+        <div class="yl-card">
+          <div class="yl-icon-box">📋</div>
+          <div class="yl-card-body">
+            <span class="yl-tag">Submit Details</span>
+            <h5 class="yl-card-title">Fill In Your Information</h5>
+            <p class="yl-card-desc">
+              Submit your complete details to get registered — including your
+              <strong>full name, father's name, email address, city,</strong> and
+              <strong>WhatsApp number</strong>. Takes less than a minute.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="yl-item">
+        <div class="yl-node">
+          <div class="yl-node-ring"></div>
+          <div class="yl-node-core">02</div>
+        </div>
+        <div class="yl-card">
+          <div class="yl-icon-box">🛡️</div>
+          <div class="yl-card-body">
+            <span class="yl-tag">Risk-Free Start</span>
+            <h5 class="yl-card-title">Pay Registration & Start Classes</h5>
+            <p class="yl-card-desc">
+              Don't pay the full fee upfront. Just pay your <strong>registration amount</strong> and
+              start attending classes immediately. Not satisfied in the first 7 days?
+              <strong>100% full refund — guaranteed, no questions asked.</strong>
+            </p>
+            <div class="yl-saving-pill">🔄 7-day money-back guarantee</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="yl-item">
+        <div class="yl-node">
+          <div class="yl-node-ring"></div>
+          <div class="yl-node-core">03</div>
+        </div>
+        <div class="yl-card">
+          <div class="yl-icon-box">✅</div>
+          <div class="yl-card-body">
+            <span class="yl-tag">Complete Enrollment</span>
+            <h5 class="yl-card-title">Pay Remaining Fee — Your Way</h5>
+            <p class="yl-card-desc">
+              Happy with the program? Pay the remaining fee however suits you —
+              in <strong>easy installments</strong> or as a <strong>one-time payment</strong>.
+              Your learning continues without any interruption.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- End Timeline -->
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     SCROLL ANIMATION — Registration timeline only.
+     Add this right after the section above (once per page).
+     The yl-item / yl-active / yl-node-core logic is identical
+     to your existing scroll JS — this just targets #regWrapper
+     and #ylProgress2 so both timelines animate independently.
+======================================================= -->
+<script>
+  (function () {
+    'use strict';
+    var progressBar = document.getElementById('ylProgress2');
+    var wrapper     = document.getElementById('regWrapper');
+    var items       = wrapper ? wrapper.querySelectorAll('.yl-item') : [];
+
+    if (!progressBar || !wrapper || !items.length) return;
+
+    var total   = items.length;
+    var ticking = false;
+
+    function getProgress() {
+      var wRect        = wrapper.getBoundingClientRect();
+      var triggerPoint = window.innerHeight * 0.72;
+      if (wRect.bottom <= 0) return 1;
+      if (wRect.top >= triggerPoint) return 0;
+      return Math.min(Math.max((triggerPoint - wRect.top) / wRect.height, 0), 1);
+    }
+
+    function update(progress) {
+      progressBar.style.height = (progress * 100) + '%';
+      items.forEach(function (item, i) {
+        var threshold = i / total + (0.4 / total);
+        item.classList.toggle('yl-active', progress >= threshold);
+      });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { update(getProgress()); ticking = false; });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
         <!-- FEE STRUCTURE -->
         <div class="container" style="margin-top: 40px;" id="fee-structure">
             <h2 class="text-center mb-4" id="text-size">Invest in your future today</h2>
