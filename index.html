@@ -1183,6 +1183,35 @@
           }
     
           /* Modal Ended */
+
+          /* 1. Make the outer container full-width */
+.container.mt-0 {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* 2. Force the parent column and the #fee-structure container to take 100% width */
+.col-md-8.ai-style-change-2,
+#fee-structure.container {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* 3. Remove the negative margins and gutters from the rows and columns */
+.row.justify-content-center,
+.row.justify-content-center.ai-style-change-3 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.col-md-6.mb-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important; /* Optional: if you want the inner column to also be full width */
+}
     </style>
 </head>
 
