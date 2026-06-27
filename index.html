@@ -6438,24 +6438,42 @@ revealEls.forEach(el => revealObserver.observe(el));
     </div>
   </div>
 
-  <script>
+<script>
+    /* --- SEO Modal helpers (prefixed to avoid codebase conflicts) --- */
     function openSeoModal(id) {
-      document.getElementById('modal-' + id).classList.add('open');
+      var el = document.getElementById('modal-' + id);
+      if (!el) return;
+      el.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-    function closeModal(id) {
-      document.getElementById('modal-' + id).classList.remove('open');
+ 
+    function seoClose(id) {
+      var el = document.getElementById('modal-' + id);
+      if (!el) return;
+      el.classList.remove('open');
+      /* Force-remove open from ALL seo modals in case something else added it */
+      ['onpage','offpage','technical'].forEach(function(key) {
+        var m = document.getElementById('modal-' + key);
+        if (m) m.classList.remove('open');
+      });
       document.body.style.overflow = '';
     }
-    function closeSeoModal(e, id) {
-      if (e.target === document.getElementById('modal-' + id)) closeModal(id);
-    }
+ 
+    /* Backdrop click — only fires if click landed directly on overlay */
+    ['onpage','offpage','technical'].forEach(function(id) {
+      var overlay = document.getElementById('modal-' + id);
+      if (!overlay) return;
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) seoClose(id);
+      });
+    });
+ 
+    /* Escape key */
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        ['onpage','offpage','technical'].forEach(function(id) { closeModal(id); });
-      }
+      if (e.key === 'Escape') seoClose('onpage') || seoClose('offpage') || seoClose('technical');
     });
   </script>
+ 
         <!-- Project -->
         <div class="container mt-6">
             <div class="row justify-content-center">
