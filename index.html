@@ -3356,25 +3356,548 @@ html, body {
 
     </script>
                 <!-- Mentor Intro Pill -->
-                <center>
-                    <h2 class="champion-section-title"><i class="bi bi-person-circle"></i> Meet <span class="grad-text">Your Instructor</span></h2>
-                    <a href="https://dilawarpro.com">
-                        <div class="mentor-intro">
-                            <div class="mentor-avatar">DP</div>
-                            <div class="mentor-info text-start">
-                                <div class="m-name">Dilawar Pro <i class="bi bi-patch-check-fill"></i></div>
-                                <div class="m-title">Senior Digital Marketing Expert</div>
-                            </div>
-                            <div class="verified-badge">
-                                <i class="bi bi-patch-check-fill"></i> Verified Mentor
-                            </div>
-                            <div class="verified-badge">
-                                <i class="bi bi-award"></i> Branding Expert
-                            </div>
-                        </div>
-            </div>
-            </a>
-            </center>
+              <style>
+/* ─── Reset ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Scene / Background ─────────────────────────────── */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 2.5rem 1rem;
+  overflow-x: hidden;
+  /* Warm gradient to show off glass effect */
+
+}
+/* Floating ambient orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat linear infinite;
+}
+.orb-1 {
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(255,170,80,.5), transparent 70%);
+  top: -100px; left: -80px;
+  animation-duration: 18s;
+}
+.orb-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(150,100,255,.45), transparent 70%);
+  bottom: -60px; right: -60px;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+.orb-3 {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(80,180,255,.4), transparent 70%);
+  top: 40%; left: 60%;
+  animation-duration: 26s;
+  animation-delay: -14s;
+}
+@keyframes orbFloat {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(30px,-20px) scale(1.05); }
+  50%  { transform: translate(-20px,30px) scale(.97); }
+  75%  { transform: translate(10px,10px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* ─── Card Wrap ─────────────────────────────── */
+.card-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+}
+
+/* ─── Liquid Glass Card ─────────────────────────────── */
+.profile-card {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  /* Core glass */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.72) 0%,
+      rgba(255,255,255,.44) 40%,
+      rgba(255,255,255,.28) 70%,
+      rgba(255,255,255,.52) 100%
+    );
+  backdrop-filter: blur(40px) saturate(1.8) brightness(1.08);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.08);
+  /* Layered border — inner light edge + outer subtle stroke */
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow:
+    /* main depth */
+    0 32px 80px rgba(100,60,180,.18),
+    0 8px 32px rgba(0,0,0,.10),
+    /* inner top highlight */
+    inset 0 1.5px 0 rgba(255,255,255,.95),
+    /* inner bottom shadow */
+    inset 0 -1px 0 rgba(0,0,0,.06),
+    /* inner left highlight */
+    inset 1.5px 0 0 rgba(255,255,255,.7),
+    /* subtle outer glow */
+    0 0 0 1px rgba(255,255,255,.3);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease;
+  will-change: transform;
+}
+
+.profile-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 48px 100px rgba(100,60,180,.22),
+    0 12px 40px rgba(0,0,0,.12),
+    inset 0 1.5px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(0,0,0,.06),
+    inset 1.5px 0 0 rgba(255,255,255,.7),
+    0 0 0 1px rgba(255,255,255,.3);
+}
+
+/* Specular highlight sweep across card top */
+/* .profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 140%; height: 200px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.55) 0%,
+    rgba(255,255,255,.08) 50%,
+    transparent 100%
+  );
+  border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity .4s;
+} */
+
+/* Prismatic edge refraction line */
+/* .profile-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.0) 0%,
+    rgba(255,200,150,.08) 25%,
+    rgba(200,150,255,.06) 50%,
+    rgba(150,220,255,.08) 75%,
+    rgba(255,255,255,.0) 100%
+  );
+  pointer-events: none;
+  z-index: 4;
+} */
+
+/* ─── Photo Strip ─────────────────────────────── */
+.photo-strip {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 28px 28px 0 0;
+}
+.photo-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.profile-card:hover .photo-strip img {
+  transform: scale(1.04);
+}
+/* Glass fade into card body */
+.photo-strip::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(240,235,255,.2) 40%,
+    rgba(240,235,255,.75) 75%,
+    rgba(240,235,255,.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── Floating Badge (Liquid Glass pill) ─── */
+.mentor-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 10;
+  /* Glass pill */
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,.10),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -1px 0 rgba(0,0,0,.04);
+  color: #5a2fcf;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  padding: .38rem .85rem;
+  border-radius: 50px;
+  /* Pulse dot */
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 0 2px rgba(52,199,89,.25);
+  animation: pulseDot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 2px rgba(52,199,89,.25); }
+  50%      { box-shadow: 0 0 0 5px rgba(52,199,89,.0); }
+}
+
+/* ─── Card Body ─────────────────────────────── */
+.card-body-inner {
+  padding: 0 1.6rem 1.75rem;
+  margin-top: -12px;
+  position: relative;
+  z-index: 6;
+}
+
+.mentor-name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1a0e2e;
+  line-height: 1.12;
+  margin-bottom: .18rem;
+  letter-spacing: -.02em;
+  margin-top: 5px;
+}
+.mentor-title {
+  font-size: .78rem;
+  font-weight: 500;
+  color: rgba(80,55,130,.7);
+  letter-spacing: .035em;
+  margin-bottom: 1.1rem;
+}
+
+/* ─── Glass Divider ─────────────────────────────── */
+.glass-rule {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(150,100,255,.25) 30%, rgba(100,160,255,.2) 70%, transparent);
+  margin: 0 0 1.1rem;
+}
+
+/* ─── Bio ─────────────────────────────── */
+.mentor-bio {
+  font-size: .82rem;
+  color: rgba(50,30,90,.65);
+  line-height: 1.75;
+  margin-bottom: 1.35rem;
+  font-weight: 400;
+}
+.mentor-bio strong {
+  color: #5a2fcf;
+  font-weight: 600;
+}
+
+/* ─── Stat Pills (Liquid Glass) ─────────── */
+.stats-row {
+  display: flex;
+  gap: .6rem;
+  margin-bottom: 1.2rem;
+}
+.stat-pill {
+  flex: 1;
+  background: rgba(255,255,255,.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow:
+    0 4px 16px rgba(100,60,200,.08),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -1px 0 rgba(0,0,0,.04);
+  border-radius: 16px;
+  padding: .75rem .5rem;
+  text-align: center;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+  cursor: default;
+}
+.stat-pill:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 8px 24px rgba(100,60,200,.15),
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(0,0,0,.04);
+}
+.stat-pill .num {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3a1a8a;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+.stat-pill .lbl {
+  display: block;
+  font-size: .62rem;
+  color: rgba(80,55,140,.55);
+  margin-top: .28rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ─── Tags (Glass pills) ─────────────────── */
+.tags-row {
+  display: flex;
+  gap: .45rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+}
+.tag {
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .3rem .75rem;
+  border-radius: 50px;
+  letter-spacing: .04em;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.tag:hover { transform: scale(1.07); }
+.tag-ai   {
+  background: rgba(120,60,255,.10);
+  color: #5a2fcf;
+  border-color: rgba(120,60,255,.22);
+}
+.tag-web  {
+  background: rgba(0,140,255,.09);
+  color: #0060bb;
+  border-color: rgba(0,140,255,.2);
+}
+.tag-mktg {
+  background: rgba(0,180,100,.09);
+  color: #007a42;
+  border-color: rgba(0,180,100,.2);
+}
+
+/* ─── CTA Button (Liquid Glass + gradient) ── */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 18px;
+  font-size: .88rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  /* Vivid gradient fill */
+  background: linear-gradient(135deg, #a855f7 0%, #6d28d9 40%, #4f46e5 100%);
+  box-shadow:
+    0 6px 24px rgba(109,40,217,.4),
+    0 2px 8px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.25),
+    inset 0 -1px 0 rgba(0,0,0,.15);
+  transition:
+    transform .3s cubic-bezier(.34,1.56,.64,1),
+    box-shadow .3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Specular gloss on button */
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
+  border-radius: 18px 18px 0 0;
+  pointer-events: none;
+}
+/* Ripple layer */
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--rx,50%) var(--ry,50%), rgba(255,255,255,.25) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+.cta-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 12px 36px rgba(109,40,217,.5),
+    0 4px 12px rgba(0,0,0,.14),
+    inset 0 1px 0 rgba(255,255,255,.3),
+    inset 0 -1px 0 rgba(0,0,0,.15);
+}
+.cta-btn:hover::after { opacity: 1; }
+.cta-btn:active {
+  transform: scale(.97);
+  box-shadow:
+    0 4px 16px rgba(109,40,217,.35),
+    inset 0 1px 0 rgba(255,255,255,.2),
+    inset 0 2px 6px rgba(0,0,0,.15);
+}
+
+.cta-arrow {
+  width: 17px; height: 17px;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  flex-shrink: 0;
+}
+.cta-btn:hover .cta-arrow { transform: translateX(4px); }
+</style>
+
+<!-- Ambient orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="card-wrap">
+  <div class="profile-card" id="glassCard">
+
+    <!-- Photo -->
+    <div class="photo-strip">
+      <div class="mentor-badge">
+        <span class="badge-dot"></span>
+        Available for Mentorship
+      </div>
+      <img src="https://media-mct1-2.cdn.whatsapp.net/v/t61.24694-24/662284630_1444532496974071_904457182040513166_n.jpg?ccb=11-4&oh=01_Q5Aa4wGnEk3_wC0BfANYJQmiVzeK2JyJwEteUZCaXzWrA46L2A&oe=6A4CE379&_nc_sid=5e03e0&_nc_cat=101" alt="Dilawar – Digital Mentor">
+    </div>
+
+    <!-- Body -->
+    <div class="card-body-inner">
+
+      <div class="mentor-name">Dilawar</div>
+      <div class="mentor-title">Founder, Brandliox &amp; Earnifiers · Digital Mentor</div>
+
+      <hr class="glass-rule">
+
+      <p class="mentor-bio">
+        Helping ambitious minds build real income online through <strong>AI tools</strong>,
+        <strong>web development</strong>, and <strong>digital marketing</strong>.
+        500+ students mentored across Pakistan.
+      </p>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-pill">
+          <span class="num" data-target="500">0</span>
+          <span class="lbl">Students</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num" data-target="6">0</span>
+          <span class="lbl">Years Exp.</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num" data-target="120">0</span>
+          <span class="lbl">Projects</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="tags-row">
+        <span class="tag tag-ai">AI Tools</span>
+        <span class="tag tag-web">Web Dev</span>
+        <span class="tag tag-mktg">Digital Marketing</span>
+      </div>
+
+      <!-- CTA -->
+      <button class="cta-btn" id="ctaBtn" onclick="window.open('https://dilawarpro.com','_blank')">
+        Visit Portfolio
+        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Animated counter ── */
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = target >= 100 ? '+' : '';
+  const duration = 1500;
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(e * target) + (p >= 1 ? suffix : '');
+    if (p < 1) requestAnimationFrame(step);
+  })(start);
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); observer.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.num[data-target]').forEach(n => observer.observe(n));
+
+/* ── Card tilt / parallax on mousemove ── */
+const card = document.getElementById('glassCard');
+let rafId = null;
+card.addEventListener('mousemove', e => {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(() => {
+    const r = card.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width  - .5;  // -0.5 to 0.5
+    const cy = (e.clientY - r.top)  / r.height - .5;
+    card.style.transform = `perspective(900px) rotateY(${cx * 10}deg) rotateX(${-cy * 8}deg) translateY(-6px)`;
+  });
+});
+card.addEventListener('mouseleave', () => {
+  if (rafId) cancelAnimationFrame(rafId);
+  card.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease';
+  card.style.transform = '';
+  setTimeout(() => { card.style.transition = ''; }, 650);
+});
+card.addEventListener('mouseenter', () => {
+  card.style.transition = 'transform .15s ease, box-shadow .3s ease';
+});
+
+/* ── CTA ripple origin ── */
+const btn = document.getElementById('ctaBtn');
+btn.addEventListener('mousemove', e => {
+  const r = btn.getBoundingClientRect();
+  btn.style.setProperty('--rx', ((e.clientX - r.left) / r.width  * 100) + '%');
+  btn.style.setProperty('--ry', ((e.clientY - r.top)  / r.height * 100) + '%');
+});
+
+/* ── Touch spring bounce ── */
+card.addEventListener('touchstart', () => {
+  card.style.transition = 'transform .1s ease';
+  card.style.transform = 'scale(.98)';
+}, { passive: true });
+card.addEventListener('touchend', () => {
+  card.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+  card.style.transform = '';
+});
+</script>
             <!-- real outcomes list -->
 
             <style>
