@@ -8169,6 +8169,299 @@ document.addEventListener("DOMContentLoaded", function () {
               });
             }); // Added SA
         </script>
+        <script>
+            //   const onPageModal = document.getElementById('onPageModal');
+            //   const offPageModal = document.getElementById('offPageModal');
+            //   const technicalModal = document.getElementById('technicalModal');
+            //   const specialMentorshipModal = document.getElementById('specialMentorship');
+            //   const onPageLink = document.getElementById('onPageLink');
+            //   const offPageLink = document.getElementById('offPageLink');
+            //   const technicalLink = document.getElementById('technicalLink');
+            //   const specialMentorshipLink = document.getElementById('specialMentorshipLink');
+            
+            //   onPageLink.onclick = function () { onPageModal.style.display = 'block'; }
+            //   offPageLink.onclick = function () { offPageModal.style.display = 'block'; }
+            //   technicalLink.onclick = function () { technicalModal.style.display = 'block'; }
+            //   specialMentorshipLink.onclick = function () { specialMentorshipModal.style.display = 'block'; }
+            
+            //   function closeModal(modalId) {
+            //     document.getElementById(modalId).style.display = 'none';
+            //   }
+            
+            //   const checklistLinkEl = document.getElementById('checklistLink');
+            //   if (checklistLinkEl) {
+            //     checklistLinkEl.onclick = function (e) {
+            //       e.preventDefault();
+            //       const m = document.getElementById('checklistModal');
+            //       if (m) m.style.display = 'flex';
+            //     };
+            //   }
+            
+            //   window.onclick = function (event) {
+            //     if (event.target == onPageModal) onPageModal.style.display = 'none';
+            //     else if (event.target == offPageModal) offPageModal.style.display = 'none';
+            //     else if (event.target == technicalModal) technicalModal.style.display = 'none';
+            //     else if (event.target == specialMentorshipModal) specialMentorshipModal.style.display = 'none';
+            //     else if (event.target == document.getElementById('checklistModal')) {
+            //       document.getElementById('checklistModal').style.display = 'none';
+            //     }
+            //   }
+            
+              // ===================== EXIT-INTENT (Strategy Call) MODAL =====================
+              // ONLY triggers on back button / browser navigation
+              // Does NOT trigger on: tab switch, minimize, refresh, internal links, external links
+            
+              // let exitIntentModal = document.getElementById('exitIntentModal');
+              // let exitModalCurrentlyOpen = false;
+            
+              // function showExitModal() {
+              //   exitIntentModal = exitIntentModal || document.getElementById('exitIntentModal');
+              //   if (!exitIntentModal) return;
+              //   if (exitModalCurrentlyOpen) return;
+            
+              //   exitIntentModal.style.display = 'block';
+              //   exitModalCurrentlyOpen = true;
+              // }
+            
+              // function closeExitModal() {
+              //   if (exitIntentModal) {
+              //     exitIntentModal.style.display = 'none';
+              //     exitModalCurrentlyOpen = false;
+              //   }
+              // }
+            
+              // ONLY trigger: Back button / browser navigation
+              // Push a fake history state so pressing back doesn't leave the page
+              // history.pushState({ exitGuard: true }, '', location.href);
+            
+              // window.addEventListener('popstate', function (e) {
+              //   showExitModal();
+              //   history.pushState({ exitGuard: true }, '', location.href);
+              // });
+            
+              // ===================== DISCOUNT MODAL + CONFETTI =====================
+              // const DISCOUNT_KEY = 'discountClaimed';
+            
+              // function showDiscountModal() {
+              //   if (localStorage.getItem(DISCOUNT_KEY) === 'true') return;
+            
+              //   const modalEl = document.getElementById('discountModal');
+              //   if (!modalEl) return;
+              //   if (modalEl.classList.contains('show')) return;
+            
+              //   const modal = new bootstrap.Modal(modalEl, {
+              //     backdrop: 'static',
+              //     keyboard: false
+              //   });
+              //   modal.show();
+              // }
+            
+              // window.addEventListener("load", function () {
+              //   setTimeout(function () {
+              //     if (localStorage.getItem(DISCOUNT_KEY) !== 'true') {
+              //       showDiscountModal();
+              //       fireConfetti();
+              //     }
+              //   }, 800);
+              // });
+            
+              // function fireConfetti() {
+              //   if (typeof confetti === 'undefined') return;
+            
+              //   const count = 200;
+              //   const defaults = { origin: { y: 0.7 }, zIndex: 99999 };
+            
+              //   function fire(particleRatio, opts) {
+              //     confetti(Object.assign({}, defaults, opts, {
+              //       particleCount: Math.floor(count * particleRatio),
+              //     }));
+              //   }
+            
+              //   fire(0.25, { spread: 26, startVelocity: 55 });
+              //   fire(0.2, { spread: 60 });
+              //   fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+              //   fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+              //   fire(0.1, { spread: 120, startVelocity: 45 });
+            
+              //   setTimeout(function () {
+              //     fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.2 } });
+              //     fire(0.15, { spread: 80, startVelocity: 40, origin: { y: 0.5, x: 0.8 } });
+              //   }, 1500);
+              // }
+            
+              // const discountModalEl = document.getElementById('discountModal');
+              // if (discountModalEl) {
+              //   discountModalEl.addEventListener('hidden.bs.modal', function () {
+              //     if (!localStorage.getItem('discountFormSubmitted')) {
+              //       sessionStorage.setItem('discountShownThisSession', 'true');
+              //     }
+              //   });
+              // }
+            
+              // ===================== URGENCY ENGINE =====================
+              let urgencyStarted = false;
+            
+              function startUrgency() {
+                if (urgencyStarted) return;
+                urgencyStarted = true;
+            
+                const urgencyEl = document.getElementById("urgency");
+                if (urgencyEl) urgencyEl.style.display = "block";
+            
+                let time = 480;
+                const el = document.getElementById("countdown");
+                if (el) {
+                  const timer = setInterval(() => {
+                    let m = Math.floor(time / 60);
+                    let s = time % 60;
+                    if (s < 10) s = "0" + s;
+                    el.innerText = `${m}:${s}`;
+                    time--;
+                    if (time < 0) {
+                      clearInterval(timer);
+                      el.innerText = "Expired";
+                    }
+                  }, 1000);
+                }
+            
+                let spots = Math.floor(Math.random() * 4) + 4;
+                const spotsEl = document.getElementById("spots");
+                if (spotsEl) {
+                  spotsEl.innerText = `Only ${spots} spots left`;
+                  setInterval(() => {
+                    if (spots > 1) {
+                      spots--;
+                      spotsEl.innerText = `Only ${spots} spot${spots > 1 ? 's' : ''} left`;
+                    }
+                  }, 30000);
+                }
+              }
+            
+              function generateDiscount() {
+                return 5000;
+              }
+            
+              // ===================== FORM SUBMIT =====================
+              let detectedArea = null;
+            
+              function unlockOffer() {
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const userStatus = document.getElementById("userStatus").value;
+                const timeline = document.getElementById("timeline").value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+                if (!name || !email || !userStatus || !timeline) {
+                  document.getElementById("formStatus").innerText = "⚠️ Please fill all fields.";
+                  document.getElementById("formStatus").style.color = "#ff4444";
+                  return;
+                }
+            
+                if (!emailRegex.test(email)) {
+                  document.getElementById("formStatus").innerText = "⚠️ Please enter a valid email.";
+                  document.getElementById("formStatus").style.color = "#ff4444";
+                  return;
+                }
+            
+                document.getElementById("formStatus").innerText = "⏳ Checking eligibility...";
+                document.getElementById("formStatus").style.color = "#ffc107";
+            
+                if (location.protocol === "https:" && navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(
+                    successGPS,
+                    function () { detectViaIP(); },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                  );
+                } else {
+                  detectViaIP();
+                }
+              }
+            
+              async function successGPS(position) {
+                try {
+                  const res = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`,
+                    { signal: AbortSignal.timeout(8000) }
+                  );
+                  const data = await res.json();
+                  const addr = data.address;
+                  detectedArea = addr.suburb || addr.city || addr.state || null;
+                  revealOffer();
+                } catch {
+                  detectViaIP();
+                }
+              }
+            
+              async function detectViaIP() {
+                try {
+                  const res = await fetch("https://ipwho.is/", { signal: AbortSignal.timeout(6000) });
+                  const data = await res.json();
+                  detectedArea = (data.success !== false) ? (data.city || data.region || null) : null;
+                  revealOffer();
+                } catch {
+                  detectedArea = null;
+                  revealOffer();
+                }
+              }
+            
+              // ===================== FINAL OFFER =====================
+              // function revealOffer() {
+              //   const discount = generateDiscount();
+              //   const name = document.getElementById("name").value.trim();
+              //   const email = document.getElementById("email").value.trim();
+              //   const userStatus = document.getElementById("userStatus").value;
+              //   const timeline = document.getElementById("timeline").value;
+            
+              //   let modalHTML = '';
+              //   if (detectedArea) {
+              //     modalHTML = `Congratulations! 🎉 Earnifiers is offering Rs. 
+              //       <b>${discount.toLocaleString()}</b> scholarship for <b>${detectedArea.toUpperCase()}</b> students.`;
+              //   } else {
+              //     modalHTML = `Congratulations! 🎉 Earnifiers is offering Rs. 
+              //       <b>${discount.toLocaleString()}</b> scholarship for you.`;
+              //   }
+            
+              //   document.getElementById("modalMessage").innerHTML = modalHTML;
+              //   document.getElementById("formStatus").innerText = "✅ Eligibility confirmed!";
+              //   document.getElementById("formStatus").style.color = "#00e676";
+            
+              //   fireConfetti();
+              //   localStorage.setItem('discountFormSubmitted', 'true');
+            
+              //   const whatsappNumber = "923314041010";
+              //   let msgParts = [
+              //     `Hi! My name is ${name}.`,
+              //     `Email: ${email}`,
+              //     `Current Status: ${userStatus}`,
+              //     `Joining Timeline: ${timeline}`
+              //   ];
+            
+              //   if (detectedArea) {
+              //     msgParts.push(`Area: ${detectedArea}`);
+              //   }
+            
+              //   msgParts.push(
+              //     `I claimed a Rs ${discount.toLocaleString()} scholarship for Earnifiers.`,
+              //     `I want to claim it.`
+              //   );
+            
+              //   const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msgParts.join('\n'))}`;
+              //   const btn = document.getElementById("whatsappBtn");
+            
+              //   if (btn) {
+              //     btn.href = waLink;
+              //     btn.style.display = "block";
+              //     btn.onclick = function () {
+              //       localStorage.setItem(DISCOUNT_KEY, 'true');
+              //       const modal = bootstrap.Modal.getInstance(document.getElementById('discountModal'));
+              //       if (modal) modal.hide();
+              //     };
+              //   }
+            
+              //   startUrgency();
+              // }
+        </script>
+
 
         <script>
             let deferredPrompt;
