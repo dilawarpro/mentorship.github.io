@@ -6443,42 +6443,22 @@ revealEls.forEach(el => revealObserver.observe(el));
   </div>
 
   <script>
-    function openModal(id) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    function openSeoModal(id) {
+      document.getElementById('modal-' + id).classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
-}
-
-function closeModal(id) {
-    // 1. Try closing by direct ID (Special Mentorship)
-    const el = document.getElementById(id);
-    if (el) {
-        el.style.display = 'none';
-        el.classList.remove('open');
+    function closeModal(id) {
+      document.getElementById('modal-' + id).classList.remove('open');
+      document.body.style.overflow = '';
     }
-
-    // 2. Try closing with 'modal-' prefix (SEO Modals)
-    const seoEl = document.getElementById('modal-' + id);
-    if (seoEl) {
-        seoEl.classList.remove('open');
+    function closeSeoModal(e, id) {
+      if (e.target === document.getElementById('modal-' + id)) closeModal(id);
     }
-
-    // Restore scrolling if no other modals are open
-    const openModals = document.querySelectorAll('.modal[style*="flex"], .modal[style*="block"], .seo-modal-overlay.open');
-    if (openModals.length === 0) {
-        document.body.style.overflow = '';
-    }
-}
-
-// Close modal when clicking outside of the content
-window.onclick = function(event) {
-    const specialModal = document.getElementById('specialMentorship');
-    if (event.target == specialModal) {
-        closeModal('specialMentorship');
-    }
-};
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        ['onpage','offpage','technical'].forEach(function(id) { closeModal(id); });
+      }
+    });
   </script>
         <!-- Project -->
         <div class="container mt-6">
@@ -7800,20 +7780,68 @@ window.onclick = function(event) {
         </div>
 
         <style>
-  .modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  justify-content: center;
-  align-items: center;
+          #specialMentorship.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); /* Dim background */
+    justify-content: center;
+    align-items: center;
+}
+
+#specialMentorship .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    overflow: hidden;
 }
         </style>
+        <script>
+          function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(id) {
+    // 1. Try closing by direct ID (Special Mentorship)
+    const el = document.getElementById(id);
+    if (el) {
+        el.style.display = 'none';
+        el.classList.remove('open');
+    }
+
+    // 2. Try closing with 'modal-' prefix (SEO Modals)
+    const seoEl = document.getElementById('modal-' + id);
+    if (seoEl) {
+        seoEl.classList.remove('open');
+    }
+
+    // Restore scrolling if no other modals are open
+    const openModals = document.querySelectorAll('.modal[style*="flex"], .modal[style*="block"], .seo-modal-overlay.open');
+    if (openModals.length === 0) {
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal when clicking outside of the content
+window.onclick = function(event) {
+    const specialModal = document.getElementById('specialMentorship');
+    if (event.target == specialModal) {
+        closeModal('specialMentorship');
+    }
+};
+        </script>
 
         <!-- Important Note -->
         <section class="scan-pay-section">
