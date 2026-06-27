@@ -3487,939 +3487,6 @@ html, body {
     </div>
   </div>
 </center>
-
-                 <style>
-
-    * { box-sizing: border-box; }
-
-    /* ============================================
-       SECTION
-    ============================================ */
-    .yl-section {
-      padding: 0px 0 0px;
-      background: #ffffff;
-      position: relative;
-    }
-
-    /* --- Gradient utility --- */
-    .yl-gradient-text {
-      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* --- Header --- */
-    .yl-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 90px;
-      padding: 0 16px;
-    }
-
-    .yl-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #8D1CDA;
-      margin-bottom: 22px;
-    }
-
-    .yl-eyebrow-dot {
-      display: inline-block;
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #066BF3, #F20B8A);
-    }
-
-    .yl-heading {
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 800;
-      color: #0a0a1a;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
-      margin-bottom: 18px;
-    }
-
-    .yl-subheading {
-      font-size: 1rem;
-      color: #6b7280;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    /* AI badge */
-    .yl-ai-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 22px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #fff;
-      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
-      padding: 8px 20px;
-      border-radius: 50px;
-      box-shadow: 0 4px 18px rgba(140,28,218,0.25);
-    }
-
-    /* ============================================
-       TIMELINE
-    ============================================ */
-    .yl-timeline-wrapper {
-      position: relative;
-      max-width: 860px;
-      margin: 0 auto;
-      padding-left: 80px;
-      padding-right: 24px;
-    }
-
-    /* Vertical line */
-    .yl-line-track {
-      position: absolute;
-      left: 36px;
-      top: 20px;
-      bottom: 20px;
-      width: 2px;
-    }
-
-    .yl-line-progress {
-      position: absolute;
-      top: 0; left: 8px;
-      width: 100%;
-      height: 0%;
-      background: linear-gradient(180deg, #066BF3 0%, #312DDE 25%, #8D1CDA 55%, #DD089F 80%, #F20B8A 100%);
-      border-radius: 2px;
-      transition: height 0.08s linear;
-    }
-
-    /* Item */
-    .yl-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 22px;
-      position: relative;
-    }
-    .yl-item:last-child { margin-bottom: 0; }
-
-    /* Node */
-    .yl-node {
-      position: absolute;
-      left: -56px;
-      top: 16px;
-      width: 40px; height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      flex-shrink: 0;
-    }
-
-    .yl-node-ring {
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      transition: all 0.45s ease;
-    }
-
-    .yl-node-core {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: #f1f2f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-      color: #b0b5c8;
-      transition: all 0.45s ease;
-      position: relative;
-      z-index: 1;
-      border: 2px solid #e8eaf0;
-    }
-
-    .yl-item.yl-active .yl-node-core {
-      background: linear-gradient(135deg, #066BF3 0%, #8D1CDA 60%, #F20B8A 100%);
-      color: #fff;
-      box-shadow: 0 0 0 5px rgba(140,28,218,0.1), 0 4px 18px rgba(140,28,218,0.25);
-      transform: scale(1.05);
-    }
-
-    .yl-item.yl-active .yl-node-ring {
-      border-color: rgba(140,28,218,0.18);
-    }
-
-    /* Card */
-    .yl-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      background: #fafbff;
-      border: 1.5px solid #eeeef5;
-      border-radius: 20px;
-      padding: 24px 26px;
-      flex: 1;
-      transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .yl-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 4px;
-      background: linear-gradient(180deg, #066BF3, #8D1CDA, #F20B8A);
-      border-radius: 20px 0 0 20px;
-      opacity: 0;
-      transition: opacity 0.45s ease;
-    }
-
-    .yl-item.yl-active .yl-card {
-      background: #ffffff;
-      border-color: #e2dffa;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03), 0 12px 40px rgba(140,28,218,0.09);
-    }
-
-    /* Icon */
-    .yl-icon-box {
-      width: 50px; height: 50px;
-      border-radius: 14px;
-      background: #f0eeff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.45rem;
-      flex-shrink: 0;
-      transition: all 0.45s ease;
-      border: 1.5px solid #e8e4fa;
-    }
-
-    .yl-item.yl-active .yl-icon-box {
-      background: linear-gradient(135deg, rgba(6,107,243,0.08), rgba(242,11,138,0.08));
-      border-color: rgba(140,28,218,0.15);
-      box-shadow: 0 4px 18px rgba(140,28,218,0.1);
-    }
-
-    /* Content */
-    .yl-card-body { flex: 1; min-width: 0; }
-
-    .yl-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #8D1CDA;
-      background: rgba(140,28,218,0.07);
-      padding: 3px 11px;
-      border-radius: 50px;
-      margin-bottom: 8px;
-    }
-
-    .yl-card-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #0a0a1a;
-      line-height: 1.4;
-      margin-bottom: 7px;
-      transition: all 0.3s ease;
-    }
-
-    .yl-item.yl-active .yl-card-title {
-      background: linear-gradient(90deg, #066BF3, #8D1CDA);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .yl-card-desc {
-      font-size: 0.875rem;
-      color: #6b7280;
-      line-height: 1.75;
-      margin: 0;
-    }
-
-    .yl-card-desc strong { color: #374151; font-weight: 600; }
-
-    /* Bullet list inside card */
-    .yl-mini-list {
-      margin: 10px 0 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .yl-mini-list li {
-      font-size: 11px;
-      font-weight: 600;
-      color: #374151;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      padding: 3px 10px;
-      border-radius: 50px;
-    }
-
-    /* Saving pill */
-    .yl-saving-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 11px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #047857;
-      background: rgba(4,120,87,0.07);
-      border: 1.5px solid rgba(4,120,87,0.15);
-      padding: 4px 13px;
-      border-radius: 50px;
-    }
-
-    /* Optional module divider */
-    .yl-or-divider {
-      text-align: center;
-      margin: 18px 0;
-    }
-
-    .yl-or-divider span {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #fff;
-      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
-      padding: 5px 18px;
-      border-radius: 50px;
-    }
-
-    /* ============================================
-       RESPONSIVE
-    ============================================ */
-    @media (max-width: 768px) {
-      .yl-section { padding: 70px 0 85px; }
-      .yl-header { margin-bottom: 65px; }
-      .yl-timeline-wrapper { padding-left: 64px; padding-right: 16px; }
-      .yl-line-track { left: 26px; }
-      .yl-node { left: -46px; width: 34px; height: 34px; top: 18px; }
-      .yl-node-core { width: 34px; height: 34px; font-size: 11px; }
-      .yl-card { padding: 20px; gap: 14px; }
-      .yl-icon-box { width: 44px; height: 44px; font-size: 1.25rem; border-radius: 12px; }
-      .yl-card-title { font-size: 0.95rem; }
-    }
-
-    @media (max-width: 480px) {
-      .yl-timeline-wrapper { padding-left: 54px; padding-right: 12px; }
-      .yl-line-track { left: 20px; }
-      .yl-node { left: -40px; width: 30px; height: 30px; top: 20px; }
-      .yl-node-core { width: 30px; height: 30px; font-size: 10px; }
-      .yl-card { flex-direction: column; gap: 12px; padding: 16px 14px; border-radius: 16px; }
-      .yl-card::before { border-radius: 16px 0 0 16px; }
-      .yl-icon-box { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; }
-      .yl-card-title { font-size: 0.9rem; }
-      .yl-card-desc { font-size: 0.84rem; }
-    }
-
-    /* ============================================
-       SEO MODALS
-    ============================================ */
-    .seo-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #066BF3;
-      background: rgba(6,107,243,0.08);
-      border: 1.5px solid rgba(6,107,243,0.2);
-      padding: 4px 12px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      letter-spacing: 0.3px;
-    }
-    .seo-chip:hover {
-      background: linear-gradient(90deg, #066BF3, #8D1CDA);
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(140,28,218,0.25);
-      transform: translateY(-1px);
-    }
-    .seo-chip .chip-arrow {
-      font-style: normal;
-      font-size: 10px;
-      transition: transform 0.2s;
-    }
-    .seo-chip:hover .chip-arrow { transform: translateX(2px); }
-
-    /* Modal overlay */
-    .seo-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,26,0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .seo-modal-overlay.open {
-      display: flex;
-      animation: seoFadeIn 0.22s ease;
-    }
-    @keyframes seoFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* Modal box */
-    .seo-modal-box {
-      background: #fff;
-      border-radius: 24px;
-      width: 100%;
-      max-width: 440px;
-      box-shadow: 0 24px 80px rgba(10,10,26,0.18), 0 4px 16px rgba(140,28,218,0.1);
-      overflow: hidden;
-      animation: seoSlideUp 0.28s cubic-bezier(0.34,1.56,0.64,1);
-      position: relative;
-    }
-    @keyframes seoSlideUp {
-      from { transform: translateY(28px) scale(0.96); opacity: 0; }
-      to   { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    /* Modal header */
-    .seo-modal-head {
-      padding: 26px 28px 20px;
-      background: linear-gradient(135deg, #066BF3 0%, #8D1CDA 60%, #F20B8A 100%);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .seo-modal-head-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .seo-modal-icon {
-      width: 46px; height: 46px;
-      background: rgba(255,255,255,0.18);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      border: 1.5px solid rgba(255,255,255,0.25);
-    }
-    .seo-modal-head h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #fff;
-      margin: 0;
-      line-height: 1.3;
-    }
-    .seo-modal-head p {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.75);
-      margin: 3px 0 0;
-    }
-    .seo-modal-close {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,0.15);
-      border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #fff;
-      font-size: 1.1rem;
-      line-height: 1;
-      transition: background 0.2s;
-      flex-shrink: 0;
-    }
-    .seo-modal-close:hover { background: rgba(255,255,255,0.28); }
-
-    /* Modal body */
-    .seo-modal-body {
-      padding: 24px 28px 28px;
-    }
-    .seo-pill-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .seo-pill-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      background: #f8f7ff;
-      border: 1.5px solid #ede9fa;
-      border-radius: 12px;
-      padding: 10px 15px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #1e1b4b;
-      width: calc(50% - 5px);
-      transition: all 0.2s ease;
-    }
-    .seo-pill-item:hover {
-      background: linear-gradient(135deg, rgba(6,107,243,0.06), rgba(242,11,138,0.06));
-      border-color: rgba(140,28,218,0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(140,28,218,0.08);
-    }
-    .seo-pill-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #066BF3, #F20B8A);
-      flex-shrink: 0;
-    }
-    @media (max-width: 400px) {
-      .seo-pill-item { width: 100%; }
-      .seo-modal-body { padding: 20px; }
-      .seo-modal-head { padding: 20px; }
-    }
-
-  </style>
-  <section class="yl-section">
-    <div class="container">
-
-      <!-- Header -->
-      <div class="yl-header">
-        <div class="yl-eyebrow">
-          <span class="yl-eyebrow-dot"></span>
-          Complete Curriculum
-          <span class="yl-eyebrow-dot"></span>
-        </div>
-        <h2 class="yl-heading">
-          What You'll Master
-        </h2>
-        <p class="yl-subheading">
-          From zero to earning online — a practical, project-based roadmap covering web development, digital marketing, AI automation, and everything in between.
-        </p>
-        <div class="yl-ai-badge">
-          ⚡ AI is integrated across all modules
-        </div>
-      </div>
-
-      <!-- Timeline -->
-      <div class="yl-timeline-wrapper">
-
-        <div class="yl-line-track">
-          <div class="yl-line-progress" id="ylProgress"></div>
-        </div>
-
-        <!-- Module 01 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">01</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🌐</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Core Module</span>
-              <h5 class="yl-card-title">Module 01: Web Programming + AI</h5>
-              <p class="yl-card-desc">Build and sell <strong>SaaS apps, business websites, POS & invoicing software</strong>, Chrome extensions, and high-end web apps. Host everything for <strong>FREE forever with SSL</strong>.</p>
-              <ul class="yl-mini-list">
-                <li>Portfolio site</li><li>Blogging site</li><li>AI SaaS apps</li><li>POS software</li><li>WhatsApp tools</li><li>Image converter</li>
-              </ul>
-              <div class="yl-saving-pill">💰 Save Rs. 18,000+ per year on hosting</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 02 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">02</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">📈</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Mindset & Business</span>
-              <h5 class="yl-card-title">Module 02: Sales, Communication & Entrepreneurship</h5>
-              <p class="yl-card-desc">Learn how to <strong>find clients, close high-ticket deals</strong>, handle sales calls professionally, build confidence in public speaking, and grow your own business from scratch — all supercharged with AI.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 03 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">03</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🎯</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Client Acquisition</span>
-              <h5 class="yl-card-title">Module 03: Clients Hunting + AI</h5>
-              <p class="yl-card-desc">Unlock <strong>secret strategies to land your first client within 5 days</strong> — hunt local and international clients organically, communicate professionally, collect payments, and close deals with confidence.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 04 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">04</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🛒</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">E-Commerce</span>
-              <h5 class="yl-card-title">Module 04: E-Commerce + AI</h5>
-              <p class="yl-card-desc">Create modern online stores <strong>completely FREE</strong> — no Shopify subscriptions, no Amazon fees. Master dropshipping (local & international) and Daraz product listing strategies.</p>
-              <div class="yl-saving-pill">💰 Save Rs. 85,000+ per year vs Shopify</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 05 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">05</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🔵</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">CMS</span>
-              <h5 class="yl-card-title">Module 05: WordPress + AI</h5>
-              <p class="yl-card-desc">Install and configure WordPress locally, set up professional themes, and use plugins for <strong>full website customization</strong> — powered by AI to speed up every step.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 06 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">06</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">✍️</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Passive Income</span>
-              <h5 class="yl-card-title">Module 06: Blogging with AdSense + AI</h5>
-              <p class="yl-card-desc">Build blogging websites that <strong>generate passive income 24/7</strong> through Google AdSense. Learn EMD domains, auto-blogging, AdSense arbitrage, high-CPC keywords, and fast approval tricks.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 07 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">07</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🔗</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Passive Income</span>
-              <h5 class="yl-card-title">Module 07: Affiliate Marketing + AI</h5>
-              <p class="yl-card-desc">Discover the best high-commission affiliate programs and learn how to <strong>earn recurring passive income</strong> by promoting products and services without owning inventory.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 08 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">08</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🔍</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">SEO</span>
-              <h5 class="yl-card-title">Module 08: Search Engine Optimization (SEO) + AI</h5>
-              <p class="yl-card-desc">Rank websites organically on Google. Master all SEO pillars — click any to see what's covered:</p>
-              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;">
-                <span class="seo-chip" onclick="openSeoModal('onpage')">🔵 On-Page SEO <i class="chip-arrow">→</i></span>
-                <span class="seo-chip" onclick="openSeoModal('offpage')">🟣 Off-Page SEO <i class="chip-arrow">→</i></span>
-                <span class="seo-chip" onclick="openSeoModal('technical')">⚙️ Technical SEO <i class="chip-arrow">→</i></span>
-                <span class="seo-chip" style="cursor:default; opacity:0.6;">📍 Local SEO</span>
-                <span class="seo-chip" style="cursor:default; opacity:0.6;">🛒 E-Commerce SEO</span>
-                <span class="seo-chip" style="cursor:default; opacity:0.6;">▶️ YouTube SEO</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 09 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">09</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">📣</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Paid Ads</span>
-              <h5 class="yl-card-title">Module 09: Social Media Marketing (SMM) + AI</h5>
-              <p class="yl-card-desc">Run <strong>live paid ad campaigns</strong> on Meta (Facebook & Instagram), Google, TikTok, and Snapchat — minimum budget, maximum results. Sell digital services globally using advanced SMM strategies.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 10 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">10</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">📝</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Authority Building</span>
-              <h5 class="yl-card-title">Module 10: Guest Posting & Backlinking + AI</h5>
-              <p class="yl-card-desc">Earn <strong>high-DA do-follow backlinks</strong> from authoritative websites through strategic guest posting — the right way to boost domain authority and organic traffic for new sites.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 11 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">11</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🤖</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">AI Mastery</span>
-              <h5 class="yl-card-title">Module 11: AI Prompt Engineering</h5>
-              <p class="yl-card-desc">Learn to <strong>command the most advanced AI models</strong> like a pro — better prompts, better outputs, and how to push past AI limitations for faster, smarter, more profitable work.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 12 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">12</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">📄</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Content</span>
-              <h5 class="yl-card-title">Module 12: Content Writing + AI</h5>
-              <p class="yl-card-desc">Write <strong>SEO-friendly blogs, articles, and web content</strong> using advanced AI models — produce expert-level content at 10× the speed, optimized to rank on search engines.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 13 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">13</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🎨</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Design</span>
-              <h5 class="yl-card-title">Module 13: Graphics Designing + AI</h5>
-              <p class="yl-card-desc">Create <strong>stunning visuals for Meta & Google Ads</strong>, social media posts, presentations, posters, and logos — using AI tools that make professional design accessible to everyone.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 14 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">14</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">💼</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Freelancing</span>
-              <h5 class="yl-card-title">Module 14: Freelancing + AI</h5>
-              <p class="yl-card-desc">Set up and <strong>grow your profile on Fiverr, Upwork, Guru, People Per Hour</strong>, and Freelancer.com. Beat the competition, boost your ranking, and land more orders using proven AI strategies.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 15 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">15</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🚀</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Agency Growth</span>
-              <h5 class="yl-card-title">Module 15: Digital Marketing + AI</h5>
-              <p class="yl-card-desc">Become a <strong>full-stack digital marketing expert</strong> — combine websites, SEO, and paid ads to earn your first 1M+ PKR within 6 months as a solo marketer, then scale into your own multi-million agency.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- OR divider -->
-        <div class="yl-or-divider"><span>OR</span></div>
-
-        <!-- Domain Flipping (Optional) -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">🌐</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🔄</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Optional</span>
-              <h5 class="yl-card-title">Domain Flipping + AI</h5>
-              <p class="yl-card-desc">Find and buy <strong>undervalued domain names</strong>, then resell them at a profit. Learn how to identify high-potential domains, time your sales, and use AI to research profitable niches.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 16 -->
-        <div class="yl-item">
-          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">16</div></div>
-          <div class="yl-card">
-            <div class="yl-icon-box">🎬</div>
-            <div class="yl-card-body">
-              <span class="yl-tag">Automation</span>
-              <h5 class="yl-card-title">Module 16: YouTube, FB & TikTok Automation + AI</h5>
-              <p class="yl-card-desc">Launch <strong>profitable faceless channels</strong> on YouTube and TikTok — no camera, no voice needed. Generate passive income through ads, affiliations, and sponsorships using 100% free AI video tools.</p>
-            </div>
-          </div>
-        </div>
-      <!-- End Timeline -->
-
-  
-  </section>
-
-  <script>
-    (function () {
-      'use strict';
-
-      var progressBar = document.getElementById('ylProgress');
-      var wrapper = document.querySelector('.yl-timeline-wrapper');
-      var items = document.querySelectorAll('.yl-item');
-
-      if (!progressBar || !wrapper || !items.length) return;
-
-      var total = items.length;
-      var ticking = false;
-
-      function getScrollProgress() {
-        var wRect = wrapper.getBoundingClientRect();
-        var triggerPoint = window.innerHeight * 0.72;
-
-        if (wRect.bottom <= 0) return 1;
-        if (wRect.top >= triggerPoint) return 0;
-
-        var progress = (triggerPoint - wRect.top) / wRect.height;
-        return Math.min(Math.max(progress, 0), 1);
-      }
-
-      function updateTimeline(progress) {
-        progressBar.style.height = (progress * 100) + '%';
-
-        items.forEach(function (item, index) {
-          var activationPoint = index / total + (0.4 / total);
-          if (progress >= activationPoint) {
-            item.classList.add('yl-active');
-          } else {
-            item.classList.remove('yl-active');
-          }
-        });
-      }
-
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          updateTimeline(getScrollProgress());
-          ticking = false;
-        });
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      onScroll();
-    })();
-  </script>
-
-  <script>
-    document.querySelector('.seo-modal-close').addEventListener('click', () => closeModal('onpage'));
-  </script>
-
-  <!-- ===== SEO MODALS ===== -->
-
-  <!-- On-Page SEO Modal -->
-  <div class="seo-modal-overlay" id="modal-onpage" onclick="closeSeoModal(event, 'onpage')">
-    <div class="seo-modal-box">
-      <div class="seo-modal-head">
-        <div class="seo-modal-head-left">
-          <div class="seo-modal-icon">🔵</div>
-          <div>
-            <h3>On-Page SEO</h3>
-            <p>What you'll master inside this topic</p>
-          </div>
-        </div>
-        <div class="seo-modal-close" onclick="closeModal('onpage')">✕</div>
-      </div>
-      <div class="seo-modal-body">
-        <div class="seo-pill-grid">
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Content Quality</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Image Optimization</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Keyword Research</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>HTML Tags</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Responsive Design</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Internal & External Links</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Meta Data</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>URL Structure</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Off-Page SEO Modal -->
-  <div class="seo-modal-overlay" id="modal-offpage" onclick="closeSeoModal(event, 'offpage')">
-    <div class="seo-modal-box">
-      <div class="seo-modal-head">
-        <div class="seo-modal-head-left">
-          <div class="seo-modal-icon">🟣</div>
-          <div>
-            <h3>Off-Page SEO</h3>
-            <p>What you'll master inside this topic</p>
-          </div>
-        </div>
-        <div class="seo-modal-close" onclick="closeModal('offpage')">✕</div>
-      </div>
-      <div class="seo-modal-body">
-        <div class="seo-pill-grid">
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Backlinks</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Guest Posting</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Promotions</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Business Listings</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Podcasts</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Reviews & Ratings</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Technical SEO Modal -->
-  <div class="seo-modal-overlay" id="modal-technical" onclick="closeSeoModal(event, 'technical')">
-    <div class="seo-modal-box">
-      <div class="seo-modal-head">
-        <div class="seo-modal-head-left">
-          <div class="seo-modal-icon">⚙️</div>
-          <div>
-            <h3>Technical SEO</h3>
-            <p>What you'll master inside this topic</p>
-          </div>
-        </div>
-        <div class="seo-modal-close" onclick="closeModal('technical')">✕</div>
-      </div>
-      <div class="seo-modal-body">
-        <div class="seo-pill-grid">
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Website Speed</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>404 Pages</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Broken Links (Fix)</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Search Console</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Analytics</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Structured Data</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Canonicalization</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>XML Sitemap</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>SSL & HTTPS</div>
-          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Sharing</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function openSeoModal(id) {
-      document.getElementById('modal-' + id).classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(id) {
-      document.getElementById('modal-' + id).classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function closeSeoModal(e, id) {
-      if (e.target === document.getElementById('modal-' + id)) closeModal(id);
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        ['onpage','offpage','technical'].forEach(function(id) { closeModal(id); });
-      }
-    });
-  </script>
             <!-- real outcomes list -->
 
             <style>
@@ -6602,7 +5669,938 @@ revealEls.forEach(el => revealObserver.observe(el));
                       }, Math.floor(Math.random() * 1200) + 1800);
                     });
                 </script>
+                 <style>
 
+    * { box-sizing: border-box; }
+
+    /* ============================================
+       SECTION
+    ============================================ */
+    .yl-section {
+      padding: 0px 0 0px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    /* --- Gradient utility --- */
+    .yl-gradient-text {
+      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* --- Header --- */
+    .yl-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 90px;
+      padding: 0 16px;
+    }
+
+    .yl-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8D1CDA;
+      margin-bottom: 22px;
+    }
+
+    .yl-eyebrow-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #066BF3, #F20B8A);
+    }
+
+    .yl-heading {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      color: #0a0a1a;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+    }
+
+    .yl-subheading {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* AI badge */
+    .yl-ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 22px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
+      padding: 8px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 18px rgba(140,28,218,0.25);
+    }
+
+    /* ============================================
+       TIMELINE
+    ============================================ */
+    .yl-timeline-wrapper {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      padding-left: 80px;
+      padding-right: 24px;
+    }
+
+    /* Vertical line */
+    .yl-line-track {
+      position: absolute;
+      left: 36px;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+    }
+
+    .yl-line-progress {
+      position: absolute;
+      top: 0; left: 8px;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, #066BF3 0%, #312DDE 25%, #8D1CDA 55%, #DD089F 80%, #F20B8A 100%);
+      border-radius: 2px;
+      transition: height 0.08s linear;
+    }
+
+    /* Item */
+    .yl-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .yl-item:last-child { margin-bottom: 0; }
+
+    /* Node */
+    .yl-node {
+      position: absolute;
+      left: -56px;
+      top: 16px;
+      width: 40px; height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      flex-shrink: 0;
+    }
+
+    .yl-node-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      transition: all 0.45s ease;
+    }
+
+    .yl-node-core {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #f1f2f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #b0b5c8;
+      transition: all 0.45s ease;
+      position: relative;
+      z-index: 1;
+      border: 2px solid #e8eaf0;
+    }
+
+    .yl-item.yl-active .yl-node-core {
+      background: linear-gradient(135deg, #066BF3 0%, #8D1CDA 60%, #F20B8A 100%);
+      color: #fff;
+      box-shadow: 0 0 0 5px rgba(140,28,218,0.1), 0 4px 18px rgba(140,28,218,0.25);
+      transform: scale(1.05);
+    }
+
+    .yl-item.yl-active .yl-node-ring {
+      border-color: rgba(140,28,218,0.18);
+    }
+
+    /* Card */
+    .yl-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: #fafbff;
+      border: 1.5px solid #eeeef5;
+      border-radius: 20px;
+      padding: 24px 26px;
+      flex: 1;
+      transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yl-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #066BF3, #8D1CDA, #F20B8A);
+      border-radius: 20px 0 0 20px;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+
+    .yl-item.yl-active .yl-card {
+      background: #ffffff;
+      border-color: #e2dffa;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03), 0 12px 40px rgba(140,28,218,0.09);
+    }
+
+    /* Icon */
+    .yl-icon-box {
+      width: 50px; height: 50px;
+      border-radius: 14px;
+      background: #f0eeff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+      flex-shrink: 0;
+      transition: all 0.45s ease;
+      border: 1.5px solid #e8e4fa;
+    }
+
+    .yl-item.yl-active .yl-icon-box {
+      background: linear-gradient(135deg, rgba(6,107,243,0.08), rgba(242,11,138,0.08));
+      border-color: rgba(140,28,218,0.15);
+      box-shadow: 0 4px 18px rgba(140,28,218,0.1);
+    }
+
+    /* Content */
+    .yl-card-body { flex: 1; min-width: 0; }
+
+    .yl-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8D1CDA;
+      background: rgba(140,28,218,0.07);
+      padding: 3px 11px;
+      border-radius: 50px;
+      margin-bottom: 8px;
+    }
+
+    .yl-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0a0a1a;
+      line-height: 1.4;
+      margin-bottom: 7px;
+      transition: all 0.3s ease;
+    }
+
+    .yl-item.yl-active .yl-card-title {
+      background: linear-gradient(90deg, #066BF3, #8D1CDA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .yl-card-desc {
+      font-size: 0.875rem;
+      color: #6b7280;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .yl-card-desc strong { color: #374151; font-weight: 600; }
+
+    /* Bullet list inside card */
+    .yl-mini-list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .yl-mini-list li {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    /* Saving pill */
+    .yl-saving-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 11px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #047857;
+      background: rgba(4,120,87,0.07);
+      border: 1.5px solid rgba(4,120,87,0.15);
+      padding: 4px 13px;
+      border-radius: 50px;
+    }
+
+    /* Optional module divider */
+    .yl-or-divider {
+      text-align: center;
+      margin: 18px 0;
+    }
+
+    .yl-or-divider span {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(90deg, #066BF3 0%, #312DDE 35%, #8D1CDA 65%, #DD089F 85%, #F20B8A 100%);
+      padding: 5px 18px;
+      border-radius: 50px;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 768px) {
+      .yl-section { padding: 70px 0 85px; }
+      .yl-header { margin-bottom: 65px; }
+      .yl-timeline-wrapper { padding-left: 64px; padding-right: 16px; }
+      .yl-line-track { left: 26px; }
+      .yl-node { left: -46px; width: 34px; height: 34px; top: 18px; }
+      .yl-node-core { width: 34px; height: 34px; font-size: 11px; }
+      .yl-card { padding: 20px; gap: 14px; }
+      .yl-icon-box { width: 44px; height: 44px; font-size: 1.25rem; border-radius: 12px; }
+      .yl-card-title { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 480px) {
+      .yl-timeline-wrapper { padding-left: 54px; padding-right: 12px; }
+      .yl-line-track { left: 20px; }
+      .yl-node { left: -40px; width: 30px; height: 30px; top: 20px; }
+      .yl-node-core { width: 30px; height: 30px; font-size: 10px; }
+      .yl-card { flex-direction: column; gap: 12px; padding: 16px 14px; border-radius: 16px; }
+      .yl-card::before { border-radius: 16px 0 0 16px; }
+      .yl-icon-box { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; }
+      .yl-card-title { font-size: 0.9rem; }
+      .yl-card-desc { font-size: 0.84rem; }
+    }
+
+    /* ============================================
+       SEO MODALS
+    ============================================ */
+    .seo-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #066BF3;
+      background: rgba(6,107,243,0.08);
+      border: 1.5px solid rgba(6,107,243,0.2);
+      padding: 4px 12px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+    .seo-chip:hover {
+      background: linear-gradient(90deg, #066BF3, #8D1CDA);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(140,28,218,0.25);
+      transform: translateY(-1px);
+    }
+    .seo-chip .chip-arrow {
+      font-style: normal;
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .seo-chip:hover .chip-arrow { transform: translateX(2px); }
+
+    /* Modal overlay */
+    .seo-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,26,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .seo-modal-overlay.open {
+      display: flex;
+      animation: seoFadeIn 0.22s ease;
+    }
+    @keyframes seoFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Modal box */
+    .seo-modal-box {
+      background: #fff;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 24px 80px rgba(10,10,26,0.18), 0 4px 16px rgba(140,28,218,0.1);
+      overflow: hidden;
+      animation: seoSlideUp 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    @keyframes seoSlideUp {
+      from { transform: translateY(28px) scale(0.96); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* Modal header */
+    .seo-modal-head {
+      padding: 26px 28px 20px;
+      background: linear-gradient(135deg, #066BF3 0%, #8D1CDA 60%, #F20B8A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .seo-modal-head-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .seo-modal-icon {
+      width: 46px; height: 46px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .seo-modal-head h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .seo-modal-head p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+      margin: 3px 0 0;
+    }
+    .seo-modal-close {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .seo-modal-close:hover { background: rgba(255,255,255,0.28); }
+
+    /* Modal body */
+    .seo-modal-body {
+      padding: 24px 28px 28px;
+    }
+    .seo-pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .seo-pill-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #f8f7ff;
+      border: 1.5px solid #ede9fa;
+      border-radius: 12px;
+      padding: 10px 15px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1e1b4b;
+      width: calc(50% - 5px);
+      transition: all 0.2s ease;
+    }
+    .seo-pill-item:hover {
+      background: linear-gradient(135deg, rgba(6,107,243,0.06), rgba(242,11,138,0.06));
+      border-color: rgba(140,28,218,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(140,28,218,0.08);
+    }
+    .seo-pill-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #066BF3, #F20B8A);
+      flex-shrink: 0;
+    }
+    @media (max-width: 400px) {
+      .seo-pill-item { width: 100%; }
+      .seo-modal-body { padding: 20px; }
+      .seo-modal-head { padding: 20px; }
+    }
+
+  </style>
+  <section class="yl-section">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="yl-header">
+        <div class="yl-eyebrow">
+          <span class="yl-eyebrow-dot"></span>
+          Complete Curriculum
+          <span class="yl-eyebrow-dot"></span>
+        </div>
+        <h2 class="yl-heading">
+          What <span class="yl-gradient-text">You'll Master</span>
+        </h2>
+        <p class="yl-subheading">
+          From zero to earning online — a practical, project-based roadmap covering web development, digital marketing, AI automation, and everything in between.
+        </p>
+        <div class="yl-ai-badge">
+          ⚡ AI is integrated across all modules
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="yl-timeline-wrapper">
+
+        <div class="yl-line-track">
+          <div class="yl-line-progress" id="ylProgress"></div>
+        </div>
+
+        <!-- Module 01 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">01</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🌐</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Core Module</span>
+              <h5 class="yl-card-title">Module 01: Web Programming + AI</h5>
+              <p class="yl-card-desc">Build and sell <strong>SaaS apps, business websites, POS & invoicing software</strong>, Chrome extensions, and high-end web apps. Host everything for <strong>FREE forever with SSL</strong>.</p>
+              <ul class="yl-mini-list">
+                <li>Portfolio site</li><li>Blogging site</li><li>AI SaaS apps</li><li>POS software</li><li>WhatsApp tools</li><li>Image converter</li>
+              </ul>
+              <div class="yl-saving-pill">💰 Save Rs. 18,000+ per year on hosting</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 02 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">02</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">📈</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Mindset & Business</span>
+              <h5 class="yl-card-title">Module 02: Sales, Communication & Entrepreneurship</h5>
+              <p class="yl-card-desc">Learn how to <strong>find clients, close high-ticket deals</strong>, handle sales calls professionally, build confidence in public speaking, and grow your own business from scratch — all supercharged with AI.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 03 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">03</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🎯</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Client Acquisition</span>
+              <h5 class="yl-card-title">Module 03: Clients Hunting + AI</h5>
+              <p class="yl-card-desc">Unlock <strong>secret strategies to land your first client within 5 days</strong> — hunt local and international clients organically, communicate professionally, collect payments, and close deals with confidence.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 04 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">04</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🛒</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">E-Commerce</span>
+              <h5 class="yl-card-title">Module 04: E-Commerce + AI</h5>
+              <p class="yl-card-desc">Create modern online stores <strong>completely FREE</strong> — no Shopify subscriptions, no Amazon fees. Master dropshipping (local & international) and Daraz product listing strategies.</p>
+              <div class="yl-saving-pill">💰 Save Rs. 85,000+ per year vs Shopify</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 05 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">05</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🔵</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">CMS</span>
+              <h5 class="yl-card-title">Module 05: WordPress + AI</h5>
+              <p class="yl-card-desc">Install and configure WordPress locally, set up professional themes, and use plugins for <strong>full website customization</strong> — powered by AI to speed up every step.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 06 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">06</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">✍️</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Passive Income</span>
+              <h5 class="yl-card-title">Module 06: Blogging with AdSense + AI</h5>
+              <p class="yl-card-desc">Build blogging websites that <strong>generate passive income 24/7</strong> through Google AdSense. Learn EMD domains, auto-blogging, AdSense arbitrage, high-CPC keywords, and fast approval tricks.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 07 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">07</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🔗</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Passive Income</span>
+              <h5 class="yl-card-title">Module 07: Affiliate Marketing + AI</h5>
+              <p class="yl-card-desc">Discover the best high-commission affiliate programs and learn how to <strong>earn recurring passive income</strong> by promoting products and services without owning inventory.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 08 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">08</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🔍</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">SEO</span>
+              <h5 class="yl-card-title">Module 08: Search Engine Optimization (SEO) + AI</h5>
+              <p class="yl-card-desc">Rank websites organically on Google. Master all SEO pillars — click any to see what's covered:</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;">
+                <span class="seo-chip" onclick="openSeoModal('onpage')">🔵 On-Page SEO <i class="chip-arrow">→</i></span>
+                <span class="seo-chip" onclick="openSeoModal('offpage')">🟣 Off-Page SEO <i class="chip-arrow">→</i></span>
+                <span class="seo-chip" onclick="openSeoModal('technical')">⚙️ Technical SEO <i class="chip-arrow">→</i></span>
+                <span class="seo-chip" style="cursor:default; opacity:0.6;">📍 Local SEO</span>
+                <span class="seo-chip" style="cursor:default; opacity:0.6;">🛒 E-Commerce SEO</span>
+                <span class="seo-chip" style="cursor:default; opacity:0.6;">▶️ YouTube SEO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 09 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">09</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">📣</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Paid Ads</span>
+              <h5 class="yl-card-title">Module 09: Social Media Marketing (SMM) + AI</h5>
+              <p class="yl-card-desc">Run <strong>live paid ad campaigns</strong> on Meta (Facebook & Instagram), Google, TikTok, and Snapchat — minimum budget, maximum results. Sell digital services globally using advanced SMM strategies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 10 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">10</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">📝</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Authority Building</span>
+              <h5 class="yl-card-title">Module 10: Guest Posting & Backlinking + AI</h5>
+              <p class="yl-card-desc">Earn <strong>high-DA do-follow backlinks</strong> from authoritative websites through strategic guest posting — the right way to boost domain authority and organic traffic for new sites.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 11 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">11</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🤖</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">AI Mastery</span>
+              <h5 class="yl-card-title">Module 11: AI Prompt Engineering</h5>
+              <p class="yl-card-desc">Learn to <strong>command the most advanced AI models</strong> like a pro — better prompts, better outputs, and how to push past AI limitations for faster, smarter, more profitable work.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 12 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">12</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">📄</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Content</span>
+              <h5 class="yl-card-title">Module 12: Content Writing + AI</h5>
+              <p class="yl-card-desc">Write <strong>SEO-friendly blogs, articles, and web content</strong> using advanced AI models — produce expert-level content at 10× the speed, optimized to rank on search engines.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 13 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">13</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🎨</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Design</span>
+              <h5 class="yl-card-title">Module 13: Graphics Designing + AI</h5>
+              <p class="yl-card-desc">Create <strong>stunning visuals for Meta & Google Ads</strong>, social media posts, presentations, posters, and logos — using AI tools that make professional design accessible to everyone.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 14 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">14</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">💼</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Freelancing</span>
+              <h5 class="yl-card-title">Module 14: Freelancing + AI</h5>
+              <p class="yl-card-desc">Set up and <strong>grow your profile on Fiverr, Upwork, Guru, People Per Hour</strong>, and Freelancer.com. Beat the competition, boost your ranking, and land more orders using proven AI strategies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 15 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">15</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🚀</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Agency Growth</span>
+              <h5 class="yl-card-title">Module 15: Digital Marketing + AI</h5>
+              <p class="yl-card-desc">Become a <strong>full-stack digital marketing expert</strong> — combine websites, SEO, and paid ads to earn your first 1M+ PKR within 6 months as a solo marketer, then scale into your own multi-million agency.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- OR divider -->
+        <div class="yl-or-divider"><span>OR</span></div>
+
+        <!-- Domain Flipping (Optional) -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">🌐</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🔄</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Optional</span>
+              <h5 class="yl-card-title">Domain Flipping + AI</h5>
+              <p class="yl-card-desc">Find and buy <strong>undervalued domain names</strong>, then resell them at a profit. Learn how to identify high-potential domains, time your sales, and use AI to research profitable niches.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 16 -->
+        <div class="yl-item">
+          <div class="yl-node"><div class="yl-node-ring"></div><div class="yl-node-core">16</div></div>
+          <div class="yl-card">
+            <div class="yl-icon-box">🎬</div>
+            <div class="yl-card-body">
+              <span class="yl-tag">Automation</span>
+              <h5 class="yl-card-title">Module 16: YouTube, FB & TikTok Automation + AI</h5>
+              <p class="yl-card-desc">Launch <strong>profitable faceless channels</strong> on YouTube and TikTok — no camera, no voice needed. Generate passive income through ads, affiliations, and sponsorships using 100% free AI video tools.</p>
+            </div>
+          </div>
+        </div>
+      <!-- End Timeline -->
+
+  
+  </section>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var progressBar = document.getElementById('ylProgress');
+      var wrapper = document.querySelector('.yl-timeline-wrapper');
+      var items = document.querySelectorAll('.yl-item');
+
+      if (!progressBar || !wrapper || !items.length) return;
+
+      var total = items.length;
+      var ticking = false;
+
+      function getScrollProgress() {
+        var wRect = wrapper.getBoundingClientRect();
+        var triggerPoint = window.innerHeight * 0.72;
+
+        if (wRect.bottom <= 0) return 1;
+        if (wRect.top >= triggerPoint) return 0;
+
+        var progress = (triggerPoint - wRect.top) / wRect.height;
+        return Math.min(Math.max(progress, 0), 1);
+      }
+
+      function updateTimeline(progress) {
+        progressBar.style.height = (progress * 100) + '%';
+
+        items.forEach(function (item, index) {
+          var activationPoint = index / total + (0.4 / total);
+          if (progress >= activationPoint) {
+            item.classList.add('yl-active');
+          } else {
+            item.classList.remove('yl-active');
+          }
+        });
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          updateTimeline(getScrollProgress());
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+  <script>
+    document.querySelector('.seo-modal-close').addEventListener('click', () => closeModal('onpage'));
+  </script>
+
+  <!-- ===== SEO MODALS ===== -->
+
+  <!-- On-Page SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-onpage" onclick="closeSeoModal(event, 'onpage')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">🔵</div>
+          <div>
+            <h3>On-Page SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
+        </div>
+        <div class="seo-modal-close" onclick="closeModal('onpage')">✕</div>
+      </div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Content Quality</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Image Optimization</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Keyword Research</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>HTML Tags</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Responsive Design</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Internal & External Links</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Meta Data</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>URL Structure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Off-Page SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-offpage" onclick="closeSeoModal(event, 'offpage')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">🟣</div>
+          <div>
+            <h3>Off-Page SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
+        </div>
+        <div class="seo-modal-close" onclick="closeModal('offpage')">✕</div>
+      </div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Backlinks</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Guest Posting</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Promotions</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Business Listings</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Podcasts</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Reviews & Ratings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical SEO Modal -->
+  <div class="seo-modal-overlay" id="modal-technical" onclick="closeSeoModal(event, 'technical')">
+    <div class="seo-modal-box">
+      <div class="seo-modal-head">
+        <div class="seo-modal-head-left">
+          <div class="seo-modal-icon">⚙️</div>
+          <div>
+            <h3>Technical SEO</h3>
+            <p>What you'll master inside this topic</p>
+          </div>
+        </div>
+        <div class="seo-modal-close" onclick="closeModal('technical')">✕</div>
+      </div>
+      <div class="seo-modal-body">
+        <div class="seo-pill-grid">
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Website Speed</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>404 Pages</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Broken Links (Fix)</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Search Console</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Google Analytics</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Structured Data</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Canonicalization</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>XML Sitemap</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>SSL & HTTPS</div>
+          <div class="seo-pill-item"><span class="seo-pill-dot"></span>Social Sharing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openSeoModal(id) {
+      document.getElementById('modal-' + id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById('modal-' + id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeSeoModal(e, id) {
+      if (e.target === document.getElementById('modal-' + id)) closeModal(id);
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        ['onpage','offpage','technical'].forEach(function(id) { closeModal(id); });
+      }
+    });
+  </script>
         <!-- Project -->
         <div class="container mt-6">
             <div class="row justify-content-center">
@@ -7871,10 +7869,10 @@ revealEls.forEach(el => revealObserver.observe(el));
                                 <!-- <p>
                                <i class="bi bi-terminal"></i> 150+ prompt packs to use AI in the right way.
                             </p> -->
-                                <p style="margin-top:15px; color: #00a651;">
+                                <!-- <p style="margin-top:15px; color: #00a651;">
                                     <i class="fa-solid fa-gift fa-bounce" style="color:#ff9800;"></i>
                                     <a id="specialMentorshipLink" style="font-weight:bold; cursor:pointer; "> See Everything You Get (Value Rs. 100K+) </a>
-                                </p>
+                                </p> -->
                                 <a class="apply-button" href="https://earnifiers.dilawarpro.com/earnifiers-registration" style="display:inline-block; margin-top:20px; background: linear-gradient(
     90deg,
     #066BF3 0%,
@@ -8713,5 +8711,4 @@ document.addEventListener("DOMContentLoaded", function () {
         </script>
 
 </body>
-
 </html>
