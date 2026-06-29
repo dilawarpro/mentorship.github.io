@@ -4418,6 +4418,13 @@ html, body {
         ['onpage','offpage','technical'].forEach(function(id) { closeModal(id); });
       }
     });
+    // Run this after the page loads or when modals are created
+const modals = document.querySelectorAll('#modal-technical, #modal-onpage, #modal-offpage');
+modals.forEach(modal => {
+    document.body.appendChild(modal);
+    modal.style.zIndex = '2147483647';
+    modal.style.position = 'fixed';
+});
   </script>
             <!-- real outcomes list -->
 
