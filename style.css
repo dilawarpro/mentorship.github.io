@@ -278,6 +278,11 @@
 }
 .navbar{
   border-radius: 30px !important;
+  overflow: visible !important;
+  
+}
+.dropdown-menu {
+    z-index: 1050; /* Standard Bootstrap dropdown z-index */
 }
 audio{
   margin-bottom: 5px;
