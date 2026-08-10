@@ -8,7 +8,7 @@ const CORE_ASSETS = [
   "/404.html",
   "/styles.css",
   "/scripts.js",
-  "/earnifiers-logo.jpeg",
+  "/Dilawar Pro Mentorship-logo.jpeg",
   "/manifest.json"
 ];
 
@@ -121,8 +121,8 @@ self.addEventListener("push", event => {
   const title = data.title || "New Notification";
   const options = {
     body: data.body || "You have a new message.",
-    icon: data.icon || "/earnifiers-logo.jpeg",
-    badge: data.badge || "/earnifiers-logo.jpeg",
+    icon: data.icon || "/Dilawar Pro Mentorship-logo.jpeg",
+    badge: data.badge || "/Dilawar Pro Mentorship-logo.jpeg",
     data: data.url || "/",
     vibrate: [100, 50, 100],
     requireInteraction: true

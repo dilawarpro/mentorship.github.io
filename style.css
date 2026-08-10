@@ -43,7 +43,7 @@
     }
   }
     /* Navbar logo styles (responsive and crisp) */
-        .navbar-brand .earnifiers-nav {
+        .navbar-brand .Dilawar Pro Mentorship-nav {
         width: 50px !important;              /* Increased size */
         max-width: 50px;           /* Allows more responsive scaling */
         height: auto;
@@ -62,7 +62,7 @@
     
     /* Large tablets */
     @media (max-width: 992px) {
-        .navbar-brand .earnifiers-nav { 
+        .navbar-brand .Dilawar Pro Mentorship-nav { 
             width: 50px; 
             max-width: 45vw; 
         }
@@ -70,7 +70,7 @@
     
     /* Tablets */
     @media (max-width: 768px) {
-        .navbar-brand .earnifiers-nav { 
+        .navbar-brand .Dilawar Pro Mentorship-nav { 
             width: 50px; 
             max-width: 55vw; 
         }
@@ -78,7 +78,7 @@
     
     /* Mobile */
     @media (max-width: 480px) {
-        .navbar-brand .earnifiers-nav { 
+        .navbar-brand .Dilawar Pro Mentorship-nav { 
             width: 50px; 
             max-width: 65vw; 
         }

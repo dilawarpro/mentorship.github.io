@@ -36,9 +36,9 @@ function showNotification(programType) {
     let message;
 
     if (programType === "1to1") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Earnifiers`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Dilawar Pro Mentorship`;
     } else if (programType === "2months") {
-        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Earnifiers`;
+        message = `<i class="fas fa-check-circle toastify__icon"></i>${name} successfully joined Dilawar Pro Mentorship`;
     } else {
         return; // Exit if invalid programType
     }
@@ -121,7 +121,7 @@ setInterval(() => {
 // })();
 
 // ChatBot Started
-// Enhanced Modern Chatbot - earnifiers
+// Enhanced Modern Chatbot - Dilawar Pro Mentorship
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const chatbotTrigger = document.getElementById('chatbotTrigger');
@@ -153,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== FUNNY PROMOTIONAL JOKES ====================
     const jokes = [
         // HTML/CSS/JS Web Development Jokes
-        "Why did the HTML element go to therapy? It had too many unresolved parent issues! 😂 Don't let YOUR career have issues - join earnifiers TODAY! 🔥",
+        "Why did the HTML element go to therapy? It had too many unresolved parent issues! 😂 Don't let YOUR career have issues - join Dilawar Pro Mentorship TODAY! 🔥",
         
-        "CSS be like: 'Center a div? Sure! That'll be 3 hours and 47 Stack Overflow tabs!' 🤯 We teach you in 5 minutes at earnifiers! Limited seats! ⏰",
+        "CSS be like: 'Center a div? Sure! That'll be 3 hours and 47 Stack Overflow tabs!' 🤯 We teach you in 5 minutes at Dilawar Pro Mentorship! Limited seats! ⏰",
         
         "JavaScript developers never die... they just become undefined! 💀😂 Don't let your career become undefined - enroll NOW! 🚨",
         
@@ -163,15 +163,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         "A web developer's last words: 'It works on my machine!' ⚰️😂 Make it work EVERYWHERE - enroll before next batch fills! 🎯",
         
-        "Why do programmers hate nature? Too many bugs and no console.log! 🐛🌲 Debug your career at earnifiers! Act NOW! ⚡",
+        "Why do programmers hate nature? Too many bugs and no console.log! 🐛🌲 Debug your career at Dilawar Pro Mentorship! Act NOW! ⚡",
         
         "CSS Flexbox: 'I can align anything!' Also Flexbox: *puts footer in outer space* 🚀😂 Learn REAL layouts - doors closing Friday! 🚪",
         
-        "How do you comfort a JavaScript bug? You console it! 🖥️😄 Console your career worries - join earnifiers! Discount ending! 💸",
+        "How do you comfort a JavaScript bug? You console it! 🖥️😄 Console your career worries - join Dilawar Pro Mentorship! Discount ending! 💸",
         
         "Why was the div sad? No content and zero padding! 😢 Fill YOUR life with skills - register TODAY! 📝",
         
-        "My code doesn't have bugs, it has surprise features that charge extra! 🎁💰 Learn REAL coding at earnifiers! 🎟️",
+        "My code doesn't have bugs, it has surprise features that charge extra! 🎁💰 Learn REAL coding at Dilawar Pro Mentorship! 🎟️",
         
         "Why did the responsive website go to couples therapy? Couldn't handle the breakpoints! 💔📱 Master ALL screen sizes - enroll NOW! 🗓️",
         
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         "Why do CSS developers make bad friends? They want you to stay in your own box! 📦😅 Break out - transform your career TODAY! 🎁",
         
-        "JavaScript's 'this' keyword changes personality based on who it's with! 🎭 Be consistent - earnifiers shows the way! 🛤️",
+        "JavaScript's 'this' keyword changes personality based on who it's with! 🎭 Be consistent - Dilawar Pro Mentorship shows the way! 🛤️",
         
         "How many developers to change a lightbulb? None, that's hardware! 💡😂 SOFTWARE your success - only 5 spots left! 🔢",
         
@@ -191,10 +191,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         "CSS: Where 'float' makes things sink and 'clear' makes things messier! 🌊😂 Clear path to success - enrollment ends soon! ⏰",
         
-        "Why did the website need therapy? Broken links and trust issues! 🔗 Build solid sites at earnifiers! 🏆",
+        "Why did the website need therapy? Broken links and trust issues! 🔗 Build solid sites at Dilawar Pro Mentorship! 🏆",
 
         // Freelancing Jokes
-        "Client: 'Make it pop!' Me: *adds glitter* Client: 'No, more... poppier?' 🎉😂 Understand clients at earnifiers! Special pricing! 💰",
+        "Client: 'Make it pop!' Me: *adds glitter* Client: 'No, more... poppier?' 🎉😂 Understand clients at Dilawar Pro Mentorship! Special pricing! 💰",
         
         "Freelancer's favorite horror movie: 'The Scope That Kept Creeping!' 👻 Escape the horror - learn boundaries! Limited offer! 🎃",
         
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Client ghosted harder than my ex! At least ex didn't owe me money! 👻💔 Never get ghosted - join TODAY! 👻",
 
         // Digital Marketing & SEO Jokes
-        "Why did SEO expert cross the road? To get more traffic! 🚗 Drive REAL traffic at earnifiers! 🎯",
+        "Why did SEO expert cross the road? To get more traffic! 🚗 Drive REAL traffic at Dilawar Pro Mentorship! 🎯",
         
         "SEO expert at party: Stands in corner optimizing position for visibility! 🎉📍 Be the LIFE of the party - only 3 spots! 3️⃣",
         
@@ -257,12 +257,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         "Marketer's lullaby: 'Hush little baby... mama's optimizing this landing page!' 🎵👶 Optimize YOUR future! 🌃",
         
-        "PPC budget: Money goes brrrrr... and it's gone! 💸🖨️ Spend SMART at earnifiers! 💰",
+        "PPC budget: Money goes brrrrr... and it's gone! 💸🖨️ Spend SMART at Dilawar Pro Mentorship! 💰",
 
         // Career & Motivation Jokes
         "Boss: '5 year plan?' Me: 'Working remotely from a beach!' Boss: 'Not a plan!' Me: 'Watch me!' 🏖️😎 MAKE IT HAPPEN! 🌴",
         
-        "Old career plan: Work 40 years, retire. New plan: Learn skills, retire at 40! 🎯😂 NEW plan at earnifiers! ✊",
+        "Old career plan: Work 40 years, retire. New plan: Learn skills, retire at 40! 🎯😂 NEW plan at Dilawar Pro Mentorship! ✊",
         
         "Why did employee bring blanket? Told to cover for someone! 😴🛏️ Cover YOUR own success - be your own boss! 👔",
         
@@ -280,11 +280,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== INSPIRATIONAL QUOTES ====================
     const quotes = [
         // Success & Ambition
-        "💭 <em>\"The only way to do great work is to love what you do.\"</em>\n— Steve Jobs\n\n🔥 Love earning online? earnifiers teaches you HOW! Only 5 spots left - claim yours NOW! ⏰",
+        "💭 <em>\"The only way to do great work is to love what you do.\"</em>\n— Steve Jobs\n\n🔥 Love earning online? Dilawar Pro Mentorship teaches you HOW! Only 5 spots left - claim yours NOW! ⏰",
         
         "💭 <em>\"Success is not final, failure is not fatal: it is the courage to continue that counts.\"</em>\n— Winston Churchill\n\n💪 Start YOUR success journey! Enrollment closing in 48 hours! ⚡",
         
-        "💭 <em>\"The future belongs to those who learn more skills and combine them in creative ways.\"</em>\n— Robert Greene\n\n🎯 15+ skills await at earnifiers! Join before the weekend! 🚀",
+        "💭 <em>\"The future belongs to those who learn more skills and combine them in creative ways.\"</em>\n— Robert Greene\n\n🎯 15+ skills await at Dilawar Pro Mentorship! Join before the weekend! 🚀",
         
         "💭 <em>\"Don't watch the clock; do what it does. Keep going.\"</em>\n— Sam Levenson\n\n⏰ Keep going towards success! Limited seats, unlimited potential! 🎟️",
         
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const timeInfo = getGreeting();
                 addBot(`${timeInfo.greeting}! 👋
 
-Welcome to <strong>earnifiers</strong>!
+Welcome to <strong>Dilawar Pro Mentorship</strong>!
 
 ${getTimeContext()}
 
@@ -714,7 +714,7 @@ What would you like to explore?`);
     // ==================== CONTENT FUNCTIONS ====================
     
     function showProgram() {
-        addBot(`<strong>🏆 earnifiers</strong>
+        addBot(`<strong>🏆 Dilawar Pro Mentorship</strong>
 <em>Transform Your Career in Under 2 Months!</em>
 
 <strong>What You Get:</strong>
@@ -975,7 +975,7 @@ ${timeMsg}
 💭 <em>"A year from now, you'll wish you had started today!"</em>
 
 🔥 Don't let this opportunity slip!
-earnifiers awaits! 🚀`);
+Dilawar Pro Mentorship awaits! 🚀`);
         clearButtons();
     }
 
@@ -1200,7 +1200,7 @@ Let's schedule your <strong>FREE consultation</strong>!
     window.confirmOnWhatsApp = function() {
         const message = encodeURIComponent(
 `*📅 CONSULTATION BOOKING*
-*earnifiers*
+*Dilawar Pro Mentorship*
 
 📧 Email: ${state.email}
 📱 WhatsApp: ${state.phone}
