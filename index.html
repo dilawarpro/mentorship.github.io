@@ -5489,67 +5489,129 @@ window.onclick = function(event) {
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
 <style>
-  body { padding-bottom: 90px; }
-
-  .wa-fixed-bar,
-  .wa-fixed-bar * {
-    box-sizing: border-box;
+  :root {
+    --wa-color: #00806a;
+    --wa-color-dark: #006b58;
   }
+
+  body { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+
+  .wa-fixed-bar, .wa-fixed-bar * { box-sizing: border-box; }
 
   .wa-fixed-bar {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
     z-index: 1050;
-    background: #fff;
-    border-top: 1px solid #dee2e6;
-    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid #e3e6ea;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    transform: translateY(110%);
+    transition: transform 0.45s cubic-bezier(.2, .8, .2, 1);
   }
+  .wa-fixed-bar.is-visible { transform: translateY(0); }
+
+  .wa-fixed-bar .wa-inner { max-width: 520px; margin: 0 auto; }
 
   .wa-fixed-bar .btn-whatsapp {
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
-    background-color: #008069;
+    background: var(--wa-color);
     color: #fff;
     border: 0;
-    border-radius: 10px;
-    padding: 10px 20px;
+    border-radius: 16px;
+    padding: 14px 20px;
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
     text-decoration: none !important;
+    box-shadow: 0 6px 16px rgba(0, 128, 106, 0.3);
+    transition: background-color .2s, transform .15s, box-shadow .2s;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .wa-fixed-bar .btn-whatsapp i {
     font-size: 24px;
     line-height: 1;
+    animation: wa-wiggle 3s ease-in-out infinite;
   }
 
   .wa-fixed-bar .btn-whatsapp:hover,
-  .wa-fixed-bar .btn-whatsapp:focus,
-  .wa-fixed-bar .btn-whatsapp:active {
-    background-color: #006b58;
+  .wa-fixed-bar .btn-whatsapp:focus {
+    background: var(--wa-color-dark);
     color: #fff;
-    text-decoration: none !important;
+    box-shadow: 0 8px 20px rgba(0, 128, 106, 0.4);
   }
+  .wa-fixed-bar .btn-whatsapp:active { transform: scale(0.98); }
+  .wa-fixed-bar .btn-whatsapp:focus-visible {
+    outline: 3px solid #25d366;
+    outline-offset: 3px;
+  }
+
+  /* Soft shine sweep */
+  .wa-fixed-bar .btn-whatsapp::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.25), transparent);
+    transform: skewX(-20deg);
+    animation: wa-shine 5s ease-in-out infinite;
+  }
+
+  @keyframes wa-shine {
+    0%, 70% { left: -75%; }
+    100%    { left: 130%; }
+  }
+  @keyframes wa-wiggle {
+    0%, 88%, 100% { transform: rotate(0); }
+    90% { transform: rotate(-12deg); }
+    94% { transform: rotate(12deg); }
+    98% { transform: rotate(-6deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wa-fixed-bar, .wa-fixed-bar .btn-whatsapp { transition: none; }
+    .wa-fixed-bar .btn-whatsapp::after,
+    .wa-fixed-bar .btn-whatsapp i { animation: none; }
+  }
+
+  @media print { .wa-fixed-bar { display: none; } }
 </style>
 
-<div class="wa-fixed-bar">
-  <a href="https://wa.me/923314041010?text=Hello%2C%20I%20would%20like%20to%20know%20more"
-     class="btn btn-whatsapp"
-     target="_blank"
-     rel="noopener">
-    <i class="bi bi-whatsapp"></i>
-    <span>Chat on WhatsApp</span>
-  </a>
+<div class="wa-fixed-bar" id="waBar"
+     data-phone="1234567890"
+     data-message="Hello, I would like to know more">
+  <div class="wa-inner">
+    <a id="waBtn" href="#" class="btn btn-whatsapp"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Chat with us on WhatsApp">
+      <i class="bi bi-whatsapp" aria-hidden="true"></i>
+      <span>Chat on WhatsApp</span>
+    </a>
+  </div>
 </div>
-        
+
+<script>
+  (function () {
+    var bar = document.getElementById('waBar');
+    var btn = document.getElementById('waBtn');
+    var phone = bar.dataset.phone.replace(/\D/g, '');
+    var msg = encodeURIComponent(bar.dataset.message);
+    btn.href = 'https://wa.me/' + phone + (msg ? '?text=' + msg : '');
+    setTimeout(function () { bar.classList.add('is-visible'); }, 800);
+  })();
+</script>        
   
         <!-- Added ChatBot -->
         <!-- Chatbot Trigger Button -->
