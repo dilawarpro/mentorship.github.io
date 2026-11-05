@@ -951,6 +951,14 @@ audio{
       right: 5%;
       left: auto;
   }
+
+  @media (max-width: 576px) {
+    .chatbot-trigger {
+        bottom: 70px;
+        right: 20px;
+        left: auto;
+    }
+}
 } 
 
 #install-button {
