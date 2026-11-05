@@ -439,7 +439,7 @@ audio{
 /* Chatbot Trigger Button */
 .chatbot-trigger {
   position: fixed;
-  bottom: 70px;
+  bottom: 70px !important;
   right: 30px;
   left: auto;
   width: 60px;
@@ -949,12 +949,6 @@ audio{
       height: 70vh;
       bottom: 80px;
       right: 5%;
-      left: auto;
-  }
-  
-  .chatbot-trigger {
-      bottom: 20px;
-      right: 20px;
       left: auto;
   }
 } 
